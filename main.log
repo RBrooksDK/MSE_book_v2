@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.20)  11 MAR 2025 13:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.2.20)  26 APR 2025 12:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/Richard/OneDrive - ViaUC/Arbejde/MSE/Mathematics for Software Engineering (Working)/main.tex"
-(c:/Users/Richard/OneDrive - ViaUC/Arbejde/MSE/Mathematics for Software Engineering (Working)/main.tex
+**"c:/Users/Richard/OneDrive - ViaUC/Arbejde/GitHub/MSE_book_v2/main.tex"
+(c:/Users/Richard/OneDrive - ViaUC/Arbejde/GitHub/MSE_book_v2/main.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
 (elegantbook.cls
@@ -1737,12 +1737,12 @@ Package biblatex Info: Automatic encoding selection.
 \openout5 = `main.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'main.bbl' found.
- (main.bbl)
+Package biblatex Info: ... file 'main.bbl' not found.
+
+No file main.bbl.
 Package biblatex Info: Reference section=0 on input line 133.
 Package biblatex Info: Reference segment=0 on input line 133.
 \c@lstlisting=\count578
-
 Package pgfplots notification 'compat/show suggested version=true': document has been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
 Package hyperref Info: Option `pageanchor' set `false' on input line 135.
@@ -1778,7 +1778,7 @@ Package hyperref Info: Option `pageanchor' set `false' on input line 135.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<./figure/cover2.jpg, id=258, 1027.84pt x 1027.84pt>
+<./figure/cover2.jpg, id=250, 1027.84pt x 1027.84pt>
 File: ./figure/cover2.jpg Graphic file (type jpg)
 <use ./figure/cover2.jpg>
 Package pdftex.def Info: ./figure/cover2.jpg  used on input line 135.
@@ -1817,6 +1817,15 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 135
  (C:\Users\Richard\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
+c:/Users/Richard/OneDrive - ViaUC/Arbejde/GitHub/MSE_book_v2/main.tex:135: Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate 
+                             
+l.135 \maketitle
+                
+You have given more \span or & marks than there were
+in the preamble to the \halign or \valign now in progress.
+So I'll assume that you meant to type \cr instead.
+
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
 (Font)              Font shape `T1/lmss/m/sl' tried instead on input line 135.
 
@@ -1825,36 +1834,24 @@ LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
 
 
 
-{C:/Users/Richard/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc} <./figure/cover2.jpg>] (main.toc
-
-[1
-
-
-
-]
-Overfull \hbox (1.262pt too wide) detected at line 46
-\T1/lmss/bx/n/10.95 Chapter 10  
- []
-
-
-Overfull \hbox (1.262pt too wide) detected at line 51
-\T1/lmss/bx/n/10.95 Chapter 11  
- []
-
-)
+{C:/Users/Richard/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc} <./figure/cover2.jpg>] (main.toc)
 \tf@toc=\write8
 \openout8 = `main.toc'.
 
 
 
-[2{C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}] (chapter01.tex
+[1
+
+
+
+] (chapter01.tex
 Chapter 1.
 
 
 [1
 
 
-{C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}]
+{C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}]
 LaTeX Font Info:    Trying to load font information for T1+ntxtlf on input line 63.
  (C:\Users\Richard\AppData\Local\Programs\MiKTeX\tex/latex/newtx\t1ntxtlf.fd
 File: t1ntxtlf.fd 2021/05/24 v1.1 font definition file for T1/ntx/tlf
@@ -1913,7 +1910,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 [15]
 
 [16]
-<figure/book1.png, id=512, 1219.55624pt x 316.18124pt>
+<figure/book1.png, id=386, 1219.55624pt x 316.18124pt>
 File: figure/book1.png Graphic file (type png)
 <use figure/book1.png>
 Package pdftex.def Info: figure/book1.png  used on input line 1050.
@@ -1925,7 +1922,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 [17]
-<figure/book2.png, id=520, 1096.84781pt x 316.18124pt>
+<figure/book2.png, id=395, 1096.84781pt x 316.18124pt>
 File: figure/book2.png Graphic file (type png)
 <use figure/book2.png>
 Package pdftex.def Info: figure/book2.png  used on input line 1070.
@@ -1933,7 +1930,7 @@ Package pdftex.def Info: figure/book2.png  used on input line 1070.
 
 
 [18 <./figure/book1.png> <./figure/book2.png>]
-<figure/book3.png, id=528, 949.29657pt x 362.85562pt>
+<figure/book3.png, id=403, 949.29657pt x 362.85562pt>
 File: figure/book3.png Graphic file (type png)
 <use figure/book3.png>
 Package pdftex.def Info: figure/book3.png  used on input line 1123.
@@ -1941,7 +1938,7 @@ Package pdftex.def Info: figure/book3.png  used on input line 1123.
 
 
 [19 <./figure/book3.png>]
-<figure/book4.png, id=535, 990.70125pt x 368.87813pt>
+<figure/book4.png, id=410, 990.70125pt x 368.87813pt>
 File: figure/book4.png Graphic file (type png)
 <use figure/book4.png>
 Package pdftex.def Info: figure/book4.png  used on input line 1187.
@@ -2052,12 +2049,12 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 [54]
 Chapter 4.
-<figure/boole.png, id=737, 241.557pt x 224.475pt>
+<figure/boole.png, id=612, 241.557pt x 224.475pt>
 File: figure/boole.png Graphic file (type png)
 <use figure/boole.png>
 Package pdftex.def Info: figure/boole.png  used on input line 16.
 (pdftex.def)             Requested size: 142.1105pt x 132.06575pt.
-<figure/shannon.png, id=738, 252.945pt x 256.668pt>
+<figure/shannon.png, id=613, 252.945pt x 256.668pt>
 File: figure/shannon.png Graphic file (type png)
 <use figure/shannon.png>
 Package pdftex.def Info: figure/shannon.png  used on input line 22.
@@ -2067,7 +2064,7 @@ Package pdftex.def Info: figure/shannon.png  used on input line 22.
 [55
 
  <./figure/boole.png> <./figure/shannon.png>]
-<figure/transistor.png, id=745, 169.38281pt x 169.38281pt>
+<figure/transistor.png, id=620, 169.38281pt x 169.38281pt>
 File: figure/transistor.png Graphic file (type png)
 <use figure/transistor.png>
 Package pdftex.def Info: figure/transistor.png  used on input line 37.
@@ -2096,11 +2093,17 @@ LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
 
 
 [63]
-<figure/gates.png, id=793, 685.05937pt x 229.60782pt>
+<figure/gates.png, id=668, 685.05937pt x 229.60782pt>
 File: figure/gates.png Graphic file (type png)
 <use figure/gates.png>
 Package pdftex.def Info: figure/gates.png  used on input line 578.
 (pdftex.def)             Requested size: 386.95897pt x 129.69711pt.
+
+
+LaTeX Warning: Citation 'rosen2012' on page 64 undefined on input line 579.
+
+
+LaTeX Warning: Citation 'rosen2012' on page 64 undefined on input line 579.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -2108,599 +2111,11 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 [64]
-<figure/gatessimilar.png, id=802, 880.03781pt x 158.09062pt>
+<figure/gatessimilar.png, id=674, 880.03781pt x 158.09062pt>
 File: figure/gatessimilar.png Graphic file (type png)
 <use figure/gatessimilar.png>
 Package pdftex.def Info: figure/gatessimilar.png  used on input line 596.
 (pdftex.def)             Requested size: 435.32422pt x 78.2008pt.
 
 
-[65 <./figure/gates.png> <./figure/gatessimilar.png>]
-<figure/logicincomp.png, id=813, 543.53062pt x 176.15813pt>
-File: figure/logicincomp.png Graphic file (type png)
-<use figure/logicincomp.png>
-Package pdftex.def Info: figure/logicincomp.png  used on input line 648.
-(pdftex.def)             Requested size: 435.32422pt x 141.09602pt.
-) (chapter05.tex
-
-[66 <./figure/logicincomp.png>]
-Chapter 5.
-
-
-[67
-
-]
-
-[68]
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 104.
-
-
-[69]
-
-[70]
-
-[71]
-
-[72]
-
-[73]
-
-[74]
-
-[75]
-
-[76]
-
-[77]
-
-[78]
-
-[79]
-
-[80]
-
-[81]) (chapter06.tex
-
-[82]
-Chapter 6.
-
-
-[83
-
-]
-
-[84]
-
-[85]
-
-[86]
-
-[87]
-
-[88]
-
-[89]
-
-[90]
-
-[91]
-
-[92]
-
-[93]
-LaTeX Font Info:    Trying to load font information for TS1+lmss on input line 644.
- (C:\Users\Richard\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmss.fd
-File: ts1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-
-[94{C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}]
-
-[95]) (chapter07.tex
-
-[96]
-Chapter 7.
-
-
-[97
-
-]
-
-[98]
-LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
-(Font)              scaled to size 10.95pt on input line 145.
-
-
-[99]
-
-[100]
-
-[101]
-
-[102]
-
-[103]
-
-[104]
-
-[105]
-
-[106]) (chapter08.tex
-
-[107]
-Chapter 8.
-
-
-[108
-
-]
-
-[109]
-
-[110]
-
-[111]
-
-[112]
-
-[113]
-
-[114]
-
-[115]
-
-[116]
-
-[117]
-
-[118]
-
-[119]
-
-[120]
-
-[121]
-
-[122]
-
-[123]) (chapter09.tex
-
-[124]
-Chapter 9.
-
-
-[125
-
-]
-
-[126]
-
-[127]
-
-[128]
-
-[129]
-
-[130]
-
-[131]
-
-[132]
-
-[133]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 768.
-
-
-[134]
-
-[135]
-
-[136]
-
-[137]
-
-[138]
-
-[139]) (chapter10.tex
-
-[140]
-Chapter 10.
-(C:\Users\Richard\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-)
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 20.
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 21.
-
-
-[141
-
-] (C:\Users\Richard\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-)
-
-[142]
-Package pgfplots info on input line 103: Overriding colorspace to rgb due to xcolor configuration.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[143]
-
-[144]
-Package pgfplots info on input line 166: Overriding colorspace to rgb due to xcolor configuration.
-
-
-[145]
-
-[146]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[147]
-
-[148]
-
-[149]
-
-[150]
-
-[151]
-
-[152]
-
-[153]
-
-[154]
-
-[155]
-
-[156]
-
-[157]
-
-[158]
-
-[159]) (chapter11.tex
-
-[160]
-Chapter 11.
-
-
-[161
-
-]
-
-[162]
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 79.
- (C:\Users\Richard\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
-File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 85--93
-[][][][][][] 
- []
-
-
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 104--115
-[][][][][][] 
- []
-
-
-
-[163]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 127--143
-[][][][][][] 
- []
-
-
-
-[164]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 174--189
-[][][][][][] 
- []
-
-
-
-[165]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 225--229
-[][][][][][] 
- []
-
-
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 230--234
-[][][][][][] 
- []
-
-
-
-[166]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 235--240
-[][][][][][] 
- []
-
-
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 241--248
-[][][][][][] 
- []
-
-
-
-[167]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 331--339
-[][][][][][] 
- []
-
-
-
-[168]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 346--354
-[][][][][][] 
- []
-
-
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 360--370
-[][][][][][] 
- []
-
-
-
-[169]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 385--392
-[][][][][][] 
- []
-
-
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 406--416
-[][][][][][] 
- []
-
-
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 422--432
-[][][][][][] 
- []
-
-
-
-[170]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 459--468
-[][][][][][] 
- []
-
-
-
-[171]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 473--483
-[][][][][][] 
- []
-
-
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 488--498
-[][][][][][] 
- []
-
-
-
-[172]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 532--542
-[][][][][][] 
- []
-
-
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 549--559
-[][][][][][] 
- []
-
-
-
-[173]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 598--605
-[][][][][][] 
- []
-
-
-
-[174]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 642--652
-[][][][][][] 
- []
-
-
-
-[175]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 665--673
-[][][][][][] 
- []
-
-
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 678--685
-[][][][][][] 
- []
-
-
-
-[176]
-LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.0pt on input line 720.
-
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 718--724
-[][][][][][] 
- []
-
-
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 739--747
-[][][][][][] 
- []
-
-
-
-[177]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 774--782
-[][][][][][] 
- []
-
-
-
-[178]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 830--838
-[][][][][][] 
- []
-
-
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 850--858
-[][][][][][] 
- []
-
-
-
-[179]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 873--881
-[][][][][][] 
- []
-
-
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 896--906
-[][][][][][] 
- []
-
-
-
-[180]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 923--932
-[][][][][][] 
- []
-
-
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 949--965
-[][][][][][] 
- []
-
-
-
-[181]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 982--996
-[][][][][][] 
- []
-
-
-
-[182]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 1020--1027
-[][][][][][] 
- []
-
-
-
-[183]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 1060--1069
-[][][][][][] 
- []
-
-
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 1096--1103
-[][][][][][] 
- []
-
-
-
-[184]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 1128--1135
-[][][][][][] 
- []
-
-
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 1162--1173
-[][][][][][] 
- []
-
-
-
-[185]
-Overfull \hbox (0.30954pt too wide) in paragraph at lines 1207--1218
-[][][][][][] 
- []
-
-
-
-[186]
-
-[187]
-
-[188]
-
-[189]
-
-[190]
-
-[191]
-
-[192]
-
-[193]
-
-[194]
-
-LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
-(Font)              using `T1/lmr/bx/n' instead on input line 1710.
-
-
-
-[195])
-
-[196] (appendix01.tex
-
-[197
-
-]
-Appendix A.
-
-
-[198
-
-]
-
-[199]
-
-[200]
-
-[201]
-
-[202])
-
-[203] (main.aux)
- ***********
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2020/03/25>
- ***********
-
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 0967974484BB58FA63619D71D8DCEBAF;11061.
-Package logreq Info: Writing requests to 'main.run.xml'.
-\openout1 = `main.run.xml'.
-
- ) 
-Here is how much of TeX's memory you used:
- 77365 strings out of 473530
- 1855273 string characters out of 5713826
- 3669530 words of memory out of 5000000
- 98606 multiletter control sequences out of 15000+600000
- 763700 words of font info for 182 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 99i,30n,136p,1288b,5183s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Richard\AppData\Local\MiKTeX\fonts/pk/ljfour/public/ifsym/dpi657\ifgeo10.pk><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbsy10.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx8.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx9.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi9.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmib10.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss10.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss8.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss9.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbo10.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsso10.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy9.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmbi.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb><C:/Users/Richard/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmri.pfb>
-Output written on main.pdf (206 pages, 3680005 bytes).
-PDF statistics:
- 2342 PDF objects out of 2487 (max. 8388607)
- 882 named destinations out of 1000 (max. 500000)
- 626 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+LaTeX War
