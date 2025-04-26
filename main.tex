@@ -1,0 +1,164 @@
+%\RequirePackage[utf8]{inputenc}
+\documentclass[fleqn, 11pt, color=green]{elegantbook}
+\usepackage{parskip}  % Adds space between paragraphs and removes indentation
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning} % For better arrowheads
+\usepackage{circuitikz}
+\usetikzlibrary{circuits.logic.US}
+\usepackage{mymacro}
+
+
+
+% Reset any color scheme
+\color{black} % Ensure text color is black
+\pagecolor{white} % Ensure page color is white
+
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Customise the listing caption to "Algorithm"
+% Define custom style for Python code
+\lstdefinestyle{pythonStyle}{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{gray},
+  stringstyle=\color{red},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  stepnumber=1,
+  numbersep=5pt,
+  showspaces=false,
+  showstringspaces=false,
+  frame=single,
+  breaklines=true
+}
+
+% Define custom style for Java code
+\lstdefinestyle{javaStyle}{
+  language=Java,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{purple}\bfseries,
+  commentstyle=\color{gray},
+  stringstyle=\color{red},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  stepnumber=1,
+  numbersep=5pt,
+  showspaces=false,
+  showstringspaces=false,
+  frame=single,
+  breaklines=true
+}
+
+% Customise the listing caption name
+\renewcommand{\lstlistingname}{Algorithm}
+
+
+% Define a style for inline Java code
+\newcommand{\inlinecode}[1]{\lstinline[language=Java, basicstyle=\ttfamily\small]{#1}}
+
+% Override the colors used in the clrscode4e package
+\definecolor{commentcolor}{cmyk}{0, 0, 0, 1} % Change comment color to black
+\definecolor{linenumcolor}{cmyk}{0, 0, 0, 1} % Change line number color to black
+
+\usepackage{array,mathtools}
+\newcommand*{\carry}[1][1]{\overset{#1}}
+\newcolumntype{B}[1]{r*{#1}{@{\,}r}}
+\usepackage{lmodern}
+\renewcommand*\familydefault{\sfdefault}
+
+% Define skewed overline
+\newcommand{\myol}[2][3]{{}\mkern#1mu\overline{\mkern-#1mu#2}}
+
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+
+
+
+\usetikzlibrary{matrix}
+
+\newcommand{\addend}{\text{\textsl{\color{gray}{Addend}}}}
+\newcommand{\augend}{\text{\textsl{\color{gray}{Augend}}}}
+\newcommand{\sumOut}{\text{\textsl{\color{gray}{Sum}}}}
+\title{Mathematics for Software Engineering}
+
+\author{Richard Brooks}
+\date{August, 2024}
+\version{1.0}
+
+\cover{cover2.jpg}
+
+% modify the color in the middle of titlepage
+\definecolor{customcolor}{RGB}{32,178,170}
+\colorlet{coverlinecolor}{customcolor}
+
+\newcommand{\mycircled}[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+            
+
+\usepackage{nccmath, mathtools}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+\usepackage{subcaption}
+\usetikzlibrary{decorations.pathmorphing}
+% Load the amsthm package
+%\usepackage{amsthm}
+
+% Redefine the QED symbol to your custom arrow
+%\renewcommand{\qedsymbol}{\color{fourth}\FilledTriangleLeft}
+
+\newcommand{\EndSolutionSymbol}{\ensuremath{\color{fourth}\blacktriangleleft}}
+%\newcommand{\vect}[1]{\pmb{\boldsymbol{#1}}}
+%\newcommand{\vect}[1]{\mathbf{\boldsymbol{#1}}}
+\newcommand{\vect}[1]{\pmb{#1}}
+
+
+% Define custom colors based on the RGB values you provided
+\definecolor{headercolor}{RGB}{1, 120, 2}
+\definecolor{backgroundcolor}{RGB}{242, 249, 242}
+\definecolor{outlinecolor}{RGB}{1, 120, 2}
+
+% Define a custom tcolorbox environment using these colors
+\newtcolorbox{custombox}[2][]{colback=headercolor!5, colframe=outlinecolor, coltitle=white, fonttitle=\bfseries, colbacktitle=headercolor, title={#2}, #1}
+
+\addbibresource{reference.bib}
+\DeclareLanguageMapping{english}{english-apa}
+
+\usepackage{clrscode4e}
+
+\begin{document}
+
+\maketitle
+
+\frontmatter
+\tableofcontents
+
+\mainmatter
+
+\input{chapter01}
+\input{chapter02}
+\input{chapter03}
+\input{chapter04}
+\input{chapter05}
+\input{chapter06}
+\input{chapter07}
+\input{chapter08}
+\input{chapter09}
+\input{chapter10}
+\input{chapter11}
+
+
+
+% Print the bibliography
+\nocite{*}
+\printbibliography[heading=bibintoc, title=\ebibname]
+
+\appendix
+\input{appendix01.tex}
+
+\end{document}
+

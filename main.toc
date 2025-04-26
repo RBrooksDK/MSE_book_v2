@@ -1,0 +1,58 @@
+\contentsline {chapter}{\numberline {1}Basic Arithmetic and Functions}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Factorisation and the Order of Operations}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Fractions}{3}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Exponents, Radicals and Surds}{5}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Using Formulae and Substitution}{9}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Rearranging Formulae}{10}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Functions}{12}{section.1.6}%
+\contentsline {section}{\numberline {1.7}Graphical Identification of Function Types}{17}{section.1.7}%
+\contentsline {section}{\numberline {1.8}Logarithms}{21}{section.1.8}%
+\contentsline {chapter}{\numberline {2}Fundamental Concepts in Number Theory}{28}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Types of Numbers}{29}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Integer Properties and Modular Arithmetic}{33}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Numeral Systems}{38}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Binary Numbers}{38}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Octal and Hexadecimal}{49}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Converting Between Systems}{50}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Boolean Algebra}{55}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Introduction to Boolean Algebra}{55}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Basic Operations on Bits}{57}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Boolean Functions}{59}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Logic Gates}{64}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Combinatorics and Probability Theory}{67}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Sample Space and Events}{67}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Types of Events in Probability Theory}{69}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Counting Principles}{72}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Probability Basics}{77}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Probability of Joint Events and Set Operations}{79}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Conditional Probability and Bayes' Theorem}{83}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Conditional Probability}{83}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Multiplication and Total Probability Rules}{88}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Independence}{91}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Bayes' Theorem}{94}{section.6.4}%
+\contentsline {chapter}{\numberline {7}Linear Equations in Linear Algebra}{97}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Systems of Linear Equations}{97}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Elementary Row Operations and Echelon Forms}{103}{section.7.2}%
+\contentsline {chapter}{\numberline {8}Vectors and Matrices}{108}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Vectors in $\mathbb {R}^2$ and $\mathbb {R}^n$}{108}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Matrix Equations}{113}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Solution Sets of Linear Systems}{117}{section.8.3}%
+\contentsline {section}{\numberline {8.4}Linear Independence}{121}{section.8.4}%
+\contentsline {chapter}{\numberline {9}Matrix Algebra}{125}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Matrix Arithmetic}{125}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Matrix Transpose}{131}{section.9.2}%
+\contentsline {section}{\numberline {9.3}Invertible Matrices}{133}{section.9.3}%
+\contentsline {section}{\numberline {9.4}The Invertible Matrix Theorem}{139}{section.9.4}%
+\contentsline {chapter}{\numberline {10}Time Complexity}{141}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Introduction to Complexity Analysis}{141}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Growth of Functions}{142}{section.10.2}%
+\contentsline {section}{\numberline {10.3}Asymptotic Analysis}{146}{section.10.3}%
+\contentsline {section}{\numberline {10.4}Further Analysis}{152}{section.10.4}%
+\contentsline {chapter}{\numberline {11}Code Analysis Techniques}{161}{chapter.11}%
+\contentsline {section}{\numberline {11.1}Pseudocode}{162}{section.11.1}%
+\contentsline {section}{\numberline {11.2}Construct Analysis}{166}{section.11.2}%
+\contentsline {section}{\numberline {11.3}Loop Analysis}{176}{section.11.3}%
+\contentsline {section}{\numberline {11.4}Code Analysis}{188}{section.11.4}%
+\contentsline {chapter}{Bibliography}{197}{chapter*.45}%
+\renewcommand {\cftchappresnum }{Appendix }\renewcommand {\cftchapaftersnum }{}\setlength {\cftchapnumwidth }{\widthof {\textbf {Appendix~999}}} 
+\contentsline {chapter}{\numberline {A}Summation}{198}{appendix.A}%

@@ -1,0 +1,391 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{apa/apasortcite//global/global/global}
+    \entry{clrs4}{book}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=45b8a1d10dd28c65dd843a76583308c3}{%
+           family={Cormen},
+           familyi={C\bibinitperiod},
+           given={T.H.},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c71fd291b2f1a30d3a8bdcd818638fd0}{%
+           family={Leiserson},
+           familyi={L\bibinitperiod},
+           given={C.E.},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6a630bbc1f4da3f000de53a8c3fcda9a}{%
+           family={Rivest},
+           familyi={R\bibinitperiod},
+           given={R.L.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=340a9e41a37c56843c3354ab4ef758e7}{%
+           family={Stein},
+           familyi={S\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{5cf5d801586d363520fa1998e7e71c6f}
+      \strng{fullhash}{677319d1db3e1c54f3d98b68b2a6a846}
+      \strng{fullhashraw}{677319d1db3e1c54f3d98b68b2a6a846}
+      \strng{bibnamehash}{677319d1db3e1c54f3d98b68b2a6a846}
+      \strng{authorbibnamehash}{677319d1db3e1c54f3d98b68b2a6a846}
+      \strng{authornamehash}{5cf5d801586d363520fa1998e7e71c6f}
+      \strng{authorfullhash}{677319d1db3e1c54f3d98b68b2a6a846}
+      \strng{authorfullhashraw}{677319d1db3e1c54f3d98b68b2a6a846}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{4th}
+      \field{isbn}{9780262046305}
+      \field{title}{Introduction to Algorithms}
+      \field{year}{2022}
+    \endentry
+    \entry{lay2003linear}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=0de690fe0477e25c6800a44f35fe5835}{%
+           family={Lay},
+           familyi={L\bibinitperiod},
+           given={D.C.},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Pearson Education}%
+      }
+      \strng{namehash}{0de690fe0477e25c6800a44f35fe5835}
+      \strng{fullhash}{0de690fe0477e25c6800a44f35fe5835}
+      \strng{fullhashraw}{0de690fe0477e25c6800a44f35fe5835}
+      \strng{bibnamehash}{0de690fe0477e25c6800a44f35fe5835}
+      \strng{authorbibnamehash}{0de690fe0477e25c6800a44f35fe5835}
+      \strng{authornamehash}{0de690fe0477e25c6800a44f35fe5835}
+      \strng{authorfullhash}{0de690fe0477e25c6800a44f35fe5835}
+      \strng{authorfullhashraw}{0de690fe0477e25c6800a44f35fe5835}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9788177583335}
+      \field{title}{Linear Algebra and Its Applications}
+      \field{year}{2003}
+      \true{nocite}
+    \endentry
+    \entry{montgomery2013applied}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=715badfd1c8a22d771ef5233487a019d}{%
+           family={Montgomery},
+           familyi={M\bibinitperiod},
+           given={D.C.},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{2}{%
+        {John Wiley}%
+        {Sons, Incorporated}%
+      }
+      \strng{namehash}{715badfd1c8a22d771ef5233487a019d}
+      \strng{fullhash}{715badfd1c8a22d771ef5233487a019d}
+      \strng{fullhashraw}{715badfd1c8a22d771ef5233487a019d}
+      \strng{bibnamehash}{715badfd1c8a22d771ef5233487a019d}
+      \strng{authorbibnamehash}{715badfd1c8a22d771ef5233487a019d}
+      \strng{authornamehash}{715badfd1c8a22d771ef5233487a019d}
+      \strng{authorfullhash}{715badfd1c8a22d771ef5233487a019d}
+      \strng{authorfullhashraw}{715badfd1c8a22d771ef5233487a019d}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9781118802267}
+      \field{title}{Applied Statistics and Probability for Engineers, 6th Edition}
+      \field{year}{2013}
+      \true{nocite}
+    \endentry
+    \entry{pishro2014introduction}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=ea314ec2d5bc8e7884aafe4a892bc7d8}{%
+           family={Pishro-Nik},
+           familyi={P\bibinithyphendelim N\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Kappa Research, LLC}%
+      }
+      \strng{namehash}{ea314ec2d5bc8e7884aafe4a892bc7d8}
+      \strng{fullhash}{ea314ec2d5bc8e7884aafe4a892bc7d8}
+      \strng{fullhashraw}{ea314ec2d5bc8e7884aafe4a892bc7d8}
+      \strng{bibnamehash}{ea314ec2d5bc8e7884aafe4a892bc7d8}
+      \strng{authorbibnamehash}{ea314ec2d5bc8e7884aafe4a892bc7d8}
+      \strng{authornamehash}{ea314ec2d5bc8e7884aafe4a892bc7d8}
+      \strng{authorfullhash}{ea314ec2d5bc8e7884aafe4a892bc7d8}
+      \strng{authorfullhashraw}{ea314ec2d5bc8e7884aafe4a892bc7d8}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9780990637202}
+      \field{title}{Introduction to Probability, Statistics, and Random Processes}
+      \field{year}{2014}
+      \true{nocite}
+    \endentry
+    \entry{rosen2012}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=5d7c5a2525564580a8aa04190ae2b822}{%
+           family={Rosen},
+           familyi={R\bibinitperiod},
+           given={Kenneth\bibnamedelima H.},
+           giveni={K\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {New York}%
+      }
+      \list{publisher}{1}{%
+        {McGraw-Hill Education}%
+      }
+      \strng{namehash}{5d7c5a2525564580a8aa04190ae2b822}
+      \strng{fullhash}{5d7c5a2525564580a8aa04190ae2b822}
+      \strng{fullhashraw}{5d7c5a2525564580a8aa04190ae2b822}
+      \strng{bibnamehash}{5d7c5a2525564580a8aa04190ae2b822}
+      \strng{authorbibnamehash}{5d7c5a2525564580a8aa04190ae2b822}
+      \strng{authornamehash}{5d7c5a2525564580a8aa04190ae2b822}
+      \strng{authorfullhash}{5d7c5a2525564580a8aa04190ae2b822}
+      \strng{authorfullhashraw}{5d7c5a2525564580a8aa04190ae2b822}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{7th}
+      \field{isbn}{978-0073383095}
+      \field{title}{Discrete Mathematics and Its Applications}
+      \field{year}{2012}
+    \endentry
+  \enddatalist
+  \datalist[entry]{apa/global//global/global/global}
+    \entry{clrs4}{book}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=45b8a1d10dd28c65dd843a76583308c3}{%
+           family={Cormen},
+           familyi={C\bibinitperiod},
+           given={T.H.},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c71fd291b2f1a30d3a8bdcd818638fd0}{%
+           family={Leiserson},
+           familyi={L\bibinitperiod},
+           given={C.E.},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6a630bbc1f4da3f000de53a8c3fcda9a}{%
+           family={Rivest},
+           familyi={R\bibinitperiod},
+           given={R.L.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=340a9e41a37c56843c3354ab4ef758e7}{%
+           family={Stein},
+           familyi={S\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{5cf5d801586d363520fa1998e7e71c6f}
+      \strng{fullhash}{677319d1db3e1c54f3d98b68b2a6a846}
+      \strng{fullhashraw}{677319d1db3e1c54f3d98b68b2a6a846}
+      \strng{bibnamehash}{677319d1db3e1c54f3d98b68b2a6a846}
+      \strng{authorbibnamehash}{677319d1db3e1c54f3d98b68b2a6a846}
+      \strng{authornamehash}{5cf5d801586d363520fa1998e7e71c6f}
+      \strng{authorfullhash}{677319d1db3e1c54f3d98b68b2a6a846}
+      \strng{authorfullhashraw}{677319d1db3e1c54f3d98b68b2a6a846}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{4th}
+      \field{isbn}{9780262046305}
+      \field{title}{Introduction to Algorithms}
+      \field{year}{2022}
+    \endentry
+    \entry{lay2003linear}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=0de690fe0477e25c6800a44f35fe5835}{%
+           family={Lay},
+           familyi={L\bibinitperiod},
+           given={D.C.},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Pearson Education}%
+      }
+      \strng{namehash}{0de690fe0477e25c6800a44f35fe5835}
+      \strng{fullhash}{0de690fe0477e25c6800a44f35fe5835}
+      \strng{fullhashraw}{0de690fe0477e25c6800a44f35fe5835}
+      \strng{bibnamehash}{0de690fe0477e25c6800a44f35fe5835}
+      \strng{authorbibnamehash}{0de690fe0477e25c6800a44f35fe5835}
+      \strng{authornamehash}{0de690fe0477e25c6800a44f35fe5835}
+      \strng{authorfullhash}{0de690fe0477e25c6800a44f35fe5835}
+      \strng{authorfullhashraw}{0de690fe0477e25c6800a44f35fe5835}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9788177583335}
+      \field{title}{Linear Algebra and Its Applications}
+      \field{year}{2003}
+      \true{nocite}
+    \endentry
+    \entry{montgomery2013applied}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=715badfd1c8a22d771ef5233487a019d}{%
+           family={Montgomery},
+           familyi={M\bibinitperiod},
+           given={D.C.},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{2}{%
+        {John Wiley}%
+        {Sons, Incorporated}%
+      }
+      \strng{namehash}{715badfd1c8a22d771ef5233487a019d}
+      \strng{fullhash}{715badfd1c8a22d771ef5233487a019d}
+      \strng{fullhashraw}{715badfd1c8a22d771ef5233487a019d}
+      \strng{bibnamehash}{715badfd1c8a22d771ef5233487a019d}
+      \strng{authorbibnamehash}{715badfd1c8a22d771ef5233487a019d}
+      \strng{authornamehash}{715badfd1c8a22d771ef5233487a019d}
+      \strng{authorfullhash}{715badfd1c8a22d771ef5233487a019d}
+      \strng{authorfullhashraw}{715badfd1c8a22d771ef5233487a019d}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9781118802267}
+      \field{title}{Applied Statistics and Probability for Engineers, 6th Edition}
+      \field{year}{2013}
+      \true{nocite}
+    \endentry
+    \entry{pishro2014introduction}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=ea314ec2d5bc8e7884aafe4a892bc7d8}{%
+           family={Pishro-Nik},
+           familyi={P\bibinithyphendelim N\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Kappa Research, LLC}%
+      }
+      \strng{namehash}{ea314ec2d5bc8e7884aafe4a892bc7d8}
+      \strng{fullhash}{ea314ec2d5bc8e7884aafe4a892bc7d8}
+      \strng{fullhashraw}{ea314ec2d5bc8e7884aafe4a892bc7d8}
+      \strng{bibnamehash}{ea314ec2d5bc8e7884aafe4a892bc7d8}
+      \strng{authorbibnamehash}{ea314ec2d5bc8e7884aafe4a892bc7d8}
+      \strng{authornamehash}{ea314ec2d5bc8e7884aafe4a892bc7d8}
+      \strng{authorfullhash}{ea314ec2d5bc8e7884aafe4a892bc7d8}
+      \strng{authorfullhashraw}{ea314ec2d5bc8e7884aafe4a892bc7d8}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9780990637202}
+      \field{title}{Introduction to Probability, Statistics, and Random Processes}
+      \field{year}{2014}
+      \true{nocite}
+    \endentry
+    \entry{rosen2012}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=5d7c5a2525564580a8aa04190ae2b822}{%
+           family={Rosen},
+           familyi={R\bibinitperiod},
+           given={Kenneth\bibnamedelima H.},
+           giveni={K\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {New York}%
+      }
+      \list{publisher}{1}{%
+        {McGraw-Hill Education}%
+      }
+      \strng{namehash}{5d7c5a2525564580a8aa04190ae2b822}
+      \strng{fullhash}{5d7c5a2525564580a8aa04190ae2b822}
+      \strng{fullhashraw}{5d7c5a2525564580a8aa04190ae2b822}
+      \strng{bibnamehash}{5d7c5a2525564580a8aa04190ae2b822}
+      \strng{authorbibnamehash}{5d7c5a2525564580a8aa04190ae2b822}
+      \strng{authornamehash}{5d7c5a2525564580a8aa04190ae2b822}
+      \strng{authorfullhash}{5d7c5a2525564580a8aa04190ae2b822}
+      \strng{authorfullhashraw}{5d7c5a2525564580a8aa04190ae2b822}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{7th}
+      \field{isbn}{978-0073383095}
+      \field{title}{Discrete Mathematics and Its Applications}
+      \field{year}{2012}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
