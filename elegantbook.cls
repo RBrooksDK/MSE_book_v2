@@ -467,7 +467,7 @@
   \newcommand\tabref[1]{\textbf{Table}~\ref{#1}}
   \renewcommand{\chaptername}{Chapter}
   \renewcommand{\partname}{\color{structurecolor} Part}
-  \newcommand{\authorname}{\textbf{Author: }}
+  \newcommand{\authorname}{\textbf{Authors: }}
   \newcommand{\institutename}{\textbf{Institute: }}
   \newcommand{\datename}{\textbf{Date: }}
   \newcommand{\versionname}{\textbf{Version: }}

@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber main"] 1745662772.39145 "main.bcf" "main.bbl" "main" 1745663546.66345 0
-  "main.bcf" 1745663546 133937 806e81d34b29fdf1c728bf1016e4763e "pdflatex"
+["biber main"] 1745662772.39145 "main.bcf" "main.bbl" "main" 1745663685.98828 0
+  "main.bcf" 1745663685 133937 806e81d34b29fdf1c728bf1016e4763e "pdflatex"
   "reference.bib" 1731364051 1076 7902746186ae89fcbff1e038fcaf9d58 ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1745663541.88062 "c:/Users/Richard/OneDrive - ViaUC/Arbejde/GitHub/MSE_book_v2/main.tex" "main.pdf" "main" 1745663546.6643 0
+["pdflatex"] 1745663680.98106 "c:/Users/Richard/OneDrive - ViaUC/Arbejde/GitHub/MSE_book_v2/main.tex" "main.pdf" "main" 1745663685.98925 0
   "C:/Users/Richard/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1739805591 122695 284aa43fd9596bfdbe93b5e0c6c5df4b ""
   "C:/Users/Richard/AppData/Local/MiKTeX/fonts/pk/ljfour/public/ifsym/dpi657/ifgeo10.pk" 1738747703 9364 fbe3aa293dbee0b7810142e02e4b9397 ""
   "C:/Users/Richard/AppData/Local/MiKTeX/fonts/tfm/public/ifsym/ifgeo10.tfm" 1738747698 568 f113b1f1083e9cfb4d75f545dd723123 ""
@@ -397,18 +397,18 @@
   "c:/Users/Richard/OneDrive - ViaUC/Arbejde/GitHub/MSE_book_v2/main.tex" 1745663537 4142 798f5ad44be34f9d1787d291029a8c17 ""
   "chapter01.tex" 1735899949 64414 3082b645d902a2b8117426dc838b66c7 ""
   "clrscode4e.sty" 1731567728 19733 b95982fe0180963bc17a52a61852b252 ""
-  "elegantbook.cls" 1735900983 47769 8244cd7fbbb69004fac1d1d411512458 ""
+  "elegantbook.cls" 1745663679 47770 acd93d15cbb3fc6d554b5afa780b00e8 ""
   "figure/book1.png" 1726687722 68983 101ada2f5455a034497b8746d4f721e2 ""
   "figure/book2.png" 1726687722 56843 bc5c79000464a517b14614f009ce00a0 ""
   "figure/book3.png" 1726687722 89156 5108743f5d68d73b7c0175fa2f5c8f27 ""
   "figure/book4.png" 1726687722 102787 84392b6291b8e91220c48c9ae297fed8 ""
   "figure/cover2.jpg" 1726687722 161092 d379ad3bb3c4e8f35c0b6f3c834af70c ""
-  "main.aux" 1745663546 6728 14516f789cd011dc6debbd60971bda87 "pdflatex"
+  "main.aux" 1745663685 6728 14516f789cd011dc6debbd60971bda87 "pdflatex"
   "main.bbl" 1745662825 15507 42526add2ee1ca0152f329ef427ecce9 "biber main"
-  "main.out" 1745663546 2032 1e05f4fe1080f41012cb7a220cbb70c8 "pdflatex"
-  "main.run.xml" 1745663546 2426 da27af25ad1df1c5ffffd63606a49dde "pdflatex"
+  "main.out" 1745663685 2032 1e05f4fe1080f41012cb7a220cbb70c8 "pdflatex"
+  "main.run.xml" 1745663685 2426 da27af25ad1df1c5ffffd63606a49dde "pdflatex"
   "main.tex" 1745663537 4142 798f5ad44be34f9d1787d291029a8c17 ""
-  "main.toc" 1745663546 1030 fddcf5118df0a34c1e945e233019a830 "pdflatex"
+  "main.toc" 1745663685 1030 fddcf5118df0a34c1e945e233019a830 "pdflatex"
   "mymacro.sty" 1727189165 1081 ce75c4ea29b7a25156ea5f2ffdbcec4a ""
   (generated)
   "main.aux"
