@@ -300,10 +300,12 @@
   \definecolor{third}{RGB}{244,105,102}%
 }{\relax}
 \ifdefstring{\ELEGANT@color}{blue}{
-  \definecolor{structurecolor}{RGB}{60,113,183}
-  \definecolor{main}{RGB}{0,166,82}%
-  \definecolor{second}{RGB}{255,134,24}%
-  \definecolor{third}{RGB}{0,174,247}%
+  % Updated blue scheme to match extra.css
+  \definecolor{structurecolor}{RGB}{108, 162, 198}    % #123161 - Primary structural color
+  \definecolor{main}{RGB}{42,157,244}            % #2A9DF4 - Glow/Accent blue
+  \definecolor{second}{RGB}{255,140,0}           % #FF8C00 - Orange accent
+  \definecolor{third}{RGB}{60,172,248}           % #3CACF8 - Light blue
+  \definecolor{fourth}{RGB}{180,40,0}            % #B42800 - yeah (used for backgrounds)
 }{\relax}
 \ifdefstring{\ELEGANT@color}{gray}{
   \definecolor{structurecolor}{RGB}{150,150,150}
