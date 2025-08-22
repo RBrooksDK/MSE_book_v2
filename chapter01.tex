@@ -84,6 +84,8 @@ When evaluating mathematical expressions, it is crucial to follow a specific ord
 
 Let's consider examples for each operation to illustrate the order of operations:
 
+\newpage
+
 \begin{example} Brackets \newline
 Evaluate the expression: \((2 + 3) \times 4\)
 
@@ -380,6 +382,8 @@ $\textnormal{Let } n \in \mathbb{Z} \textnormal{. Then the following applies:}$
 \end{custombox}
 
 Let us illustrate these rules with a couple of examples.
+
+\newpage
 
 \begin{example} Reduce the following expression
 
@@ -700,7 +704,7 @@ R = \frac{R_1R_2}{R_2 + R_1}
 \section{Functions}
 In mathematics, a function assigns each element of one set to a specific element of another set (which may be the same set). For example, consider a Mathematics for Software Engineering class where each student is assigned a grade from the set \(\{12, 10, 7, 4, 02\}\). Suppose the grades are as follows:
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \begin{tikzpicture}[>=Stealth] % Stealth is a nice arrow style
         % Left column of names
@@ -729,7 +733,7 @@ In mathematics, a function assigns each element of one set to a specific element
 \end{figure}
 
 
-This assignment of grades, illustrated in figure \ref{fig:names_to_numbers}, exemplifies a function.
+This assignment of grades, illustrated in \autoref{fig:names_to_numbers}, exemplifies a function.
 
 Functions play a crucial role in mathematics and computer science. They define discrete structures such as sequences and strings and are used to analyse the time complexity of algorithms. Many computer programs are designed to compute values of functions. Recursive functions, defined in terms of themselves, are especially significant in computer science. This section provides an overview of the fundamental concepts of functions needed in the mathematics for software engineering.
 
@@ -741,7 +745,7 @@ Let $A$ and $B$ be nonempty sets. A function $f$ from $A$ to $B$ is an assignmen
     Functions are sometimes also called mappings or transformations.
 \end{remark}
 
-Functions can be specified in various ways. Sometimes, we explicitly state the assignments, as shown in Figure \ref{fig:names_to_numbers}. Often, a formula such as \(f(x) = x + 1\) is used to define a function. In other cases, a computer program may specify the function.
+Functions can be specified in various ways. Sometimes, we explicitly state the assignments, as shown in \autoref{fig:names_to_numbers}. Often, a formula such as \(f(x) = x + 1\) is used to define a function. In other cases, a computer program may specify the function.
 
 \begin{definition}
 If $f$ is a function from $A$ to $B$, we say that $A$ is the \textbf{domain} of $f$ and $B$ is the \textbf{co-domain} of $f$. If $f(a)=b$, we say that $b$ is the \textbf{image} of $a$ and $a$ is a \textbf{preimage} of $b$. The \textbf{range}, or image, of $f$ is the set of all images of elements of $A$. Also, if $f$ is a function from $A$ to $B$, we say that $f$ \textbf{maps} $A$ to $B$.    
@@ -752,7 +756,7 @@ When defining a function, we specify its domain, co-domain, and the mapping of e
 It's important to note that altering the domain or co-domain results in a different function. Similarly, changing the mapping of elements also produces a different function.
 
 
-\begin{figure}[h]
+\begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[>=Stealth, node distance=4cm, thick, scale=1]
 
@@ -814,7 +818,7 @@ A function \( f: A \rightarrow B \) is called \textbf{onto} (or \textbf{surjecti
 
 Now, consider a function \( f: A \rightarrow B \) that is both one-to-one and onto. Because \( f \) is onto, every element of \( B \) is the image of some element in \( A \). Furthermore, because \( f \) is one-to-one, every element of \( B \) is the image of a unique element of \( A \). This unique correspondence allows us to define a new function from \( B \) to \( A \) that ``reverses'' the mapping given by \( f \).
 
-\begin{figure}[h]
+\begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[>=Stealth, thick, scale = 1.5]
 
@@ -884,7 +888,7 @@ f^{-1}(y) = \frac{y - 3}{2}.
 \subsection*{Composite Functions}
 In mathematics, functions can be combined to form new functions. One important way of combining functions is through the composition of functions. The composite of two functions is essentially applying one function to the results of another.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[>=Stealth, thick]
 
@@ -933,7 +937,7 @@ for every \( x \in A \).
 
 \end{definition}
 
-In other words, the composite function \( f \circ g \) means that you first apply the function \( g \) to the input \( x \), and then apply the function \( f \) to the result of \( g(x) \). In figure \ref{fig:composite} the composition of functions is shown.
+In other words, the composite function \( f \circ g \) means that you first apply the function \( g \) to the input \( x \), and then apply the function \( f \) to the result of \( g(x) \). In \autoref{fig:composite} the composition of functions is shown.
 
 \begin{example}
     
@@ -1045,14 +1049,14 @@ y - y_1 = a(x - x_1),
 
 where the coordinates of the fixed point \((x_1, y_1)\) appear with a negative sign. The form \(y = y_1 + a(x - x_1)\) expresses \(y\) explicitly in terms of \(x\), making it easier to enter into a graphing calculator.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=1\textwidth]{figure/book1.png} % Adjust width here to scale the image
     \caption{Linear functions}
     \label{fig:book_image}
 \end{figure}
 
-The graph of a linear function is a straight line. The parent function \(y = x\) is shown on the left in figure \ref{fig:book_image}, the slope-intercept form in the middle, and the point-slope form on the right.
+The graph of a linear function is a straight line. The parent function \(y = x\) is shown on the left in \autoref{fig:book_image}, the slope-intercept form in the middle, and the point-slope form on the right.
 
 For the slope-intercept form: "Start at \(b\) on the \(y\)-axis, move \(x\) units horizontally, and rise \(ax\) units vertically." For the point-slope form: "Start at \((x_1, y_1)\), move \((x - x_1)\) units horizontally, and rise \(a(x - x_1)\) units vertically."
 
@@ -1065,7 +1069,7 @@ y = ax^2 + bx + c,
 
 where \(a \neq 0\), and \(a\), \(b\), and \(c\) are constants. The domain of this function is all real numbers.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=1\textwidth]{figure/book2.png} % Adjust width here to scale the image
     \caption{Quadratic functions}
@@ -1101,7 +1105,7 @@ y - k = a(x-h)^2,
 
 but expressing \(y\) explicitly in terms of \(x\) makes the equation easier to enter into a graphing calculator.
 
-The graph of a quadratic function is a parabola (from the Greek word for "along the path of a ball"). The parabola is concave up if \(a > 0\) and concave down if \(a < 0\). This behaviour is illustrated in figure \ref{fig:book_image2}.
+The graph of a quadratic function is a parabola (from the Greek word for "along the path of a ball"). The parabola is concave up if \(a > 0\) and concave down if \(a < 0\). This behaviour is illustrated in \autoref{fig:book_image2}.
 
 \subsection*{Power Functions}
 The general equation for a power function is given by
@@ -1118,7 +1122,7 @@ where \(a\) and \(b\) are nonzero constants. The domain of the function depends 
 \end{itemize}
 In most applications, the domain is restricted to non-negative numbers.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=1\textwidth]{figure/book3.png} % Adjust width here to scale the image
     \caption{Power functions}
@@ -1156,7 +1160,7 @@ where \(c\) and \(d\) are the horizontal and vertical translations, respectively
 
 Unless otherwise stated, "power function" will imply the untranslated form, \(y = ax^b\).
 
-Figure \ref{fig:book_image3} shows the graphs of power functions for different values of \(b\). In all cases, \(a > 0\). The shape and concavity of the graph depend on the value of \(b\):
+\autoref{fig:book_image3} shows the graphs of power functions for different values of \(b\). In all cases, \(a > 0\). The shape and concavity of the graph depend on the value of \(b\):
 \begin{itemize}
     \item If \(b > 0\), the graph contains the origin.
     \item If \(b < 0\), the graph has the axes as asymptotes.
@@ -1182,7 +1186,7 @@ y = b^x,
 \]
 where the asymptote is the \(x\)-axis.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=1\textwidth]{figure/book4.png} % Adjust width here to scale the image
     \caption{Exponential functions}
@@ -1199,7 +1203,7 @@ y = a b^x + c,
 
 where the asymptote is the line \(y = c\). Unless otherwise stated, "exponential function" will refer to the untranslated form \(y = a b^x\).
 
-Figure \ref{fig:book_image4} illustrates exponential functions for different values of \(a\) and \(b\). The key properties of the graph are as follows:
+\autoref{fig:book_image4} illustrates exponential functions for different values of \(a\) and \(b\). The key properties of the graph are as follows:
 \begin{itemize}
     \item The constant \(a\) is the \(y\)-intercept of the graph.
     \item The function is increasing if \(b > 1\) and decreasing if \(0 < b < 1\), provided \(a > 0\).
@@ -1553,6 +1557,8 @@ Logarithms provide a way to solve an equation with a variable in the exponent or
 \log _2(x-1)+\log _2(x-3)=3
 \end{equation*}
 
+\newpage
+
 \begin{solution}
 
 \begin{align*}
@@ -1637,6 +1643,8 @@ Both solutions are correct.
 \end{solution}  
 \end{example}
 
+\newpage
+
 \begin{example} Solve the logarithmic equation $\ln (x+3)+\ln (x+5)=0$
 
 \begin{solution}
@@ -1675,4 +1683,5 @@ The only valid solution is $x=-2.5857 \ldots$.
 \end{solution}
     
 \end{example}
+
 

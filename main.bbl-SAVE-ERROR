@@ -200,6 +200,7 @@
       \field{isbn}{978-0073383095}
       \field{title}{Discrete Mathematics and Its Applications}
       \field{year}{2012}
+      \true{nocite}
     \endentry
   \enddatalist
   \datalist[entry]{apa/global//global/global/global}
@@ -384,6 +385,7 @@
       \field{isbn}{978-0073383095}
       \field{title}{Discrete Mathematics and Its Applications}
       \field{year}{2012}
+      \true{nocite}
     \endentry
   \enddatalist
 \endrefsection

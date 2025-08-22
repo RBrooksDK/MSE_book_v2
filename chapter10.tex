@@ -83,7 +83,7 @@ Assuming $n$ is a non-negative integer, let $T(n)$ represent the CPU time taken 
 
 Each iteration requires an approximate constant number of clock cycles, denoted \( c \), which can differ depending on the system. Instead of stating that "$T(n)$ is approximately \( cn^2 \) nanoseconds, for some constant \( c \) that varies across systems," we use Big-$\mathcal{O}$ notation to write \( T(n) = \mathcal{O}(n^2) \). This notation captures the idea that the CPU time grows at most quadratically with \( n \). To visualize this, consider a graph of \( T(n) \), which would generally appear parabolic with an approximate form of \( cn^2 \), where \( c > 0 \) is constant.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
         \begin{axis}[
@@ -146,7 +146,7 @@ For designing computer programs, only the first few of these growth rates are pr
 
 Now, let's consider functions with slower growth — these are the types of functions we aim for in efficient algorithms. Algorithms for searching in large datasets often have running times proportional to \( \log n \). If we plot \( \log n \) for values greater than 1, it shows slow but consistent growth, much slower than \( n \) itself.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
         \begin{axis}[
@@ -186,7 +186,7 @@ Sorting algorithms, on the other hand, often have running times proportional to 
     When discussing $\log n$, we typically refer to the base-2 logarithm, as it is the most common in computer science and software engineering. However, the base of the logarithm does not affect the growth rate, as it only introduces a constant factor. For example, $\log_2 n$ and $\log_{10} n$ grow at the same rate, differing only by a constant multiple.
 \end{remark}
 
-\begin{table}[h]
+\begin{table}[htbp]
     \centering
     \renewcommand{\arraystretch}{1.4}
     \begin{tabular}{|c|l|l|}
@@ -221,7 +221,7 @@ Sorting algorithms, on the other hand, often have running times proportional to 
 
 Table \ref{tab:growth_rates} summarizes the growth rates of common functions and supply some examples of algorithms that exhibit these growth rates and Figure \ref{fig:time_complexities} provides a visual representation of these growth rates. Memorizing the relative order of these common functions is valuable, as they will reappear frequently in this and other software engineering contexts.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
         % Draw axes
@@ -311,7 +311,7 @@ This means that $f(n)$ is asymptotically bounded both above and below by $g(n)$,
 
 Note that by writing "$n$ becomes sufficiently large" we mean that the above inequalities do not have to hold for all $n \geq 0$, but rather for all $n \geq k$, for some constant $k \geq 0$. Sometimes we provide an exact value for $k$, and other times use the "sufficiently large" phrase when the value of $k$ is not important.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
         % Axes
@@ -456,7 +456,7 @@ Big-$\mathcal{O}$ notation provides an \textit{upper bound} on the growth rate o
 
 The expression "$n$ becomes sufficiently large" implies that the inequality does not have to hold for all $n \geq 0$, but rather for all $n \geq k$, where $k$ is a constant. Often, we may not need the exact value of $k$, so we use "sufficiently large" when the exact value is unimportant.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
         % Axes
@@ -524,7 +524,7 @@ Omega notation provides a \textit{lower bound} on the growth rate, describing th
 
 The phrase "$n$ becomes sufficiently large" indicates that the above inequality does not need to hold for all $n \geq 0$, but only for $n \geq k$ for some constant $k$. 
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
         % Axes
@@ -647,7 +647,7 @@ Little-$o$ notation provides a \textit{strict upper bound} on the growth rate of
 
 The phrase "$n$ becomes sufficiently large" indicates that the above inequality does not need to hold for all $n \geq 0$, but only for $n \geq k$ for some constant $k$.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
         % Axes
@@ -761,7 +761,7 @@ Little-$\omega$ notation provides a \textit{strict lower bound} on the growth ra
 
 The phrase "$n$ becomes sufficiently large" indicates that the above inequality does not need to hold for all $n \geq 0$, but only for $n \geq k$ for some constant $k$.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
         % Axes

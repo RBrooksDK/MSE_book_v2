@@ -3,9 +3,9 @@
 This appendix offers methods for evaluating summations, which occur frequently in the analysis of algorithms. Many
 of the formulas here appear in any calculus text, but you will find it convenient to have these methods compiled in one place. The content of this appendix is based on the book \textit{Introduction to Algorithms}, (\cite{clrs4}). The Appendix is concluded with a useful cheat sheet for time complixity analysis.
 
-When an algorithm contains an iterative control construct such as a \While or \For loop, you can express its running time as the sum of the times spent on each execution of the body of the loop. For example, in Section \ref{sec:loop-analysis} we argued that the $i$'th iteration of $\proc{Quadratic-Sum}$ took time proportional to $i$ in the worst case. Adding up the time spent on each iteration produced the summation (or series) $\sum\limits_{i=1}^n i$. Evaluating this summation resulted in a bound of $\mathcal{O}(n^2)$ on the worst-case running time of the algorithm. This example illustrates why you should know how to manipulate summations. Before going into details, we provide an overview of the most important summations and their closed forms.
+When an algorithm contains an iterative control construct such as a \While or \For loop, you can express its running time as the sum of the times spent on each execution of the body of the loop. For example, in \autoref{sec:loop-analysis} we argued that the $i$'th iteration of $\proc{Quadratic-Sum}$ took time proportional to $i$ in the worst case. Adding up the time spent on each iteration produced the summation (or series) $\sum\limits_{i=1}^n i$. Evaluating this summation resulted in a bound of $\mathcal{O}(n^2)$ on the worst-case running time of the algorithm. This example illustrates why you should know how to manipulate summations. Before going into details, we provide an overview of the most important summations and their closed forms.
 
-\begin{table}[h!]
+\begin{table}[htbp]
     \centering
     \renewcommand{\arraystretch}{2}
     \begin{tabular}{|c|c|}

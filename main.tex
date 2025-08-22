@@ -104,6 +104,27 @@
 \usepackage[dvipsnames]{xcolor}
 \usepackage{hyperref}
 \usepackage{subcaption}
+
+% Define names for autoref
+\def\examautorefname{Example}
+\def\exerautorefname{Exercise}
+\def\probautorefname{Problem}
+\def\definitionautorefname{Definition}
+\def\theoremautorefname{Theorem}
+\def\lemmaautorefname{Lemma}
+\def\remarkautorefname{Remark}
+\def\corollaryautorefname{Corollary}
+
+% Redefine the example environment to add vertical spacing before it
+\makeatletter
+\renewenvironment{example}[1][]{%
+  \vspace{1em}% Add vertical space before the example
+  \refstepcounter{exam}%
+  \par\noindent\textbf{\color{main}{\examplename} \theexam #1 }\rmfamily}{%
+  \par\ignorespacesafterend}
+\makeatother
+
+\input{msecolors} % Load custom colors matching the MkDocs website
 \usetikzlibrary{decorations.pathmorphing}
 % Load the amsthm package
 %\usepackage{amsthm}
@@ -112,18 +133,38 @@
 %\renewcommand{\qedsymbol}{\color{fourth}\FilledTriangleLeft}
 
 \newcommand{\EndSolutionSymbol}{\ensuremath{\color{fourth}\blacktriangleleft}}
+
+% Redefine the solution environment to use EndSolutionSymbol and control line spacing
+\makeatletter
+\renewenvironment{solution}
+  {\par\noindent\textbf{\textit{\color{fourth}\solutionname}} \normalfont}
+  {\nobreak\hfill\EndSolutionSymbol{}}  % Removed \par to avoid extra line
+\makeatother
+
 %\newcommand{\vect}[1]{\pmb{\boldsymbol{#1}}}
 %\newcommand{\vect}[1]{\mathbf{\boldsymbol{#1}}}
 \newcommand{\vect}[1]{\pmb{#1}}
 
 
-% Define custom colors based on the RGB values you provided
-\definecolor{headercolor}{RGB}{1, 120, 2}
-\definecolor{backgroundcolor}{RGB}{242, 249, 242}
-\definecolor{outlinecolor}{RGB}{1, 120, 2}
+% Define custom colors to match the MkDocs website
+\definecolor{headercolor}{RGB}{108, 162, 198}  % #6CA2C6 - VIA blue for links/accents
+\definecolor{backgroundcolor}{RGB}{249, 249, 250}  % Light background
+\definecolor{outlinecolor}{RGB}{108, 162, 198}  % #6CA2C6 - VIA blue
+\definecolor{accentcolor}{RGB}{255, 140, 0}    % #FF8C00 - Orange accent
+
+% Dark mode colors (can be used with \ifxetex or similar conditionals)
+\definecolor{darkbg}{RGB}{13, 16, 23}          % #0d1017 - Dark background
+\definecolor{darkblue}{RGB}{18, 49, 97}        % #123161 - Header/active elements
+\definecolor{glowblue}{RGB}{42, 157, 244}      % #2A9DF4 - Glow/secondary blue
+
+% Question/Answer colors to match website admonitions
+\definecolor{questioncolor}{RGB}{45, 180, 153}   % #2DB499 - Question green
+\definecolor{questionbg}{RGB}{204, 241, 234}     % #CCF1EA - Question background
+\definecolor{answercolor}{RGB}{229, 171, 72}     % #E5AB48 - Answer orange
+\definecolor{answerbg}{RGB}{255, 239, 211}       % #FFEFD3 - Answer background
 
 % Define a custom tcolorbox environment using these colors
-\newtcolorbox{custombox}[2][]{colback=headercolor!5, colframe=outlinecolor, coltitle=white, fonttitle=\bfseries, colbacktitle=headercolor, title={#2}, #1}
+\newtcolorbox{custombox}[2][]{colback=headercolor!5, colframe=headercolor, coltitle=white, fonttitle=\bfseries, colbacktitle=headercolor, title={#2}, #1}
 
 \addbibresource{reference.bib}
 \DeclareLanguageMapping{english}{english-apa}
@@ -140,7 +181,7 @@
 \mainmatter
 
 \input{chapter01}
-% \input{chapter02}
+\input{chapter02}
 % \input{chapter03}
 % \input{chapter04}
 % \input{chapter05}

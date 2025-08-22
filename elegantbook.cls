@@ -1120,7 +1120,7 @@
 
 \newenvironment{solution}
   {\par\noindent\textbf{\textit{\color{fourth}\solutionname}} \normalfont}
-  {\nobreak\hfill\color{fourth}\FilledTriangleLeft\par}
+  {\nopagebreak\linebreak[0]\nobreak\null\hfill\color{fourth}\FilledTriangleLeft}
   
 \newenvironment{remark}{\noindent\textbf{\color{second}\remarkname}}{\par}
 \newenvironment{assumption}{\par\noindent\textbf{\color{third}\assumptionname} \citshape}{\par}

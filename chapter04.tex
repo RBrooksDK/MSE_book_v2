@@ -7,7 +7,7 @@ As we move from working with binary numbers to understanding \textbf{Boolean alg
 \section{Introduction to Boolean Algebra}
 Boolean algebra is a mathematical framework that deals with binary values — typically represented as 0 and 1 - and shows us what kind of operations that can be carried out on bits. This system, first introduced by \textbf{George Boole} in the mid-19th century, forms the foundation of modern digital logic and is essential in the fields of computer science and electrical engineering.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \begin{multicols}{2}  % Split the figure into two columns
 
@@ -32,7 +32,7 @@ Boolean algebra plays a central role in computer science, especially in the desi
 
 At the heart of these digital circuits are \textbf{transistors}. A transistor is a tiny electronic device (typically less than 45 nanometres in size) that allows current to flow through it, functioning as a switch. Computers are made up of billions of connected transistors.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width = 0.3\textwidth]{figure/transistor.png} % Adjust width here to scale the image
     \caption{A Transistor.}
@@ -163,7 +163,7 @@ The complement, Boolean sum, and Boolean product correspond to the logical opera
 Equalities in Boolean algebra can be directly translated into equivalences of compound propositions in logic. Similarly, logical equivalences can be translated into equalities in Boolean algebra. These translations allow us to move between Boolean algebra and propositional logic seamlessly.
 
 \begin{example}
-    Translate $1 \cdot 0+\overline{(0+1)}=0$, the equality found in Example \ref{ex4.1}, into a logical equivalence.
+    Translate $1 \cdot 0+\overline{(0+1)}=0$, the equality found in \autoref{ex4.1}, into a logical equivalence.
 
     \begin{solution}
         $(\mathbf{T} \wedge \mathbf{F}) \vee \neg(\mathbf{T} \vee \mathbf{F}) \equiv \mathbf{F}$
@@ -589,7 +589,7 @@ An \texttt{XOR} (Exclusive OR) gate outputs a 1 only when exactly one of its inp
 \textbf{\texttt{NAND} Logic Gates}\\
 A \texttt{NAND} gate is a combination of an \texttt{AND} gate and a \texttt{NOT} gate. The output will be 0 only if all inputs are 1. In any other situation, the output will be 1.
 
-Similarly to how we previously reduced Boolean expressions to simpler forms, we can achieve the same outputs using different circuit designs as seen in figure \ref{fig:gates2}.
+Similarly to how we previously reduced Boolean expressions to simpler forms, we can achieve the same outputs using different circuit designs as seen in \autoref{fig:gates2}.
 
 \begin{figure}[h!]
     \centering
@@ -651,3 +651,4 @@ Since we have seen how to build all Boolean functions using just \texttt{NAND} g
 \end{figure}
 
 Thus, the concept of functional completeness is not just theoretical; it is a powerful principle that allows computer engineers to design flexible and efficient circuits using minimal components.
+
