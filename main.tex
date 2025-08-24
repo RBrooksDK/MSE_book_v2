@@ -2,11 +2,11 @@
 \documentclass[fleqn, 11pt, color=blue]{elegantbook}
 \usepackage{parskip}  % Adds space between paragraphs and removes indentation
 \usepackage{tikz}
+\usetikzlibrary{shapes.geometric} % Add this line
 \usetikzlibrary{arrows.meta, positioning} % For better arrowheads
 \usepackage{circuitikz}
 \usetikzlibrary{circuits.logic.US}
 \usepackage{mymacro}
-
 
 
 % Reset any color scheme
@@ -129,6 +129,25 @@
 % Load the amsthm package
 %\usepackage{amsthm}
 
+%======================================================================
+% PREAMBLE DEFINITIONS FOR VENN DIAGRAM STYLE
+% (Place these in your document's preamble)
+%======================================================================
+\colorlet{vennColor}{mseViaBlue} % You can change this color for the whole document
+\colorlet{circle edge}{vennColor}
+\colorlet{circle area}{vennColor!20}
+
+\tikzset{
+    filled/.style={fill=circle area, draw=circle edge, thick},
+    outline/.style={draw=circle edge, thick}
+}
+
+% Define the standard circle paths for reuse
+\def\firstcircle{(0,0) circle (1.5cm)}
+\def\secondcircle{(0:2cm) circle (1.5cm)}
+%======================================================================
+
+
 % Redefine the QED symbol to your custom arrow
 %\renewcommand{\qedsymbol}{\color{fourth}\FilledTriangleLeft}
 
@@ -180,10 +199,10 @@
 
 \mainmatter
 
-\input{chapter01}
-\input{chapter02}
-% \input{chapter03}
-% \input{chapter04}
+%\input{chapter01}
+%\input{chapter02}
+\input{chapter03}
+\input{chapter04}
 % \input{chapter05}
 % \input{chapter06}
 % \input{chapter07}

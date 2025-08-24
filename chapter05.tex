@@ -1,925 +1,758 @@
-\chapter{Combinatorics and Probability Theory}
-\label{chap:ch5}
-Imagine you are tasked with forming teams of 3 for a semester project in a class of 45 students. Initially, the order in which you choose the team members does not matter, so you are just concerned with combinations. The number of ways to form a team of 3 from 45 students comes out to 14,190 possibilities!
+\chapter{Conditional Probability and Bayes' Theorem}\label{chap:ch5}
 
-The following semester introduces the students to Scrum project management, where each team must have three specific roles: Scrum Master, Product Owner, and Development Team. This small change, specifying roles, suddenly transforms the problem from a simple \textit{combination} into a \textit{permutation}. Now, the number of possible ways to assign these roles leaps to 85,140!
+In this section, we introduce more fundamental concepts of probability. We begin with \textbf{conditional probability}, which assesses the likelihood of an event occurring \textit{given} that another event has already taken place. Building on this, we introduce \textbf{the multiplication rule}, a key principle for determining the probability of multiple events happening in sequence. Next, we explore \textbf{the law of total probability}, which allows us to break down and calculate probabilities across different scenarios or partitions of the sample space. To further distinguish how events interact, we examine \textbf{dependent and independent events}, clarifying how the occurrence of one event influences or does not influence another. 
 
-Frustrated by the sheer number of options, the 45 students throw a party to relax. Being well-mannered, they decide that everyone should shake hands with every other person exactly once. After a few minutes, they calculate the total number of handshakes — 990. The students are once again surprised by how something as simple as shaking hands can add up so quickly.
+Finally, we look into \textbf{Bayes' Theorem}, a powerful tool for updating probabilities in light of new evidence.
 
-As the night progresses, one student proposes a fun game — a random drawing for five door prizes, each unique. With 45 students in attendance and only five prizes available, the chance of winning nothing becomes a concerning 89 per cent. The students quickly realize that the odds are not in their favor.
-
-Not ready to give up on their luck, a smaller group decides to flip a coin 10 times, with the hope of landing exactly five heads to win the game. However, when they learn that the probability of this happening is only about 25 per cent, their spirits dampen further.
-
-The students conclude that rather than relying on chance, it is time to dive deeper into understanding combinatorics and probability theory. Armed with this knowledge, they can better predict outcomes and avoid future disappointments at both parties and project planning.
-
-\section{Sample Space and Events}
-\label{sec:sample_space}
-A \textbf{random experiment }is one that can lead to different outcomes, even when repeated under the same conditions. This randomness is a fundamental aspect of many engineering tasks.
-
-Think of it this way: Let us say you are testing the speed of a website under different conditions. Sometimes it loads quickly, and other times it is slower. Even if you are using the same code and server, things like network traffic or server load make the results vary each time. 
-
-\begin{definition}{Random Experiment}
-    A random experiment is one that can give different results, even if you do everything the same each time.
-\end{definition}
-
-Or, imagine you are measuring the signal strength in a wireless device. You might get slightly different readings each time because of things like interference or small changes in the environment.
-
-This randomness shows up all over the place, from software performance tests to electrical engineering experiments. It is important to expect it and include it in your thinking. Otherwise, you might make decisions based on incomplete or misleading data. When you account for random variation, you can make smarter predictions and designs.
-
-To model and analyze a random experiment, it is crucial to understand the set of possible outcomes that can occur. In probability theory, this set is called the \textbf{sample space}, denoted by \( S \). A sample space can be either \textbf{discrete} (consisting of a finite or countably infinite set of outcomes) or \textbf{continuous} (containing an interval of real numbers). The exact definition of a sample space often depends on the objectives of the analysis.
-
-An \textbf{outcome} is a single possible result of the random experiment, and an \textbf{event} is any subset of the sample space, which may consist of one or more outcomes. Below are some examples to illustrate these concepts:
-
-\begin{example}[ Network Latency] \\
-Consider an experiment where you measure the latency of data packets in a network. The sample space can be defined based on the type of measurements:
-\begin{itemize}
-    \item If latency is measured as a positive real number, the sample space is continuous: 
-    \[
-    S = \{ x \mid x > 0 \}.
-    \]
-    \item If it is known that latency ranges between 10 and 100 milliseconds, the sample space can be refined to:
-    \[
-    S = \{ x \mid 10 \leq x \leq 100 \}.
-    \]
-    \item If the objective is to categorize latency as low, medium, or high, the sample space becomes discrete:
-    \[
-    S = \{\text{low}, \text{medium}, \text{high}\}.
-    \]
-    \item For a simple evaluation of whether the latency meets a standard threshold, the sample space can be reduced to:
-    \[
-    S = \{\text{pass}, \text{fail}\}.
-    \]
-\end{itemize}
-Each outcome in these sample spaces represents a single possible latency measurement, and events can be defined as sets of outcomes, such as "latency is high."
-
-\end{example}
-
-\begin{example}[ Software Release Testing] \\
-    Imagine a software testing process where each test case can either pass or fail. The sample space for a single test case is discrete and can be represented as:
-    \[
-    S = \{\text{pass}, \text{fail}\}.
-    \]
-    If you run three test cases, the combined sample space for all possible outcomes is:
-    \begin{align*}
-    S = \{&(\text{pass, pass, pass}), (\text{pass, pass, fail}), (\text{pass, fail, pass}), \\
-    &(\text{pass, fail, fail}), (\text{fail, pass, pass}), (\text{fail, pass, fail}), \\
-    &(\text{fail, fail, pass}), (\text{fail, fail, fail})\}.
-    \end{align*}
-    This sample space includes all sequences of outcomes for the three tests.
-    
-    \begin{itemize}
-        \item The total number of possible outcomes is \( 2^3 = 8 \).
-        \item An event could be defined as "at least one test fails," which would include outcomes like \(\text{(fail, pass, pass)}\), \(\text{(pass, fail, fail)}\), and others where at least one test fails.
-    \end{itemize}
-    
-    \end{example}
-    
-
-\begin{example}[ Component Quality in Manufacturing] \\
-A company manufactures electronic components, and each component is tested for compliance with quality standards. The test can return one of three outcomes: \texttt{pass}, \texttt{marginal}, or \texttt{fail}. The sample space is:
-\[
-S = \{\text{pass}, \text{marginal}, \text{fail}\}.
-\]
-\textbf{Event:} Suppose we are interested in the event that a component does not pass the quality test. This event is a set of outcomes:
-\[
-E = \{\text{marginal}, \text{fail}\}.
-\]
-\end{example}
-
-Understanding the nature of sample spaces, outcomes, and events is fundamental in probability, as it allows us to define and work with probabilities of complex scenarios in various engineering contexts. Let us summarise these key concepts:
-
-\begin{definition}{Sample Spaces, Outcomes, and Events}
-    \textbf{Sample Space:} The set of all possible outcomes of a random experiment is called the sample space, denoted by \( S \). Outcomes can be discrete or continuous, depending on the nature of the experiment.
-    
-    \textbf{Outcome:} A single possible result of a random experiment.
-    
-    \textbf{Event:} Any subset of the sample space, which may consist of one or more outcomes.
-\end{definition}
-
-\section{Types of Events in Probability Theory}
-\label{subsec:types_events}
-
-Events in probability theory can be classified based on their relationships with each other and the sample space. The study of probability and Boolean algebra often intersect (no pun intended), as both involve operations on sets and logical reasoning. In probability, we work with events, which are subsets of a sample space, while Boolean algebra uses logical statements that can be true or false. Despite their different applications, the operations on events correspond directly to Boolean algebra operators. Here are some common types of events and their relationships to Boolean operations.
-
-\subsection*{Union and Logical \texttt{OR}}
-
-The \textbf{union} of two events \( A \) and \( B \) represents the event that at least one of the events occurs. Mathematically, it includes all outcomes that are in \( A \), \( B \), or both. For example, if \( A \) is the event of getting a head when flipping a coin, and \( B \) is the event of getting a tail, then \( A \cup B = \{\text{heads, tails}\} \). This is analogous to the logical \texttt{OR} operator (\(\lor\)) in Boolean algebra, where the statement \( A + B \) is true if at least one of \( A \) or \( B \) is true.
+\section{Conditional Probability}
+Consider the following scenario: in a particular population, 5\% of individuals have a specific medical condition. Therefore, the probability that a randomly selected person has the condition is 5\%:
 
 \[
-\text{Probability:} \quad A \cup B = \{\text{outcomes in } A \text{ or } B \text{ or both}\}
-\]
-\[
-\text{Boolean Algebra:} \quad A + B = \text{true if } A \text{ is true or } B \text{ is true}
+P(D) = 0.05,
 \]
 
+where \( D \) represents the event that a person has the disease. This probability \( P(D) \) is known as the \textit{prior probability}, as it reflects our initial belief about the likelihood of the event before any additional information is obtained.
 
-\subsection*{Intersection and Logical \texttt{AND}}
-
-The \textbf{intersection} of two events \( A \) and \( B \) represents the event that both \( A \) and \( B \) occur simultaneously. It includes only the outcomes that are in both \( A \) and \( B \). For example, if \( A \) is the event of getting an even number on a die roll, and \( B \) is the event of getting a number greater than 3, then \( A \cap B = \{4, 6\} \). This corresponds to the logical \texttt{AND} operator (\(\cdot\)) in Boolean algebra, where \( A \land B \) is true only if both \( A \) and \( B \) are true.
+Now, imagine selecting a random person and being informed that they have tested positive for the disease. With this additional information, how should we update the probability that the person actually has the disease? In other words, what is the probability that a person has the disease given that they tested positive? Let \( T \) denote the event that a person tests positive. This conditional probability is expressed as:
 
 \[
-\text{Probability:} \quad A \cap B = \{\text{outcomes in both } A \text{ and } B\}
-\]
-\[
-\text{Boolean Algebra:} \quad A \cdot B = \text{true only if both } A \text{ and } B \text{ are true}
+P(D \mid T),
 \]
 
-\subsection*{Complement and Logical \texttt{NOT}}
+which represents the probability of \( D \) occurring given that \( T \) has occurred. This updated probability \( P(D \mid T) \) is known as the \textit{posterior probability}, as it reflects our revised belief about the likelihood of the event after taking the new evidence into account. Intuitively, it is reasonable to expect that \( P(D \mid T) \) is greater than the prior probability \( P(D) \). However, what is the exact value of \( P(D \mid T) \)? Before introducing a general formula, let us consider a simple example.
 
-The complement of an event \( A \) represents all outcomes in the sample space that are not in \( A \). If \( A \) is the event of rolling a 4 on a die, then the complement \( \skoverline{A} \) is the event of not rolling a 4, i.e., \( \skoverline{A} = \{1, 2, 3, 5, 6\} \). This operation is analogous to the logical NOT operator (\(\skoverline{A}\)) in Boolean algebra, where \(\skoverline{A}\) is true if \( A \) is false.
-
-\[
-\text{Probability:} \quad A^c = \{\text{outcomes not in } A\}
-\]
-\[
-\text{Boolean Algebra:} \quad \skoverline{A} = \text{true only if } A \text{ is false}
-\]
-
-\begin{remark}
-    In the context of set theory and probability theory, the notation of \(\skoverline{A}\) is commonly used along with \(A^c\) to denote the complement of event \(A\) and even \(A'\) in some cases.
-\end{remark}
-
-\subsection*{Additional Events}
-In addition to the basic operations of \texttt{OR}, \texttt{AND}, and \texttt{NOT}, there are several other ways to combine and analyze events in probability and Boolean algebra. These operations help refine our understanding of event relationships and provide a framework for solving complex problems. Some of these operations include:
-
-\begin{itemize}
-    \item \textbf{Difference (\( A - B \))}: The difference between two events \( A \) and \( B \) (sometimes denoted as \( A \setminus B \)) is the event that occurs if \( A \) happens but \( B \) does not. For example, if \( A \) is the event of drawing a red card from a deck, and \( B \) is the event of drawing a heart, then \( A - B \) is the event of drawing a red card that is not a heart (i.e., a diamond).
-    
-    \item \textbf{Symmetric Difference (\( A \triangle B \))}: The symmetric difference between two sets (or events) $A$ and $B$ consists of elements that are in either $A$ or $B$ but not in their intersection. This operation is analogous to the logical \texttt{XOR} operator \((A \oplus B)\) in Boolean algebra, where \(A \oplus B\) is true only if exactly one of \(A\) or \(B\) is true, but not both.
-    \vspace{0.5em}
-    \[
-    \text{Probability:} \quad A \triangle B = \{\text{outcomes in either } A \text{ or } B \text{ but not both}\}
-    \]
-    \vspace{0.5em}
-    \[
-    \text{Boolean Algebra:} \quad A \oplus B = \text{true only if exactly one of } A \text{ or } B \text{ is true}
-    \]
-    \vspace{0.5em}
-    \item \textbf{Mutually Exclusive Events (or Disjoint)}: Two events are mutually exclusive (or disjoint) if they cannot occur at the same time. Their intersection is empty: \( A \cap B = \emptyset \). For example, the events of rolling a 2 and rolling a 4 on a die are mutually exclusive because they cannot happen simultaneously.
-    
-    \item \textbf{Collectively Exhaustive Events}: A set of events is collectively exhaustive if at least one of the events must occur. Together, they cover the entire sample space. For example, when rolling a die, the events \( A = \{\text{even numbers}\} \) and \( B = \{\text{odd numbers}\} \) are collectively exhaustive because every outcome is either even or odd.
-\end{itemize}
-
-\begin{remark}
-    In the context of set theory and probability theory, the notation of \(A \oplus B\) is commonly used. 
-\end{remark}
-
-We can summarise the considerations of this section in the following table:
-
-\newpage
-
-\begin{table}[htbp]
-    \centering
-    \renewcommand{\arraystretch}{1.5} % Adjust this value for desired spacing
-    \begin{tabular}{|c|c|c|c|}
-    \hline
-    \textbf{Operation} & \textbf{Boolean Algebra} & \textbf{Logic} & \textbf{Set Theory} \\
-    \hline
-    \texttt{NOT} & $\skoverline{x}$ & $\neg x$ & $A^c$ or $\skoverline{A}$ or $A'$\\
-    \hline
-    \texttt{OR} & $+$ & $\vee$ & $\cup$ \\
-    \hline
-    \texttt{AND} & $\cdot$ & $\wedge$ & $\cap$ \\
-    \hline
-    \texttt{NAND} & $\skoverline{x \cdot y}$ & $\neg (x \wedge y)$ & $(A \cap B)^c$ or \(\skoverline{A \cap B}\)\\
-    \hline
-    \texttt{NOR} & $\skoverline{x + y}$ & $\neg (x \vee y)$ & $(A \cup B)^c$ or \(\skoverline{A \cup B}\) \\
-    \hline
-    \texttt{XOR} (Symmetric Difference) & $x \oplus y$ & $(x \wedge \neg y) \vee (\neg x \wedge y)$ & $A \triangle B$ or \(A \oplus B\) \\
-    \hline
-    Difference & $x \cdot \skoverline{y}$ & $x \wedge \neg y$ & $A - B$ or \( A \setminus B \) \\
-    \hline
-    \end{tabular}
-    \caption{Comparison of Operators in Boolean Algebra, Logic, and Set Theory}
-    \end{table}
-    
-\textbf{Venn diagrams} are a useful tool for visualizing the relationships between sets, and they are also commonly used to illustrate relationships between events. By using Venn diagrams, we can visually represent a sample space and the events within it.
-
-\autoref{fig:venn1} shows the intersection, representing the outcomes common to both events \( A \) and \( B \). \autoref{fig:venn2} represents the outcomes that are not in the intersection of \( A \) and \( B \). \autoref{fig:venn3} depicts the union, showing all outcomes that are in either event \( A \), event \( B \), or both. \autoref{fig:venn4} represents the outcomes that are in event \( A \) but not in event \( B \), which is the difference between \( A \) and \( B \). \autoref{fig:venn5} shows all the elements that are not \(A\). \autoref{fig:venn6} illustrates mutually exclusive (or \textit{disjoint}) events, where the two sets do not overlap, indicating that events \( A \) and \( B \) have no common outcomes.
-
-% Definition of circles
-\def\firstcircle{(0,0) circle (1.5cm)}
-\def\secondcircle{(0:2cm) circle (1.5cm)}
-
-\colorlet{circle edge}{main}
-\colorlet{circle area}{main!20}
-
-\tikzset{filled/.style={fill=circle area, draw=circle edge, thick},
-    outline/.style={draw=circle edge, thick}}
-
-%\setlength{\parskip}{5mm}
-
-        \begin{figure}[h!]
-            \centering
-            % First row
-            \begin{subfigure}[b]{0.45\textwidth}
-                \centering
-                \begin{tikzpicture}
-                    % Define the circles for sets A and B
-                    \def\firstcircle{(0,0) circle (1.5cm)}
-                    \def\secondcircle{(0:2cm) circle (1.5cm)}
-                    
-                    % Draw the rectangle to represent the universal set
-                    \draw[outline] (-2,-2) rectangle (4,2);
-                    
-                    % Draw the circles A and B
-                    \begin{scope}
-                        \clip \firstcircle;
-                        \fill[filled] \secondcircle;
-                    \end{scope}
-                    \draw[outline] \firstcircle node {$A$};
-                    \draw[outline] \secondcircle node {$B$};
-                \end{tikzpicture}
-                \caption{$A \cap B$}
-                \label{fig:venn1}
-            \end{subfigure}
-            \hfill
-              \begin{subfigure}[b]{0.45\textwidth}
-                        \centering
-                        \begin{tikzpicture}
-                            \def\firstcircle{(0,0) circle (1.5cm)}
-                            \def\secondcircle{(0:2cm) circle (1.5cm)}
-                            
-                            % Draw the rectangle to represent the universal set
-                            \fill[filled] (-2,-2) rectangle (4,2);
-                            
-                            % Draw the circles and fill the intersection with white
-                            \begin{scope}
-                                \clip \firstcircle;
-                                \fill[white] \secondcircle;
-                            \end{scope}
-                            \draw[outline] \firstcircle node {$A$};
-                            \draw[outline] \secondcircle node {$B$};
-                        \end{tikzpicture}
-                        \caption{$\skoverline{A \cap B}$}
-                        \label{fig:venn2}
-                    \end{subfigure}
-
-            % Second row
-            \vspace{10pt} % Adjust spacing between rows
-            \begin{subfigure}[b]{0.45\textwidth}
-                \centering
-                \begin{tikzpicture}
-                    \def\firstcircle{(0,0) circle (1.5cm)}
-                    \def\secondcircle{(0:2cm) circle (1.5cm)}
-                    
-                    % Draw the rectangle to represent the universal set
-                    \draw[outline] (-2,-2) rectangle (4,2);
-                    
-                    \draw[filled] \firstcircle node {$A$}
-                                  \secondcircle node {$B$};
-                \end{tikzpicture}
-                \caption{$A \cup B$}
-                \label{fig:venn3}
-            \end{subfigure}
-            \hfill
-            \begin{subfigure}[b]{0.45\textwidth}
-                \centering
-                \begin{tikzpicture}
-                    \def\firstcircle{(0,0) circle (1.5cm)}
-                    \def\secondcircle{(0:2cm) circle (1.5cm)}
-                    
-                    % Draw the rectangle to represent the universal set
-                    \draw[outline] (-2,-2) rectangle (4,2);
-                    
-                    \begin{scope}
-                        \clip \firstcircle;
-                        \draw[filled, even odd rule] \firstcircle node {$A$}
-                                                     \secondcircle;
-                    \end{scope}
-                    \draw[outline] \firstcircle
-                                   \secondcircle node {$B$};
-                \end{tikzpicture}
-                \caption{$A - B$}
-                \label{fig:venn4}
-            \end{subfigure}
-        \end{figure}
-        %\setlength{\parskip}{0mm} % Reset the value to avoid large spaces after the figure
-\newpage
-
-        \begin{figure}[htbp]
-            \ContinuedFloat
-            \centering
-            % Third row
-            %\vspace{10pt} % Adjust spacing between rows
-            \begin{subfigure}[b]{0.45\textwidth}
-                \centering
-                \begin{tikzpicture}
-                    % Define the circles for sets A and B
-                    \def\firstcircle{(0,0) circle (1.5cm)}
-                    \def\secondcircle{(0:2cm) circle (1.5cm)}
-                    
-                    % Draw the rectangle to represent the universal set
-                    \fill[filled] (-2,-2) rectangle (4,2);
-                    
-                    % Draw the circles and fill the part not in A with white
-                    \begin{scope}
-                        \clip \firstcircle;
-                        \fill[white] (-2,-2) rectangle (4,2);
-                    \end{scope}
-                    \draw[outline] \firstcircle node {$A$};
-                    \draw[outline] \secondcircle node {$B$};
-                \end{tikzpicture}
-                \caption{$\skoverline{A}$}
-                \label{fig:venn5}
-            \end{subfigure}
-            \hfill
-            \begin{subfigure}[b]{0.45\textwidth}
-                \centering
-                \begin{tikzpicture}
-                    % Define the circles for sets A and B
-                    \def\firstcircle{(0,0) circle (1.5cm)}
-                    \def\secondcircle{(0:2cm) circle (1.5cm)}
-                    
-                    % Draw the rectangle to represent the universal set
-                    \draw[outline] (-2,-2) rectangle (4,2);
-                    
-                    % Draw XOR by filling parts of A and B excluding their intersection
-                    \fill[filled, even odd rule] \firstcircle node {};
-                    \fill[filled, even odd rule] \secondcircle node {};
-                    \begin{scope}
-                        \clip \firstcircle;
-                        \fill[white] \secondcircle;
-                    \end{scope}
-                    \begin{scope}
-                        \clip \secondcircle;
-                        \fill[white] \firstcircle;
-                    \end{scope}
-                    
-                    % Outline the circles
-                    \draw[outline] \firstcircle node {$A$};
-                    \draw[outline] \secondcircle node {$B$};
-                \end{tikzpicture}
-                \caption{$A \triangle B$ (\texttt{XOR})}
-                \label{fig:venn_xor}
-            \end{subfigure}
-            
-            \vspace{10pt} % Adjust spacing between rows
-            \begin{subfigure}[b]{0.5\textwidth}
-                \centering
-                \begin{tikzpicture}
-                    % Draw the rectangle to represent the universal set
-                    \draw[outline] (-3,-2) rectangle (5,2);
-                    
-                    % Draw the circles for mutually exclusive events, moved closer
-                    \draw[outline] (-0.7,0) circle (1.5cm) node {$A$};
-                    \draw[outline] (2.7,0) circle (1.5cm) node {$B$};
-                \end{tikzpicture}
-                \caption{Mutually Exclusive (Disjoint)}
-                \label{fig:venn6}
-            \end{subfigure}
-            \caption{Venn Diagrams Illustrating Various Set Operations}
-            \label{fig:venn_diagrams}
-        \end{figure}
-        
-        %\setlength{\parskip}{0mm} % Reset the value to avoid large spaces after the figure
-
-\section{Counting Principles}
-
-In many problems across mathematics, computer science, and engineering, determining the number of ways certain events can occur is important. Whether you're arranging elements, selecting groups, or navigating through complex scenarios, counting techniques provide the foundational tools to solve these problems. These techniques go beyond simple arithmetic and allow us to tackle questions like:
-
-\begin{itemize}
-    \item How many ways can we arrange a set of objects?
-    \item In how many different paths can a process unfold?
-    \item What is the probability of a specific event occurring given multiple possibilities?
-\end{itemize}
-
-Counting techniques, such as permutations, combinations, and the multiplication rule, help us quantify these possibilities systematically.
-
-\subsection*{Multiplication Rule}
-
-We start out by discussing the most basic counting principle: the \textbf{multiplication rule}:
-
-\begin{theorem}[Multiplication Rule]
-    Let an operation be described as a sequence of $k$ steps. Assume the following conditions:
-    
-    \begin{itemize}
-        \item There are $n_1$ ways to complete step 1.
-        \item There are $n_2$ ways to complete step 2 for each way of completing step 1.
-        \item There are $n_3$ ways to complete step 3 for each way of completing step 2, and so on.
-    \end{itemize}
-    
-    Then, the total number of ways to complete the entire operation is given by:
-    
-    \[
-    n_1 \times n_2 \times \cdots \times n_k.
-    \]
-\end{theorem}
-    
 \begin{example}
-    Suppose you are choosing a meal at a restaurant. You have the following options:
-        
-    \begin{itemize}
-            \item 3 choices for the main course.
-            \item 4 choices for the side dish.
-            \item 2 choices for the drink.
-    \end{itemize}
-        
-    Using the multiplication rule, the total number of ways to choose a meal is:
-        
-    \[
-        3 \times 4 \times 2 = 24.
-    \]
-        
-    Therefore, there are 24 different meal combinations available.
-\end{example}
+I roll a fair die. Let \( A \) be the event that the outcome is a prime number, i.e., \( A = \{2, 3, 5\} \). Also, let \( B \) be the event that the outcome is greater than or equal to 3, i.e., \( B = \{3, 4, 5\} \). 
 
-\begin{example} Automobile Options
+\begin{enumerate}[label=(\alph*)]
+    \item What is the probability of \( A \), \( P(A) \)?
+    \item What is the probability of \( A \) given \( B \), \( P(A \mid B) \)?
+\end{enumerate}
 
-An automobile manufacturer provides vehicles equipped with selected
-options. Each vehicle is ordered
-
-\begin{itemize}
-    \item With or without an automatic transmission
-    \item With or without a sunroof
-    \item With one of three choices of a stereo system
-    \item With one of four exterior colors
-\end{itemize}
-
-If the sample space consists of the set of all possible vehicle types, what is the number of outcomes in the sample space?
 \end{example}
 
 \begin{solution}
-Using the multiplication rule, we can calculate the total number of possible vehicle types by multiplying the number of choices for each option:
-
-\begin{itemize}
-    \item 2 choices for the transmission (with or without automatic transmission)
-    \item 2 choices for the sunroof (with or without sunroof)
-    \item 3 choices for the stereo system
-    \item 4 choices for the exterior color
-\end{itemize}
-
-Therefore, the total number of possible vehicle types is:
-
-\[
-2 \times 2 \times 3 \times 4 = 48
-\]
-
-So, there are 48 different possible vehicle types in the sample space.
-\end{solution}
-
-\subsection*{Replacement and Order in Counting}
-
-Next we turn to an important distinction between with and without replacement in counting principles:
-
-\begin{definition}[Counting with and without Replacement]
-    When counting the number of ways to select objects from a set, two common scenarios are:
-
-    \begin{itemize}
-        \item \textbf{With Replacement}: An object can be selected more than once.
-        \item \textbf{Without Replacement}: Once an object is selected, it cannot be chosen again.
-    \end{itemize}
-    \end{definition}
+    \begin{enumerate}[label=(\alph*)]
+        \item The probability of \( A \) is the number of outcomes in \( A \) divided by the total number of outcomes. Since there are 3 prime numbers and 6 possible outcomes, we have:
     
-\begin{example}
-    Suppose you have a bag containing 5 different colored balls. You draw 2 balls:
-\begin{itemize}
-    \item \textbf{With Replacement}: The first ball is placed back in the bag before drawing the second. There are \(5 \times 5 = 25\) possible outcomes.
-    \item \textbf{Without Replacement}: The first ball is not placed back, so the number of outcomes is \(5 \times 4 = 20\).
-\end{itemize}
-\end{example}
-
-\begin{example}
-    Three people are drawing cards one after another from a standard deck of 52 cards. The goal is to find the Ace of Spades. Let's examine the two scenarios: with replacement and without replacement.
-
-    \textbf{Without Replacement}
-
-    In this scenario, each card drawn is not put back into the deck, reducing the total number of cards available after each draw.
-    \begin{itemize}
-        \item First Draw: The first person has a $\frac{1}{52}$ chance of drawing the Ace of Spades.
-        \item Second Draw: If the first person does not draw the Ace of Spades, there are now 51 cards left, and the second person has a $\frac{1}{51}$ chance of drawing the Ace of Spades.
-        \item Third Draw: If the Ace of Spades has not been drawn by the first two people, the third person has a $\frac{1}{50}$ chance of drawing it.
-    \end{itemize}
+        \begin{align*}
+        P(A) &= \frac{3}{6} = \frac{1}{2}
+        \end{align*}
     
-    The probabilities change with each draw because the total number of cards decreases, and previously drawn cards are not available.
+        \item The probability of \( A \) given \( B \) is the number of outcomes in the intersection of \( A \) and \( B \) divided by the number of outcomes in \( B \). Since the outcomes in the intersection of \( A \) and \( B \) are \(\{3, 5\}\) and the outcomes in \( B \) are \(\{3, 4, 5\}\), we have:
     
-    \textbf{With Replacement}
+        \begin{align*}
+        P(A \mid B) &=\frac{|A \cap B|}{|B|} = \frac{|\{3,5\}|}{|\{3,4, 5\}|} = \frac{2}{3}
+        \end{align*}
 
-    In this scenario, each card drawn is returned to the deck and reshuffled before the next person draws. This keeps the total number of cards constant.
-    \begin{itemize}
-        \item First Draw: The first person has a $\frac{1}{52}$ chance of drawing the Ace of Spades.
-        \item Second Draw: Since the card is replaced and shuffled back into the deck, the second person also has a $\frac{1}{52}$ chance of drawing the Ace of Spades.
-        \item Third Draw: Similarly, the third person has a $\frac{1}{52}$ chance of drawing the Ace of Spades.
-    \end{itemize}
-    
-    The probabilities remain the same for each draw because the deck is reset to its original state after each draw.
-
-\end{example}
-
-\begin{example}
-    Imagine you have a group of 5 students: Alice, Bob, Charlie, David, and Eve. You need to select 2 of them for different scenarios, illustrating when the order of selection matters and when it does not.
-    \begin{itemize}
-        \item \textbf{Order Matters}: Selecting Alice as Captain and Bob as Assistant Captain is a different outcome than selecting Bob as Captain and Alice as Assistant Captain.
-        \end{itemize}
-    Now, imagine you are simply selecting 2 students to form a study group with no specific roles assigned. Here, the order does not matter.
-    \begin{itemize}
-        \item \textbf{Order does not matters:}  Choosing Alice and Bob is considered the same outcome as choosing Bob and Alice; there is no distinction between the two orders since there are no assigned roles.
-    \end{itemize}
-    \label{ex:order_matters}
-\end{example}
-
-\autoref{ex:order_matters} illustrates the distinction between \textit{permutations} and \textit{combinations}, two fundamental counting principles that are widely used in probability theory and combinatorics.
-
-\begin{definition}[Permutation and Combination]
-    \begin{itemize}
-        \item \textbf{Permutation (Order Matters)}: Different sequences are counted as distinct outcomes, leading to a higher count.
-        \item \textbf{Combination (Order Does Not Matter)}: Sequences are treated as identical, resulting in a lower count.
-    \end{itemize}
-\end{definition}
-
-We will first discuss permutations, which are used when the order of selection matters.
-
-\subsection*{Permutations}
-
-Consider a set of elements, such as $S=\{a, b, c\}$. A permutation of the elements is an ordered sequence of the elements. For example, $a b c, a c b, b a c, b c a, c a b$, and $c b a$ are all of the permutations of the elements of $S$.
-
-\begin{definition}[Permutations of \(n\) Objects]
-    The permutation of \(n\) objects, i.e. an ordered arrangement of \(n\) objects, is \(n!\) (read as "n factorial"), where:
-    \[
-    n! = n \times (n-1) \times (n-2) \times \cdots \times 1
-    \]
-\end{definition}
-
-This outcome is a direct application of the multiplication rule. To form a permutation, you start by choosing an element for the first position from the total of $n$ elements. Next, you choose an element for the second position from the remaining $n-1$ elements, then for the third position from the remaining $n-2$ elements, and continue this way until all positions are filled. Such arrangements are often called linear permutations.
-
-\begin{example}
-    It is said that any shuffling of a deck of card has only happened once in history. This is because the number of ways to shuffle a deck of 52 cards is \(52!\), which is an astronomically large number.
-
-    \[52! \approx 8.07 \times 10^{67}\]
-\end{example}
-
-\begin{example}
-    Suppose you have 5 different books on a shelf. You want to rearrange them in a different order. The number of ways to rearrange the books is
-    \[5! = 5 \times 4 \times 3 \times 2 \times 1 = 120\]
-\end{example}
-
-There are cases where we are only interested in arranging a subset of elements from a larger set. The formula for counting these arrangements also derives from the multiplication rule.
-
-\begin{definition}[Permutations of Subsets]
-    The number of permutations of subsets of $r$ elements selected from a set of $n$ different elements is
-    \[
-    P_r^n=n \times(n-1) \times(n-2) \times \cdots \times(n-r+1)=\frac{n!}{(n-r)!}
-    \]
-\end{definition}
-
-\begin{example}
-    Suppose you have 5 different books on a shelf, and you want to rearrange 3 of them in a different order. The number of ways to rearrange the 3 books is
-    \[
-    P_3^5=5 \times 4 \times 3 = 60
-    \]
-\end{example}
-
-\begin{example}
-    There are 10 entries in a contest. Only three will win, $1^{\text {st }}, 2^{\text {nd }}$, or $3^{\text {rd }}$ prize. What are the possible results?
-\end{example}
-\begin{solution}
-    The number of ways to award the prizes is the number of permutations of 3 objects selected from 10, which is
-    \[
-    P_3^{10}= \frac{10!}{(10-3)!}=\frac{10!}{7!} = 10 \times 9 \times 8 = 720
-    \]
-    Therefore, there are 720 possible outcomes for awarding the prizes.
-\end{solution}
-
-\subsection*{Combinations}
-
-When the order of selection does not matter, we use the concept of combinations. Combinations are used when we are interested in selecting a subset of elements from a larger set without regard to the order in which they are selected. Let is start out with a couple of examples to illustrate the concept of combinations.
-
-\begin{example}
-    Suppose you have a group of 5 students: Alice, Bob, Charlie, David, and Eve. You need to select 2 of them to form a study group. The order in which you select the students does not matter. The possible combinations are:
-    \begin{itemize}
-        \item Alice and Bob
-        \item Alice and Charlie
-        \item Alice and David
-        \item Alice and Eve
-        \item Bob and Charlie
-        \item Bob and David
-        \item Bob and Eve
-        \item Charlie and David
-        \item Charlie and Eve
-        \item David and Eve
-    \end{itemize}
-    The order of the students in the study group does not matter, so the combinations are considered identical.
-\end{example}
-
-\begin{example}
-    Maria has three tickets for a concert. She'd like to use one of the tickets herself. She could then offer the other two tickets to any of four friends (Ann, Beth, Chris, Dave). How many ways can 2 people be selected from 4 to go to a concert?
-\end{example}
-
-\begin{example}
-A circuit board has four different locations in which a component can be placed. If three identical components are to be placed on the board, how many different designs are possible?
-\end{example}
-
-\begin{solution}
-    Since you can only place one component in each slot, placing a component in any slot immediately restricts the choices for the next component.
-        
-    \begin{enumerate}
-        \item Fill slots 1, 2, and 3.
-        \item Fill slots 1, 2, and 4.
-        \item Fill slots 1, 3, and 4.
-        \item Fill slots 2, 3, and 4.
     \end{enumerate}
 \end{solution}
 
-These examples illustrate the concept of combinations, where the order of selection does not matter. The formula for combinations is derived from the permutation formula by dividing out the number of ways to arrange the $r$ elements.
+Having understood the basic example, we can now generalize the approach to derive a more universal formula for conditional probability. Starting from the specific case, we can manipulate the expression by dividing both the numerator and the denominator by the total number of possible outcomes, \( |S| \), as shown below:
 
-\begin{definition}[Combinations]
-    The number of combinations of $r$ elements selected from a set of $n$ different elements is given by
-    \[
-    C_r^n = \binom{n}{r} = \frac{n!}{r!(n-r)!}
-    \]
-\end{definition}
+\[
+P(A \mid B) = \frac{|A \cap B|}{|B|} = \frac{\frac{|A \cap B|}{|S|}}{\frac{|B|}{|S|}} = \frac{P(A \cap B)}{P(B)}
+\]
 
-This is also sometimes referred to as the \textbf{binomial coefficient}, denoted by $\binom{n}{r}$, which is read as "n choose r". It is called the binomial coefficient because it appears in the binomial theorem, which expands the powers of a binomial expression:
-
-\begin{theorem}
-    In algebra, the binomial coefficient is used to expand powers of binomials. According to the binomial theorem
-
-$$
-(a+b)^n=\sum_{k=0}^n\binom{n}{k} a^k b^{n-k}
-$$
-
-\end{theorem}
-
-The theorem states that the expansion of the binomial expression $(a+b)^n$ is the sum of the terms $\binom{n}{k} a^k b^{n-k}$ for $k=0,1,2,\ldots,n$. The binomial coefficient $\binom{n}{k}$ gives the number of ways to choose $k$ elements from a set of $n$ elements. We will place no more emphasis on the binomial theorem here, but it is a fundamental concept in algebra and combinatorics, and is widely used in probability theory.
-
-\section{Probability Basics}
-In this section, we explore probability within discrete sample spaces — those with a finite or countably infinite set of outcomes.
-
-Probability quantifies the likelihood or chance that an outcome of a random experiment will occur. For instance, when you hear, “The chance of rain today is 30\%,” it expresses our belief about the likelihood of rain. Probabilities are numbers assigned to outcomes, ranging from 0 to 1 (or equivalently, from 0\% to 100\%). A probability of 0 means the outcome will not happen, while a probability of 1 means it will happen for sure.
-
-Probabilities can be interpreted in different ways:
+\textbf{Explanation:}
 
 \begin{itemize}
-    \item \textbf{Objective (or Classical) Probability}: Often referred to as classical probability, this approach is used when outcomes are equally likely, such as in rolling a fair die or flipping a coin. Probabilities are assigned based on the assumption that each outcome has an equal chance of occurring. For example, when rolling a fair six-sided die, the probability of rolling a 3 is \( \frac{1}{6} \) because there are 6 equally likely outcomes (1, 2, 3, 4, 5, 6), and only one of them is a 3. The probability is the same for all observers.
-        
-    \item \textbf{Relative Frequency (Empirical Probability)}: Empirical probability is based on observations from experiments rather than theoretical calculations. For example, if a software tester runs a stress test on a server 100 times and it crashes 7 times, the empirical probability of a crash is \( \frac{7}{100} = 0.07 \). This approach relies on actual data rather than assumptions or intuition.
-        
-    \item \textbf{Subjective Probability}: This reflects our personal belief or degree of confidence in an outcome. Different people might assign different probabilities to the same event based on their knowledge or perspective. You and your friends discuss Denmark’s chances of winning the World Cup. Based on recent performance and team strength, you estimate a 10\% chance. However, a more optimistic friend assigns a 20\% chance, while another gives only 5\%, considering stronger competitors. This illustrates subjective probability, where each person's estimate varies based on personal beliefs and biases rather than objective data.
-    
-
+    \item \textbf{Numerator:} \( |A \cap B| \) represents the number of outcomes where both events \( A \) and \( B \) occur. Dividing by \( |S| \) converts this count into a probability, \( P(A \cap B) \).
+    \item \textbf{Denominator:} \( |B| \) is the number of outcomes where event \( B \) occurs. Similarly, dividing by \( |S| \) yields the probability of event \( B \), denoted as \( P(B) \).
 \end{itemize}
 
-When assigning probabilities, it’s essential that the sum of all probabilities in an experiment equals 1, ensuring consistency with the relative frequency interpretation.
+Thus, the conditional probability \( P(A \mid B) \) can be expressed as the ratio of the joint probability of \( A \) and \( B \) to the probability of \( B \).
 
-We start by establishing the Axioms of Probability, which lay the foundation for how probabilities are assigned to events. These axioms define the basic properties that every probability measure must satisfy.
-    
-\begin{axiom}[Axioms of Probability]
+While the above derivation assumes a finite sample space with equally likely outcomes, the resulting formula is remarkably general. It holds true regardless of whether the sample space is finite or infinite, and whether the outcomes are equally likely or not. This universality makes the formula a cornerstone of probability theory.
+
+\begin{definition}[Conditional Probability]
+For any two events \( A \) and \( B \) with \( P(B) > 0 \), the conditional probability of \( A \) given \( B \) is defined as:
+\[
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}, \qquad P(B) > 0
+\]
+\end{definition}
+
+Here is the intuition behind the formula. When we know that event \( B \) has occurred, we effectively eliminate all outcomes that are not part of \( B \). This reduction transforms our original sample space into the subset \( B \).
+
+Within this new, restricted sample space \( B \), the only way for event \( A \) to occur is if the outcome lies in the intersection of \( A \) and \( B \), denoted by \( A \cap B \). To determine the conditional probability \( P(A \mid B) \), we calculate the ratio of the probability of both \( A \) and \( B \) occurring to the probability of \( B \) occurring alone. Mathematically, this is expressed as:
+
+\[
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}
+\]
+
+This formulation ensures that the probabilities within the new sample space \( B \) are normalized, meaning the total probability sums to 1. For instance, consider the conditional probability of \( B \) given \( B \):
+
+\[
+P(B \mid B) = \frac{P(B \cap B)}{P(B)} = \frac{P(B)}{P(B)} = 1
+\]
+
+This result intuitively confirms that if \( B \) has occurred, the probability of \( B \) occurring is certain, i.e., 1.
+
+Note that the conditional probability \( P(A \mid B) \) is undefined when \( P(B) = 0 \). This scenario implies that event \( B \) never occurs. Since conditional probability relies on the occurrence of \( B \), if \( B \) has a probability of zero, there are no outcomes in the sample space to condition upon. Therefore, discussing the probability of \( A \) given \( B \) becomes meaningless in this context.
+
+We can also formulate the axioms of probability in terms of conditional probability. The axioms of probability are as follows:
+
+\begin{axiom}[Axioms of Conditional Probability]
     \begin{itemize}
-        \item \textbf{Axiom 1:} For any event \(A\), \( 0 \leq P(A) \leq 1 \).
-        \item \textbf{Axiom 2:} Probability of the sample space \(S\) is \(P(S) = 1\).
-        \item \textbf{Axiom 3:} If \(A_1, A_2, A_3, \cdots\) are disjoint events, then \(P\left(A_1 \cup A_2 \cup A_3 \cdots\right) = P\left(A_1\right) + P\left(A_2\right) + P\left(A_3\right) + \cdots\)
+        \item \textbf{Axiom 1:} For any event \(A\), \( 0 \leq P(A\mid B) \leq 1 \).
+        \item \textbf{Axiom 2:} Conditional probability of $B$ given $B$ is 1, i.e., $P(B \mid B)=1$.
+        \item \textbf{Axiom 3:} If \(A_1, A_2, A_3, \cdots\) are disjoint events, then $P\left(A_1 \cup A_2 \cup A_3 \cdots \mid B\right)=P\left(A_1 \mid B\right)+P\left(A_2 \mid B\right)+P\left(A_3 \mid B\right)+\cdots$
     \end{itemize}
 \end{axiom}
 
-The property that \( 0 \leq P(A) \leq 1 \) is equivalent to the requirement that a relative frequency must be between 0 and 1. The property that \( P(S) = 1 \) is a consequence of the fact that an outcome from the sample space occurs on every trial of an experiment. Consequently, the relative frequency of \( S \) is 1. Property 3 implies that if the events \( A_1 \) and \( A_2 \) have no outcomes in common, the relative frequency of outcomes in \( A_1 \cup A_2 \) is the sum of the relative frequencies of the outcomes in \( A_1 \) and \( A_2 \).
+And we are also able to derive other rules of conditional probability from these axioms:
 
-In the next sections we will see more about the probability of events and how to calculate them.
-
-\subsection*{Probability of an Event}
-The probability of an event is a measure of the likelihood that the event will occur. It is denoted by \( P(A) \), where \( A \) is the event. The probability of an event ranges from 0 to 1, where 0 indicates that the event will not occur, and 1 indicates that the event will occur for sure.
-
-\begin{definition}[Probability of an Event]
-    The probability of an event \( A \), denoted by \( P(A) \), is the likelihood that event \( A \) will occur. It is defined as the ratio of the number of favorable outcomes to the total number of outcomes in the sample space.
-    \[
-    P(A) = \frac{\text{Number of favorable outcomes}}{\text{Total number of outcomes}}
-    \]
-\end{definition}
-
-\begin{example}
-    Suppose you are testing a software module with 10 different test cases. Out of these, 3 test cases are known to fail due to a bug. If you randomly select one test case to run, what is the probability that the selected test case will fail?
-\end{example}
-
-\begin{solution}
-    Here, the event $A$ is "the test case fails."
-\begin{itemize}
-    \item Number of favorable outcomes (failing test cases) $=3$
-    \item Total number of outcomes (total test cases) $=10$
-\end{itemize}
-
-Using the formula:
-
-$$
-P(A)=\frac{\text { Number of favorable outcomes }}{\text { Total number of outcomes }}=\frac{3}{10}=0.3
-$$
-
-
-Therefore, the probability that a randomly selected test case will fail is 0.3 , indicating that there is a $30 \%$ chance of failure.
-
-\end{solution}
-
-\begin{example}
-    Imagine a software development environment where you have 50 files, consisting of 20 Python scripts, 15 Java files, and 15 configuration files. If you randomly select one file to edit, what is the probability that the file is a Python script?
-\end{example}
-
-\begin{solution}
-Here, the event $A$ is "the selected file is a Python script."
-\begin{itemize}
-    \item Number of favorable outcomes (Python scripts) $=20$
-    \item Total number of outcomes (total files) $=50$
-\end{itemize}
-
-Using the formula:
-
-$$
-P(A)=\frac{\text { Number of favorable outcomes }}{\text { Total number of outcomes }}=\frac{20}{50}=0.4
-$$
-
-Thus, the probability of selecting a Python script is 0.4 , meaning there is a $40 \%$ chance of choosing a Python file from the set.
-
-\end{solution}
-
-\section{Probability of Joint Events and Set Operations}
-Joint events are formed by applying basic set operations to individual events. Commonly, we encounter unions of events, such as $A \cup B$; intersections of events, such as $A \cap B$; and complements of events, such as $\skoverline{A}$. These combined events are often of particular interest, and their probabilities can frequently be derived from the probabilities of the individual events that compose them. Understanding these set operations is essential for accurately calculating the probability of joint events. In this section, we will explore how unions of events and other set operations can be used to determine the probabilities of more complex events.
-
-When dealing with events, the intersection represents \texttt{AND} while the union represents \texttt{OR} The probability of the intersection of events $A$ and $B$, denoted as $P(A \cap B)$, can also be expressed as $P(A, B)$ or $P(A B)$:
-
-\begin{custombox}{Notation}
+\begin{theorem}{Rules of Conditional Probability}
     \begin{itemize}
-        \item The probability of the intersection of events $A$ and $B$ is denoted as $P(A \cap B)$, $P(A, B)$, or $P(A B)$.
-        \item The probability of the union of events $A$ and $B$ is denoted as $P(A \cup B)$.
-        \item The probability of the complement of event $A$ is denoted as $P(\skoverline{A})$, $P(A^{\prime})$, or $P(A^c)$.
-    \end{itemize}
-\end{custombox}
-
-From the axioms of probability, we can derive the following rules of probabilities:
-\newpage
-\begin{theorem}{Rules of Probability}
-    \begin{itemize}
-        \item \textbf{Complement Rule:} The probability of the complement of event $A$ is
+        \item \textbf{Complement Rule:} The probability of the complement of event $A$ given $C$ is
     
         \[
-        P(\skoverline{A}) = 1 - P(A)
+        P\left(\skoverline{A} \mid C\right)=1-P(A \mid C)
         \]
 
-        \item \textbf{Empty Set Rule:} The probability of the empty set is 0, i.e.,
+        \item \textbf{Empty Set Rule:} The probability of the empty set given some event $C$ is 0, i.e.,
         
-        \[P(\emptyset) = 0\]
+        \[P(\emptyset \mid C) = 0\]
         
-        \item \textbf{Addition Rule:} For any two events $A$ and $B$, the probability of the union of events $A$ and $B$ is given by
+        \item \textbf{Addition Rule:} For any two events $A$ and $B$, the probability of the union of events $A$ and $B$ given another event $C$ is
         \[
-        P(A \cup B) = P(A) + P(B) - P(A \cap B)
+        P(A \cup B \mid C)=P(A \mid C)+P(B \mid C)-P(A \cap B \mid C)
         \]
 
-        \item \textbf{Difference Rule:} The probability of the difference between events $A$ and $B$ is given by
+        \item \textbf{Difference Rule:} The probability of the difference between events $A$ and $B$ given another event $C$ is
         \[
-        P(A-B)=P(A)-P(A \cap B)
+            P(A-B \mid C)=P(A \mid C)-P(A \cap B \mid C)
         \]
-        \item \textbf{Subset Rule:} If $A$ is a subset of $B$ ($A \subset B$), then
-        \[P(A) \leq P(B)\].
+        \item \textbf{Subset Rule:} If $A \subset B$, then
+        \[
+        P(A \mid C) \leq P(B \mid C)
+        \]
     \end{itemize}
 \end{theorem}
 
-We can obtain the Complement Rule by noting:
-
-\begin{align*}
-    1 &= P(S) & \text{(axiom 2)} \\
-      &= P(A \cup \skoverline{A}) & \text{(definition of complement)} \\
-      &= P(A) + P(\skoverline{A}) & \text{(since } A \text{ and } \skoverline{A} \text{ are disjoint)}
-\end{align*}
-
-Since $\emptyset=\skoverline{S}$, we can apply part the Complement Rule to deduce that $P(\emptyset)=1-P(S)=0$. This is intuitive because, by definition, an event occurs when the outcome of the random experiment is part of that event. However, since the empty set contains no elements, no outcome of the experiment can ever belong to it, making its probability zero.
-
-The Difference Rule can be obtained by showing that $P(A)=P(A \cap B)+P(A-B)$. Note that the two sets $A \cap B$ and $A-B$ are disjoint and their union is $A$. Thus, by the third axiom of probability
-
-\begin{align*}
-    P(A) &= P\left((A \cap B) \cup (A - B)\right) & \text{(since } A = (A \cap B) \cup (A - B)) \\
-         &= P(A \cap B) + P(A - B) & \text{(since } A \cap B \text{ and } A - B \text{ are disjoint)}
-    \end{align*}
-    
-
-The Addition Rule we obtain by noting that $A$ and $B-A$ are disjoint sets and their union is $A \cup B$. Thus,
-
-\begin{align*}
-    P(A \cup B) &= P(A \cup (B - A)) && (\text{since } A \cup B = A \cup (B - A)) \\
-                &= P(A) + P(B - A) && (\text{since } A \text{ and } B - A \text{ are disjoint}) \\
-                &= P(A) + P(B) - P(A \cap B) && (\text{by part the Difference Rule})
-    \end{align*}
-    
-And finally the Subset Rule is a direct consequence of the fact that if $A \subset B$, then $B$ can be written as the union of $A$ and $B-A$. Since $A$ and $B-A$ are disjoint, we have $P(B)=P(A)+P(B-A) \geq P(A)$.
-
-We conclude this section with a few examples illustrating the application of these rules to calculate probabilities of joint events.
+The following example illustrates the application of conditional probability and introduces the concept of \textbf{contingency tables} as well as \textbf{false positives} and \textbf{false negatives}.
 
 \begin{example}
-    A company has bid on two large construction projects. The company president believes that the probability of winning the first contract is 0.6, the probability of winning the second contract is 0.4, and the probability of winning both contracts is 0.2.
+    A researcher aims to assess the effectiveness of a diagnostic test designed to detect renal disease in patients with high blood pressure. To achieve this, she conducts the test on a sample of 137 patients, categorized as follows:
 
-    \begin{enumerate}[label=(\alph*)]
-        \item What is the probability that the company wins at least one contract?
-        \item What is the probability that the company wins the first contract but not the second contract?
-        \item What is the probability that the company wins neither contract?
-        \item What is the probability that the company wins exactly one contract?
-    \end{enumerate}
+\begin{itemize}
+    \item \textbf{67 patients} with a confirmed diagnosis of renal disease.
+    \item \textbf{70 patients} who are known to be healthy (i.e., do not have renal disease).
+\end{itemize}
+
+The diagnostic test produces one of two possible outcomes for each patient:
+
+\begin{itemize}
+    \item \textbf{Positive}: Indicates that the patient has renal disease.
+    \item \textbf{Negative}: Indicates that the patient does not have renal disease.
+\end{itemize}
+
+The findings are summarised in the following contingency table:
+
+    \begin{tabular}{lrrr} 
+        & \multicolumn{2}{c}{ Test Results } & \\
+        Truth & Positive & Negative & Total \\
+        Renal Disease & 44 & 23 & 67 \\
+        Healthy & 10 & 60 & 70 \\
+        Total & 54 & 83 & 137
+        \end{tabular}
+        
+    In this experiment:
+
+
+        \begin{itemize}
+            \item \textbf{True Positives}: Patients who have renal disease and tested positive.
+            \item \textbf{False Negatives}: Patients who have renal disease but tested negative.
+            \item \textbf{False Positives}: Healthy patients who tested positive.
+            \item \textbf{True Negatives}: Healthy patients who tested negative.
+        \end{itemize}
+    
+        Determine the following probabilities:
+        \begin{enumerate}[label=(\alph*)]
+            \item The Probability of Renal Disease, $P(D)$.
+            \item The Probability of Renal Disease,  \( P(T^+) \).
+            \item The Probability of Renal Disease,  \( P(T^-) \).
+            \item If a person has renal disease, what is the probability that they test positive for the disease?
+            \item Determine the probability that a patient has renal disease given a positive test result, \( P(\text{Renal Disease} \mid \text{Positive}) \).
+            \item Determine the probability that a patient does not have renal disease given a negative test result, \( P(\text{Healthy} \mid \text{Negative}) \).
+            \item Assess the overall accuracy of the diagnostic test.
+        \end{enumerate}
+        label{ex:renal-disease}
 \end{example}
 
 \begin{solution}
-    Let $A$ be the event that the company wins the first contract, and $B$ be the event that the company wins the second contract. Given:
-    \begin{itemize}
-        \item $P(A) = 0.6$
-        \item $P(B) = 0.4$
-        \item $P(A \cap B) = 0.2$
-    \end{itemize}
-    
+    Using the contingency table, we can calculate the following probabilities:
+
     \begin{enumerate}[label=(\alph*)]
-        \item The probability that the company wins at least one contract is the probability of the union of events $A$ and $B$. Using the Addition Rule:
-        
+        \item \textbf{Probability of Renal Disease, \( P(D) \)}:
         \begin{align*}
-            P(A \cup B) &= P(A) + P(B) - P(A \cap B) \\
-                        &= 0.6 + 0.4 - 0.2 \\
-                        &= 0.8
+        P(D) &= \frac{\text{Number of patients with renal disease}}{\text{Total number of patients}} \\
+        &= \frac{67}{137} \approx 0.4883 \text{ or } 48.83\%
         \end{align*}
         
-        Therefore, the probability that the company wins at least one contract is 0.8.
-        
-        \item The probability that the company wins the first contract but not the second contract is the probability of the difference between events $A$ and $B$. Using the Difference Rule:
-        
+        \item \textbf{Probability of a Positive Test, \( P(T^+) \)}:
         \begin{align*}
-            P(A - B) &= P(A) - P(A \cap B) \\
-                    &= 0.6 - 0.2 \\
-                    &= 0.4
+        P(T^+) &= \frac{\text{Number of positive tests}}{\text{Total number of patients}} \\
+        &= \frac{54}{137} \approx 0.3942 \text{ or } 39.42\%
         \end{align*}
         
-        Therefore, the probability that the company wins the first contract but not the second contract is 0.4.
-        
-        \item The probability that the company wins neither contract is the probability of the complement of the union of events $A$ and $B$. Using the Complement Rule:
-        
+        \item \textbf{Probability of a Negative Test, \( P(T^-) \)}:
         \begin{align*}
-            P(\skoverline{A \cup B}) &= 1 - P(A \cup B) \\
-                                    &= 1 - 0.8 \\
-                                    &= 0.2
+        P(T^-) &= \frac{\text{Number of negative tests}}{\text{Total number of patients}} \\
+        &= \frac{80}{137} \approx 0.6058 \text{ or } 60.58\%
         \end{align*}
-        
-        Therefore, the probability that the company wins neither contract is 0.2.
-        
-        \item The probability that the company wins exactly one contract is the probability of the difference between the union of events $A$ and $B$ and the intersection of events $A$ and $B$. Using the Difference Rule:
-            
-            \begin{align*}
-                P((A \cup B) - (A \cap B)) &= P(A \cup B) - P(A \cap B) \\
-                                            &= 0.8 - 0.2 \\
-                                            &= 0.6
-            \end{align*}
-            So, the probability that the company wins exactly one contract is 0.6.
-            \end{enumerate}
+
+
+        \item \textbf{Probability of a Positive Test Given Renal Disease, \( P(T^+ \mid D) \)}:
+        \begin{align*}
+            P(T+\mid D)=\frac{44}{67} \approx 0.6567
+        \end{align*}
+
+        \item \textbf{Probability of Renal Disease Given a Positive Test, \( P(D \mid T^+) \)}:
+        \begin{align*}
+        P(D \mid T^+) &= \frac{P(D \cap T^+)}{P(T^+)} \\
+        &= \frac{44}{54}=\frac{22}{27} \approx 0.8148
+        \end{align*}
+
+        \item \textbf{Probability of Being Healthy Given a Negative Test, \( P(\text{Healthy} \mid T^-) \)}:
+        \begin{align*}
+        P(\text{Healthy} \mid T^-) &= \frac{P(\text{Healthy} \cap T^-)}{P(T^-)} \\
+        &= \frac{60}{83} \approx 0.7229
+        \end{align*}
+
+        \item \textbf{Overall Accuracy of the Diagnostic Test}:
+        The overall accuracy of the diagnostic test is the proportion of correct diagnoses, i.e., the sum of true positives and true negatives divided by the total number of patients:
+        \begin{align*}
+            \text{Overall Accuracy} =\frac{44+60}{137}=\frac{104}{137} \approx 0.7591
+        \end{align*}
+    \end{enumerate}
+
+
+The results of the analysis indicate that the diagnostic test has a high probability of correctly identifying patients with renal disease (81.48\%). However, the test is less effective at identifying healthy patients, with a probability of 72.29\%. The overall accuracy of the test is 75.91\%, reflecting the proportion of correct diagnoses across all patients.
 \end{solution}
+
+Here’s a classic probability puzzle known as the Two-Child Problem.This scenario has appeared in various forms in the literature, each with subtle twists that lead to different results. Before looking at the calculations, take a moment to make your own predictions — you might be surprised by the outcomes!
+
+\begin{example}
+    Consider a family with two children, and we are interested in the possible gender combinations of the children. The sample space for this situation is:
+
+\[
+S = \{(G, G), (G, O), (B, O), (O, O)\}
+\]
+
+where \( G \) represents a girl and \( O \) represents a child that is not a girl. For simplicity, we assume that all four outcomes are equally likely.
+
+\begin{enumerate}[label=(\alph*)]
+    \item What is the probability that both children are girls given that the first child is a girl?
+    \item We ask the father: "Do you have at least one daughter?" He responds "Yes!" Given this extra information, what is the probability that both children are girls? In other words, what is the probability that both children are girls given that we know at least one of them is a girl?
+\end{enumerate}
+\end{example}
+
+\begin{solution}
+    Let $A$ be the event that both children are girls, i.e., $A=\{(G, G)\}$. Let $B$ be the event that the first child is a girl, i.e., $B=\{(G, G),(G, O)\}$. Finally, let $C$ be the event that at least one of the children is a girl, i.e., $C=\{(G, G),(G, O),(O, G)\}$. Since the outcomes are equally likely, we can write
+    \begin{align*}
+    P(A) &= \frac{1}{4} \\
+    P(B) &= \frac{2}{4} = \frac{1}{2} \\
+    P(C) &= \frac{3}{4}
+    \end{align*}
+
+
+    \begin{enumerate}[label=(\alph*)]
+         \item What is the probability that both children are girls given that the first child is a girl? This is $P(A \mid B)$, thus we can write
+
+                    \begin{align*}
+                    P(A \mid B) & =\frac{P(A \cap B)}{P(B)} \\
+                    & =\frac{P(A)}{P(B)} \quad(\text { since } A \subset B) \\
+                    & =\frac{\frac{1}{4}}{\frac{1}{2}}=\frac{1}{2}
+                    \end{align*}
+                
+                \item What is the probability that both children are girls given that we know at least one of them is a girl? This is $P(A \mid C)$, thus we can write
+
+                    \begin{align*}
+                    P(A \mid C) & =\frac{P(A \cap C)}{P(C)} \\
+                    & =\frac{P(A)}{P(C)} \quad(\text { since } A \subset C) \\
+                    & =\frac{\frac{1}{4}}{\frac{3}{4}}=\frac{1}{3}
+                    \end{align*}
+        
+    \end{enumerate}
+\end{solution}
+
+\begin{remark}
+    Many people might intuitively guess that both \( P(A \mid B) \) and \( P(A \mid C) \) would be 50\%. However, while \( P(A \mid B) = 50\%\), \( P(A \mid C) \) is only 33\%. This illustrates how probability can be counterintuitive. The key is to recognize that event \( B \) is a subset of event \( C \). Specifically, \( B \) excludes the outcome \( (B, G) \), which is included in \( C \). As a result, \( C \) has more outcomes not in \( A \) than \( B \), leading to a smaller \( P(A \mid C) \) compared to \( P(A \mid B) \).
+\end{remark}
+
+\section{Multiplication and Total Probability Rules}
+The multiplication rule is a fundamental principle in probability theory that allows us to calculate the probability of multiple events occurring in sequence. This rule is particularly useful when the events are dependent, meaning that the occurrence of one event influences the probability of the subsequent event.
+
+\begin{theorem}[Multiplication Rule]
+    For any two events \( A \) and \( B \), the probability of both events occurring is given by:
+    \[
+    P(A \cap B) = P(A) P(B \mid A) = P(B) P(A \mid B)
+    \]
+\end{theorem}
+
+\begin{example}
+    Suppose a software development team is testing a new feature. There are two stages of testing: Unit Testing (A) and Integration Testing (B). The probability that a bug is detected in Unit Testing is $P(A)=0.3$. If a bug is detected during Unit Testing, the probability that it will also be detected in Integration Testing is $P(B)$ A) $=0.7$. What is the probability that a bug is detected in both stages of testing?
+\end{example}
+
+\begin{solution}
+    Using the Multiplication Rule:
+
+\[
+P(A \cap B)=P(A) \cdot P(B \mid A)=0.3 \times 0.7=0.21
+\]
+
+
+Therefore, the probability that a bug is detected in both Unit Testing and Integration Testing is 0.21 .
+\end{solution}
+
+\begin{example}
+A company has implemented a two-layer security system to protect against network breaches: \textbf{Firewall (A)} and \textbf{Intrusion Detection System (IDS) (B)}. The probability that a breach attempt is detected by the Firewall is \( P(A) = 0.4 \). If the breach passes through the Firewall, the probability that it is detected by the IDS is \( P(B \mid \skoverline{A}) = 0.6 \). The probability that the breach is detected by both the Firewall and the IDS is \( P(B \mid A) = 0.8 \).
+
+\begin{enumerate}[label=(\alph*)]
+    \item What is the probability that a breach is detected by at least one of the security layers?
+    \item What is the probability that a breach is detected by both security layers?
+\end{enumerate}
+
+\end{example}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+    \item \textbf{Probability of Detection by at Least One Layer:}
+
+    To find the probability that the breach is detected by at least one layer, we calculate the probability of a breach passing through both layers undetected and subtract it from 1.
+
+    \begin{align*}
+        P(\text{Undetected}) &= P(\skoverline{A}) \cdot P(\skoverline{B} \mid \skoverline{A}) 
+        = (1 - 0.4) \cdot (1 - 0.6) 
+        = 0.6 \cdot 0.4
+        = 0.24
+    \end{align*}
+
+    Therefore, the probability of detecting the breach with at least one layer is:
+
+    \begin{align*}
+    P(\text{Detected}) &= 1 - P(\text{Undetected}) = 1 - 0.24 = 0.76
+    \end{align*}
+
+    \item \textbf{Probability of Detection by Both Layers:}
+
+    Using the Multiplication Rule:
+
+    \begin{align*}
+    P(A \cap B) &= P(A) \cdot P(B \mid A) = 0.4 \cdot 0.8 = 0.32
+    \end{align*}
+
+    The probability of detecting the breach with at least one layer is 0.76, while the probability of detecting the breach with by both the Firewall and the IDS is 0.32. This discrepancy highlights the importance of considering the dependencies between events when calculating probabilities.
+\end{enumerate}
+\end{solution}
+
+\begin{remark}
+    It might seem intuitive to some to calculate the joint probability of detection using $P(A \cap B)=P(A) \cdot P(B)=0.4 \cdot 0.6=0.24$. However, this approach ignores the fact that the probability of detection by the IDS depends on the outcome of the Firewall. This is why we use the conditional probability $P(B \mid A)$, which properly accounts for the dependency between the two layers, yielding the correct result of 0.32 .
+\end{remark}
+
+In some scenarios, the probability of an event depends on various conditions. By knowing the conditional probabilities under these different scenarios, we can determine the overall probability of the event. For instance, consider semiconductor manufacturing, where the probability that a chip causes a product failure when it is not contaminated is \( P(\skoverline{B}) = 0.005 \). On the other hand, if the chip is subjected to high levels of contamination, the probability of failure is \( P(B \mid A) = 0.10 \). Suppose that in a given production run, \( 20\% \) of the chips are highly contaminated (\( P(A) = 0.20 \)). What is the probability that a product using one of these chips fails?
+
+The probability of failure depends on whether the chip was exposed to high contamination or not. For any event \( A \), it can be decomposed into two mutually exclusive parts: one that intersects with \( B \) and another that intersects with the complement \( \skoverline{B} \). Mathematically, we can express this as:
+
+\[
+A = (B \cap A) \cup (\skoverline{B} \cap A)
+\]
+
+This decomposition is visualized in the Venn diagram in Figure \ref{fig:decoA}. Since \( B \) and \( \skoverline{B} \) are mutually exclusive, their intersections with \( A \) are also mutually exclusive. Thus, using the rule for the probability of the union of mutually exclusive events and the multiplication rule, we can derive the total probability as follows:
+
+\[
+P(A) = P(A \cap B) + P(A \cap \skoverline{B})
+\]
+
+% Definition of ellipses
+\def\firstellipse{(3,1) ellipse (4.5cm and 2.2cm)} % First ellipse with horizontal and vertical radii
+
+\colorlet{ellipse edge}{main}
+\colorlet{ellipse area}{main!20}
+
+\tikzset{filled/.style={fill=ellipse area, draw=ellipse edge, thick},
+    outline/.style={draw=ellipse edge, thick}}
+
+\colorlet{ellipse edge}{main}
+\colorlet{ellipse area}{main!20}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        % Draw the ellipses
+
+        % Draw the rectangle to represent the universal set
+        \draw[outline] (-2,-2) rectangle (8,4);
+        
+
+         % Draw the ellipse and fill
+        \begin{scope}
+            \fill[filled] \firstellipse;
+            \end{scope}
+            \draw[outline] \firstellipse node[anchor=north west, xshift=2.5cm, yshift=-1.8cm] {$A$} node[anchor=north west, xshift=1.5cm, yshift=0.2cm] {$A \cap \skoverline{B}$} node[anchor=north west, xshift=-4.2cm, yshift=2.8cm] {$B$} node[anchor=north west, xshift=-3cm, yshift=0.2cm] {$A \cap B$} node[anchor=north west, xshift=3.7cm, yshift=2.8cm] {$\skoverline{B}$};
+
+         % Draw a squiggly line down the middle of the rectangle
+         \draw[decorate, decoration={snake, amplitude=0.05cm, segment length=1cm, post length=0.5cm}] (3,4) -- (3,-2);
+        \end{tikzpicture}
+        \caption{$P(A)=P(A \cap B)+P(A \cap \bar{B})$}
+        \label{fig:decoA}
+\end{figure}
+
+We summarise this int he following theorem:
+
+\begin{theorem}[Law of Total Probability]
+For any events \( A \) and \( B \) such that \( B \) and \( \skoverline{B} \) form a partition of the sample space \( S \), the total probability of event \( A \) is given by:
+    \begin{align*}
+    P(A) &= P(A \cap B) + P(A \cap \skoverline{B}) \\
+    &= P(B) P(A \mid B) + P(\skoverline{B}) P(A \mid \skoverline{B})
+    \end{align*}
+
+    For any event \( A \) and any partition of the sample space \( B_1, B_2, \ldots, B_n \) such that \( B_i \cap B_j = \emptyset \) for all \( i \neq j \) and \( \bigcup_{i=1}^{n} B_i = S \), the total probability of event \( A \) is given by:
+    \begin{align*}
+    P(A) &= \sum_{i=1}^{n} P(A \mid B_i) P(B_i)
+    \end{align*}
+\end{theorem}
+
+Let us consider some examples.
+
+\begin{example}
+    A company produces two types of products: \textbf{Product A} and \textbf{Product B}. The probability that a product is defective is \( P(D \mid A) = 0.05 \) for Product A and \( P(D \mid B) = 0.10 \) for Product B. The company manufactures 60\% of its products as Product A and 40\% as Product B. What is the probability that a randomly selected product is defective?
+\end{example}
+
+\begin{solution}
+    Using the Law of Total Probability:
+
+    \[
+    P(D) = P(D \mid A) P(A) + P(D \mid B) P(B)
+    \]
+
+    Substituting the given values:
+
+    \[
+    P(D) = 0.05 \times 0.60 + 0.10 \times 0.40 = 0.03 + 0.04 = 0.07
+    \]
+
+    Therefore, the probability that a randomly selected product is defective is 0.07.
+\end{solution}
+
+A graphical display of partitioning an event B
+among a collection of mutually exclusive and exhaustive events is shown in \autoref{fig:decoAmulB}. The event A is partitioned into five mutually exclusive events \( B_1, B_2, B_3, B_4, B_5 \), which together form the sample space \( S \). The total probability of event A is calculated as the sum of the conditional probabilities of A given each partition \( B_i \) multiplied by the probability of each partition \( P(B_i) \).
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        % Draw the rectangle to represent the universal set
+        \draw[outline] (-2,-2) rectangle (8,4);
+        
+        % Draw the ellipse and fill
+        \begin{scope}
+            \fill[filled] \firstellipse;
+        \end{scope}
+        \draw[outline] 
+            \firstellipse 
+            node[anchor=north west, xshift=3.2cm, yshift=-1.5cm] {$A$};
+        
+        % Draw squiggly lines to create five partitions
+        \draw[decorate, decoration={snake, amplitude=0.05cm, segment length=1cm, post length=0.5cm}] (0,4) -- (0,-2); % First squiggly line
+        \draw[decorate, decoration={snake, amplitude=0.05cm, segment length=1cm, post length=0.5cm}] (2,4) -- (2,-2); % Second squiggly line (existing one)
+        \draw[decorate, decoration={snake, amplitude=0.05cm, segment length=1cm, post length=0.5cm}] (4,4) -- (4,-2); % Third squiggly line
+        \draw[decorate, decoration={snake, amplitude=0.05cm, segment length=1cm, post length=0.5cm}] (6,4) -- (6,-2); % Fourth squiggly line
+        
+        % Label the partitions B_1, B_2, ..., B_5
+        \node at (-1, 3.5) {$B_1$};
+        \node at (1, 3.5) {$B_2$};
+        \node at (3, 3.5) {$B_3$};
+        \node at (5, 3.5) {$B_4$};
+        \node at (7, 3.5) {$B_5$};
+    \end{tikzpicture}
+    \caption{$P(A) = \sum_{i=1}^{5} P(A \mid B_i) P(B_i)$}
+    \label{fig:decoAmulB}
+\end{figure}
+
+\begin{example}
+    A university offers three types of courses: \textbf{Online}, \textbf{Hybrid}, and \textbf{In-Person}. The probability that a student fails a course is \( P(F \mid \text{Online}) = 0.10 \) for Online courses, \( P(F \mid \text{Hybrid}) = 0.05 \) for Hybrid courses, and \( P(F \mid \text{In-Person}) = 0.02 \) for In-Person courses. The university offers 50\% of its courses as Online, 30\% as Hybrid, and 20\% as In-Person. What is the probability that a randomly selected student fails a course?
+\end{example}
+
+\begin{solution}
+    Using the Law of Total Probability:
+
+    \[
+    P(F) = P(F \mid \text{Online}) P(\text{Online}) + P(F \mid \text{Hybrid}) P(\text{Hybrid}) + P(F \mid \text{In-Person}) P(\text{In-Person})
+    \]
+
+    Substituting the given values:
+
+    \[
+    P(F) = 0.10 \times 0.50 + 0.05 \times 0.30 + 0.02 \times 0.20 = 0.05 + 0.015 + 0.004 = 0.069
+    \]
+
+    Therefore, the probability that a randomly selected student fails a course is 0.069.
+\end{solution}
+
+\section{Independence}
+Let $A$ represent the event that it rains tomorrow, with $P(A)=\frac{1}{3}$. Additionally, suppose I toss a fair coin, and let $B$ be the event that it lands heads up, so $P(B)=\frac{1}{2}$.
+
+Now, consider the probability $P(A \mid B)$. What do you think it would be? You might intuitively guess that $P(A \mid B)=P(A)=\frac{1}{3}$, and you would be correct! The coin toss outcome has no influence on the weather forecast. This means that whether $B$ occurs or not, the probability of $A$ remains unchanged. This scenario illustrates the concept of independent events: two events are independent if the occurrence of one does not provide any information about the other.
+
+Let's now formalize the definition of independence.
+\newpage
+
+\begin{definition}[Independence]
+    Two events are considered independent if the occurrence of one event does not affect the probability of the other event. In other words, the probability of one event does not depend on the occurrence of the other event. Two events \( A \) and \( B \) are independent if:
+    \begin{align*}
+        P(A \mid B) &= P(A) \\
+        P(B \mid A) &= P(B) \\
+        P(A \cap B) &= P(A) P(B)
+    \end{align*}
+\end{definition}
+
+In summary, independence can be understood in two equivalent ways: "Independence means that the probability of the intersection of two events can be found by simply multiplying their individual probabilities," or, alternatively, "Independence means that the conditional probability of one event given the other is the same as the original, unconditioned probability."
+
+\begin{lemma}
+If $A$ and $B$ are independent then
+\begin{itemize}
+    \item $A$ and $\skoverline{B}$ are independent,
+    \item $\skoverline{A}$ and $B$ are independent,
+    \item $\skoverline{A}$ and $\skoverline{B}$ are independent.
+\end{itemize}
+\end{lemma}
+
+When dealing with the probability of the union of multiple independent events, \( A_1, A_2, \ldots, A_n \), it is often easier to find the probability of their intersection than their union. In these situations, De Morgan's Law can be quite useful:
+
+\[
+A_1 \cup A_2 \cup \cdots \cup A_n = \skoverline{ \left(\skoverline{A_1} \cap \skoverline{A_2} \cap \cdots \cap \skoverline{A_n}\right)}
+\]
+
+Using this relationship, we can express the probability of the union as:
+
+\begin{align*}
+P\left(A_1 \cup A_2 \cup \cdots \cup A_n\right) &= 1 - P\left(\skoverline{A_1} \cap \skoverline{A_2} \cap \cdots \cap \skoverline{A_n}\right) \\
+&= 1 - P\left(\skoverline{A_1}\right) P\left(\skoverline{A_2}\right) \cdots P\left(\skoverline{A_n}\right) \quad \text{(since the \( A_i \)'s are independent)} \\
+&= 1 - \left(1 - P\left(A_1\right)\right)\left(1 - P\left(A_2\right)\right) \cdots \left(1 - P\left(A_n\right)\right).
+\end{align*}
+
+
+\begin{theorem}[Independence and DeMorgan's Law]
+        If \( A_1, A_2, \cdots, A_n \) are independent then
+        \begin{align*}
+        &P\left(A_1 \cup A_2 \cup \cdots \cup A_n\right)=1-\left(1-P\left(A_1\right)\right)\left(1-P\left(A_2\right)\right) \cdots\left(1-P\left(A_n\right)\right)
+        \end{align*}
+\end{theorem}
+
+\textbf{Warning!} A common misconception is to confuse independence with disjointness. However, these are fundamentally different concepts. Two events, $A$ and $B$, are disjoint if the occurrence of one prevents the occurrence of the other, i.e., $A \cap B=\emptyset$. In this case, knowing that $A$ has occurred gives us complete information about $B$ namely, that $B$ cannot occur. This dependence means that disjoint events cannot be independent.
 
 \newpage
 
-\begin{example}
-    \begin{itemize}
-    \item There is a 60 percent chance that it will rain today.
-    \item There is a 50 percent chance that it will rain tomorrow.
-    \item There is a 30 percent chance that it does not rain either day.
-    \end{itemize}
-    
-\begin{enumerate}[label=(\alph*)]
-    \item The probability that it will rain today or tomorrow
-    \item The probability that it will rain today and tomorrow.
-    \item The probability that it will rain today but not tomorrow.
-    \item The probability that it either will rain today or tomorrow, but not both.
-\end{enumerate}
-    
-\begin{solution}
-\begin{enumerate}[label=(\alph*)]
-    \item     Let \( A \) be the event that it rains today, and \( B \) be the event that it rains tomorrow.
-        
-    Given:
-    \begin{align*}
-        P(A \cup B) &= 1 - P\left(\skoverline{(A \cup B)}\right) \quad &\text{by the Complement Rule} \\
-                &= 1 - P\left(\skoverline{A} \cap \skoverline{B}\right) \quad &\text{by De Morgan's Law} \\
-                &= 1 - 0.3 \\
-                &= 0.7
-    \end{align*}
-            
-        
-    Therefore, the probability that it will rain today or tomorrow is \( 0.7 \).
+\begin{table}[ht]
+    \begin{center}
+    \renewcommand{\arraystretch}{1.5} % Adjusts row spacing
+    \begin{tabular}{c|c|c}
+    \textbf{Concept} & \textbf{Description} & \textbf{Key Formulas} \\
+    \hline
+    Disjoint & Events $A$ and $B$ cannot occur at the same time & 
+    \begin{tabular}{@{}c@{}}
+    $A \cap B = \emptyset$ \\
+    $P(A \cup B) = P(A) + P(B)$
+    \end{tabular} \\
+    \hline
+    Independent & Occurrence of $B$ gives no information about $A$ &
+    \begin{tabular}{@{}c@{}}
+    $P(A \mid B) = P(A)$ \\
+    $P(B \mid A) = P(B)$ \\
+    $P(A \cap B) = P(A) \cdot P(B)$
+    \end{tabular} \\
+    \end{tabular}
+    \end{center}
+    \caption{Comparison of Disjoint and Independent Events.}
+    \label{tab:disjoint_vs_independent}
+\end{table}
 
-    \item The probability that it will rain today and tomorrow: this is $P(A \cap B)$. To find this we note that
-    \begin{align*}
-    P(A \cap B) &= P(A) + P(B) - P(A \cup B) \\
-                &= 0.6 + 0.5 - 0.7 \\
-                &= 0.4
-    \end{align*}
+We can extend the concept of independence to multiple events. A set of events \( A_1, A_2, \ldots, A_n \) are considered independent if the occurrence of any subset of these events does not provide any information about the occurrence of the other events. Mathematically, this is expressed as:
 
-    \item The probability that it will rain today but not tomorrow: this is $P\left(A \cap \skoverline{B}\right)$.
+\begin{definition}[Independence of Multiple Events]
+    A set of events \( A_1, A_2, \ldots, A_k \) are considered independent if  the joint probability is equal to the product of the individual probabilities:
+    \[
+    P(A_1 \cap A_2 \cap \cdots \cap A_k) = P(A_1) \cdot P(A_2) \cdots P(A_k)
+    \]
+\end{definition}
+
+\begin{example}Gambler's Fallacy
+
+The \textbf{Gambler's Fallacy }is a common cognitive bias that arises when individuals believe that the outcome of a random event is influenced by previous outcomes. This fallacy is often observed in gambling scenarios, where individuals incorrectly assume that the probability of an event occurring is affected by past events.
+
+A man tosses a fair coin eight times and observes whether the toss yields a head $(\mathrm{H})$ or a tail $(\mathrm{T})$ on each toss. Which of the following sequences of coin tosses is the man more likely to get a head $(H)$ on his next toss? This one:
+
+TTTTTTTT
+
+or this one:
+
+HHTHTTHH
+
+The answer is neither as illustrated here:
+
+\begin{align*}
+        P\left(H_9 \mid T_1 T_2 \ldots T_8\right)=\frac{P\left(H_9 \cap T_1 \cap T_2 \cap \cdots \cap T_8\right)}{P\left(T_1 \cap T_2 \cap \cdots \cap T_8\right)} & =\frac{\left(\frac{1}{2}\right)^9}{\left(\frac{1}{2}\right)^8} \\
+        & =\frac{1}{2}
+\end{align*}
     
-    \begin{align*}
-        P(A \cap \skoverline{B}) &= P(A - B) \\
-                      &= P(A) - P(A \cap B) \\
-                      &= 0.6 - 0.4 \\
-                      &= 0.2
-        \end{align*}
-        
-    \item The probability that it either will rain today or tomorrow but not both: this is $P(A-B)+P(B-A)$. We have already found $P(A-B)=.2$. Similarly, we can find $P(B-A)$:
-    
-    \begin{align*}
-        P(B-A) & =P(B)-P(B \cap A) \\
-        & =0.5-0.4 \\
-        & =0.1
-        \end{align*}
-    Thus,
-    \begin{align*}
-        P(A-B)+P(B-A) &= 0.2+0.1 \\
-                      &= 0.3
-    \end{align*}
-\end{enumerate}
-\end{solution}
 \end{example}
 
+Try to avoid falling into the trap of the Gambler's Fallacy. For example, if a fair coin lands on tails eight times in a row, it’s easy to think that a head is "due" on the next toss. However, each toss is independent, and the probability remains the same — there’s still a 50\% chance of heads or tails, regardless of past results.
+
+\section{Bayes' Theorem}
+We are now ready to introduce one of the most powerful tools in conditional probability: Bayes' rule (or theorem). This rule is particularly useful when we know \( P(A \mid B) \) but want to find \( P(B \mid A) \). Starting with the definition of conditional probability, we have:
+
+\[
+P(A \mid B) \cdot P(B) = P(A \cap B) = P(B \mid A) \cdot P(A)
+\]
+
+By dividing both sides by \( P(A) \), we arrive at:
+
+\[
+P(B \mid A) = \frac{P(A \mid B) \cdot P(B)}{P(A)}
+\]
+
+This formula is famously known as Bayes' rule. In many cases, to calculate \( P(A) \) in Bayes' rule, we need the law of total probability. Therefore, Bayes' rule is often presented in the form:
+
+\[
+P(B \mid A) = \frac{P(A \mid B) \cdot P(B)}{P(A \mid B) \cdot P(B) + P(A \mid \skoverline{B}) \cdot P(\skoverline{B})}
+\]
+
+or more generally
+
+\[
+P\left(B_j \mid A\right) = \frac{P\left(A \mid B_j\right) \cdot P\left(B_j\right)}{\sum_i P\left(A \mid B_i\right) \cdot P\left(B_i\right)}
+\]
+
+where \( B_1, B_2, \ldots, B_n \) form a partition of the sample space.
+
+\begin{theorem}[Bayes' Theorem]
+    For any two events $A$ and $B$, where $P(A) \neq 0$, we have
+    \begin{align*}
+    P(B \mid A) = \frac{P(A \mid B) \cdot P(B)}{P(A)}
+     = \frac{P(A \mid B) \cdot P(B)}{P(A \mid B) \cdot P(B) + P(A \mid \skoverline{B}) \cdot P(\skoverline{B})}
+    \end{align*}
+
+    If $B_1, B_2, B_3, \cdots$ form a partition of the sample space $S$, and $A$ is any event with $P(A) \neq 0$, we have
+
+    \begin{align*}
+    P\left(B_j \mid A\right) = \frac{P\left(A \mid B_j\right) \cdot P\left(B_j\right)}{\sum_i P\left(A \mid B_i\right) \cdot P\left(B_i\right)}
+    \end{align*}
+\end{theorem}
+
+We start with a´n infamous example to highlight the importance of Bayes' Theorem.
+
+\begin{example} False Positive Paradox
+
+   Imagine a rare disease that affects about 1 in every 10,000 people. There is a test available to detect this disease, and while the test is highly accurate, it is not perfect. Specifically:
+\begin{itemize}
+    \item The probability that the test shows a positive result (indicating the disease) when the person does not have the disease is $2 \%$.
+    \item The probability that the test shows a negative result (indicating no disease) when the person does have the disease is $1 \%$.
+\end{itemize}
+
+Now, suppose a randomly selected person takes the test, and the result comes back positive. What is the probability that this person actually has the disease?
+\end{example}
+
+\begin{solution}
+    Let \( D \) be the event that the person has the disease, and let \( T^+ \) be the event that the test result is positive. We know:
+
+\[
+\begin{aligned}
+& P(D) = \frac{1}{10,000} \\
+& P\left(T^+ \mid \skoverline{D}\right) = 0.02 \\
+& P\left(\skoverline{T^+} \mid D\right) = 0.01
+\end{aligned}
+\]
+
+We want to compute \( P(D \mid T^+) \). Using Bayes' rule:
+
+\[
+\begin{aligned}
+P(D \mid T^+) &= \frac{P(T^+ \mid D) P(D)}{P(T^+ \mid D) P(D) + P\left(T^+ \mid \skoverline{D}\right) P\left(\skoverline{D}\right)} \\
+&= \frac{(1 - 0.01) \times 0.0001}{(1 - 0.01) \times 0.0001 + 0.02 \times (1 - 0.0001)} \\
+&= 0.0049
+\end{aligned}
+\]
+
+This result means there is less than half a percent chance that the person actually has the disease. Despite the positive test result, the low prevalence of the disease and the test's false positive rate contribute to this counterintuitive outcome.
+\end{solution}
+
+\begin{example}
+    Bayesian networks are commonly used on the websites of high-technology manufacturers to help customers quickly diagnose issues with their products. For instance, a printer manufacturer uses data from test results to identify potential causes of printer failures. Printer failures are primarily associated with three types of problems: hardware, software, and other issues (like connectors). The probabilities of these problems are as follows:
+\begin{itemize}
+    \item Probability of a hardware issue: $P(H)=0.1$
+    \item Probability of a software issue: $P(S)=0.6$
+    \item Probability of another type of issue: $P(O)=0.3$
+\end{itemize}
+
+The likelihood of a printer failing, given each type of problem, is:
+\begin{itemize}
+    \item Probability of failure given a hardware issue: $P(F \mid H)=0.9$
+    \item Probability of failure given a software issue: $P(F \mid S)=0.2$
+    \item Probability of failure given another issue: $P(F \mid O)=0.5$
+\end{itemize}
+
+Given that a customer experiences a printer failure and uses the manufacturer's website to diagnose the issue, what is the most likely cause of the problem?
+\end{example}
+
+\begin{solution}
+    To determine the most likely cause of the printer failure, we need to calculate the probability of each type of problem given that a failure has occurred. This involves using Bayes' theorem to compute the posterior probabilities.
+
+Let $F$ denote the event of a printer failure. We want to find:
+
+\[
+P(H \mid F), \quad P(S \mid F), \quad P(O \mid F)
+\]
+
+\textbf{Step 1: Calculate the Total Probability of Failure
+}
+
+First, we use the law of total probability to find $P(F)$ :
+
+\[
+P(F) = P(F \mid H) \cdot P(H) + P(F \mid S) \cdot P(S) + P(F \mid O) \cdot P(O)
+\]
+
+Substituting the given values:
+
+\[
+\begin{aligned}
+P(F) &= (0.9 \times 0.1) + (0.2 \times 0.6) + (0.5 \times 0.3) \\
+P(F) &= 0.09 + 0.12 + 0.15 = 0.36
+\end{aligned}
+\]
+
+\textbf{Step 2: Apply Bayes' Theorem to Find the Posterior Probabilities
+}
+
+Now, apply Bayes' theorem for each problem type:
+
+\begin{enumerate}
+    \item Probability of Hardware Problem Given Failure:
+    \[
+    P(H \mid F)=\frac{P(F \mid H) \cdot P(H)}{P(F)}=\frac{0.9 \times 0.1}{0.36}=\frac{0.09}{0.36}=0.25
+    \]
+
+    \item Probability of Software Problem Given Failure:
+    \[
+    P(S \mid F)=\frac{P(F \mid S) \cdot P(S)}{P(F)}=\frac{0.2 \times 0.6}{0.36}=\frac{0.12}{0.36}=0.3333
+    \]
+
+    \item Probability of Other Problems Given Failure:
+    \[
+    P(O \mid F)=\frac{P(F \mid O) \cdot P(O)}{P(F)}=\frac{0.5 \times 0.3}{0.36}=\frac{0.15}{0.36}=0.4167
+    \]
+\end{enumerate}
+
+\textbf{Step 3: Interpret the Results}
+\begin{itemize}
+    \item Hardware Problem: $25 \%$ chance
+    \item Software Problem: Approximately $33.33 \%$ chance
+    \item Other Problem: Approximately $41.67 \%$ chance
+\end{itemize}
+
+\textbf{Conclusion:} Given a printer failure, the most likely cause is an Other Problem, such as connectors, with a probability of approximately $41.67 \%$.
+
+
+\end{solution}
