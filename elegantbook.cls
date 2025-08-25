@@ -302,9 +302,9 @@
 \ifdefstring{\ELEGANT@color}{blue}{
   % Updated blue scheme to match extra.css
   \definecolor{structurecolor}{RGB}{108, 162, 198}    % #123161 - Primary structural color
-  \definecolor{main}{RGB}{42,157,244}            % #2A9DF4 - Glow/Accent blue
-  \definecolor{second}{RGB}{255,140,0}           % #FF8C00 - Orange accent
-  \definecolor{third}{RGB}{60,172,248}           % #3CACF8 - Light blue
+  \definecolor{main}{RGB}{108, 162, 198}             % #2A9DF4 - Glow/Accent blue
+  \definecolor{second}{RGB}{255,134,24}           % #FF8C00 - Orange accent
+  \definecolor{third}{RGB}{255, 140, 0}            % #FF8C00 - Orange accent
   \definecolor{fourth}{RGB}{180,40,0}            % #B42800 - yeah (used for backgrounds)
 }{\relax}
 \ifdefstring{\ELEGANT@color}{gray}{
@@ -1042,7 +1042,6 @@
       },
     IfBooleanTF={#3}{label=#4}{label={pro:#4}}}
 }{\relax}
-
 
 \ifdefstring{\ELEGANT@mode}{simple}{
   \let\openbox\relax

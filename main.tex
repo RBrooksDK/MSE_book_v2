@@ -105,15 +105,28 @@
 \usepackage{hyperref}
 \usepackage{subcaption}
 
-% Define names for autoref
-\def\examautorefname{Example}
-\def\exerautorefname{Exercise}
-\def\probautorefname{Problem}
-\def\definitionautorefname{Definition}
-\def\theoremautorefname{Theorem}
-\def\lemmaautorefname{Lemma}
-\def\remarkautorefname{Remark}
-\def\corollaryautorefname{Corollary}
+
+%======================================================================
+% FINAL, CORRECT SOLUTION FOR AUTOREF NAMES IN ELEGANTBOOK
+% This works by defining the internal counter names that hyperref needs.
+% Place this block in the preamble of your main.tex file.
+%======================================================================
+\makeatletter
+\AtBeginDocument{%
+  \def\tcb@cnt@definitionautorefname{Definition}%
+  \def\tcb@cnt@theoremautorefname{Theorem}%
+  \def\tcb@cnt@lemmaautorefname{Lemma}%
+  \def\tcb@cnt@corollaryautorefname{Corollary}%
+  \def\tcb@cnt@propositionautorefname{Proposition}%
+  \def\tcb@cnt@axmautorefname{Axiom}%
+  \def\tcb@cnt@postulatenameautorefname{Postulate}%
+  \def\examautorefname{Example}%
+  \def\exerautorefname{Exercise}%
+  \def\probautorefname{Problem}%
+  \def\remarkautorefname{Remark}%
+}
+\makeatother
+%======================================================================
 
 % Redefine the example environment to add vertical spacing before it
 \makeatletter
@@ -199,8 +212,8 @@
 
 \mainmatter
 
-%\input{chapter01}
-%\input{chapter02}
+\input{chapter01}
+\input{chapter02}
 \input{chapter03}
 \input{chapter04}
 % \input{chapter05}

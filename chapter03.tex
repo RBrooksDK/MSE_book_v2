@@ -395,7 +395,7 @@ Just as we can perform arithmetic operations on numbers, we can perform operatio
         \hline
         Union ($\cup$) & $\iff$ & Boolean Sum ($+$) or \texttt{OR} \\
         Intersection ($\cap$) & $\iff$ & Boolean Product ($\cdot$) or \texttt{AND} \\
-        Complement ($A^C$) & $\iff$ & Complementation ($\overline{x}$) or \texttt{NOT} \\
+        Complement ($A^c$) & $\iff$ & Complementation ($\overline{x}$) or \texttt{NOT} \\
         The Universal Set ($U$) & $\iff$ & True (1) \\
         The Empty Set ($\emptyset$) & $\iff$ & False (0) \\
     \end{tabular}
@@ -506,8 +506,8 @@ The symmetric difference contains all elements that are in one set or the other,
 The complement of a set contains all the elements in the universal set that are \textit{not} in the set itself. It corresponds to the logical \texttt{NOT} operator.
 
 \begin{definition}[Complement]
-    The \textbf{complement} of a set $A$, denoted $A^C$, is the set of all elements in the universal set $U$ that are not in $A$.
-    \[ A^C = U \setminus A \]
+    The \textbf{complement} of a set $A$, denoted $A^c$, is the set of all elements in the universal set $U$ that are not in $A$.
+    \[ A^c = U \setminus A \]
 \end{definition}
 
 % --- Complement Figure (Your Style) ---
@@ -524,7 +524,7 @@ The complement of a set contains all the elements in the universal set that are 
         \draw[outline] (-2.5, -2) rectangle (2.5, 2) node[below left] {$U$};
         \draw[outline] \firstcircle node {$A$};
     \end{tikzpicture}
-    \caption{The shaded region represents the complement $A^C$.}
+    \caption{The shaded region represents the complement $A^c$.}
     \label{fig:complement_custom}
 \end{figure}
 
@@ -658,8 +658,8 @@ Domination Laws & $A \cup U = U$ & $x + 1 = 1$ \\
 Idempotent Laws & $A \cup A = A$ & $x + x = x$ \\
 & $A \cap A = A$ & $x \cdot x = x$ \\
 \hline
-Complement Laws & $A \cup A^C = U$ & $x + \overline{x} = 1$ \\
-& $A \cap A^C = \emptyset$ & $x \cdot \overline{x} = 0$ \\
+Complement Laws & $A \cup A^c = U$ & $x + \overline{x} = 1$ \\
+& $A \cap A^c = \emptyset$ & $x \cdot \overline{x} = 0$ \\
 \hline
 Commutative Laws & $A \cup B = B \cup A$ & $x + y = y + x$ \\
 & $A \cap B = B \cap A$ & $x \cdot y = y \cdot x$ \\
@@ -670,8 +670,8 @@ Associative Laws & $(A \cup B) \cup C = A \cup (B \cup C)$ & $(x+y)+z = x+(y+z)$
 Distributive Laws & $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$ & $x \cdot (y+z) = (x \cdot y)+(x \cdot z)$ \\
 & $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$ & $x + (y \cdot z) = (x+y) \cdot (x+z)$ \\
 \hline
-De Morgan's Laws & $(A \cap B)^C = A^C \cup B^C$ & $\overline{x \cdot y} = \overline{x} + \overline{y}$ \\
-& $(A \cup B)^C = A^C \cap B^C$ & $\overline{x + y} = \overline{x} \cdot \overline{y}$ \\
+De Morgan's Laws & $(A \cap B)^c = A^c \cup B^c$ & $\overline{x \cdot y} = \overline{x} + \overline{y}$ \\
+& $(A \cup B)^c = A^c \cap B^c$ & $\overline{x + y} = \overline{x} \cdot \overline{y}$ \\
 \hline
 Absorption Laws & $A \cup (A \cap B) = A$ & $x + (x \cdot y) = x$ \\
 & $A \cap (A \cup B) = A$ & $x \cdot (x+y) = x$ \\
@@ -679,9 +679,9 @@ Absorption Laws & $A \cup (A \cap B) = A$ & $x + (x \cdot y) = x$ \\
 \end{tabular}
 \end{table}
 
-\begin{example}{Proving $A \cup (B \cap A^C) = A \cup B$ using identities}
+\begin{example}{Proving $A \cup (B \cap A^c) = A \cup B$ using identities}
 \begin{align*}
-    A \cup (B \cap A^C) &= (A \cup B) \cap (A \cup A^C) && \text{by Distributive Law} \\
+    A \cup (B \cap A^c) &= (A \cup B) \cap (A \cup A^c) && \text{by Distributive Law} \\
     &= (A \cup B) \cap U && \text{by Complement Law} \\
     &= A \cup B && \text{by Identity Law}
 \end{align*}
@@ -691,9 +691,7 @@ Absorption Laws & $A \cup (A \cap B) = A$ & $x + (x \cdot y) = x$ \\
 % SECTION: Computer Representation of Sets
 %======================================================================
 \section{Computer Representation of Sets}
-While set theory provides the abstract language for collections, computer science requires concrete and efficient ways to implement these ideas. For finite universal sets, one of the most elegant and performant methods is to represent sets using \textbf{bit strings} (also known as bitmasks or bit vectors).
-
-This technique requires two conditions:
+While set theory provides the abstract language for collections, computer science requires concrete and efficient ways to implement these ideas. For finite universal sets, one of the most elegant and performant methods is to represent sets using \textbf{bit strings}.This technique requires two conditions:
 \begin{enumerate}
     \item The universal set $U$ must be finite.
     \item The elements of $U$ must have a fixed, agreed-upon order.
@@ -718,7 +716,7 @@ The true power of this representation is that set operations map directly to ext
     \begin{itemize}
         \item \textbf{Union ($A \cup B$)} corresponds to a bitwise \textbf{\texttt{OR}} operation.
         \item \textbf{Intersection ($A \cap B$)} corresponds to a bitwise \textbf{\texttt{AND}} operation.
-        \item \textbf{Complement ($A^C$)} corresponds to a bitwise \textbf{\texttt{NOT}} (one's complement) operation.
+        \item \textbf{Complement ($A^c$)} corresponds to a bitwise \textbf{\texttt{NOT}} (one's complement) operation.
         \item \textbf{Symmetric Difference ($A \oplus B$)} corresponds to a bitwise \textbf{\texttt{XOR}} operation.
     \end{itemize}
 \end{custombox}
@@ -736,7 +734,7 @@ The true power of this representation is that set operations map directly to ext
         \hline
         $A \cup B$ & $\{1, 2, 3, 4, 8\}$ & \texttt{10110001 OR 01100001 = 11110001} \\
         $A \cap B$ & $\{3, 8\}$ & \texttt{10110001 AND 01100001 = 00100001} \\
-        $A^C$ & $\{2, 5, 6, 7\}$ & \texttt{NOT 10110001 = 01001110} \\
+        $A^c$ & $\{2, 5, 6, 7\}$ & \texttt{NOT 10110001 = 01001110} \\
     \end{tabular}
     \end{center}
 \end{example}

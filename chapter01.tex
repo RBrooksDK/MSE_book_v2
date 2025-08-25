@@ -130,17 +130,22 @@ By definition, a fraction always consists of (at least) two factors. The first f
 \end{example}
 
 Here we must make sure that \(x^2 - 2 \neq 0\) which means that we may only use values different from \(\pm\sqrt{2}\).
-\begin{custombox}{Rules for Calculations Involving Fractions}
-    \begin{align*}
-        (1) & \quad \frac{a}{b} \times m = \frac{am}{b} \quad &\text{where } b \neq 0 \\
-        (2) & \quad \frac{a}{b} \div m = \frac{a}{bm} \quad &\text{where } b \neq 0 \text{ and } m \neq 0 \\
-        (3) & \quad m \div \frac{a}{b} = m \times \frac{b}{a} = \frac{mb}{a} \quad &\text{where } b \neq 0 \text{ and } a \neq 0 \\
-        (4) & \quad \frac{a}{b} \times \frac{c}{a} = \frac{ac}{ba} \quad &\text{where } b \neq 0 \text{ and } a \neq 0 \\
-        (5) & \quad \frac{a}{b} \div \frac{c}{a} = \frac{a}{b} \times \frac{a}{c} \quad &\text{where } b \neq 0 \text{ and } a \neq 0 \\
-        (6) & \quad \frac{a}{b} = \frac{ac}{bc} \quad &\text{where } b \neq 0 \text{ and } c \neq 0 \\
-        (7) & \quad \frac{a}{b} + \frac{c}{a} = \frac{aa}{ba} + \frac{cb}{ba} = \frac{aa + cb}{ba} \quad &\text{where } b \neq 0 \text{ and } a \neq 0
-    \end{align*}
-\end{custombox}
+
+\begin{proposition}[Rules for Calculations with Fractions]
+For $a,b,c,m \in \mathbb{R}$, with $a,b,c,m \neq 0$ where required, the following identities hold:
+\begingroup
+\setlength{\jot}{8pt} % increase space between align rows (default ~3pt)
+\begin{align*}
+(1) & \quad \frac{a}{b} \times m = \frac{am}{b} \\
+(2) & \quad \frac{a}{b} \div m = \frac{a}{bm} \\
+(3) & \quad m \div \frac{a}{b} = \frac{mb}{a} \\
+(4) & \quad \frac{a}{b} \times \frac{c}{a} = \frac{c}{b} \\
+(5) & \quad \frac{a}{b} \div \frac{c}{a} = \frac{a^2}{bc} \\
+(6) & \quad \frac{a}{b} = \frac{ac}{bc} \\
+(7) & \quad \frac{a}{b} + \frac{c}{a} = \frac{a^2 + bc}{ab}
+\end{align*}
+\endgroup
+\end{proposition}
 
 To extend or reduce a fraction, we must multiply or divide by the same numbers in the denominator and numerator:
 
@@ -320,7 +325,7 @@ Numbers can be raised to powers other than 2, such as cubing (raising to the thi
 \end{example}
 
 In this example, the "3" inside the radical sign is the \textbf{index} of the radical. The "64" is referred to as the argument of the \textbf{radical}, also known as the \textbf{radicand}. Since square roots are the most common type of radicals, the index is usually omitted for square roots. Although "\(\sqrt[2]{2}\)" would be technically correct, it is rarely used in practice.
-\begin{custombox}{Rules for calculations involving radicals}
+\begin{proposition}{Rules for calculations involving radicals}
     \begin{align*}
     &(1) \quad \sqrt[n]{x y}=\sqrt[n]{x} \times \sqrt[n]{y}   &   &\textnormal{where } x,y \geq 0\\
     &(2) \quad \sqrt[n]{\frac{x}{y}} = \frac{\sqrt[n]{x}}{\sqrt[n]{y}}    &   &\textnormal{where } x \geq 0 \textnormal{ and } y > 0 \\
@@ -328,23 +333,25 @@ In this example, the "3" inside the radical sign is the \textbf{index} of the ra
     &(4) \quad (\sqrt[n]{x})^n = x    &   &\textnormal{If } x < 0 \textnormal{ and } n \in \mathbb{N}, \textnormal{then } \sqrt[n]{x} \textnormal{ is not defined}\\
     &(5) \quad \sqrt[n]{-x}=-\sqrt[n]{x}  &   &\textnormal{where } x \geq 0 \textnormal{ and } n \in \mathbb{N} \textnormal{ is odd }
     \end{align*}
-\end{custombox}
+\end{proposition}
 
 Raising a number to a \textbf{power}, also known as \textbf{exponentiation}, is a fundamental mathematical operation that involves multiplying a number by itself a certain number of times as we saw above. The \textbf{base} is the number being multiplied, and the \textbf{exponent} indicates how many times the base is used as a factor. For example, \(a^n\) means that the base \(a\) is multiplied by itself \(n\) times. Exponentiation is a powerful tool in mathematics, with a few essential rules that govern its application.
-\begin{custombox}{Rules for calculations involving exponents 1}
-\label{def:DefPow}
-$\textnormal{Let } n,m \in \mathbb{N}\textnormal{. Then the following applies:}$
-\begin{fleqn}
-\begin{alignat*}{2}
-&(1) \hspace{1cm} x^n \cdot x^m=x^{n+m}  \\
-&(2) \hspace{1cm} \frac{x^n}{x^m}=x^{n-m}   &\qquad&   x \neq 0  \\
-&(3) \hspace{1cm} x^n \cdot y^n=(x \cdot y)^n \\
-&(4) \hspace{1cm} \frac{x^n}{y^n}=\left(\frac{x}{y}\right)^n &\qquad& y \neq 0 \\
-&(5) \hspace{1cm} \left(x^n\right)^m=x^{n \cdot m}\\
-&(6) \hspace{1cm} x^1=x
-\end{alignat*}
-\end{fleqn}
-\end{custombox}
+
+\begin{proposition}{Properties of Integer Exponents}
+\label{prop:DefPow}
+Let $n,m\in\mathbb{Z}$. Then the following hold (with $x,y\in\mathbb{R}$ and nonzero where stated):
+\[
+\begin{aligned}
+&\text{(1)}\quad x^{n}\cdot x^{m}=x^{\,n+m},\\[2pt]
+&\text{(2)}\quad \dfrac{x^{n}}{x^{m}}=x^{\,n-m}\quad \text{with } x\neq 0,\\[2pt]
+&\text{(3)}\quad x^{n}\cdot y^{n}=(xy)^{n},\\[2pt]
+&\text{(4)}\quad \dfrac{x^{n}}{y^{n}}=\left(\dfrac{x}{y}\right)^{n}\quad \text{with } y\neq 0,\\[2pt]
+&\text{(5)}\quad \bigl(x^{n}\bigr)^{m}=x^{\,nm},\\[2pt]
+&\text{(6)}\quad x^{1}=x.
+\end{aligned}
+\]
+\end{proposition}
+
 
 Some of these rules allow the concept of powers to be extended so that the exponent may be any integer. If you set \(n = m\) in rule (2), you get:
 
@@ -370,20 +377,19 @@ But according to the previous calculation, \(x^0 = 1\). Therefore, you obtain
  \frac{1}{x^m} = x^{-m}   
 \end{equation*}
 
-Since \(m\) is a positive number, \(-m\) must be a negative number. Thus, the concept of exponentiation is extended to apply to all integers. This means that definition our concept of powers holds for \(n \in \mathbb{Z}\) and that the rules in definition \ref{def:DefPow} apply for \(n \in \mathbb{Z}\) and \(m \in \mathbb{Z}\). As a consequence, the following rules can be added:
-\begin{custombox}{Rules for calculations involving exponents 2}
-$\textnormal{Let } n \in \mathbb{Z} \textnormal{. Then the following applies:}$
-\begin{fleqn}
-\begin{alignat*}{2}
-&(7) \hspace{1cm} x^0=1   &\qquad&   x \neq 0  \\
-&(8) \hspace{1cm} \frac{1}{x^m}=x^{-m} &\qquad& x \neq 0 \\
-\end{alignat*}
-\end{fleqn}
-\end{custombox}
+As demonstrated in \autoref{prop:DefPow}, these rules provide a complete framework for manipulating expressions with any integer exponents. As a consequence, the following additional rules can be derived:
+
+\begin{proposition}{More Properties of Integer Exponents}
+Let $n,m\in\mathbb{Z}$. Then the following hold (with $x,y\in\mathbb{R}$ and nonzero where stated):
+\[
+\begin{aligned}
+&\text{(7)}\quad x^{0}=1   &\qquad&   x \neq 0  \\
+&\text{(8)}\quad \frac{1}{x^{m}}=x^{-m} &\qquad& x \neq 0 \\
+\end{aligned}
+\]
+\end{proposition}
 
 Let us illustrate these rules with a couple of examples.
-
-\newpage
 
 \begin{example} Reduce the following expression
 
@@ -419,7 +425,7 @@ Finally, by using the concept of radicals, we obtain
 
 Note that because \(x > 0\), it follows that \(y > 0\) as well. We are now ready to state \textbf{\textit{the extended concept of exponentiation}}.
 
-\begin{custombox}{The extended concept of exponentiation}
+\begin{definition}{The Extended Concept of Exponentiation}
 $\textnormal{Let } m \in \mathbb{Z} \textnormal{ and let }  n \in \mathbb{N} \textnormal{ such that } \dfrac{m}{n} \in \mathbb{Q}  \textnormal{. Then the following applies:}$
 
 \[
@@ -432,7 +438,7 @@ x^{\frac{m}{n}} = \sqrt[n]{x^m} \hspace{1cm} x > 0
 x^{\frac{1}{n}} = \sqrt[n]{x} \hspace{1.3cm} x > 0
 \]
 
-\end{custombox}
+\end{definition}
 
 The denominator of a rational exponent corresponds to the index of the radical, while the numerator remains as the exponent of the base. Conversely, the index of a radical can be transformed into the denominator of an exponent in an equivalent exponential expression. This property allows us to convert any radical expression into an exponential form, providing a powerful tool for simplification.
 
