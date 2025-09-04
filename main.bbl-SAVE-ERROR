@@ -68,6 +68,7 @@
       \field{isbn}{9780262046305}
       \field{title}{Introduction to Algorithms}
       \field{year}{2022}
+      \true{nocite}
     \endentry
     \entry{lay2003linear}{book}{}{}
       \name{author}{1}{}{%
@@ -253,6 +254,7 @@
       \field{isbn}{9780262046305}
       \field{title}{Introduction to Algorithms}
       \field{year}{2022}
+      \true{nocite}
     \endentry
     \entry{lay2003linear}{book}{}{}
       \name{author}{1}{}{%
