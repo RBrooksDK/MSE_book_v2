@@ -372,7 +372,7 @@ The power set always includes the empty set ($\emptyset$) and the set $A$ itself
     \[ \mathcal{P}(A) = \{ \emptyset, \{1\}, \{2\}, \{3\}, \{1, 2\}, \{1, 3\}, \{2, 3\}, \{1, 2, 3\} \} \]
 \end{example}
 
-\begin{remark}[Cardinality of a Power Set]
+\begin{remark}
     For a finite set $A$ with cardinality $|A| = n$, the cardinality of its power set is $|\mathcal{P}(A)| = 2^n$.
     
     This is a crucial formula for computer science. The reason is that for each of the $n$ elements in set $A$, we can make a binary choice: either we \textbf{include} it in a subset or we \textbf{exclude} it. With two choices for each of the $n$ elements, there are $2 \times 2 \times \dots \times 2$ ($n$ times), or $2^n$, total possible combinations, which corresponds to the total number of possible subsets.
@@ -630,14 +630,19 @@ This method is the set-theory equivalent of using a \textbf{truth table} in Bool
         \hline
     \end{tabular}
     \end{center}
-    
-    \textbf{Conclusion:} Since the column for $A \cap B$ is identical to the column for $B \setminus (B \setminus A)$ for all possible membership combinations, the two expressions are equal.
+    \label{ex:membership_table}
+
+\begin{solution} (\autoref{ex:membership_table}) Since the column for $A \cap B$ is identical to the column for $B \setminus (B \setminus A)$ for all possible membership combinations, the two expressions are equal.
+\end{solution}
+
 \end{example}
+
+
 
 \subsection*{Method 2: Set Identities}
 While membership tables are effective, they can become very large as the number of sets increases. A more algebraic approach is to use \textbf{set identities} to simplify one expression until it matches the other. These identities are fundamental laws that govern how set operations behave.
 
-The table below shows the most important set identities. Notice the striking similarity to the laws of Boolean algebra—they are structurally identical.
+\autoref{tab:set_identities} shows the most important set identities. Notice the striking similarity to the laws of Boolean algebra — they are structurally identical.
 
 % --- Set Identities Table ---
 \begin{table}
@@ -686,6 +691,61 @@ Absorption Laws & $A \cup (A \cap B) = A$ & $x + (x \cdot y) = x$ \\
     &= A \cup B && \text{by Identity Law}
 \end{align*}
 \end{example}
+
+\begin{example}{Determine whether $(A \cap B) \cup (A \cap B^c) = A$}
+\begin{solution}
+Let's simplify the left side using set identities:
+\begin{align*}
+    (A \cap B) \cup (A \cap B^c) &= A \cap (B \cup B^c) && \text{by Distributive Law} \\
+    &= A \cap U && \text{by Complement Law} \\
+    &= A && \text{by Identity Law}
+\end{align*}
+Since the left side simplifies to $A$, we have $(A \cap B) \cup (A \cap B^c) = A$. \textbf{The expressions are equal.}
+\end{solution}
+\end{example}
+
+\begin{example}{Determine whether $(A \cup B) \cap (A^c \cup B^c) = A \cap B$}
+\begin{solution}
+Let's simplify the left side:
+\begin{align*}
+    (A \cup B) \cap (A^c \cup B^c) &= (A \cup B) \cap (A \cap B)^c && \text{by De Morgan's Law} \\
+    &= (A \cup B) \cap (A \cap B)^c
+\end{align*}
+This represents all elements that are in $A$ or $B$ but not in both $A$ and $B$ simultaneously. This is the symmetric difference $A \oplus B$, not $A \cap B$.
+
+For a concrete counterexample, let $A = \{1, 2\}$ and $B = \{2, 3\}$:
+\begin{itemize}
+    \item $(A \cup B) \cap (A^c \cup B^c) = \{1, 2, 3\} \cap \{3, 1\} = \{1, 3\}$
+    \item $A \cap B = \{2\}$
+\end{itemize}
+Since $\{1, 3\} \neq \{2\}$, \textbf{the expressions are not equal.}
+\end{solution}
+\end{example}
+
+\begin{example}{Determine whether $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$}
+\begin{solution}
+This is actually the Distributive Law for union over intersection. Let's verify:
+\begin{align*}
+    (A \cup B) \cap (A \cup C) &= A \cup (B \cap C) && \text{by Distributive Law}
+\end{align*}
+So we have $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$. \textbf{The expressions are equal.}
+\end{solution}
+\end{example}
+
+\begin{example}{Determine whether $(A \cap B^c) \cup (A^c \cap B) = (A \cup B) \cap (A \cap B)^c$}
+\begin{solution}
+The left side is the symmetric difference $A \oplus B$. Let's check the right side:
+\begin{align*}
+    (A \cup B) \cap (A \cap B)^c &= (A \cup B) \cap (A^c \cup B^c) && \text{by De Morgan's Law} \\
+    &= (A \cap A^c) \cup (A \cap B^c) \cup (B \cap A^c) \cup (B \cap B^c) && \text{by Distributive Law} \\
+    &= \emptyset \cup (A \cap B^c) \cup (A^c \cap B) \cup \emptyset && \text{by Complement Law} \\
+    &= (A \cap B^c) \cup (A^c \cap B) && \text{by Identity Law}
+\end{align*}
+Since both sides equal $(A \cap B^c) \cup (A^c \cap B)$, \textbf{the expressions are equal.}
+\end{solution}
+\end{example}
+
+
 
 %======================================================================
 % SECTION: Computer Representation of Sets
