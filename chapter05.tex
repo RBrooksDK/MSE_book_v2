@@ -1,7 +1,7 @@
 \chapter{Conditional Probability and Bayes' Theorem}
 \label{chap:ch5}
 
-In this section, we introduce more fundamental concepts of probability. We begin with \textbf{conditional probability}, which assesses the likelihood of an event occurring \textit{given} that another event has already taken place. Building on this, we introduce \textbf{the multiplication rule}, a key principle for determining the probability of multiple events happening in sequence. Next, we explore \textbf{the law of total probability}, which allows us to break down and calculate probabilities across different scenarios or partitions of the sample space. To further distinguish how events interact, we examine \textbf{dependent and independent events}, clarifying how the occurrence of one event influences or does not influence another. 
+In this section, we introduce more advanced concepts of probability. We begin with \textbf{conditional probability}, which assesses the likelihood of an event occurring \textit{given} that another event has already taken place. Building on this, we introduce \textbf{the multiplication rule}, a key principle for determining the probability of multiple events happening in sequence. Next, we explore \textbf{the law of total probability}, which allows us to break down and calculate probabilities across different scenarios or partitions of the sample space. To further distinguish how events interact, we examine \textbf{dependent and independent events}, clarifying how the occurrence of one event influences or does not influence another. 
 
 Finally, we look into \textbf{Bayes' Theorem}, a powerful tool for updating probabilities in light of new evidence.
 
@@ -40,7 +40,7 @@ I roll a fair die. Let \( A \) be the event that the outcome is a prime number, 
         P(A) &= \frac{3}{6} = \frac{1}{2}
         \end{align*}
     
-        \item The probability of \( A \) given \( B \) is the number of outcomes in the intersection of \( A \) and \( B \) divided by the number of outcomes in \( B \). Since the outcomes in the intersection of \( A \) and \( B \) are \(\{3, 5\}\) and the outcomes in \( B \) are \(\{3, 4, 5\}\), we have:
+        \item The probability of \( A \) given \( B \) is the number of outcomes in the intersection of \( A \) and \( B \) divided by the number of outcomes in \( B \). Since the outcomes in the intersection of \( A \) and \( B \) are \(\{3, 5\}\) and the outcomes in \( B \) are \(\{3, 4, 5\}\), we have: \vspace{0.4cm}
     
         \begin{align*}
         P(A \mid B) &=\frac{|A \cap B|}{|B|} = \frac{|\{3,5\}|}{|\{3,4, 5\}|} = \frac{2}{3}
@@ -97,7 +97,9 @@ We can also formulate the axioms of probability in terms of conditional probabil
     \begin{itemize}
         \item \textbf{Axiom 1:} For any event \(A\), \( 0 \leq P(A\mid B) \leq 1 \).
         \item \textbf{Axiom 2:} Conditional probability of $B$ given $B$ is 1, i.e., $P(B \mid B)=1$.
-        \item \textbf{Axiom 3:} If \(A_1, A_2, A_3, \cdots\) are disjoint events, then $P\left(A_1 \cup A_2 \cup A_3 \cdots \mid B\right)=P\left(A_1 \mid B\right)+P\left(A_2 \mid B\right)+P\left(A_3 \mid B\right)+\cdots$
+        \item \textbf{Axiom 3:} If \(A_1, A_2, A_3, \cdots\) are disjoint events, then
+         
+        \hspace*{2.8em}$P\left(A_1 \cup A_2 \cup A_3 \cdots \mid B\right)=P\left(A_1 \mid B\right)+P\left(A_2 \mid B\right)+P\left(A_3 \mid B\right)+\cdots$
     \end{itemize}
 \end{axiom}
 
@@ -108,7 +110,7 @@ And we are also able to derive other rules of conditional probability from these
         \item \textbf{Complement Rule:} The probability of the complement of event $A$ given $C$ is
     
         \[
-        P\left(\skoverline{A} \mid C\right)=1-P(A \mid C)
+        P\left(A^c \mid C\right)=1-P(A \mid C)
         \]
 
         \item \textbf{Empty Set Rule:} The probability of the empty set given some event $C$ is 0, i.e.,
@@ -170,15 +172,15 @@ The findings are summarised in the following contingency table:
     
         Determine the following probabilities:
         \begin{enumerate}[label=(\alph*)]
-            \item The Probability of Renal Disease, $P(D)$.
-            \item The Probability of Renal Disease,  \( P(T^+) \).
-            \item The Probability of Renal Disease,  \( P(T^-) \).
+            \item The Probability of having renal disease, $P(D)$.
+            \item The Probability of a positive test,  \( P(T^+) \).
+            \item The Probability of a negative test,  \( P(T^-) \).
             \item If a person has renal disease, what is the probability that they test positive for the disease?
-            \item Determine the probability that a patient has renal disease given a positive test result, \( P(\text{Renal Disease} \mid \text{Positive}) \).
-            \item Determine the probability that a patient does not have renal disease given a negative test result, \( P(\text{Healthy} \mid \text{Negative}) \).
+            \item Determine the probability that a patient has renal disease given a positive test result, \( P(D \mid T^+) \).
+            \item Determine the probability that a patient does not have renal disease given a negative test result, \( P(\text{Healthy} \mid T^-) \).
             \item Assess the overall accuracy of the diagnostic test.
         \end{enumerate}
-        label{ex:renal-disease}
+        \label{ex:renal-disease}
 \end{example}
 
 \begin{solution}
@@ -200,13 +202,13 @@ The findings are summarised in the following contingency table:
         \item \textbf{Probability of a Negative Test, \( P(T^-) \)}:
         \begin{align*}
         P(T^-) &= \frac{\text{Number of negative tests}}{\text{Total number of patients}} \\
-        &= \frac{80}{137} \approx 0.6058 \text{ or } 60.58\%
+        &= \frac{83}{137} \approx 0.6058 \text{ or } 60.58\%
         \end{align*}
 
 
         \item \textbf{Probability of a Positive Test Given Renal Disease, \( P(T^+ \mid D) \)}:
         \begin{align*}
-            P(T+\mid D)=\frac{44}{67} \approx 0.6567
+            P(T^+ \mid D)=\frac{44}{67} \approx 0.6567
         \end{align*}
 
         \item \textbf{Probability of Renal Disease Given a Positive Test, \( P(D \mid T^+) \)}:
@@ -235,13 +237,13 @@ The results of the analysis indicate that the diagnostic test has a high probabi
 Here’s a classic probability puzzle known as the Two-Child Problem.This scenario has appeared in various forms in the literature, each with subtle twists that lead to different results. Before looking at the calculations, take a moment to make your own predictions — you might be surprised by the outcomes!
 
 \begin{example}
-    Consider a family with two children, and we are interested in the possible gender combinations of the children. The sample space for this situation is:
+    Consider a family with two children, and we are interested in the possible biological gender combinations of the children. The sample space for this situation is:
 
 \[
-S = \{(G, G), (G, O), (B, O), (O, O)\}
+S = \{(G, G), (G, B), (B, G), (B, B)\}
 \]
 
-where \( G \) represents a girl and \( O \) represents a child that is not a girl. For simplicity, we assume that all four outcomes are equally likely.
+where \( G \) represents a biological girl (hence 'girl') and \( B \) represents a biological boy (hence 'boy'). For simplicity, we assume that all four outcomes are equally likely.
 
 \begin{enumerate}[label=(\alph*)]
     \item What is the probability that both children are girls given that the first child is a girl?
@@ -250,7 +252,7 @@ where \( G \) represents a girl and \( O \) represents a child that is not a gir
 \end{example}
 
 \begin{solution}
-    Let $A$ be the event that both children are girls, i.e., $A=\{(G, G)\}$. Let $B$ be the event that the first child is a girl, i.e., $B=\{(G, G),(G, O)\}$. Finally, let $C$ be the event that at least one of the children is a girl, i.e., $C=\{(G, G),(G, O),(O, G)\}$. Since the outcomes are equally likely, we can write
+    Let $A$ be the event that both children are girls, i.e., $A=\{(G, G)\}$. Let $B$ be the event that the first child is a girl, i.e., $B=\{(G, G),(G, B)\}$. Finally, let $C$ be the event that at least one of the children is a girl, i.e., $C=\{(G, G),(G, B),(B, G)\}$. Since the outcomes are equally likely, we can write
     \begin{align*}
     P(A) &= \frac{1}{4} \\
     P(B) &= \frac{2}{4} = \frac{1}{2} \\
@@ -293,7 +295,7 @@ The multiplication rule is a fundamental principle in probability theory that al
 \end{theorem}
 
 \begin{example}
-    Suppose a software development team is testing a new feature. There are two stages of testing: Unit Testing (A) and Integration Testing (B). The probability that a bug is detected in Unit Testing is $P(A)=0.3$. If a bug is detected during Unit Testing, the probability that it will also be detected in Integration Testing is $P(B)$ A) $=0.7$. What is the probability that a bug is detected in both stages of testing?
+    Suppose a software development team is testing a new feature. There are two stages of testing: Unit Testing (A) and Integration Testing (B). The probability that a bug is detected in Unit Testing is $P(A)=0.3$. If a bug is detected during Unit Testing, the probability that it will also be detected in Integration Testing is $P(B \mid A) = 0.7$. What is the probability that a bug is detected in both stages of testing?
 \end{example}
 
 \begin{solution}
@@ -308,7 +310,7 @@ Therefore, the probability that a bug is detected in both Unit Testing and Integ
 \end{solution}
 
 \begin{example}
-A company has implemented a two-layer security system to protect against network breaches: \textbf{Firewall (A)} and \textbf{Intrusion Detection System (IDS) (B)}. The probability that a breach attempt is detected by the Firewall is \( P(A) = 0.4 \). If the breach passes through the Firewall, the probability that it is detected by the IDS is \( P(B \mid \skoverline{A}) = 0.6 \). The probability that the breach is detected by both the Firewall and the IDS is \( P(B \mid A) = 0.8 \).
+A company has implemented a two-layer security system to protect against network breaches: \textbf{Firewall (A)} and \textbf{Intrusion Detection System (IDS) (B)}. The probability that a breach attempt is detected by the Firewall is \( P(A) = 0.4 \). If the breach passes through the Firewall, the probability that it is detected by the IDS is \( P(B \mid A^c) = 0.6 \). The probability that the breach is detected by both the Firewall and the IDS is \( P(B \mid A) = 0.8 \).
 
 \begin{enumerate}[label=(\alph*)]
     \item What is the probability that a breach is detected by at least one of the security layers?
@@ -324,7 +326,7 @@ A company has implemented a two-layer security system to protect against network
     To find the probability that the breach is detected by at least one layer, we calculate the probability of a breach passing through both layers undetected and subtract it from 1.
 
     \begin{align*}
-        P(\text{Undetected}) &= P(\skoverline{A}) \cdot P(\skoverline{B} \mid \skoverline{A}) 
+        P(\text{Undetected}) &= P(A^c) \cdot P(B^c \mid A^c) 
         = (1 - 0.4) \cdot (1 - 0.6) 
         = 0.6 \cdot 0.4
         = 0.24
@@ -352,18 +354,23 @@ A company has implemented a two-layer security system to protect against network
     It might seem intuitive to some to calculate the joint probability of detection using $P(A \cap B)=P(A) \cdot P(B)=0.4 \cdot 0.6=0.24$. However, this approach ignores the fact that the probability of detection by the IDS depends on the outcome of the Firewall. This is why we use the conditional probability $P(B \mid A)$, which properly accounts for the dependency between the two layers, yielding the correct result of 0.32 .
 \end{remark}
 
-In some scenarios, the probability of an event depends on various conditions. By knowing the conditional probabilities under these different scenarios, we can determine the overall probability of the event. For instance, consider semiconductor manufacturing, where the probability that a chip causes a product failure when it is not contaminated is \( P(\skoverline{B}) = 0.005 \). On the other hand, if the chip is subjected to high levels of contamination, the probability of failure is \( P(B \mid A) = 0.10 \). Suppose that in a given production run, \( 20\% \) of the chips are highly contaminated (\( P(A) = 0.20 \)). What is the probability that a product using one of these chips fails?
+In some scenarios, the probability of an event depends on various conditions. By knowing the conditional probabilities under these different scenarios, we can determine the overall probability of the event. For instance, consider semiconductor manufacturing, where we define:
+\begin{itemize}
+    \item \( A \) as the event that a chip is highly contaminated
+    \item \( B \) as the event that a product using the chip fails
+\end{itemize}
+The probability of failure for a non-contaminated chip is \( P(B \mid A^c) = 0.005 \). On the other hand, if the chip is subjected to high levels of contamination, the probability of failure is \( P(B \mid A) = 0.10 \). Suppose that in a given production run, \( 20\% \) of the chips are highly contaminated (\( P(A) = 0.20 \)). What is the probability that a product using one of these chips fails?
 
-The probability of failure depends on whether the chip was exposed to high contamination or not. For any event \( A \), it can be decomposed into two mutually exclusive parts: one that intersects with \( B \) and another that intersects with the complement \( \skoverline{B} \). Mathematically, we can express this as:
+The probability of failure depends on whether the chip was exposed to high contamination or not. For any event \( A \), it can be decomposed into two mutually exclusive parts: one that intersects with \( B \) and another that intersects with the complement \( B^c \). Mathematically, we can express this as:
 
 \[
-A = (B \cap A) \cup (\skoverline{B} \cap A)
+A = (B \cap A) \cup (B^c \cap A)
 \]
 
-This decomposition is visualized in the Venn diagram in Figure \ref{fig:decoA}. Since \( B \) and \( \skoverline{B} \) are mutually exclusive, their intersections with \( A \) are also mutually exclusive. Thus, using the rule for the probability of the union of mutually exclusive events and the multiplication rule, we can derive the total probability as follows:
+This decomposition is visualized in the Venn diagram in Figure \ref{fig:decoA}. Since \( B \) and \( B^c \) are mutually exclusive, their intersections with \( A \) are also mutually exclusive. Thus, using the rule for the probability of the union of mutually exclusive events and the multiplication rule, we can derive the total probability as follows:
 
 \[
-P(A) = P(A \cap B) + P(A \cap \skoverline{B})
+P(A) = P(A \cap B) + P(A \cap B^c)
 \]
 
 % Definition of ellipses
@@ -391,22 +398,22 @@ P(A) = P(A \cap B) + P(A \cap \skoverline{B})
         \begin{scope}
             \fill[filled] \firstellipse;
             \end{scope}
-            \draw[outline] \firstellipse node[anchor=north west, xshift=2.5cm, yshift=-1.8cm] {$A$} node[anchor=north west, xshift=1.5cm, yshift=0.2cm] {$A \cap \skoverline{B}$} node[anchor=north west, xshift=-4.2cm, yshift=2.8cm] {$B$} node[anchor=north west, xshift=-3cm, yshift=0.2cm] {$A \cap B$} node[anchor=north west, xshift=3.7cm, yshift=2.8cm] {$\skoverline{B}$};
+            \draw[outline] \firstellipse node[anchor=north west, xshift=2.5cm, yshift=-1.8cm] {$A$} node[anchor=north west, xshift=1.5cm, yshift=0.2cm] {$A \cap B^c$} node[anchor=north west, xshift=-4.2cm, yshift=2.8cm] {$B$} node[anchor=north west, xshift=-3cm, yshift=0.2cm] {$A \cap B$} node[anchor=north west, xshift=3.7cm, yshift=2.8cm] {$B^c$};
 
          % Draw a squiggly line down the middle of the rectangle
          \draw[decorate, decoration={snake, amplitude=0.05cm, segment length=1cm, post length=0.5cm}] (3,4) -- (3,-2);
         \end{tikzpicture}
-        \caption{$P(A)=P(A \cap B)+P(A \cap \bar{B})$}
+        \caption{$P(A)=P(A \cap B)+P(A \cap B^c)$}
         \label{fig:decoA}
 \end{figure}
 
-We summarise this int he following theorem:
+We summarize this in the following theorem:
 
 \begin{theorem}[Law of Total Probability]
-For any events \( A \) and \( B \) such that \( B \) and \( \skoverline{B} \) form a partition of the sample space \( S \), the total probability of event \( A \) is given by:
+For any events \( A \) and \( B \) such that \( B \) and \( B^c \) form a partition of the sample space \( S \), the total probability of event \( A \) is given by:
     \begin{align*}
-    P(A) &= P(A \cap B) + P(A \cap \skoverline{B}) \\
-    &= P(B) P(A \mid B) + P(\skoverline{B}) P(A \mid \skoverline{B})
+    P(A) &= P(A \cap B) + P(A \cap B^c) \\
+    &= P(B) P(A \mid B) + P(B^c) P(A \mid B^c)
     \end{align*}
 
     For any event \( A \) and any partition of the sample space \( B_1, B_2, \ldots, B_n \) such that \( B_i \cap B_j = \emptyset \) for all \( i \neq j \) and \( \bigcup_{i=1}^{n} B_i = S \), the total probability of event \( A \) is given by:
@@ -497,7 +504,6 @@ Let $A$ represent the event that it rains tomorrow, with $P(A)=\frac{1}{3}$. Add
 Now, consider the probability $P(A \mid B)$. What do you think it would be? You might intuitively guess that $P(A \mid B)=P(A)=\frac{1}{3}$, and you would be correct! The coin toss outcome has no influence on the weather forecast. This means that whether $B$ occurs or not, the probability of $A$ remains unchanged. This scenario illustrates the concept of independent events: two events are independent if the occurrence of one does not provide any information about the other.
 
 Let's now formalize the definition of independence.
-\newpage
 
 \begin{definition}[Independence]
     Two events are considered independent if the occurrence of one event does not affect the probability of the other event. In other words, the probability of one event does not depend on the occurrence of the other event. Two events \( A \) and \( B \) are independent if:
@@ -513,23 +519,23 @@ In summary, independence can be understood in two equivalent ways: "Independence
 \begin{lemma}
 If $A$ and $B$ are independent then
 \begin{itemize}
-    \item $A$ and $\skoverline{B}$ are independent,
-    \item $\skoverline{A}$ and $B$ are independent,
-    \item $\skoverline{A}$ and $\skoverline{B}$ are independent.
+    \item $A$ and $B^c$ are independent,
+    \item $A^c$ and $B$ are independent,
+    \item $A^c$ and $B^c$ are independent.
 \end{itemize}
 \end{lemma}
 
 When dealing with the probability of the union of multiple independent events, \( A_1, A_2, \ldots, A_n \), it is often easier to find the probability of their intersection than their union. In these situations, De Morgan's Law can be quite useful:
 
 \[
-A_1 \cup A_2 \cup \cdots \cup A_n = \skoverline{ \left(\skoverline{A_1} \cap \skoverline{A_2} \cap \cdots \cap \skoverline{A_n}\right)}
+A_1 \cup A_2 \cup \cdots \cup A_n = \left(A_1^c \cap A_2^c \cap \cdots \cap A_n^c\right)^c
 \]
 
 Using this relationship, we can express the probability of the union as:
 
 \begin{align*}
-P\left(A_1 \cup A_2 \cup \cdots \cup A_n\right) &= 1 - P\left(\skoverline{A_1} \cap \skoverline{A_2} \cap \cdots \cap \skoverline{A_n}\right) \\
-&= 1 - P\left(\skoverline{A_1}\right) P\left(\skoverline{A_2}\right) \cdots P\left(\skoverline{A_n}\right) \quad \text{(since the \( A_i \)'s are independent)} \\
+P\left(A_1 \cup A_2 \cup \cdots \cup A_n\right) &= 1 - P\left(A_1^c \cap A_2^c \cap \cdots \cap A_n^c\right) \\
+&= 1 - P\left(A_1^c\right) P\left(A_2^c\right) \cdots P\left(A_n^c\right) \quad \text{(since the \( A_i \)'s are independent)} \\
 &= 1 - \left(1 - P\left(A_1\right)\right)\left(1 - P\left(A_2\right)\right) \cdots \left(1 - P\left(A_n\right)\right).
 \end{align*}
 
@@ -542,8 +548,6 @@ P\left(A_1 \cup A_2 \cup \cdots \cup A_n\right) &= 1 - P\left(\skoverline{A_1} \
 \end{theorem}
 
 \textbf{Warning!} A common misconception is to confuse independence with disjointness. However, these are fundamentally different concepts. Two events, $A$ and $B$, are disjoint if the occurrence of one prevents the occurrence of the other, i.e., $A \cap B=\emptyset$. In this case, knowing that $A$ has occurred gives us complete information about $B$ namely, that $B$ cannot occur. This dependence means that disjoint events cannot be independent.
-
-\newpage
 
 \begin{table}[ht]
     \begin{center}
@@ -578,7 +582,7 @@ We can extend the concept of independence to multiple events. A set of events \(
     \]
 \end{definition}
 
-\begin{example}Gambler's Fallacy
+\begin{example} The Gambler's Fallacy
 
 The \textbf{Gambler's Fallacy }is a common cognitive bias that arises when individuals believe that the outcome of a random event is influenced by previous outcomes. This fallacy is often observed in gambling scenarios, where individuals incorrectly assume that the probability of an event occurring is affected by past events.
 
@@ -617,7 +621,7 @@ P(B \mid A) = \frac{P(A \mid B) \cdot P(B)}{P(A)}
 This formula is famously known as Bayes' rule. In many cases, to calculate \( P(A) \) in Bayes' rule, we need the law of total probability. Therefore, Bayes' rule is often presented in the form:
 
 \[
-P(B \mid A) = \frac{P(A \mid B) \cdot P(B)}{P(A \mid B) \cdot P(B) + P(A \mid \skoverline{B}) \cdot P(\skoverline{B})}
+P(B \mid A) = \frac{P(A \mid B) \cdot P(B)}{P(A \mid B) \cdot P(B) + P(A \mid B^c) \cdot P(B^c)}
 \]
 
 or more generally
@@ -632,7 +636,7 @@ where \( B_1, B_2, \ldots, B_n \) form a partition of the sample space.
     For any two events $A$ and $B$, where $P(A) \neq 0$, we have
     \begin{align*}
     P(B \mid A) = \frac{P(A \mid B) \cdot P(B)}{P(A)}
-     = \frac{P(A \mid B) \cdot P(B)}{P(A \mid B) \cdot P(B) + P(A \mid \skoverline{B}) \cdot P(\skoverline{B})}
+     = \frac{P(A \mid B) \cdot P(B)}{P(A \mid B) \cdot P(B) + P(A \mid B^c) \cdot P(B^c)}
     \end{align*}
 
     If $B_1, B_2, B_3, \cdots$ form a partition of the sample space $S$, and $A$ is any event with $P(A) \neq 0$, we have
@@ -642,7 +646,7 @@ where \( B_1, B_2, \ldots, B_n \) form a partition of the sample space.
     \end{align*}
 \end{theorem}
 
-We start with a´n infamous example to highlight the importance of Bayes' Theorem.
+We start with an infamous example to highlight the importance of Bayes' Theorem.
 
 \begin{example} False Positive Paradox
 
@@ -656,23 +660,31 @@ Now, suppose a randomly selected person takes the test, and the result comes bac
 \end{example}
 
 \begin{solution}
-    Let \( D \) be the event that the person has the disease, and let \( T^+ \) be the event that the test result is positive. We know:
+    Let \( D \) be the event that the person has the disease, let \( T^+ \) be the event that the test result is positive, and let \( T^- \) be the event that it is negative. We are given:
 
 \[
 \begin{aligned}
 & P(D) = \frac{1}{10,000} \\
-& P\left(T^+ \mid \skoverline{D}\right) = 0.02 \\
-& P\left(\skoverline{T^+} \mid D\right) = 0.01
+& P\left(T^+ \mid D^c\right) = 0.02 \quad \text{(False Positive Rate)} \\
+& P\left(T^- \mid D\right) = 0.01 \quad \text{(False Negative Rate)}
 \end{aligned}
 \]
 
-We want to compute \( P(D \mid T^+) \). Using Bayes' rule:
+We want to compute \( P(D \mid T^+) \). First, we need \( P(T^+ \mid D) \), which is the probability of a true positive. Since a person with the disease will either test positive or negative, we have:
+
+\[
+P(T^+ \mid D) = 1 - P(T^- \mid D) = 1 - 0.01 = 0.99
+\]
+
+Now, using Bayes' rule:
 
 \[
 \begin{aligned}
-P(D \mid T^+) &= \frac{P(T^+ \mid D) P(D)}{P(T^+ \mid D) P(D) + P\left(T^+ \mid \skoverline{D}\right) P\left(\skoverline{D}\right)} \\
-&= \frac{(1 - 0.01) \times 0.0001}{(1 - 0.01) \times 0.0001 + 0.02 \times (1 - 0.0001)} \\
-&= 0.0049
+P(D \mid T^+) &= \frac{P(T^+ \mid D) P(D)}{P(T^+ \mid D) P(D) + P\left(T^+ \mid D^c\right) P\left(D^c\right)} \\
+&= \frac{0.99 \times 0.0001}{0.99 \times 0.0001 + 0.02 \times (1 - 0.0001)} \\
+&= \frac{0.000099}{0.000099 + 0.02 \times 0.9999} \\
+&= \frac{0.000099}{0.000099 + 0.019998} \\
+&\approx 0.0049
 \end{aligned}
 \]
 
@@ -730,20 +742,24 @@ P(F) &= 0.09 + 0.12 + 0.15 = 0.36
 Now, apply Bayes' theorem for each problem type:
 
 \begin{enumerate}
-    \item Probability of Hardware Problem Given Failure:
+    \item Probability of Hardware Problem Given Failure: \vspace{10pt}
+    
     \[
     P(H \mid F)=\frac{P(F \mid H) \cdot P(H)}{P(F)}=\frac{0.9 \times 0.1}{0.36}=\frac{0.09}{0.36}=0.25
     \]
-
-    \item Probability of Software Problem Given Failure:
+    \vspace{10pt}
+    \item Probability of Software Problem Given Failure: \vspace{10pt}
+    
     \[
     P(S \mid F)=\frac{P(F \mid S) \cdot P(S)}{P(F)}=\frac{0.2 \times 0.6}{0.36}=\frac{0.12}{0.36}=0.3333
     \]
-
-    \item Probability of Other Problems Given Failure:
+    \vspace{10pt}
+    \item Probability of Other Problems Given Failure: \vspace{10pt}
+    
     \[
     P(O \mid F)=\frac{P(F \mid O) \cdot P(O)}{P(F)}=\frac{0.5 \times 0.3}{0.36}=\frac{0.15}{0.36}=0.4167
     \]
+    \vspace{10pt}
 \end{enumerate}
 
 \textbf{Step 3: Interpret the Results}

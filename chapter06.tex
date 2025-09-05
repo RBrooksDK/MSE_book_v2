@@ -1,0 +1,179 @@
+\chapter{An Introduction to Statistics}
+\label{chap:ch6}
+
+Statistics is the science of collecting, analyzing, interpreting, and presenting data. It provides the tools to move beyond raw information to genuine understanding. This field is broadly divided into two main branches:
+
+\begin{enumerate}
+    \item \textbf{Descriptive Statistics:} This focuses on summarizing and organizing data so that we can easily understand it. It's about describing what the data shows.
+    \item \textbf{Inferential Statistics:} This involves using data from a small group (a sample) to make educated guesses or conclusions about a larger group (a population).
+\end{enumerate}
+
+In this chapter, we will focus on \textbf{Descriptive Statistics}. We will learn how to summarize data using measures of central tendency and dispersion, and how to visualize it using distributions and histograms. We will also see how the Python programming language, with its powerful libraries, makes performing these calculations and creating visualizations remarkably simple.
+
+\section{Descriptive Statistics and Frequency Distributions}
+
+The first step in any statistical analysis is to explore the data. Descriptive statistics gives us a set of tools to summarize the main features of a dataset. Instead of looking at a long list of numbers, we can describe its essential characteristics in just a few values or a simple chart.
+
+\subsection{Frequency Distribution}
+Imagine a teacher has just graded the final exam for a class of 20 students. The scores are:
+
+82, 95, 71, 88, 79, 85, 92, 88, 76, 85, 88, 93, 74, 85, 82, 78, 88, 90, 85, 79
+
+Looking at this raw list is not very helpful. A better way to organize this is with a \textbf{Frequency Distribution}, which shows how many times each score appears.
+
+\begin{table}[htbp]
+\centering
+\caption{Frequency Distribution of Student Exam Scores.}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Score} & \textbf{Frequency} \\
+\hline
+71 & 1 \\
+74 & 1 \\
+76 & 1 \\
+78 & 1 \\
+79 & 2 \\
+82 & 2 \\
+85 & 4 \\
+88 & 4 \\
+90 & 1 \\
+92 & 1 \\
+93 & 1 \\
+95 & 1 \\
+\hline
+\end{tabular}
+\end{table}
+
+This table is much clearer. We can immediately see that the scores 85 and 88 are the most common.
+
+\subsection{Histograms}
+While a frequency table is useful, a visual representation is often even better. A \textbf{Histogram} is a bar chart that graphically displays a frequency distribution. Each bar represents a range of values (called a "bin"), and the height of the bar shows the frequency of data points that fall into that bin.
+
+For the exam scores, we could group them into bins of 10 points (70-79, 80-89, etc.).
+
+% \begin{figure}[htbp]
+%     \centering
+%     % NOTE: You need to have an image file named 'histogram_placeholder.png'
+%     \includegraphics[width=0.7\textwidth]{histogram_placeholder.png}
+%     \caption{A histogram of student exam scores, grouped into bins of 10 points.}
+%     \label{fig:histogram}
+% \end{figure}
+
+The histogram instantly tells us a story: the vast majority of students scored in the 80s, with fewer in the 70s and 90s. This visual summary is a cornerstone of descriptive statistics.
+
+\section{Measures of Central Tendency}
+
+While a histogram gives us a general idea of the data's shape, we often want to summarize the data with a single number that represents the "center" or "typical" value. These are called \textbf{measures of central tendency}.
+
+\subsection{Mean}
+The \textbf{Mean} is the most common measure of central tendency. It is simply the sum of all the values in a dataset divided by the number of values. It's what most people refer to as the "average."
+
+For a set of data $x_1, x_2, \ldots, x_n$, the formula for the sample mean ($\bar{x}$) is:
+\[ \bar{x} = \frac{\sum_{i=1}^{n} x_i}{n} \]
+
+For our exam scores, the sum is 1690. Since there are 20 students, the mean is:
+\[ \bar{x} = \frac{1690}{20} = 84.5 \]
+The mean score is 84.5. The mean is easy to calculate and uses all the data, but it can be heavily influenced by extremely high or low values, known as outliers.
+
+\subsection{Median}
+The \textbf{Median} is the middle value of a dataset that has been sorted in ascending order. It is the point that splits the data in half—50\% of the values are below it, and 50\% are above it.
+
+To find the median of our 20 exam scores, we first sort them:
+71, 74, 76, 78, 79, 79, 82, 82, 85, \textbf{85}, \textbf{85}, 85, 88, 88, 88, 88, 90, 92, 93, 95
+
+Since we have an even number of values (20), the median is the average of the two middle values (the 10th and 11th).
+\[ \text{Median} = \frac{85 + 85}{2} = 85 \]
+The median score is 85. Unlike the mean, the median is not affected by outliers. If the top score was 100 instead of 95, or even 150, the median would still be 85.
+
+\subsection{Mode}
+The \textbf{Mode} is the value that appears most frequently in a dataset. A dataset can have one mode, more than one mode (bimodal or multimodal), or no mode at all.
+
+Looking at our frequency table, we can see that two scores appear 4 times each: 85 and 88. Therefore, this dataset is \textbf{bimodal}, and the modes are 85 and 88. The mode is particularly useful for categorical data (e.g., "what is the most common car color?") but works for numerical data as well.
+
+\section{Measures of Dispersion}
+
+Measures of central tendency tell us where the center of the data is, but they don't tell us how spread out the data is. \textbf{Measures of Dispersion} (or variability) describe the spread. For example, two classes might both have a mean score of 80, but in one class, all scores are between 75 and 85, while in the other, scores range from 50 to 100.
+
+\subsection{Variance}
+The \textbf{Variance} measures how far each number in the set is from the mean. To calculate it, we take the difference between each value and the mean, square it, and then find the average of these squared differences. We square the differences to ensure they are all positive and to give more weight to larger deviations.
+
+The formula for the sample variance ($s^2$) is:
+\[ s^2 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1} \]
+\textit{(Note: We divide by $n-1$ for a sample to get a better estimate of the population variance. This is known as Bessel's correction.)}
+
+For our exam scores (with a mean of 84.5), the variance is approximately 48.9. The problem with variance is that its units are squared (e.g., "squared points"), which isn't very intuitive. This leads us to our next measure.
+
+\subsection{Standard Deviation}
+The \textbf{Standard Deviation} is simply the square root of the variance. This is an incredibly useful measure because it brings the unit of spread back to the original units of the data.
+
+The formula for the sample standard deviation ($s$) is:
+\[ s = \sqrt{s^2} = \sqrt{\frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}} \]
+
+For our exam scores, the standard deviation is:
+\[ s = \sqrt{48.9} \approx 6.99 \]
+This tells us that, on average, a student's score is about 7 points away from the mean of 84.5. A small standard deviation means the data is tightly clustered around the mean, while a large standard deviation indicates the data is spread out.
+
+\section{A Brief Introduction to the Normal Distribution}
+
+If you create histograms for many different types of real-world data—such as people's heights, measurement errors, or blood pressure—you will often see a familiar shape emerge: a symmetric, bell-shaped curve. This is known as the \textbf{Normal Distribution} (or Gaussian distribution).
+
+% \begin{figure}[htbp]
+%     \centering
+%     % NOTE: You need to have an image file named 'normal_dist_placeholder.png'
+%     \includegraphics[width=0.6\textwidth]{normal_dist_placeholder.png}
+%     \caption{A Normal Distribution curve, characterized by its bell shape.}
+%     \label{fig:normal}
+% \end{figure}
+
+Key characteristics of the normal distribution:
+\begin{itemize}
+    \item It is \textbf{bell-shaped and symmetric}.
+    \item The \textbf{mean, median, and mode are all equal} and are located at the center of the distribution.
+    \item The spread of the curve is determined by the \textbf{standard deviation}.
+\end{itemize}
+
+The normal distribution is a cornerstone of inferential statistics and is used extensively in modeling. While we will explore it in much greater detail later, it is important to recognize it as a common and fundamental pattern in statistics.
+
+\section{Using Python for Descriptive Statistics}
+
+Manually calculating these statistics can be tedious, especially with large datasets. Fortunately, Python's scientific computing libraries make these tasks trivial. The primary libraries we use for this are \texttt{NumPy} for numerical calculations and \texttt{Matplotlib} for plotting.
+
+Let's use Python to find all the statistics for our exam scores.
+
+\begin{lstlisting}[language=Python, caption=Calculating descriptive statistics with Python., label=list:python-stats]
+# First, we need to import the necessary libraries
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats # SciPy has a good mode function
+
+# Our exam scores data
+scores = np.array([82, 95, 71, 88, 79, 85, 92, 88, 76, 85, 88, 93, 74, 85, 82, 78, 88, 90, 85, 79])
+
+# --- Central Tendency ---
+mean_score = np.mean(scores)
+median_score = np.median(scores)
+mode_score = stats.mode(scores)
+
+print(f"Mean: {mean_score}")
+print(f"Median: {median_score}")
+print(f"Mode: {mode_score.mode} (appears {mode_score.count} times)")
+
+# --- Dispersion ---
+# Note: By default, NumPy calculates population variance/std.
+# We use ddof=1 to calculate the sample variance/std.
+variance_score = np.var(scores, ddof=1)
+std_dev_score = np.std(scores, ddof=1)
+
+print(f"Variance: {variance_score:.2f}")
+print(f"Standard Deviation: {std_dev_score:.2f}")
+
+# --- Visualization: Histogram ---
+plt.hist(scores, bins=5, edgecolor='black') # Group scores into 5 bins
+plt.title("Distribution of Exam Scores")
+plt.xlabel("Score")
+plt.ylabel("Frequency")
+plt.show()
+\end{lstlisting}
+
+Running this code will output the values we calculated manually and generate a histogram, all in just a few lines of code. This demonstrates why Python is an essential tool for modern statistical analysis.
+
