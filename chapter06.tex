@@ -25,7 +25,7 @@ A \textbf{population} is the complete set of all possible observations or measur
 A \textbf{sample} is a subset of the population that we actually observe or measure. Due to practical constraints, we often work with samples rather than entire populations.
 \end{definition}
 
-In the teaching-method example, the students in the classroom form only a \emph{sample} of the larger \emph{population} of potential learners. Descriptive statistics helps us understand the sample itself, while inferential methods later allow us to use that sample to draw conclusions about the broader population.
+In the teaching-method example, the students in the classroom form only a \emph{sample} of the larger \emph{population} of potential learners. Descriptive statistics helps us understand the sample itself, while inferential methods later allow us to use that sample to draw conclusions about the broader population. Inferential statistics lies beyond the scope of this book. We will focus on descriptive statistics in this chapter.
 
 
 \begin{example} Software Performance Analysis
@@ -98,7 +98,7 @@ The raw data is as follows:
 
 From this data, we can construct a frequency table. \autoref{tab:salary_freq} tells us, among other things, that the lowest starting salary of 37,000 DKK was received by four of the graduates, whereas the highest salary of 50,000 DKK was received by a single student. The most common starting salary was 42,000 DKK, received by 10 of the students.
 
-\begin{table}[h!]
+\begin{table}[htbp]
 \centering
 \renewcommand{\arraystretch}{1.2}
 {\arrayrulecolor{mseViaBlue}
@@ -112,7 +112,6 @@ From this data, we can construct a frequency table. \autoref{tab:salary_freq} te
 40 & 5 \\
 41 & 8 \\
 42 & 10 \\
-43 & 0 \\
 44 & 5 \\
 46 & 2 \\
 47 & 3 \\
@@ -144,8 +143,8 @@ vertical lines. A line graph of the data presented in \autoref{tab:salary_freq} 
     grid style={dashed,gray!30},
     xtick={37,38,...,50},
     xticklabel style={rotate=45, anchor=east, yshift=-5pt},
-    width=\textwidth,
-    height=8cm,
+    width=0.9\linewidth,
+    height=7cm,
     title style={font=\large\bfseries}
 ]
 \addplot+[ycomb, mseViaBlue, thick, mark=*, mark options={fill=mseViaBlue,draw=mseViaBlue}] coordinates {
@@ -155,7 +154,6 @@ vertical lines. A line graph of the data presented in \autoref{tab:salary_freq} 
     (40, 5)
     (41, 8)
     (42, 10)
-    (43, 0)
     (44, 5)
     (46, 2)
     (47, 3)
@@ -168,6 +166,8 @@ vertical lines. A line graph of the data presented in \autoref{tab:salary_freq} 
 \end{figure}
 
 When the lines in a line graph are given added thickness, the graph is called a bar graph. \autoref{fig:salary_bar_graph} shows a bar graph for the same salary data.
+
+\newpage   
 
 \begin{figure}[htbp]
 \centering
@@ -184,8 +184,8 @@ When the lines in a line graph are given added thickness, the graph is called a 
     grid style={dashed,gray!30},
     xtick={37,38,...,50},
     xticklabel style={rotate=45, anchor=east, yshift=-5pt},
-    width=\textwidth,
-    height=8cm,
+    width=0.9\linewidth,
+    height=7cm,
     title style={font=\large\bfseries},
     ybar,
     bar width=0.6cm
@@ -228,8 +228,8 @@ plotted points with straight lines. \autoref{fig:salary_frequency_polygon} shows
     grid style={dashed,gray!30},
     xtick={37,38,...,50},
     xticklabel style={rotate=45, anchor=east, yshift=-5pt},
-    width=\textwidth,
-    height=8cm,
+    width=0.9\linewidth,
+    height=7cm,
     title style={font=\large\bfseries}
 ]
 \addplot[color=mseViaBlue, thick, mark=*, mark options={fill=mseViaBlue}] coordinates {
@@ -241,8 +241,11 @@ plotted points with straight lines. \autoref{fig:salary_frequency_polygon} shows
     (42, 10)
     (43, 0)
     (44, 5)
+    (45, 0)
     (46, 2)
     (47, 3)
+    (48, 0)
+    (49, 0)
     (50, 1)
 };
 \end{axis}
@@ -253,7 +256,7 @@ plotted points with straight lines. \autoref{fig:salary_frequency_polygon} shows
 
 Sometimes we prefer the relative frequency over the absolute frequency. This is particularly useful when dealing with large datasets and when you want to compare values from datasets of different sizes. An extension of the relative frequency is the cumulative relative frequency, which is the running total of the relative frequencies. \autoref{tab:salary_full_freq} shows the frequency, relative frequency, and cumulative relative frequency for the salary data.
 
-\begin{table}[h!]
+\begin{table}[htbp]
 \centering
 \renewcommand{\arraystretch}{1.3}
 {\arrayrulecolor{mseViaBlue}
@@ -278,11 +281,13 @@ Sometimes we prefer the relative frequency over the absolute frequency. This is 
 \label{tab:salary_full_freq}
 \end{table}
 
+\newpage
+
 \subsection*{Grouped Data and Histograms}
 
-As we saw in \autoref{sub:frequency_tables_and_graphs}, line and bar graphs are useful for showing frequencies of data values. When a dataset contains a large number of distinct values, such as the lamp lifetimes in \autoref{tab:lamp_life_raw}, creating a frequency table for each individual value becomes impractical. A more effective approach is to group the data into a set of \textbf{class intervals}, which are also commonly referred to as \textbf{bins}.
+As we saw in \autoref{sub:frequency_tables_and_graphs}, line and bar graphs are useful for showing frequencies of data values. When a dataset contains many distinct values, such as the lamp lifetimes in \autoref{tab:lamp_life_raw}, creating a frequency table for each individual value becomes impractical. A more effective approach is to group the data into a set of \textbf{class intervals}, which are also commonly referred to as \textbf{bins}.
 
-\begin{table}[htbp]
+\begin{table}[h!]
 \centering
 \small % Use a smaller font for the large table
 \renewcommand{\arraystretch}{1.2}
@@ -353,6 +358,8 @@ Following this approach, the raw data from \autoref{tab:lamp_life_raw} is summar
 
 A bar graph that plots the frequencies of data grouped into bins is called a \textbf{histogram}. A key feature of a histogram is that the bars are placed directly adjacent to one another, reflecting the continuous nature of the bins. The vertical axis can represent either the absolute frequency (the count of values in each interval) or the relative frequency. The former is called a \textbf{frequency histogram}, while the latter is a \textbf{relative frequency histogram}. \autoref{fig:lamp_life_histogram} shows a frequency histogram for the lamp lifetime data.
 
+\newpage
+
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
@@ -361,8 +368,8 @@ A bar graph that plots the frequencies of data grouped into bins is called a \te
     xlabel={Lifetime (in Hours)},
     ylabel={Frequency},
     ymin=0,
-    width=\textwidth,
-    height=8cm,
+    width=0.9\linewidth,
+    height=7cm,
     ybar interval,
     xticklabel={\pgfmathprintnumber\tick--\pgfmathprintnumber\nexttick},
     xticklabel style={rotate=45, anchor=east, yshift=-5pt},
@@ -391,9 +398,7 @@ A bar graph that plots the frequencies of data grouped into bins is called a \te
 
 Finally, we are sometimes interested in plotting the cumulative frequency or, more commonly, the cumulative relative frequency. Such a graph, often called an \textbf{ogive}, shows the number or proportion of data points that fall at or below a certain value.
 
-On an ogive, each point on the horizontal axis represents a data value, while the corresponding point on the vertical axis shows the proportion of the data that is less than or equal to that value. For example, \autoref{fig:lamp_life_ogive} presents the cumulative relative frequency plot for the lamp lifetime data. From this graph, we can quickly determine that approximately 46\% of the lamps had a lifetime of less than 1000 hours, about 93\% had a lifetime of less than 1200 hours, and 100\% of the lamps failed by 1500 hours.
-
-\begin{figure}[htbp]
+\begin{figure}[h!]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
@@ -402,8 +407,8 @@ On an ogive, each point on the horizontal axis represents a data value, while th
     ylabel={Cumulative Relative Frequency},
     ymin=0, ymax=1.05,
     xmin=400, xmax=1500,
-    width=\textwidth,
-    height=8cm,
+    width=0.9\linewidth,
+    height=7cm,
     grid=major,
     grid style={dashed,gray!30},
     title style={font=\large\bfseries}
@@ -427,13 +432,15 @@ On an ogive, each point on the horizontal axis represents a data value, while th
 \label{fig:lamp_life_ogive}
 \end{figure}
 
+On an ogive, each point on the horizontal axis represents a data value, while the corresponding point on the vertical axis shows the proportion of the data that is less than or equal to that value. For example, \autoref{fig:lamp_life_ogive} presents the cumulative relative frequency plot for the lamp lifetime data. From this graph, we can quickly determine that approximately 50\% of the lamps had a lifetime of less than 1000 hours, about 95\% had a lifetime of less than 1200 hours (the actual value is 93\%), and 100\% of the lamps failed by 1500 hours.
+
 \section{Summarizing Data}
 Having seen how to visually and numerically summarize data distributions, we now focus on two fundamental aspects of describing a dataset: its \emph{center} (or typical value) and its \emph{dispersion} (or variability).
 
 \subsection*{Measures of Central Tendency}
-The \textbf{mean}, often called the average, is the most commonly used measure of central tendency. \autoref{ex:mean_response_time} shows how to calculate the mean of a dataset.
+The \textbf{mean}, often called the average, is the most commonly used measure of central tendency. \autoref{def:arithmetic_mean} shows how to calculate the mean of a dataset and \autoref{ex:mean_response_time} examplifies .
 
-\begin{definition}[Arithmetic Mean]
+\begin{definition}[Arithmetic Mean] \label{def:arithmetic_mean}
 
 For a dataset with $n$ values $x_1, x_2, \ldots, x_n$, the \textbf{arithmetic mean} is defined as:
 
@@ -472,21 +479,14 @@ Beyond its role as a summary statistic, the mean also serves as a foundation for
 The \textbf{median} is the middle value when data is arranged in ascending order. It is less sensitive to outliers than the mean.
 
 \begin{definition}[Median]
-For a dataset with $n$ values arranged in ascending order:
-\begin{itemize}
-    \item If $n$ is odd, the median is the middle value:
-     
+    For a dataset with $n$ values arranged in ascending order, the median is defined as:
     \[
-    x_{\frac{n+1}{2}}
+    \text{median} =
+    \begin{cases}
+        x_{\frac{n+1}{2}} & \text{if } n \text{ is odd} \\
+        \frac{x_{\frac{n}{2}} + x_{\frac{n}{2}+1}}{2} & \text{if } n \text{ is even}
+    \end{cases}
     \]
-
-    \item If $n$ is even, the median is the average of the two middle values:
-    
-    \[
-    \frac{x_{\frac{n}{2}} + x_{\frac{n}{2}+1}}{2}
-    \]
-    
-\end{itemize}
 \end{definition}
 
 \begin{example} Median Response Time
@@ -502,7 +502,7 @@ Since $n = 10$ (even), the median is the average of the 5th and 6th values:
 \]
 \end{example}
 
-\begin{example} Median with Outlier
+\begin{example}
 
 Consider the same data with an extreme value:
 \[
@@ -527,7 +527,12 @@ The \textbf{mode} is the value that appears most frequently in a dataset. A data
 \end{itemize}
 \end{definition}
 
+Sometimes, when a data set has two modes, it is called a \textbf{bimodal} dataset.
+
+\newpage
+
 \begin{example}
+
 A software project has the following bug severity levels:
 \[
 \{\text{High}, \text{Medium}, \text{Low}, \text{High}, \text{Critical}, \text{Medium}, \text{High}, \text{Low}, \text{High}, \text{Medium}\}
@@ -548,7 +553,7 @@ The mode is especially useful when analyzing categorical or discrete data, where
 
 \subsubsection*{When to Use Each Measure}
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \renewcommand{\arraystretch}{1.4}
 \begin{tabular}{|l|l|l|}
@@ -568,7 +573,7 @@ Mode & Categorical data, discrete data & May not exist or be unique \\
 
 \subsection*{Measures of Dispersion}
 
-While measures of central tendency tell us about the typical value, measures of dispersion describe how spread out the data is. Understanding variability is crucial in software engineering for assessing consistency and reliability.
+While measures of central tendency tell us about the typical value, \textbf{measures of dispersion} describe how spread out the data are.Understanding variability is crucial in software engineering for assessing consistency and reliability.
 
 The \textbf{range} is the simplest measure of dispersion.
 
@@ -605,12 +610,11 @@ s = \sqrt{s^2} = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2}
 $$
 \end{definition}
 
-While the mean identifies the center of a dataset, the \textbf{variance} and \textbf{standard deviation} measure its variability or spread. A small standard deviation indicates that data points are clustered tightly around the mean, whereas a large standard deviation signifies they are more spread out.
+While the mean identifies the center of a dataset, the \textbf{variance} and \textbf{standard deviation} measure its variability or spread. A small standard deviation indicates that data points are clustered tightly around the mean, whereas a large standard deviation signifies that they are more spread out.
 
-The variance is the average of the squared deviations from the mean. Squaring each deviation serves two purposes: it ensures all values are positive and it gives greater weight to larger, more significant deviations. However, this calculation leaves the variance in squared units (e.g., milliseconds squared), which are not intuitive to interpret.
+The variance is the average of the squared deviations from the mean. Squaring each deviation serves two purposes: it ensures all values are positive, and it gives greater weight to larger, more significant deviations. However, this calculation leaves the variance in squared units (e.g., milliseconds squared), which are not intuitive to interpret.
 
 To solve this, we use the standard deviation, which is simply the square root of the variance. This crucial step returns the measure to the original units of the data (e.g., milliseconds), making it directly interpretable. In short, the standard deviation represents the typical distance of a data point from the mean.
-
 
 \begin{example} Calculating Standard Deviation
 
@@ -628,6 +632,29 @@ s = \sqrt{9138.89} \approx 95.6 \text{ milliseconds}
 \]
 \end{example}
 
+The following algebraic identity is often helpful when computing variance or standard deviation by hand:
+
+We start from the definition:
+
+\[
+s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2
+\]
+
+Using the identity
+
+\[
+\sum_{i=1}^n (x_i - \bar{x})^2 = \sum_{i=1}^n x_i^2 - \frac{\left(\sum_{i=1}^n x_i \right)^2}{n}
+\]
+
+we can rewrite sample variance as
+
+\[
+s^2 = \frac{1}{n-1} \left( \sum_{i=1}^n x_i^2 - \frac{\left(\sum_{i=1}^n x_i\right)^2}{n} \right) =\frac{1}{n-1}\left(\sum_{i=1}^n x_i^2-n \bar{x}^2\right)
+\]
+
+This is known as the \textbf{computational formula for variance}, as it allows you to calculate $s^2$ directly from $\sum x_i$ and $\sum x_i^2$ (or equivalently, from $\sum x_i^2$ and $\bar{x}$), without needing to compute each individual deviation from the mean.
+
+
 The \textbf{coefficient of variation} allows comparison of variability across datasets with different scales.
 
 \begin{definition}[Coefficient of Variation]
@@ -638,6 +665,7 @@ CV = \frac{s}{\bar{x}} \times 100\%
 \end{definition}
 
 \begin{example} Comparing Variability
+
 Consider two systems:
 \begin{itemize}
     \item System A: Mean response time = 100ms, Standard deviation = 20ms
@@ -651,6 +679,8 @@ CV_B &= \frac{100}{500} \times 100\% = 20\%
 
 Both systems have the same relative variability (20\%), despite different absolute standard deviations.
 \end{example}
+
+\subsection*{Measures of Position}
 
 To introduce a measure of spread that is less sensitive to outliers, we first need to understand measures of position, which describe the relative standing of a data point within a dataset.
 
@@ -695,9 +725,7 @@ For the sorted response time data: $\{120, 150, 180, 200, 220, | 250, 280, 300, 
 
 Percentiles divide data into 100 equal parts, while quartiles divide data into four equal parts.
 
-\subsection*{Interquartile Range (IQR)}
-
-The interquartile range is a robust measure of dispersion that is not affected by outliers.
+The \textbf{interquartile range} is a robust measure of dispersion that is not affected by outliers.
 
 \begin{definition}[Interquartile Range]
     The \textbf{interquartile range (IQR)} measures the spread of the middle 50\% of the data and is defined as
@@ -705,7 +733,7 @@ The interquartile range is a robust measure of dispersion that is not affected b
     IQR = Q_3 - Q_1,
     $$
     where $Q_1$ and $Q_3$ are the first and third quartiles. A larger IQR indicates that the central portion of the data is more widely dispersed, while a smaller IQR indicates that it is more tightly clustered.
-    \end{definition}
+\end{definition}
     
 
 \begin{example} IQR Calculation
@@ -720,15 +748,15 @@ For the response time data: $\{120, 150, 180, 200, 220, 250, 280, 300, 350, 400\
 \end{example}
 
 
-
 \subsection*{Summary Statistics}
 
 Before we conclude this chapter, we will review the summary statistics that we have covered in this section. Let us consider the response time data again, but now in the form of a table of 1000 values. \autoref{tab:summary_stats} shows the complete statistical summary of the data.
 
-\begin{example}[Complete Statistical Summary]
+\begin{example}
+
 For a dataset of 1000 web response times:
 
-\begin{table}[h]
+\begin{table}[htbp]
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{|l|c|}
@@ -756,64 +784,17 @@ Kurtosis & 2.8 (leptokurtic) \\
 \end{table}
 \end{example}
 
-This table provides a complete picture of the data and is often a first step in the analysis of a dataset. Note that the skewness and kurtosis have not been discussed yet but will be explained in the next section. We have chosen to include them here for completeness as they are often used in the analysis of a dataset.
+This table provides a complete picture of the data and is often a first step in the analysis of a dataset. Note that the skewness and kurtosis have not been discussed but will be explained in the next section. We have chosen to include them here for completeness as they are often used in the analysis of a dataset - although how to calculate them is beyond the scope of this book.
 
 
 \section{Understanding Data Distributions} \label{sec:data_distributions}
 Once we have visualized our data with histograms and box plots, we can begin to analyze the \textit{shape} of the distribution. The shape tells us about the underlying patterns in our data and helps us choose the right statistical tools. In software engineering, understanding the distribution of metrics like response times or error rates is critical for setting performance baselines and detecting anomalies. First we review the concept of outliers.
 
-\subsection*{Outlier Detection}
-
-As mentioned in \autoref{sec:ch6sec1}, outliers are data points that are significantly different from the rest of the data. They can arise due to measurement errors, data entry errors, or genuine variability in the data. Detecting outliers is important because they can distort statistical analyses.
-
-A common method for identifying outliers is to use the interquartile range (IQR):
-
-\begin{itemize}
-    \item \textbf{Mild outliers}: Any data point less than $Q_1 - 1.5 \times IQR$ or greater than $Q_3 + 1.5 \times IQR$.
-    \item \textbf{Extreme outliers}: Any data point less than $Q_1 - 3 \times IQR$ or greater than $Q_3 + 3 \times IQR$.
-\end{itemize}
-
-\begin{example} Detecting Outliers
-
-Given the response time data: $\{120, 150, 180, 200, 220, 250, 280, 300, 350, 400\}$
-
-\begin{itemize}
-    \item $Q_1 = 180$, $Q_3 = 300$, $IQR = 120$
-    \item Lower fence: $Q_1 - 1.5 \times IQR = 180 - 180 = 0$
-    \item Upper fence: $Q_3 + 1.5 \times IQR = 300 + 180 = 480$
-\end{itemize}
-
-All data points are between 0 and 480, so there are no mild outliers in this dataset.
-
-\end{example}
-
-\begin{example}
-
-Suppose we have the following set of response times (in milliseconds) for a web application:
-
-$\{120, 150, 180, 200, 220, 250, 280, 300, 350, 400, 1200\}$.
-
-Let's identify if there is an upper outlier:
-
-\begin{itemize}
-    \item Sorted data: $120, 150, 180, 200, 220, 250, 280, 300, 350, 400, 1200$
-    \item $n = 11$
-    \item Median ($Q_2$): 250 (6th value)
-    \item Lower half: $120, 150, 180, 200, 220$ $\rightarrow Q_1 = 180$
-    \item Upper half: $280, 300, 350, 400, 1200$ $\rightarrow Q_3 = 350$
-    \item $IQR = Q_3 - Q_1 = 350 - 180 = 170$
-    \item Upper fence: $Q_3 + 1.5 \times IQR = 350 + 1.5 \times 170 = 350 + 255 = 605$
-\end{itemize}
-
-The value $1200$ is greater than $605$, so it is an upper outlier.
-
-\end{example}
-
 \subsection*{Normal Data Sets}
 
 Many large data sets yield histograms with a distinctive overall shape: the frequencies peak near the sample median and decrease symmetrically on both sides, forming a characteristic \textbf{bell-shaped curve}. Data sets exhibiting this property are called \textbf{normal}, and their histograms are referred to as \textbf{normal histograms} (see \autoref{fig:normal_hist}).
 
-\begin{figure}[h!]
+\begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
     \begin{axis}[
@@ -846,7 +827,7 @@ Many large data sets yield histograms with a distinctive overall shape: the freq
 
 In software systems, perfectly normal distributions are rare, but some metrics can be \textbf{approximately normal}. For example, the latency of a highly optimized, internal microservice that performs a consistent task might be approximately normal. A histogram of an approximately normal data set looks like \autoref{fig:approx_normal_hist}.
 
-\begin{figure}[h!]
+\begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
     \begin{axis}[
@@ -890,7 +871,7 @@ When the bins of a histogram become smaller, the histogram becomes more and more
 
 When the sample size is large enough, the sample mean will be very close to the population mean, and the histogram will be very similar to a normal distribution and will get the following shape:
 
-\begin{figure}[h!]
+\begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
     \begin{axis}[
@@ -920,13 +901,13 @@ For data that is approximately normal, we can use a powerful rule of thumb to un
 \begin{theorem}[The Empirical Rule]
 If a dataset is approximately normal with a sample mean $\bar{x}$ and sample standard deviation $s$, then:
 \begin{itemize}
-    \item Approximately \textbf{68\%} of the observations lie within 1 standard deviation of the mean ($\bar{x} \pm s$).
-    \item Approximately \textbf{95\%} of the observations lie within 2 standard deviations of the mean ($\bar{x} \pm 2s$).
+    \item Approximately \textbf{68.3\%} of the observations lie within 1 standard deviation of the mean ($\bar{x} \pm s$).
+    \item Approximately \textbf{95.4\%} of the observations lie within 2 standard deviations of the mean ($\bar{x} \pm 2s$).
     \item Approximately \textbf{99.7\%} of the observations lie within 3 standard deviations of the mean ($\bar{x} \pm 3s$).
 \end{itemize}
 \end{theorem}
 
-\begin{figure}[h!]
+\begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
     \begin{axis}[
@@ -952,14 +933,14 @@ If a dataset is approximately normal with a sample mean $\bar{x}$ and sample sta
     \addplot[domain=-1:1, samples=200, draw=none, fill=mseViaBlue!50] { 0.45*exp(-0.5*(x^2)) } -- (axis cs:1,0) -- (axis cs:-1,0) -- cycle;
     % Normal curve outline
     \addplot[smooth, very thick, color=mseViaBlue, samples=200, domain=-3.2:3.2] { 0.45*exp(-0.5*(x^2)) };
-    % Vertical sigma lines
-    \addplot[mseViaBlue!80!black, thick] coordinates {(-3,0) (-3,0.02)};
-    \addplot[mseViaBlue!80!black, thick] coordinates {(-2,0) (-2,0.30)};
-    \addplot[mseViaBlue!80!black, thick] coordinates {(-1,0) (-1,0.42)};
-    \addplot[mseViaBlue!80!black, thick, dashed] coordinates {(0,0) (0,0.46)};
-    \addplot[mseViaBlue!80!black, thick] coordinates {(1,0) (1,0.42)};
-    \addplot[mseViaBlue!80!black, thick] coordinates {(2,0) (2,0.30)};
-    \addplot[mseViaBlue!80!black, thick] coordinates {(3,0) (3,0.02)};
+    % Vertical sigma lines (calculated to match the curve: 0.45*exp(-0.5*x^2))
+    \addplot[mseViaBlue!80!black, thick] coordinates {(-3,0) (-3,0.0050)};
+    \addplot[mseViaBlue!80!black, thick] coordinates {(-2,0) (-2,0.0609)};
+    \addplot[mseViaBlue!80!black, thick] coordinates {(-1,0) (-1,0.2729)};
+    \addplot[mseViaBlue!80!black, thick, dashed] coordinates {(0,0) (0,0.45)};
+    \addplot[mseViaBlue!80!black, thick] coordinates {(1,0) (1,0.2729)};
+    \addplot[mseViaBlue!80!black, thick] coordinates {(2,0) (2,0.0609)};
+    \addplot[mseViaBlue!80!black, thick] coordinates {(3,0) (3,0.0050)};
     % Percentage labels above segments
     \node[font=\scriptsize] at (axis cs:-3.2,0.03) {0.15\%};
     \node[font=\scriptsize] at (axis cs:3.2,0.03) {0.15\%};
@@ -967,15 +948,15 @@ If a dataset is approximately normal with a sample mean $\bar{x}$ and sample sta
     \node[font=\scriptsize] at (axis cs:2.5,0.08) {2.1\%};
     \node[font=\scriptsize] at (axis cs:-1.5,0.20) {13.6\%};
     \node[font=\scriptsize] at (axis cs:1.5,0.20) {13.6\%};
-    \node[font=\scriptsize] at (axis cs:-0.5,0.28) {34.1\%};
-    \node[font=\scriptsize] at (axis cs:0.5,0.28) {34.1\%};
+    \node[font=\scriptsize] at (axis cs:-0.5,0.28) {34.15\%};
+    \node[font=\scriptsize] at (axis cs:0.5,0.28) {34.15\%};
     % Braces for 68.3%, 95.4%, 99.7%
-    \draw[mseViaBlue!80!black, thick, decorate, decoration={brace, amplitude=4pt}] (axis cs:-1,-0.01) -- (axis cs:1,-0.01) node[midway, below=6pt, font=\scriptsize]{68.3\%};
-    \draw[mseViaBlue!80!black, thick, decorate, decoration={brace, amplitude=4pt}] (axis cs:-2,-0.08) -- (axis cs:2,-0.08) node[midway, below=6pt, font=\scriptsize]{95.4\%};
-    \draw[mseViaBlue!80!black, thick, decorate, decoration={brace, amplitude=4pt}] (axis cs:-3,-0.15) -- (axis cs:3,-0.15) node[midway, below=6pt, font=\scriptsize]{99.7\%};
+    \draw[mseViaBlue!80!black, thick, decorate, decoration={brace, amplitude=4pt, mirror}] (axis cs:-1,-0.05) -- (axis cs:1,-0.05) node[midway, below=4pt, xshift=2pt, font=\scriptsize]{68.3\%};
+    \draw[mseViaBlue!80!black, thick, decorate, decoration={brace, amplitude=4pt, mirror}] (axis cs:-2,-0.11) -- (axis cs:2,-0.10) node[midway, below=4pt, xshift=2pt, font=\scriptsize]{95.4\%};
+    \draw[mseViaBlue!80!black, thick, decorate, decoration={brace, amplitude=4pt, mirror}] (axis cs:-3,-0.17) -- (axis cs:3,-0.16) node[midway, below=4pt, xshift=2pt, font=\scriptsize]{99.7\%};
     \end{axis}
     \end{tikzpicture}
-    \caption{Empirical Rule on a normal curve using `mseViaBlue`. The inner bands mark $\pm1\sigma$ (68.3\%), $\pm2\sigma$ (95.4\%), and $\pm3\sigma$ (99.7\%).}
+    \caption{Empirical Rule on a normal curve. The inner bands mark $\pm1\sigma$ (68.3\%), $\pm2\sigma$ (95.4\%), and $\pm3\sigma$ (99.7\%).}
     \label{fig:empirical_rule_shaded}
 \end{figure}
 
@@ -1051,41 +1032,10 @@ When a data set is not symmetric about its sample median, it is described as \te
     \label{fig:right_skewed_hist}
 \end{figure}
 
+\newpage
 
-\subsection*{Box Plots}
+\autoref{fig:skew_mean_median_mode} shows the relationship between mean, median, and mode for right skewed, symmetric, and left skewed distributions.
 
-Box plots provide a compact summary of data distribution, highlighting the median, quartiles, and outliers. \autoref{fig:boxplot_from_image} shows an example of a box plot.
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figure/boxplot.png}
-    \caption{An example of a box plot, illustrating the median, quartiles, whiskers, and potential outliers.}
-    \label{fig:boxplot_from_image}
-\end{figure}
-
-
-\begin{definition}[Box Plot Components]
-A box plot displays five key statistics:
-\begin{itemize}
-    \item \textbf{Minimum}: The smallest value (excluding outliers)
-    \item \textbf{Q1 (First Quartile)}: 25\% of data below this value
-    \item \textbf{Median (Q2)}: 50\% of data below this value
-    \item \textbf{Q3 (Third Quartile)}: 75\% of data below this value
-    \item \textbf{Maximum}: The largest value (excluding outliers)
-    \item \textbf{Outliers}: Points beyond 1.5 × IQR from the box
-\end{itemize}
-\end{definition}
-
-A box plot provides a visual summary of the distribution of a dataset, making it easy to compare groups and spot outliers. Here's how to read a box plot.
-
-\begin{itemize}
-    \item The \textbf{length of the box} shows the spread of the central half of the data. A longer box means more variability in the middle 50\%.
-    \item The \textbf{position of the median line} within the box indicates skewness. If the median is closer to $Q_1$ of the box, the data are skewed right; if closer to $Q_3$ of the box, skewed left.
-    \item The \textbf{position of the mean} can be determined by the position of the median line. If the median line is closer to $Q_1$ of the box, the mean is to the left of the median; if closer to $Q_3$ of the box, the mean is to the right of the median.
-    \item The \textbf{position of the mode} can also be determined by the position of the median line. If the median line is closer to $Q_1$ of the box, the mode is to the left of the median; if closer to $Q_3$ of the box, the mode is to the right of the median.
-    \item The \textbf{whiskers} show the range of the bulk of the data, excluding outliers.
-    \item \textbf{Outliers} highlight unusually high or low values that may warrant further investigation.
-\end{itemize}
 
 \begin{figure}[htbp]
     \centering
@@ -1168,9 +1118,93 @@ A box plot provides a visual summary of the distribution of a dataset, making it
         \end{tikzpicture}
         \par\small Left Skew
     \end{minipage}
-    \caption{Relationship between mean, median, and mode for positively skewed, symmetric, and negatively skewed distributions. Curves and annotations use the book's color `mseViaBlue`.}
+    \caption{Relationship between mean, median, and mode for positively skewed, symmetric, and negatively skewed distributions.}
     \label{fig:skew_mean_median_mode}
 \end{figure}
+
+\subsection*{Outlier Detection}
+
+As mentioned in \autoref{sec:ch6sec1}, outliers are data points that are significantly different from the rest of the data. They can arise due to measurement errors, data entry errors, or genuine variability in the data. Detecting outliers is important because they can distort statistical analyses.
+
+A common method for identifying outliers is to use the interquartile range (IQR):
+
+\begin{itemize}
+    \item \textbf{Mild outliers}: Any data point less than $Q_1 - 1.5 \times IQR$ or greater than $Q_3 + 1.5 \times IQR$.
+    \item \textbf{Extreme outliers}: Any data point less than $Q_1 - 3 \times IQR$ or greater than $Q_3 + 3 \times IQR$.
+\end{itemize}
+
+\begin{example} Detecting Outliers
+
+Given the response time data: $\{120, 150, 180, 200, 220, 250, 280, 300, 350, 400\}$
+
+\begin{itemize}
+    \item $Q_1 = 180$, $Q_3 = 300$, $IQR = 120$
+    \item Lower fence: $Q_1 - 1.5 \times IQR = 180 - 180 = 0$
+    \item Upper fence: $Q_3 + 1.5 \times IQR = 300 + 180 = 480$
+\end{itemize}
+
+All data points are between 0 and 480, so there are no mild outliers in this dataset.
+
+\end{example}
+
+\newpage
+
+\begin{example}
+
+Suppose we have the following set of response times (in milliseconds) for a web application:
+
+$\{120, 150, 180, 200, 220, 250, 280, 300, 350, 400, 1200\}$.
+
+Let's identify if there is an upper outlier:
+
+\begin{itemize}
+    \item Sorted data: $120, 150, 180, 200, 220, 250, 280, 300, 350, 400, 1200$
+    \item $n = 11$
+    \item Median ($Q_2$): 250 (6th value)
+    \item Lower half: $120, 150, 180, 200, 220$ $\rightarrow Q_1 = 180$
+    \item Upper half: $280, 300, 350, 400, 1200$ $\rightarrow Q_3 = 350$
+    \item $IQR = Q_3 - Q_1 = 350 - 180 = 170$
+    \item Upper fence: $Q_3 + 1.5 \times IQR = 350 + 1.5 \times 170 = 350 + 255 = 605$
+\end{itemize}
+
+The value $1200$ is greater than $605$, so it is an upper outlier.
+
+\end{example}
+
+\subsection*{Box Plots}
+
+Box plots provide a compact summary of data distribution, highlighting the median, quartiles, and outliers. \autoref{fig:boxplot_from_image} shows an example of a box plot.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figure/boxplot.png}
+    \caption{An example of a box plot, illustrating the median, quartiles, whiskers, and potential outliers.}
+    \label{fig:boxplot_from_image}
+\end{figure}
+
+
+\begin{definition}[Box Plot Components]
+A box plot displays five key statistics:
+\begin{itemize}
+    \item \textbf{Minimum}: The smallest value (excluding outliers)
+    \item \textbf{Q1 (First Quartile)}: 25\% of data below this value
+    \item \textbf{Median (Q2)}: 50\% of data below this value
+    \item \textbf{Q3 (Third Quartile)}: 75\% of data below this value
+    \item \textbf{Maximum}: The largest value (excluding outliers)
+    \item \textbf{Outliers}: Points beyond 1.5 × IQR from the box
+\end{itemize}
+\end{definition}
+
+A box plot provides a visual summary of the distribution of a dataset, making it easy to compare groups and spot outliers. Here's how to read a box plot.
+
+\begin{itemize}
+    \item The \textbf{length of the box} shows the spread of the central half of the data. A longer box means more variability in the middle 50\%.
+    \item The \textbf{position of the median line} within the box indicates skewness. If the median is closer to $Q_1$ of the box, the data are skewed right; if closer to $Q_3$ of the box, skewed left.
+    \item The \textbf{position of the mean} can be determined by the position of the median line. If the median line is closer to $Q_1$ of the box, the mean is to the left of the median; if closer to $Q_3$ of the box, the mean is to the right of the median.
+    \item The \textbf{position of the mode} can also be determined by the position of the median line. If the median line is closer to $Q_1$ of the box, the mode is to the left of the median; if closer to $Q_3$ of the box, the mode is to the right of the median.
+    \item The \textbf{whiskers} show the range of the bulk of the data, excluding outliers.
+    \item \textbf{Outliers} highlight unusually high or low values that may warrant further investigation.
+\end{itemize}
 
 Box plots are especially useful for comparing distributions across several groups or datasets, as they quickly reveal differences in medians, spreads, and the presence of outliers.
 
