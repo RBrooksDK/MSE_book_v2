@@ -101,7 +101,7 @@ $$
 \end{example}
 
 \begin{remark}
-    It is often helpful to identify a vector $\left[\begin{array}{l}a \\ b\end{array}\right] \in \mathbb{R}^2$ with a geometric point $(a, b)$ in the plane in order to get a picture of what we are working with.Please see figure \ref{fig:points-vectors} for an example.
+    It is often helpful to identify a vector $\left[\begin{array}{l}a \\ b\end{array}\right] \in \mathbb{R}^2$ with a geometric point $(a, b)$ in the plane in order to get a picture of what we are working with. Please see \autoref{fig:points-vectors} for an example.
 \end{remark}
 
 If $\vect{u}$ and $\vect{v}$ in $\mathbb{R}^2$ are thought of as points in the plane, then $\vect{u} + \vect{v}$ corresponds to the fourth vertex of the parallelogram whose other vertices are $\vect{0}, \vect{u}$, and $\vect{v}$.
@@ -110,7 +110,7 @@ Note: By $\vect{0}$, we mean the zero vector, or the vector whose entries are al
 0
 \end{array}\right]$.
 
-We call this the \textit{parallelogram law of addition }and it can be seen in figure \ref{fig:parallelogram-law}.
+We call this the \textit{parallelogram law of addition} and it can be seen in \autoref{fig:parallelogram-law}.
 
 \begin{figure}[htbp]
     \centering
@@ -1343,10 +1343,9 @@ The last part of the theorem is particularly useful, as it allows us to quickly 
     \begin{enumerate}[(a)]
         \item 
         To determine if any pair of these vectors is linearly dependent, we check whether one vector is a scalar multiple of the other.
-        
-        \textbf{Checking the pair $\{\vect{u}, \vect{v}\}$:}
-        
-        Assume there exists a scalar $k$ such that:
+
+        \textbf{Checking the pair $\{\vect{u}, \vect{v}\}$:} Assume there exists a scalar $k$ such that:
+    
         \[
         \vect{v} = k \vect{u}.
         \]
@@ -1363,9 +1362,7 @@ The last part of the theorem is particularly useful, as it allows us to quickly 
         
         Since $3 \ne 2$, $\vect{v}$ is not a scalar multiple of $\vect{u}$.
         
-        \textbf{Checking the pair $\{\vect{u}, \vect{w}\}$:}
-        
-        Assume there exists a scalar $k$ such that:
+        \textbf{Checking the pair $\{\vect{u}, \vect{w}\}$:} Assume there exists a scalar $k$ such that:
         \[
         \vect{u} = k \vect{w}.
         \]
@@ -1382,15 +1379,10 @@ The last part of the theorem is particularly useful, as it allows us to quickly 
         
         Since $1 \ne 2$, $\vect{u}$ is not a scalar multiple of $\vect{w}$.
         
-        \textbf{Checking the pair $\{\vect{w}, \vect{z}\}$:}
-        
-        Since $z_1 = 0$ and $w_1 = 1$, assuming $\vect{w} = k \vect{z}$ leads to:
+        \textbf{Checking the pair $\{\vect{w}, \vect{z}\}$:} Since $z_1 = 0$ and $w_1 = 1$, assuming $\vect{w} = k \vect{z}$ leads to:
         \[
         w_1 = k z_1 \implies 1 = k \times 0 \implies 1 = 0,
-        \]
-        which is a contradiction.
-        
-        \textbf{Conclusion:} No pair of these vectors is linearly dependent.
+        \] which is a contradiction.
     
         \item No, the fact that no pair is linearly dependent does not imply that the entire set is linearly independent. Linear independence requires that the only solution to:
         \[
@@ -1398,11 +1390,8 @@ The last part of the theorem is particularly useful, as it allows us to quickly 
         \]
         is $c_1 = c_2 = c_3 = c_4 = 0$.
         
-        \item Yes, the set is linearly dependent.
-        
-        In $\mathbb{R}^3$, any set of more than three vectors must be linearly dependent because the maximum number of linearly independent vectors in $\mathbb{R}^3$ is three.
+        \item Yes, the set is linearly dependent. In $\mathbb{R}^3$, any set of more than three vectors must be linearly dependent because the maximum number of linearly independent vectors in $\mathbb{R}^3$ is three.
     \end{enumerate}
-        
         
         \textbf{Conclusion:}
         
