@@ -1240,3 +1240,74 @@ Now that we know exactly where the maxima or minima can occur, we can give a pro
     
     \textbf{Conclusion:} The minimum loss occurs when the learning rate is \( \alpha = 0.3 \).
     \end{solution}
+
+    \section{The Second Derivative: Curvature and Inflection}
+
+    The first derivative, \(f'(x)\), tells us about the slope or rate of change of a function. The \textbf{second derivative}, denoted \(f''(x)\), is the derivative of the first derivative. It measures how the slope itself is changing. This provides deeper insight into the shape of a function's graph.
+    
+    \begin{definition}[The Second Derivative]
+    The \textbf{second derivative} of a function \( f \), denoted \( f''(x) \), is the function
+    \[
+    f''(x) = \frac{d}{dx} \left( f'(x) \right)
+    \]
+    provided the limit exists.
+    \end{definition}
+    
+    The most important geometric interpretation of the second derivative is \textbf{concavity}.
+    
+    \begin{itemize}
+        \item If \( f''(x) > 0 \) on an interval, the slope \(f'(x)\) is increasing. The graph bends upwards, like a cup holding water. We say the function is \textbf{concave up}.
+        \item If \( f''(x) < 0 \) on an interval, the slope \(f'(x)\) is decreasing. The graph bends downwards, like a cup spilling water. We say the function is \textbf{concave down}.
+    \end{itemize}
+    
+    A point on the graph where the concavity changes is called an \textbf{inflection point}. This typically occurs where \(f''(x) = 0\).
+    
+    \begin{figure}[htbp]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                axis lines=middle,
+                xlabel=$x$,
+                ylabel=$y$,
+                width=12cm, height=8cm,
+                xmin=-2.5, xmax=2.5,
+                ymin=-3, ymax=3,
+                xtick={-2, -1, 0, 1, 2},
+                ytick={-2, 0, 2},
+                grid=major,
+                grid style={dashed, gray!30},
+                legend style={at={(0.03, 0.97)}, anchor=north west},
+                clip=false
+            ]
+            % Plot the curve f(x) = x^3/2 - x
+            \addplot[
+                domain=-2.2:2.2, samples=100,
+                smooth, very thick, mseViaBlue
+            ] {x^3/2 - x};
+            \addlegendentry{\(f(x)=\frac{1}{2}x^3 - x\)}
+    
+            % Mark the inflection point at x=0
+            \coordinate (P) at (axis cs:0, 0);
+            \fill[red] (P) circle (2.5pt);
+            \node[above right, font=\small, color=red] at (P) {Inflection Point at \(x=0\)};
+    
+            % Annotate Concavity
+            \node[below, font=\small, color=orange] at (axis cs:-1.5, -1) {Concave Down (\(f'' < 0\))};
+            \node[above, font=\small, color=green!60!black] at (axis cs:1.5, 1) {Concave Up (\(f'' > 0\))};
+            
+            \end{axis}
+        \end{tikzpicture}
+        \caption{A function showing a region of concave down curvature, followed by a region of concave up curvature. The transition occurs at the inflection point.}
+        \label{fig:ch11-concavity}
+    \end{figure}
+    
+    The second derivative also gives us a powerful tool for classifying stationary points.
+    
+    \begin{theorem}[The Second Derivative Test]
+    Let \(c\) be a stationary point of \(f\) (i.e., \(f'(c) = 0\)).
+    \begin{itemize}
+        \item If \(f''(c) > 0\), then \(f\) has a \textbf{local minimum} at \(c\).
+        \item If \(f''(c) < 0\), then \(f\) has a \textbf{local maximum} at \(c\).
+        \item If \(f''(c) = 0\), the test is inconclusive.
+    \end{itemize}
+    \end{theorem}
