@@ -29,7 +29,7 @@ The \emph{range} of \(f\) is the set of all real numbers \(z\) for which there e
 \end{example}
 
 
-\begin{figure}{r}
+\begin{figure}
     \centering
     \includegraphics[width=0.5\linewidth]{domain.png}
     \caption{The domain of the function \(g(x, y)=\sqrt{9-x^2-y^2}\) is a closed disk of radius 3 .}
@@ -76,15 +76,7 @@ The \emph{range} of \(f\) is the set of all real numbers \(z\) for which there e
     \]
 \end{solution}
 
-While the graph of \(f(x)\) is a curve in a 2D plane, the graph of \(f(x, y)\) is a \textbf{surface} in 3D space. When graphing a function of two variables \(z = f(x,y)\), each point \((x,y)\) in the domain is assigned a height \(z\), producing an ordered triple \((x,y,z)\). The collection of all such triples forms a \emph{surface} in three-dimensional space. One can think of the \(xy\)-plane lying flat, with the value of \(z\) plotted vertically above (or below) each point \((x,y)\). The resulting surface illustrates how the function behaves across its domain, as shown in \autoref{fig:ch11-3d-golden-surface}.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.5\textwidth]{golden_surface_wireframe.png}
-    \caption{An example of a function of two variables, ploted in 3D.}
-    \label{fig:ch11-3d-golden-surface}
-\end{figure}
-
+While the graph of \(f(x)\) is a curve in a 2D plane, the graph of \(f(x, y)\) is a \textbf{surface} in 3D space. When graphing a function of two variables \(z = f(x,y)\), each point \((x,y)\) in the domain is assigned a height \(z\), producing an ordered triple \((x,y,z)\). The collection of all such triples forms a \emph{surface} in three-dimensional space. One can think of the \(xy\)-plane lying flat, with the value of \(z\) plotted vertically above (or below) each point \((x,y)\). 
 
 
 \begin{definition}[Level Curve and Contour Map]
@@ -112,14 +104,7 @@ A collection of level curves for different values of \(c\) forms a \textbf{conto
     \end{subfigure}
 \end{figure}
 
-On a geographical map, these lines represent paths of constant elevation. On our function surface, they represent paths of constant "height" \(z\). \autoref{fig:ch11-3d-contour-surface} shows the surface \(z = x^2 + y^2\) with contour lines projected onto the \(xy\)-plane. Each contour corresponds to a constant function value, illustrating how level curves arise from horizontal slices of the surface. \autoref{fig:ch11-topographic-map} shows a topographic map of a hilly terrain. These contour lines are not limited to simple functions; they can also represent much more intricate surfaces, such as the one shown in \autoref{fig:ch11-3d-golden-surface}.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.75\textwidth]{cool_surface_with_coloured_contours.png}
-    \caption{A more complex function of two variables, plotted in 3D with coloured contour lines projected onto the $xy$-plane.}
-    \label{fig:ch11-3d-cool-surface}
-\end{figure}
+On a geographical map, these lines represent paths of constant elevation. On our function surface, they represent paths of constant "height" \(z\). \autoref{fig:ch11-3d-contour-surface} shows the surface \(z = x^2 + y^2\) with contour lines projected onto the \(xy\)-plane. Each contour corresponds to a constant function value, illustrating how level curves arise from horizontal slices of the surface. \autoref{fig:ch11-topographic-map} shows a topographic map of a hilly terrain. These contour lines are not limited to simple functions; they can also represent much more intricate surfaces.
 
 
 \section{Partial Derivatives and the Gradient}
@@ -193,7 +178,12 @@ To find \( \frac{\partial f}{\partial y} \), we treat \( x \) as a constant:
 The partial derivatives give us the rate of change in two specific directions. The \textbf{gradient} combines this information into a single vector that points in the direction of the \emph{steepest} rate of change.\footnote{This property is formally proven using the concept of the \textit{directional derivative}, which measures the rate of change in any arbitrary direction.} The word ``gradient'' in mathematics describes a vector that indicates both the direction and the steepness of ascent for a function of several variables:
 
 $$
-\nabla f(x, y) = \left\langle \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y} \right\rangle
+\nabla f(x, y) = \left\langle \frac{\partial f}{\partial x},\ \frac{\partial f}{\partial y} \right\rangle
+= 
+\begin{bmatrix}
+    \frac{\partial f}{\partial x} \\
+    \frac{\partial f}{\partial y}
+\end{bmatrix}
 $$
 
 The symbol $\nabla$ is called the \textbf{nabla} or \textbf{del} operator.
@@ -251,7 +241,7 @@ By comparing these two views, we can confirm the two fundamental properties of t
     \item \textbf{Perpendicularity to Level Curves:} Observe the relationship between the red arrows and the white contour lines in \autoref{fig:ch11-2d-view}. At every point, the gradient vector is perfectly orthogonal (perpendicular) to the level curve passing through that point. This makes intuitive sense: to climb a hill most efficiently, you must walk perpendicular to the paths of level elevation.
 \end{enumerate}
 
-This side-by-side comparison bridges the gap between the physical reality of the function's shape and the mathematical tools we use to analyze it. While in machine learning we cannot visualize a function with a million dimensions, the principle remains the same: we compute the gradient vector to find the direction of steepest ascent and use its negative, \(-\nabla f\), to guide us "downhill" towards a minimum.
+This side-by-side comparison bridges the gap between the physical reality of the function's shape and the mathematical tools we use to analyze it.
 
 \section{Applications of the Gradient}
 
@@ -261,6 +251,9 @@ The gradient is one of the most fundamental concepts in applied mathematics, wit
 Remember our hiker trying to find the lowest point in a foggy valley. The most efficient strategy is to always walk in the direction of steepest \emph{descent}. From the properties of the gradient, we know this direction is exactly opposite to the gradient vector, \( -\nabla f \).
 
 This simple idea is the foundation of the \textbf{Gradient Descent} algorithm, which is central to training modern machine learning models. The "altitude" of the hiker is the model's error (or loss function), and the "position" is the set of model parameters. The algorithm works as follows:
+
+\vspace{1cm}
+
 \begin{enumerate}
     \item Start at a random point (random set of parameters).
     \item Calculate the gradient of the loss function at that point.
@@ -318,7 +311,7 @@ How do we know if a line is a "good fit"? We measure its error. For each data po
 \[
 L(\beta_0, \beta_1) = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = \frac{1}{n} \sum_{i=1}^{n} (y_i - \beta_0 - \beta_1 x_i)^2
 \]
-This is the central equation. Notice that the loss \(L\) is not a function of \(x\) or \(y\) (which are fixed data points), but a function of our model's parameters, \(\beta_0\) and \(\beta_1\). This loss function can be visualized as a convex, bowl-shaped surface where the vertical axis is the loss and the horizontal axes are the parameters \(\beta_0\) and \(\beta_1\), just as we saw with functions like \(f(x,y)\) earlier. Our goal is to find the bottom of this bowl.
+This is the central equation. Notice that the loss \(L\) is not a function of \(x\) or \(y\) (which are fixed data points), but a function of our model's parameters, \(\beta_0\) and \(\beta_1\). This loss function can be visualized as a concave up, bowl-shaped surface where the vertical axis is the loss and the horizontal axes are the parameters \(\beta_0\) and \(\beta_1\), just as we saw with functions like \(f(x,y)\) earlier. Our goal is to find the bottom of this bowl.
 
 \vspace{1em}
 \textbf{Step 3: Compute the Gradient of the Loss Function}
@@ -363,4 +356,4 @@ Using more compact vector notation, where \(\boldsymbol{\beta}\) is the vector \
 \]
 This single expression elegantly captures the process of optimizing a machine learning model. It is a direct and powerful application of the gradient, demonstrating how a fundamental concept from calculus is used to solve complex, real-world problems. \end{solution}
 
-This chapter has extended the concept of the derivative into multiple dimensions. We started by exploring functions of several variables, partial derivatives, and finally the gradient vector. The gradient, as the "full" derivative for multivariable functions, not only describes the rate of change in all directions but also provides the theoretical foundation for powerful optimisation algorithms that drive modern technology. We then applied the gradient to the problem of finding the optimal line to fit a dataset using linear regression and the gradient descent algorithm. This concludes the chapter and effectively concludes this book about Mathematics for Software Engineering.
+This chapter has extended the concept of the derivative into multiple variables. We started by exploring functions of several variables, partial derivatives, and finally the gradient vector. The gradient, as the "full" derivative for multivariable functions, not only describes the rate of change in all directions but also provides the theoretical foundation for powerful optimisation algorithms that drive modern technology. We then applied the gradient to the problem of finding the optimal line to fit a dataset using linear regression and the gradient descent algorithm. This concludes the chapter and effectively concludes this book about Mathematics for Software Engineering.
