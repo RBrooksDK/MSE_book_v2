@@ -306,3 +306,121 @@ XOR produces a 1 if the two bits being compared are different and a 0 if they ar
 \caption{The composition of functions \(f\) and \(g\), denoted \(f \circ g\), is the function that results from applying \(g\) and then \(f\).}
 \end{figure}
 
+% ---------- 04 Combinatorics & Probability ----------
+
+\begin{custombox}{Sample Space \& Events (Set–Logic Dictionary)}
+\begin{tabular}{ll}
+Event complement & $A^c$ \\[2pt]
+Union (OR) & $A\cup B$ \\[2pt]
+Intersection (AND) & $A\cap B$ \\[2pt]
+Difference & $A\setminus B$ \\[2pt]
+Symmetric difference & $A\triangle B=(A\setminus B)\cup(B\setminus A)$ \\[4pt]
+De Morgan & $(A\cup B)^c=A^c\cap B^c,\quad (A\cap B)^c=A^c\cup B^c$
+\end{tabular}
+\end{custombox}
+
+\begin{proposition}{Factorial \& Binomial Coefficient Identities}
+\[
+n!=n\,(n-1)\cdots 2\cdot 1,\qquad 0!=1
+\]
+\[
+\binom{n}{r}=\frac{n!}{r!(n-r)!},\quad \binom{n}{r}=\binom{n}{n-r},\quad
+\binom{n}{r}=\binom{n-1}{r}+\binom{n-1}{r-1}
+\]
+\end{proposition}
+
+\begin{custombox}{Counting: Ordered/Unordered, With/Without Replacement}
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|c|c|c|}
+\hline
+Selection of $r$ from $n$ & \textbf{Ordered} & \textbf{Unordered} \\
+\hline
+Without replacement & $P(n,r)=\dfrac{n!}{(n-r)!}$ & $\displaystyle \binom{n}{r}$ \\
+\hline
+With replacement & $n^r$ & $\displaystyle \binom{n+r-1}{r}$ \\
+\hline
+\end{tabular}
+\end{custombox}
+
+\begin{proposition}{Linear Permutations \& Subset Permutations}
+All arrangements of $n$ distinct objects: $n!$. \quad
+Arrangements of $r$ out of $n$ (order matters): $P(n,r)=\dfrac{n!}{(n-r)!}$.
+\end{proposition}
+
+\begin{proposition}{Handshakes / Complete Graph Edges}
+Number of unordered pairs among $n$ people (each pair shakes once):
+\[
+\binom{n}{2}=\frac{n(n-1)}{2}
+\]
+\end{proposition}
+
+\begin{proposition}{Binomial Theorem (Coefficient Form)}
+\[
+(a+b)^n=\sum_{k=0}^{n}\binom{n}{k}\,a^{k}b^{\,n-k}
+\]
+\end{proposition}
+
+\begin{custombox}{Axioms \& Core Probability Rules}
+\textbf{Axioms:}\ $0\le P(A)\le 1$;\ $P(S)=1$;\ if $A_i$ disjoint then $P\!\left(\bigcup_i A_i\right)=\sum_i P(A_i)$.
+
+\medskip
+\textbf{Consequences:}
+\[
+P(A^c)=1-P(A),\quad P(\emptyset)=0,\quad
+P(A\cup B)=P(A)+P(B)-P(A\cap B),
+\]
+\[
+P(A\setminus B)=P(A)-P(A\cap B),\quad A\subseteq B\Rightarrow P(A)\le P(B).
+\]
+\end{custombox}
+
+\begin{proposition}{Two- and Three-Event Inclusion–Exclusion}
+\[
+P(A\cup B)=P(A)+P(B)-P(A\cap B)
+\]
+\[
+\begin{aligned}
+P(A\cup B\cup C)=\ &P(A)+P(B)+P(C) \\
+&-\,P(A\cap B)-P(A\cap C)-P(B\cap C) \\
+&+\,P(A\cap B\cap C)
+\end{aligned}
+\]
+\end{proposition}
+
+\begin{custombox}{Union Bounds (Quick Estimates)}
+\[
+P(A\cup B)\le P(A)+P(B)
+\qquad\text{and, more generally,}\qquad
+P\!\left(\bigcup_{i=1}^m A_i\right)\le \sum_{i=1}^m P(A_i)
+\]
+\end{custombox}
+
+\begin{proposition}{Finite Uniform Sample Space}
+If $S$ has $|S|$ equally likely outcomes and $A\subseteq S$, then
+\[
+P(A)=\frac{|A|}{|S|}.
+\]
+\end{proposition}
+
+\begin{custombox}{Replacement \& Independence (Coins/Cards intuition)}
+With replacement across trials $\Rightarrow$ identical single-trial probabilities (often independent).
+Without replacement $\Rightarrow$ changing denominators; probabilities update each draw.
+\end{custombox}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1.0,thick,>=Stealth]
+\draw (0,0) circle (2cm);
+\draw (1.4,0) circle (2cm);
+\node at (-1.2,1.2) {$A$};
+\node at (2.6,1.2) {$B$};
+\node at (-2.4,0) {$A^c$};
+\node at (4.2,0) {$B^c$};
+% annotate regions
+\node at (-0.9,0) {$A\setminus B$};
+\node at (0.7,0) {$A\cap B$};
+\node at (2.2,0) {$B\setminus A$};
+\end{tikzpicture}
+\caption*{Venn aide-mémoire for $A\cup B$, $A\cap B$, complements, and differences.}
+\end{figure}
