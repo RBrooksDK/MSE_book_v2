@@ -424,3 +424,80 @@ Without replacement $\Rightarrow$ changing denominators; probabilities update ea
 \end{tikzpicture}
 \caption*{Venn aide-mémoire for $A\cup B$, $A\cap B$, complements, and differences.}
 \end{figure}
+        \]
+
+        \item \textbf{Empty Set Rule:} The probability of the empty set given some event $C$ is 0, i.e.,
+        
+        \[P(\emptyset \mid C) = 0\]
+        
+        \item \textbf{Addition Rule:} For any two events $A$ and $B$, the probability of the union of events $A$ and $B$ given another event $C$ is
+        \[
+        P(A \cup B \mid C)=P(A \mid C)+P(B \mid C)-P(A \cap B \mid C)
+        \]
+
+        \item \textbf{Difference Rule:} The probability of the difference between events $A$ and $B$ given another event $C$ is
+        \[
+            P(A-B \mid C)=P(A \mid C)-P(A \cap B \mid C)
+        \]
+        \item \textbf{Subset Rule:} If $A \subset B$, then
+        \[
+        P(A \mid C) \leq P(B \mid C)
+        \]
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}[Multiplication Rule]
+    For any two events \( A \) and \( B \), the probability of both events occurring is given by:
+    \[
+    P(A \cap B) = P(A) P(B \mid A) = P(B) P(A \mid B)
+    \]
+\end{theorem}
+
+\begin{theorem}[Law of Total Probability]
+For any events \( A \) and \( B \) such that \( B \) and \( B^c \) form a partition of the sample space \( S \), the total probability of event \( A \) is given by:
+    \begin{align*}
+    P(A) &= P(A \cap B) + P(A \cap B^c) \\
+    &= P(B) P(A \mid B) + P(B^c) P(A \mid B^c)
+    \end{align*}
+
+    For any event \( A \) and any partition of the sample space \( B_1, B_2, \ldots, B_n \) such that \( B_i \cap B_j = \emptyset \) for all \( i \neq j \) and \( \bigcup_{i=1}^{n} B_i = S \), the total probability of event \( A \) is given by:
+    \begin{align*}
+    P(A) &= \sum_{i=1}^{n} P(A \mid B_i) P(B_i)
+    \end{align*}
+\end{theorem}
+
+\begin{theorem}[Independence and DeMorgan's Law]
+        If \( A_1, A_2, \cdots, A_n \) are independent then
+        \begin{align*}
+        &P\left(A_1 \cup A_2 \cup \cdots \cup A_n\right)=1-\left(1-P\left(A_1\right)\right)\left(1-P\left(A_2\right)\right) \cdots\left(1-P\left(A_n\right)\right)
+        \end{align*}
+\end{theorem}
+
+\begin{theorem}[Bayes' Theorem]
+    For any two events $A$ and $B$, where $P(A) \neq 0$, we have
+    \begin{align*}
+    P(B \mid A) = \frac{P(A \mid B) \cdot P(B)}{P(A)}
+     = \frac{P(A \mid B) \cdot P(B)}{P(A \mid B) \cdot P(B) + P(A \mid B^c) \cdot P(B^c)}
+    \end{align*}
+
+    If $B_1, B_2, B_3, \cdots$ form a partition of the sample space $S$, and $A$ is any event with $P(A) \neq 0$, we have
+
+    \begin{align*}
+    P\left(B_j \mid A\right) = \frac{P\left(A \mid B_j\right) \cdot P\left(B_j\right)}{\sum_i P\left(A \mid B_i\right) \cdot P\left(B_i\right)}
+    \end{align*}
+\end{theorem}
+
+% ---------- 06 Descriptive Statistics ----------
+
+
+
+% ---------- 07-09 Linear Algebra ----------
+
+
+
+% ---------- 10-11 Calculus ----------
+
+
+
+% ---------- 12+ Number Theory and other universal concepts ----------
+
