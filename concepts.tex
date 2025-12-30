@@ -560,7 +560,7 @@ A \textbf{frequency distribution} is a table that shows the frequency (count) of
 \end{itemize}
 \end{definition}
 
-\begin{definition}[Arithmetic Mean] \label{def:arithmetic_mean}
+\begin{definition}[Arithmetic Mean]
 
 For a dataset with $n$ values $x_1, x_2, \ldots, x_n$, the \textbf{arithmetic mean} is defined as:
 
@@ -679,7 +679,352 @@ If a dataset is approximately normal with a sample mean $\bar{x}$ and sample sta
 
 % ---------- 07-09 Linear Algebra ----------
 
+% 7
 
+\begin{definition}{Linear Equations} A linear equation in the variables $x_1, x_2, \ldots, x_n$ is an equation that can be written in the form
+\[
+a_1 x_1 + a_2 x_2 + \cdots + a_n x_n = b
+\]
+
+where $b$ and the coefficients $a_1, \ldots, a_n$ are constants.
+
+\end{definition}
+
+\begin{definition}{Systems of Linear Equations} A \textbf{system of linear equations} (also called a \textbf{linear system}) is a collection of one or more linear equations involving the same set of variables. \end{definition}
+
+\begin{definition}{Solutions to a System of Linear Equations} A \textbf{solution} of a linear system in the variables $x_1, x_2, \ldots, x_n$ is a list of numbers $(s_1, s_2, \ldots, s_n)$ that satisfies all equations of the system when substituted for the variables $x_1, x_2, \ldots, x_n$, respectively. The set of all possible solutions is called its \textbf{solution set}. Two linear systems are called \textbf{equivalent} if they have the same solution set. \end{definition}
+
+\begin{definition} A \textbf{matrix} is a rectangular array of numbers arranged in rows and columns. The \textbf{coefficient matrix} of a linear system contains only the coefficients of the variables, while the \textbf{augmented matrix} includes an additional column for the constants from the right-hand side of the equations. \end{definition}
+
+\begin{definition} The \textbf{size} of a matrix is defined by the number of its rows and columns, expressed as \emph{rows} $\times$ \emph{columns}. For instance, the coefficient matrix above is of size $3 \times 3$, and the augmented matrix is of size $3 \times 4$. \end{definition}
+
+\begin{definition}{Echelon Forms}
+A matrix is in \textbf{echelon form} if it satisfies the following conditions:
+\begin{enumerate}
+    \item All zero rows are at the bottom.
+    \item Each leading entry of a row is in a column to the right of the leading entry of the row above it.
+    \item All entries in a column below a leading entry are zeros.
+\end{enumerate}
+
+In addition to echelon form, a matrix may also be in \textbf{reduced row echelon form} (RREF), which has the following properties:
+\begin{enumerate}[resume]
+    \item The leading entry in each nonzero row is 1.
+    \item Each leading 1 is the only nonzero entry in its column.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}{Existence Theorem}
+A linear system is consistent if and only if an echelon form of the augmented matrix has no row of the form
+    \[
+    \left[\begin{array}{llll}
+    0 & \ldots & 0 & b
+    \end{array}\right]
+    \]
+where $b$ is nonzero.
+\end{theorem}
+
+\begin{theorem}{Uniqueness of Reduced Echelon Form}
+    Each matrix is row equivalent to one and only one reduced echelon matrix
+\end{theorem}
+
+\begin{theorem}{Uniqueness Theorem}
+    If a linear system is consistent, then the solution set contains either
+    \begin{enumerate}[label=(\roman*)]
+        \item a unique solution, when there are no free variables, or
+        \item infinitely many solutions, when there is at least one free variable.
+    \end{enumerate}
+\end{theorem}
+
+% 8
+
+\begin{definition}
+    For each positive integer $n$, we let $\mathbb{R}^n$ denote the collection of ordered $n$-tuples with each entry in $\mathbb{R}$. We often write these elements as $n \times 1$ matrices. We define addition and scalar multiplication of vectors in $\mathbb{R}^n$ in the same way as we do for $\mathbb{R}^2$. That is, we go coordinate-by-coordinate.
+\end{definition}
+
+\begin{definition}{Linear Combinations}
+    Given a set of vectors $\vect{v}_1, \vect{v}_2, \ldots, \vect{v}_p \in \mathbb{R}^n$ and scalars $c_1, c_2, \ldots, c_p \in \mathbb{R}$, the vector $\vect{y}$ given by
+
+\[
+\vect{y} = c_1 \vect{v}_1 + \cdots + c_p \vect{v}_p
+\]
+
+is called a linear combination of $\vect{v}_1, \vect{v}_2, \ldots, \vect{v}_p$ with weights $c_1, c_2, \ldots, c_p$.
+
+\end{definition}
+
+\begin{definition}{Span of a Set of Vectors}
+    If $\vect{v}_1, \ldots, \vect{v}_p$ are in $\mathbb{R}^n$, then the set of all linear combinations of $\vect{v}_1, \ldots, \vect{v}_p$ is denoted by \text{Span} $\left\{\vect{v}_1, \ldots, \vect{v}_p\right\}$ and is called the subset of $\mathbb{R}^n$ spanned by $\vect{v}_1, \ldots, \vect{v}_p$. In other words, the span of $\vect{v}_1, \ldots, \vect{v}_p$ is all vectors that can be written in the form
+    $$
+    c_1 \vect{v}_1 + \cdots + c_p \vect{v}_p
+    $$
+    with $c_1, \ldots, c_p$ scalars.
+
+\end{definition}
+
+\begin{definition}{Matrix Equation}
+  If $A$ is an $m \times n$ matrix with columns $\vect{a}_1, \ldots, \vect{a}_n$, and if $\vect{x} \in \mathbb{R}^n$, then the product of $A$ and $\vect{x}$, denoted by $A \vect{x}$, is
+
+\[
+A \vect{x} = \left[\begin{array}{llll}
+\vect{a}_1 & \vect{a}_2 & \ldots & \vect{a}_n
+\end{array}\right] \left[\begin{array}{c}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{array}\right] = x_1 \vect{a}_1 + x_2 \vect{a}_2 + \cdots + x_n \vect{a}_n
+\]
+    
+\end{definition}
+
+\begin{definition}
+    An indexed set of vectors $\left\{\vect{v}_1, \ldots, \vect{v}_p\right\} \subset \mathbb{R}^n$ is said to be \textbf{linearly independent} if the vector equation
+    
+    \[
+    x_1 \vect{v}_1 + \cdots + x_p \vect{v}_p = \vect{0}
+    \]
+    
+    has only the trivial solution, i.e., if the only solution is $\left(x_1, \ldots, x_p\right) = (0, \ldots, 0)$. Likewise, the set $\left\{\vect{v}_1, \ldots, \vect{v}_p\right\}$ is said to be \textbf{linearly dependent} if there exist weights $c_1, \ldots, c_p$, not all zero, such that
+    
+    \[
+    c_1 \vect{v}_1 + \cdots + c_p \vect{v}_p = \vect{0}
+    \]
+    
+    We call such an equation a \textit{linear dependence relation} when the weights are not all zero.
+\end{definition}
+
+\begin{theorem}
+    If $A$ is an $m \times n$ matrix, with columns $\vect{a}_1, \ldots, \vect{a}_n \in \mathbb{R}^m$ and if $\vect{b} \in \mathbb{R}^m$, the matrix equation
+
+\[
+A \vect{x} = \vect{b}
+\]
+
+has the same solution set as the vector equation
+
+\[
+x_1 \vect{a}_1 + x_2 \vect{a}_2 + \cdots + x_n \vect{a}_n = \vect{b}
+\]
+
+which, in turn, has the same solution set as the system of linear equations with augmented matrix
+
+\[
+\left[\begin{array}{lllll}
+\vect{a}_1 & \vect{a}_2 & \ldots & \vect{a}_n & \vect{b}
+\end{array}\right].
+\]
+
+\end{theorem}
+
+\begin{theorem}
+Let \( A \) be an \( m \times n \) matrix. Then the following statements are equivalent:
+\begin{enumerate}[label=(\alph*)]
+    \item For each \( \vect{b} \in \mathbb{R}^m \), the equation \( A \vect{x} = \vect{b} \) has a solution.
+    \item Each \( \vect{b} \in \mathbb{R}^m \) is a linear combination of the columns of \( A \).
+    \item The columns of \( A \) span \( \mathbb{R}^m \).
+    \item The matrix \( A \) has a pivot position in every row.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+If \( A \) is an \( m \times n \) matrix, \( \vect{u} \) and \( \vect{v} \) are vectors in \( \mathbb{R}^n \), and \( c \) is a scalar, then:
+
+\begin{enumerate}[label=(\alph*)]
+    \item \( A(\vect{u} + \vect{v}) = A \vect{u} + A \vect{v} \)  
+
+
+    \item \( A(c \vect{u}) = c(A \vect{u}) \)  
+
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+    Suppose $A \vect{x} = \vect{b}$ is consistent for some $\vect{b}$, and let $\vect{p}$ be a solution. Then the solution set of $A \vect{x} = \vect{b}$ is the set of all vectors of the form
+    \[
+    \vect{w} = \vect{p} + \vect{v}_h,
+    \]
+    where $\vect{v}_h$ is any solution of the homogeneous equation $A \vect{x} = \vect{0}$.
+\end{theorem}
+
+\begin{theorem}
+    \begin{enumerate}[(a)]
+        \item If a set of vectors contains the zero vector, then the set is linearly dependent.
+        \item If a set of vectors contains a scalar multiple of another vector, then the set is linearly dependent.
+        \item If a set of vectors contains more vectors than there are entries in each vector, then the set is linearly dependent.
+    \end{enumerate}
+\end{theorem}
+
+% 9
+
+\begin{definition}{Matrix Addition}
+    Let $A$ and $B$ be $m \times n$ matrices. The \textbf{sum} of $A$ and $B$, denoted $A + B$, is the $m \times n$ matrix whose entries are obtained by adding the corresponding entries of $A$ and $B$.
+
+    Given matrices
+
+    $$
+    A=\left[\begin{array}{cccc}
+    a_{11} & a_{12} & \cdots & a_{1 n} \\
+    a_{21} & a_{22} & \cdots & a_{2 n} \\
+    \vdots & \vdots & \vdots & \vdots \\
+    a_{m 1} & a_{m 2} & \cdots & a_{m n}
+    \end{array}\right], \quad B=\left[\begin{array}{cccc}
+    b_{11} & b_{12} & \cdots & b_{1 n} \\
+    b_{21} & b_{22} & \cdots & b_{2 n} \\
+    \vdots & \vdots & \vdots & \vdots \\
+    b_{m 1} & b_{m 2} & \cdots & b_{m n}
+    \end{array}\right]
+    $$
+
+    both of the same dimension $m \times n$, the sum $A+B$ is thus defined as
+
+    $$
+    A+B=\left[\begin{array}{cccc}
+    a_{11}+b_{11} & a_{12}+b_{12} & \cdots & a_{1 n}+b_{1 n} \\
+    a_{21}+b_{21} & a_{22}+b_{22} & \cdots & a_{2 n}+b_{2 n} \\
+    \vdots & \vdots & \vdots & \vdots \\
+    a_{m 1}+b_{m 1} & a_{m 2}+b_{m 2} & \cdots & a_{m n}+b_{m n}
+    \end{array}\right]
+    $$
+\end{definition}
+
+\begin{definition}{Scalar-Matrix Multiplication}
+    Let $A$ be an $m \times n$ matrix and $c$ be a scalar. The \textbf{product} of $c$ and $A$, denoted $cA$, is the $m \times n$ matrix whose entries are obtained by multiplying each entry of $A$ by $c$, and is thus defined as
+
+    $$
+    c A=\left[\begin{array}{cccc}
+    a_{11} & a_{12} & \cdots & a_{1 n} \\
+    a_{21} & a_{22} & \cdots & a_{2 n} \\
+    \vdots & \vdots & \vdots & \vdots \\
+    a_{m 1} & a_{m 2} & \cdots & a_{m n}
+    \end{array}\right] = \left[\begin{array}{cccc}
+    c a_{11} & c a_{12} & \cdots & c a_{1 n} \\
+    c a_{21} & c a_{22} & \cdots & c a_{2 n} \\
+    \vdots & \vdots & \vdots & \vdots \\
+    c a_{m 1} & c a_{m 2} & \cdots & c a_{m n}
+    \end{array}\right]
+    $$
+    
+\end{definition}
+
+\begin{definition}
+    For $A \in \mathbb{R}^{m \times n}$ and $B \in \mathbb{R}^{n \times p}$, with $B=\left[\begin{array}{lll}\vect{b_1} & \vect{b_2} \cdots & \vect{b_p}\end{array}\right]$, we define the product $A B$ by the formula
+
+\[
+A B=\left[\begin{array}{llll}
+A \vect{b_1} & A \vect{b_2} & \cdots & A \vect{b_p}
+\end{array}\right]
+\]
+
+\end{definition}
+
+\begin{definition}
+    Let $A$ be a square matrix, i.e. $ A \in \mathbb{R}^{n \times n}$. The $k$th power of $A$, denoted $A^k$, is defined as the product of $A$ with itself $k$ times. That is,
+
+    $$
+    A^k=\underbrace{ AAA \cdot \cdots A}_{k \text { times }}
+    $$
+
+    where $A$ appears $k$ times on the right-hand side.
+\end{definition}
+
+\begin{definition}
+    Given a matrix $A \in \mathbb{R}^{m \times n}$, the transpose of $A$ is the matrix $A^T$ whose $i$th column is the $i$th row of $A$.
+\end{definition}
+
+\begin{definition}
+    A square matrix \( A \in \mathbb{R}^{n \times n} \) is invertible (or \textbf{nonsingular}) if there exists a matrix \( C \in \mathbb{R}^{n \times n} \) such that \( A C = C A = I_n \). The matrix \( C \) is called the inverse of \( A \) and is denoted by \( A^{-1} \). Thus, \( A^{-1} A = A A^{-1} = I_n \).
+\end{definition}
+
+\begin{theorem}
+
+    Let $A$, $B$, $C$ be matrices of the same size and let $\alpha$, $\beta$ be scalars. Then
+    \begin{enumerate}[(a)]
+        \item $A+B=B+A$
+        \item $(A+B)+C=A+(B+C)$
+        \item $A+0=A$
+        \item $\alpha(A+B)=\alpha A+\alpha B$
+        \item $(\alpha+\beta) A=\alpha A+\beta A$
+        \item $\alpha(\beta A)=(\alpha \beta) A$
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+        Let $A, B, C$ be matrices, of appropriate dimensions, and let $\alpha$ be a scalar. Then
+\begin{enumerate}[(a)]
+    \item $A(BC) = (AB)C$
+    \item $A(B + C) = AB + AC$
+    \item $(B + C)A = BA + CA$
+    \item $\alpha(AB) = (\alpha A)B = A(\alpha B)$
+    \item $I_n A = AI_n = A$
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+    Let $A$ and $B$ be matrices of appropriate dimensions and let $\alpha$ be a scalar. Then
+    \begin{enumerate}[(a)]
+        \item $(A^T)^T = A$
+        \item $(A + B)^T = A^T + B^T$
+        \item $(\alpha A)^T = \alpha A^T$
+        \item $(AB)^T = B^T A^T$
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem} Let $A$ and $B$ be invertible $n \times n$ matrices. Then:
+\begin{enumerate}[(a)]
+    \item $A^{-1}$ is invertible, with
+    \[
+    \left(A^{-1}\right)^{-1}=A
+    \]
+    \item The product $A B$ is invertible, with
+    \[
+    (A B)^{-1}=B^{-1} A^{-1}
+    \]
+    \item The transpose of $A$ is also invertible, i.e. $A^T$ is invertible, with
+    \[
+    \left(A^T\right)^{-1}=\left(A^{-1}\right)^T
+    \]
+\end{enumerate}
+
+\end{theorem}
+
+\begin{theorem}
+    Let $A=\left[\begin{array}{ll}
+    a & b \\
+    c & d
+    \end{array}\right]$. If $ad-bc \neq 0$, then the inverse of $A$ is given by
+
+    \[
+    A^{-1}=\frac{1}{ad-bc}\left[\begin{array}{cc}
+    d & -b \\
+    -c & a
+    \end{array}\right]
+    \]
+\end{theorem}
+
+\begin{theorem}
+    An $n \times n$ matrix $A$ is invertible if and only if $A$ is row equivalent to $I_n$. In this case, any sequence of elementary row operations that reduces $A$ to $I_n$ also transforms $I_n$ into $A^{-1}$.
+\end{theorem}
+
+\begin{theorem}
+    Let \( A \) be an invertible matrix. Then the equation \( A \vect{x} = \vect{b} \) has a unique solution given by \( \vect{x} = A^{-1} \vect{b} \).
+\end{theorem}
+
+\begin{theorem}
+    Let \( A \) be an \( n \times n \) matrix. The following statements are equivalent:
+    \begin{enumerate}[(a)]
+        \item $A$ is invertible.
+        \item $A$ is row equivalent to $I_n$.
+        \item $A$ has $n$ pivot positions (i.e. one for each row and column).
+        \item The equation $A \vect{x}=\overline{0}$ has only the trivial solution.
+        \item The columns of $A$ are linearly independent.
+        \item The equation \( A \vect{x} = \vect{b} \) has a unique solution for each \( \vect{b} \in \mathbb{R}^n \).
+        \item The columns of $A \operatorname{span} \mathbb{R}^n$.
+        \item \( \text{det}(A) \neq 0 \).
+        \item There is an $n \times n$ matrix $C$ such that $C A=I$.
+        \item There is an $n \times n$ matrix $D$ such that $A D=I$.
+        \item $A^T$ is invertible.
+    \end{enumerate}
+\end{theorem}
 
 % ---------- 10-11 Calculus ----------
 
