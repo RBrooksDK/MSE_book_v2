@@ -424,6 +424,48 @@ Without replacement $\Rightarrow$ changing denominators; probabilities update ea
 \end{tikzpicture}
 \caption*{Venn aide-mémoire for $A\cup B$, $A\cap B$, complements, and differences.}
 \end{figure}
+
+% ---------- 05 Conditional Probability ----------
+
+\begin{definition}[Conditional Probability]
+For any two events \( A \) and \( B \) with \( P(B) > 0 \), the conditional probability of \( A \) given \( B \) is defined as:
+\[
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}, \qquad P(B) > 0
+\]
+\end{definition}
+
+\begin{definition}[Independence]
+    Two events are considered independent if the occurrence of one event does not affect the probability of the other event. In other words, the probability of one event does not depend on the occurrence of the other event. Two events \( A \) and \( B \) are independent if:
+    \begin{align*}
+        P(A \mid B) &= P(A) \\
+        P(B \mid A) &= P(B) \\
+        P(A \cap B) &= P(A) P(B)
+    \end{align*}
+\end{definition}
+
+\begin{definition}[Independence of Multiple Events]
+    A set of events \( A_1, A_2, \ldots, A_k \) are considered independent if  the joint probability is equal to the product of the individual probabilities:
+    \[
+    P(A_1 \cap A_2 \cap \cdots \cap A_k) = P(A_1) \cdot P(A_2) \cdots P(A_k)
+    \]
+\end{definition}
+
+\begin{axiom}[Axioms of Conditional Probability]
+    \begin{itemize}
+        \item \textbf{Axiom 1:} For any event \(A\), \( 0 \leq P(A\mid B) \leq 1 \).
+        \item \textbf{Axiom 2:} Conditional probability of $B$ given $B$ is 1, i.e., $P(B \mid B)=1$.
+        \item \textbf{Axiom 3:} If \(A_1, A_2, A_3, \cdots\) are disjoint events, then
+         
+        \hspace*{2.8em}$P\left(A_1 \cup A_2 \cup A_3 \cdots \mid B\right)=P\left(A_1 \mid B\right)+P\left(A_2 \mid B\right)+P\left(A_3 \mid B\right)+\cdots$
+    \end{itemize}
+\end{axiom}
+
+\begin{theorem}{Rules of Conditional Probability}
+    \begin{itemize}
+        \item \textbf{Complement Rule:} The probability of the complement of event $A$ given $C$ is
+    
+        \[
+        P\left(A^c \mid C\right)=1-P(A \mid C)
         \]
 
         \item \textbf{Empty Set Rule:} The probability of the empty set given some event $C$ is 0, i.e.,
@@ -489,7 +531,151 @@ For any events \( A \) and \( B \) such that \( B \) and \( B^c \) form a partit
 
 % ---------- 06 Descriptive Statistics ----------
 
+\begin{definition}[Population]
+A \textbf{population} is the complete set of all possible observations or measurements of interest in a particular study. In software engineering contexts, this might include all possible execution times of an algorithm, all user sessions on a website, or all lines of code in a project.
+\end{definition}
 
+\begin{definition}[Sample]
+A \textbf{sample} is a subset of the population that we actually observe or measure. Due to practical constraints, we often work with samples rather than entire populations.
+\end{definition}
+
+\begin{definition}[Qualitative Data]
+\textbf{Qualitative data} (also called categorical data) consists of non-numerical information that can be categorized. Examples include programming languages used in a project, user satisfaction ratings (satisfied/neutral/dissatisfied), or bug severity levels (critical/high/medium/low).
+\end{definition}
+
+\begin{definition}[Quantitative Data]
+\textbf{Quantitative data} consists of numerical measurements that can be ordered and subjected to mathematical operations. This can be further divided into:
+\begin{itemize}
+    \item \textbf{Discrete}: Countable values (number of bugs, lines of code, user sessions)
+    \item \textbf{Continuous}: Measurable values that can take any value within a range (response times, memory usage, CPU utilization)
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Frequency Distribution]
+A \textbf{frequency distribution} is a table that shows the frequency (count) of each value or class of values in a dataset. It can be presented as:
+\begin{itemize}
+    \item \textbf{Absolute frequency}: The actual count of occurrences
+    \item \textbf{Relative frequency}: The proportion of total observations
+    \item \textbf{Cumulative frequency}: The running total of frequencies
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Arithmetic Mean] \label{def:arithmetic_mean}
+
+For a dataset with $n$ values $x_1, x_2, \ldots, x_n$, the \textbf{arithmetic mean} is defined as:
+
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i = \frac{x_1 + x_2 + \cdots + x_n}{n}
+$$
+
+\end{definition}
+
+\begin{definition}[Median]
+    For a dataset with $n$ values arranged in ascending order, the median is defined as:
+    \[
+    \text{median} =
+    \begin{cases}
+        x_{\frac{n+1}{2}} & \text{if } n \text{ is odd} \\
+        \frac{x_{\frac{n}{2}} + x_{\frac{n}{2}+1}}{2} & \text{if } n \text{ is even}
+    \end{cases}
+    \]
+\end{definition}
+
+\begin{definition}[Mode]
+The \textbf{mode} is the value that appears most frequently in a dataset. A dataset can have:
+\begin{itemize}
+    \item \textbf{No mode}: If all values appear with equal frequency
+    \item \textbf{One mode (unimodal)}: If one value appears most frequently
+    \item \textbf{Multiple modes (multimodal)}: If two or more values tie for the highest frequency
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Range]
+The \textbf{range} of a dataset is the difference between the maximum and minimum values:
+\[
+\text{Range} = x_{\max} - x_{\min}
+\]
+\end{definition}
+
+\begin{definition}[Sample Variance and Standard Deviation]
+For a sample with $n$ values, the \textbf{sample variance}, denoted by $s^2$, is defined as:
+$$
+s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2
+$$
+The \textbf{sample standard deviation}, denoted by $s$, is the square root of the variance:
+$$
+s = \sqrt{s^2} = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2}
+$$
+\end{definition}
+
+\begin{definition}[Coefficient of Variation]
+The \textbf{coefficient of variation} is the ratio of standard deviation to the mean:
+\[
+CV = \frac{s}{\bar{x}} \times 100\%
+\]
+\end{definition}
+
+\begin{definition}[Percentile]
+The $p$-th \textbf{percentile} is the value below which $p\%$ of the data falls.
+\end{definition}
+
+\begin{definition}[Quartiles]
+
+Quartiles divide an ordered dataset into four equal parts.
+
+\begin{itemize}
+    \item \textbf{Q1 (First Quartile)}: The 25th percentile. 25\% of the data is less than this value.
+    \item \textbf{Q2 (Second Quartile)}: The 50th percentile. This is the \textbf{median} of the dataset.
+    \item \textbf{Q3 (Third Quartile)}: The 75th percentile. 75\% of the data is less than this value.
+    \item \textbf{Q4 (Fourth Quartile)}: The 100th percentile. 100\% of the data is less than this value.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Interquartile Range]
+    The \textbf{interquartile range (IQR)} measures the spread of the middle 50\% of the data and is defined as
+    $$
+    IQR = Q_3 - Q_1,
+    $$
+    where $Q_1$ and $Q_3$ are the first and third quartiles. A larger IQR indicates that the central portion of the data is more widely dispersed, while a smaller IQR indicates that it is more tightly clustered.
+\end{definition}
+
+\begin{definition}[Normal Distribution]
+A \textbf{normal distribution} is a symmetric, bell-shaped distribution where the mean, median, and mode are all equal and located at the center. Its shape is determined entirely by its mean ($\mu$) and standard deviation ($\sigma$).
+\end{definition}
+
+\begin{definition}[Skewness]
+    \textbf{Skewness} measures the asymmetry of data distribution:
+    \begin{itemize}
+        \item \textbf{Positive skew (skewed to the right)}: Tail extends to the right (mean > median)
+        \item \textbf{Negative skew (skewed to the left)}: Tail extends to the left (mean < median)
+        \item \textbf{Symmetric}: Mean $\approx$ median
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[Box Plot Components]
+A box plot displays five key statistics:
+\begin{itemize}
+    \item \textbf{Minimum}: The smallest value (excluding outliers)
+    \item \textbf{Q1 (First Quartile)}: 25\% of data below this value
+    \item \textbf{Median (Q2)}: 50\% of data below this value
+    \item \textbf{Q3 (Third Quartile)}: 75\% of data below this value
+    \item \textbf{Maximum}: The largest value (excluding outliers)
+    \item \textbf{Outliers}: Points beyond 1.5 × IQR from the box
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[Law of Large Numbers]
+    The sample mean of a dataset will converge to the population mean as the sample size increases.
+\end{theorem}
+
+\begin{theorem}[The Empirical Rule]
+If a dataset is approximately normal with a sample mean $\bar{x}$ and sample standard deviation $s$, then:
+\begin{itemize}
+    \item Approximately \textbf{68.3\%} of the observations lie within 1 standard deviation of the mean ($\bar{x} \pm s$).
+    \item Approximately \textbf{95.4\%} of the observations lie within 2 standard deviations of the mean ($\bar{x} \pm 2s$).
+    \item Approximately \textbf{99.7\%} of the observations lie within 3 standard deviations of the mean ($\bar{x} \pm 3s$).
+\end{itemize}
+\end{theorem}
 
 % ---------- 07-09 Linear Algebra ----------
 
