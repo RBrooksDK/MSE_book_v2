@@ -1028,7 +1028,160 @@ A \vect{b_1} & A \vect{b_2} & \cdots & A \vect{b_p}
 
 % ---------- 10-11 Calculus ----------
 
+% 10
 
+\begin{definition}[Limit]
+Let \( f(x) \) be a function defined near a point \( c \). We say that the \textbf{limit} of \( f(x) \) as \( x \) approaches \( c \) is \( L \), written as
+\vspace{0.5em}
+\[
+\lim_{x \to c} f(x) = L
+\]
+\vspace{0.5em}
+if we can make the value of \( f(x) \) arbitrarily close to \( L \) by choosing an \( x \) that is sufficiently close to \( c \), but not equal to \( c \).
+\end{definition}
+
+\begin{definition}[Continuity]
+A function \( f \) is \textbf{continuous} at a point \( c \) if the following three conditions are met:
+\begin{enumerate}
+    \item \( f(c) \) is defined.
+    \item \( \lim_{x \to c} f(x) \) exists.
+    \item \( \lim_{x \to c} f(x) = f(c) \).
+\end{enumerate}
+A function is continuous on an interval if it is continuous at every point in that interval.
+\end{definition}
+
+\begin{definition}[The Derivative]
+The \textbf{derivative} of a function \( f \) with respect to \( x \), denoted \( f'(x) \), is the function
+\[
+f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
+\]
+provided the limit exists. If \( f'(x) \) exists, we say that \( f \) is \textbf{differentiable} at \( x \).
+\end{definition}
+
+\begin{definition}
+     For a function $y=f(x)$ the points on the graph where the graph has zero slope are called stationary points. In other words stationary points are where $f^{\prime}(x)=0$.
+    \end{definition}
+
+\begin{definition}[The Second Derivative]
+The \textbf{second derivative} of a function \( f \), denoted \( f''(x) \), is the function
+\[
+f''(x) = \frac{d}{dx} \left( f'(x) \right)
+\]
+provided the limit exists.
+\end{definition}
+
+\begin{theorem}{Constant and Power Rules}
+    \begin{enumerate}
+        \item \textbf{Constant Rule:} If $c$ is constant, then $\dfrac{d}{dx}(c) = 0$, \vspace{0.5em}
+        \item \textbf{Power Rule:} For any real $n$, $\dfrac{d}{dx}x^n = n x^{n - 1}$. \vspace{0.5em}
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}{Scalar and Linearity Rules}
+    \begin{enumerate}
+        \setcounter{enumi}{2}
+        \vspace{0.5em}
+        \item \textbf{Scalar Rule:} \( \frac{d}{dx}[c \cdot f(x)] = c \cdot f'(x) \). \vspace{0.5em}
+        \item \textbf{Linearity Rule:} \( \frac{d}{dx}[f(x) \pm g(x)] = f'(x) \pm g'(x) \). \vspace{0.5em}
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}{Product and Quotient Rules}
+    \begin{enumerate}
+        \setcounter{enumi}{4}
+        \vspace{0.5em}
+        \item \textbf{Product Rule:} If \(f(x)\) and \(g(x)\) are differentiable, then \vspace{0.5em}
+        \[
+        \frac{d}{dx}\big(f(x)g(x)\big)=f'(x)g(x)+f(x)g'(x). \vspace{0.5em}
+        \] \vspace{0.5em}
+        \item \textbf{Quotient Rule:} If \(f(x)\) and \(g(x)\) are differentiable and \(g(x)\neq0\), then
+        \vspace{0.5em}
+        \[
+        \frac{d}{dx}\left(\frac{f(x)}{g(x)}\right)=\frac{f'(x)g(x)-f(x)g'(x)}{[g(x)]^2}. \vspace{0.5em}
+        \]
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}{Chain Rule}
+    \vspace{0.5em}
+    \setcounter{enumi}{6}
+    \begin{enumerate}
+        \item If \( h(x) = f(g(x)) \) is a composite function, then its derivative is the derivative of the outer function (evaluated at the inner function) multiplied by the derivative of the inner function. \vspace{0.5em}
+        \[
+        h'(x) = f'(g(x)) \cdot g'(x). \vspace{0.5em}
+        \]
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}{Rules of Differentiation}
+
+    \begin{enumerate}
+        \item \textbf{Constant Rule:} If $c$ is constant, then $\dfrac{d}{dx}c=0$. \vspace{0.5em}
+        \item \textbf{Power Rule:} For any real $n$, $\dfrac{d}{dx}x^n = n x^{n-1}$. \vspace{0.5em}
+        \[
+        \frac{d}{dx}x^n = n x^{n-1}.
+        \]
+        \item \textbf{Scalar Rule:} If $c$ is constant, then $\dfrac{d}{dx}[c \cdot f(x)] = c \cdot f'(x)$. \vspace{0.5em}
+        \item \textbf{Linearity:} For differentiable $f,g$ and constants $a,b$, $\dfrac{d}{dx}(a f + b g) = a f' + b g'$. \vspace{0.5em}
+        \item \textbf{Product Rule:} If $f,g$ are differentiable, then $\dfrac{d}{dx}(f g) = f'g + fg'$. \vspace{0.5em}
+        \item \textbf{Quotient Rule:} If $f,g$ are differentiable and $g(x)\neq0$, then $\dfrac{d}{dx}\left(\frac{f}{g}\right) = \frac{f'g - fg'}{g^2}$. \vspace{0.5em}
+        \item \textbf{Chain Rule:} If $f,g$ are differentiable, then $\dfrac{d}{dx}(f(g(x))) = f'(g(x))g'(x)$. \vspace{0.5em}
+    \end{enumerate}
+
+\end{theorem}
+
+\begin{theorem}[The First Derivative Test]
+    Let \(c\) be a critical point of a continuous function \(f\).
+    \begin{itemize}
+        \item If \(f'(x)\) changes from negative to positive at \(c\), then \(f\) has a \textbf{local minimum} at \(c\).
+        \item If \(f'(x)\) changes from positive to negative at \(c\), then \(f\) has a \textbf{local maximum} at \(c\).
+        \item If \(f'(x)\) does not change sign at \(c\), then \(f\) has no local extremum at \(c\); it is a stationary point of inflection.
+    \end{itemize}
+
+\end{theorem}
+
+\begin{theorem}[The Second Derivative Test]
+    Let \(c\) be a stationary point of \(f\) (i.e., \(f'(c) = 0\)).
+    \begin{itemize}
+        \item If \(f''(c) > 0\), then \(f\) has a \textbf{local minimum} at \(c\).
+        \item If \(f''(c) < 0\), then \(f\) has a \textbf{local maximum} at \(c\).
+        \item If \(f''(c) = 0\), the test is inconclusive.
+    \end{itemize}
+\end{theorem}
+
+% 11
+
+\begin{definition}[Function of Two Variables]
+A \emph{function of two variables} is a rule that assigns to each ordered pair \((x, y)\) in a set \(D \subseteq \mathbb{R}^2\) a unique real number \(z\), which we write as \(z = f(x, y)\). The set \(D\) is called the \emph{domain} of \(f\).
+
+The \emph{range} of \(f\) is the set of all real numbers \(z\) for which there exists at least one \((x, y) \in D\) such that \(f(x, y) = z\) which is illustrated in \autoref{fig:ch11-domain-range}.
+\end{definition}
+
+\begin{definition}[Level Curve and Contour Map]
+A \textbf{level curve} of a function \(f(x, y)\) is the set of all points \((x, y)\) in the input plane where the function has a constant value, i.e., \(f(x, y) = c\) for some constant \(c\).
+
+A collection of level curves for different values of \(c\) forms a \textbf{contour map}.
+\end{definition}
+
+\begin{definition}[Partial Derivatives]
+The \textbf{partial derivative} of \( f(x, y) \) with respect to \( x \), denoted \( \frac{\partial f}{\partial x} \) or \( f_x \), is
+$$
+\frac{\partial f}{\partial x} = \lim_{h \to 0} \frac{f(x+h, y) - f(x, y)}{h}
+$$
+The \textbf{partial derivative} with respect to \( y \), denoted \( \frac{\partial f}{\partial y} \) or \( f_y \), is
+$$
+\frac{\partial f}{\partial y} = \lim_{h \to 0} \frac{f(x, y+h) - f(x, y)}{h}
+$$
+\end{definition}
+
+\begin{definition}[The Gradient]
+The \textbf{gradient} of a function \( f(x, y) \), denoted \( \nabla f \), is the vector function defined by:
+
+$$
+\nabla f(x, y) = \left\langle \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y} \right\rangle = \frac{\partial f}{\partial x} \mathbf{i} + \frac{\partial f}{\partial y} \mathbf{j}
+$$
+
+\end{definition}
 
 % ---------- 12+ Number Theory and other universal concepts ----------
 
