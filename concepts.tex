@@ -33,7 +33,6 @@ For $a,b,c,m \in \mathbb{R}$, with $a,b,c,m \neq 0$ where required, the followin
 \end{proposition}
 
 \begin{proposition}{Properties of Integer Exponents}
-\label{prop:DefPow}
 Let $n,m\in\mathbb{Z}$. Then the following hold (with $x,y\in\mathbb{R}$ and nonzero where stated):
 \[
 \begin{aligned}
@@ -224,6 +223,154 @@ $$
 \end{custombox}
 
 % ---------- 02
+
+\begin{table}[ht]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Numeral system} & \textbf{Symbols} & \textbf{Base} & \textbf{Additional information} \\ \hline
+\textbf{Decimal} & 0-9 & 10 & - \\ \hline
+\textbf{Binary} & 0, 1 & 2 & - \\ \hline
+\textbf{Hexadecimal} & 0-9, A-F & 16 & $\mathrm{A} \equiv 10, \mathrm{B} \equiv 11, \mathrm{C} \equiv 12,$ $\mathrm{D} \equiv 13, \mathrm{E} \equiv 14, \mathrm{F} \equiv 15$ \\ \hline
+\textbf{Octal} & 0-7 & 8 & - \\ \hline
+\end{tabular}
+\caption{Summary of Common Numeral Systems}
+\end{table}
+
+\begin{table}[!ht]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|c c c c c c c c|}
+\hline 
+\multirow{2}{*}{Decimal number} & & \multirow{2}{*}{In powers of 2} & \multicolumn{4}{c}{Power of 2} & \multirow{2}{*}{Binary number} \\
+& & & 3 & 2 & 1 & 0 & \\ \hline
+8 & $=$ & $2^3$ & 1 & 0 & 0 & 0 & 1000 \\
+7 & $=$ & $2^2 + 2^1 + 2^0$ & 0 & 1 & 1 & 1 & 111 \\
+6 & $=$ & $2^2 + 2^1$ & 0 & 1 & 1 & 0 & 110 \\
+5 & $=$ & $2^2 + 2^0$ & 0 & 1 & 0 & 1 & 101 \\
+4 & $=$ & $2^2$ & 0 & 1 & 0 & 0 & 100 \\
+3 & $=$ & $2^1 + 2^0$ & 0 & 0 & 1 & 1 & 11 \\
+2 & $=$ & $2^1$ & 0 & 0 & 1 & 0 & 10 \\
+1 & $=$ & $2^0$ & 0 & 0 & 0 & 1 & 1 \\ \hline
+\end{tabular}
+\caption{Decimal Numbers in Binary Representation}
+\end{table}
+
+\begin{proposition}{Binary Addition Rules}
+\[
+0 + 0 = 0, \quad 0 + 1 = 1, \quad 1 + 0 = 1, \quad 1 + 1 = 10
+\]
+\end{proposition}
+
+\begin{proposition}{Binary Multiplication Rules}
+\[
+\begin{aligned}
+& 0 \times 0=0 \\
+& 0 \times 1=0 \\
+& 1 \times 0=0 \\
+& 1 \times 1=1 \\
+& 1 \times 10_2 = 10_2 \quad \left( \text{multiplying by base } 10_2 \text{ adds a 0 to the end} \right)
+\end{aligned}
+\]
+\end{proposition}
+
+\begin{proposition}{XOR Operation}
+XOR produces a 1 if the two bits being compared are different and a 0 if they are the same:
+\[
+0 \oplus 0 = 0, \quad 0 \oplus 1 = 1, \quad 1 \oplus 0 = 1, \quad 1 \oplus 1 = 0
+\]
+\end{proposition}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth, node distance=4cm, thick, scale=1]
+
+    % Draw larger circles for sets A and B
+    \draw[thick] (0,0) circle [radius=1.5cm] node at (0, 2) {\Large $A$};
+    \draw[thick] (6,0) circle [radius=1.5cm] node at (6, 2) {\Large $B$};
+
+    % Place larger nodes for elements a and b=f(a)
+    \node[fill, circle, inner sep=2pt, label=below:{$a$}] (a) at (0,0.3) {};
+    \node[fill, circle, inner sep=2pt, label=below:{$b=f(a)$}] (b) at (6,0.3) {};
+
+    % Draw the larger straight arrow representing f
+    \draw[->, ultra thick, black] (a) -- (b) node[midway, above] {\Large $f$};
+
+    % Draw the curved arrow representing f at the bottom, touching the circles
+    \draw[->, ultra thick, black, bend right=30] ([shift={(270:1.5cm)}]0,0) 
+    to node[midway, below] {\Large $f$} 
+    ([shift={(270:1.5cm)}]6,0);
+
+\end{tikzpicture}
+\caption{A function \(f\) mapping an element \(a\) from set \(A\) to an element \(b=f(a)\) in set \(B\).}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth, thick, scale = 1.5]
+
+% Draw circles representing sets A and B
+\draw (0,0) circle (1.5cm);
+\draw (6,0) circle (1.5cm);
+
+% Labels for sets A and B
+\node at (0,-1) {A};
+\node at (6,-1) {B};
+
+
+% Points in sets with adjusted labels
+\node[fill=black, circle, inner sep=1.5pt, label={[xshift=-0.6cm]below:{$a = f^{-1}(b)$}}] (A1) at (0,0.7) {};
+\node[fill=black, circle, inner sep=1.5pt, label={[xshift=0.5cm]below:{$b = f(a)$}}] (B1) at (6,0.7) {};
+
+
+% Arrows for f and f^{-1}
+\draw[->] (A1) to[bend left=30] node[midway, above] {$f(a)$} (B1);
+\draw[->] (B1) to[bend left=30] node[midway, below] {$f^{-1}(b)$} (A1);
+
+% Arrows for f and f^{-1} below the main circles
+\draw[->] (0.6,-1.5) to[bend left=20] node[midway, above] {$f$} (5.4,-1.5);
+\draw[->] (5.4,-1.8) to[bend left=20] node[midway, below] {$f^{-1}$} (0.6,-1.8);
+
+\end{tikzpicture}
+\caption{The function $f^{-1}$ is the inverse of function $f$.}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth, thick]
+
+% Draw circles representing sets A, B, and C
+\draw (0,0) circle (1.5cm);  % Set A
+\draw (5,0) circle (1.5cm);  % Set B
+\draw (10,0) circle (1.5cm); % Set C
+
+% Labels for sets A, B, and C
+\node at (0,-1) {A};
+\node at (5,-1) {B};
+\node at (10,-1) {C};
+
+% Points in sets with adjusted labels
+\node[fill=black, circle, inner sep=1.5pt, label={[xshift=-0.1cm]below:{$a$}}] (A) at (0,0.7) {};
+
+\node[fill=black, circle, inner sep=1.5pt, label=below:{$g(a)$}] (B) at (5,0.7) {};
+\node[fill=black, circle, inner sep=1.5pt, label={[xshift=0.4cm]below:{$f(g(a))$}}] (C) at (10,0.7) {};
+
+% Arrows for g and f
+\draw[->] (A) to[bend left=15] node[midway, above] {$g(a)$} (B);
+\draw[->] (B) to[bend left=15] node[midway, above] {$f(g(a))$} (C);
+\draw[->] ([shift={(360:1.5cm)}]0,0) to node[midway, below] {$g$} (3.5,0);
+\draw[->] ([shift={(360:0cm)}]6.5,0) to node[midway, below] {$f$} (8.5,0);
+
+% Arrows for f ∘ g and (f ∘ g)(a)
+\draw[->] (A) to[bend left=40] node[midway, above] {$(f \circ g)(a)$} (C);
+% Draw the curved arrow representing f at the bottom, touching the circles
+\draw[->, bend right=20] ([shift={(270:1.5cm)}]0,0) to node[midway, below] {$f(g(a))$} ([shift={(270:0.7cm)}]10,0);
+
+\end{tikzpicture}
+\caption{The composition of functions \(f\) and \(g\), denoted \(f \circ g\), is the function that results from applying \(g\) and then \(f\).}
+\end{figure}
+
 
 % ---------- 03
 \begin{definition}[Subset]
@@ -1330,10 +1477,9 @@ Every integer greater than 1 can be represented uniquely as a product of prime n
     \]
     \medskip
 This means that $f(n)$ is asymptotically bounded both above and below by $g(n)$, meaning that $f(n)$ grows at the same rate as $g(n)$ as $n$ becomes sufficiently large.
-\label{def:theta_notation}
 \end{definition}
 
-\begin{proposition} \label{prop:limit_theorem}
+\begin{proposition} 
     Let $f(n)$ and $g(n)$ be two nonnegative functions, and suppose there is a constant $c>0$ for which
     \medskip
     \[
@@ -1357,10 +1503,9 @@ This means that $f(n)$ is asymptotically bounded both above and below by $g(n)$,
     \]
     \medskip
     This means that $f(n)$ is asymptotically bounded above by $g(n)$, meaning that $f(n)$ grows at most as fast as $g(n)$ as $n$ becomes sufficiently large.
-    \label{def:big_o_notation}
 \end{definition}
 
-\begin{definition}{Omega Notation}\label{def:omega_notation}
+\begin{definition}{Omega Notation}
     $f(n)$ is $\Omega(g(n))$ if there exist positive constants $c$ and $k$ such that for all $n \geq k$,
     \medskip
     \[
@@ -1370,7 +1515,7 @@ This means that $f(n)$ is asymptotically bounded both above and below by $g(n)$,
     This means that $f(n)$ is asymptotically bounded below by $g(n)$, meaning that $f(n)$ grows at least as fast as $g(n)$ as $n$ becomes sufficiently large.
 \end{definition}
 
-\begin{definition}{Little-$o$}\label{def:little_o_notation}
+\begin{definition}{Little-$o$}
     $f(n)$ is $o(g(n))$ if for any positive constant $\epsilon > 0$, there exists a constant $k \geq 0$ such that for all $n \geq k$,
     \medskip
     \[
@@ -1381,7 +1526,7 @@ This means that $f(n)$ is asymptotically bounded both above and below by $g(n)$,
     
 \end{definition}
 
-\begin{proposition} \label{prop:little_o_theorem}
+\begin{proposition}
     Let \( f(n) \) and \( g(n) \) be two nonnegative functions, and suppose
     \medskip
     \[
@@ -1391,7 +1536,7 @@ This means that $f(n)$ is asymptotically bounded both above and below by $g(n)$,
     Then \( f(n) = o(g(n)) \), meaning \( f(n) \) grows strictly slower than \( g(n) \) as \( n \to \infty \).
 \end{proposition}
 
-\begin{definition}{Little-$\omega$}\label{def:little_omega_notation}
+\begin{definition}{Little-$\omega$}
     $f(n)$ is $\omega(g(n))$ if for any positive constant $\epsilon > 0$, there exists a constant $k \geq 0$ such that for all $n \geq k$,
     \medskip
     \[
@@ -1401,7 +1546,7 @@ This means that $f(n)$ is asymptotically bounded both above and below by $g(n)$,
     This means that $f(n)$ grows strictly faster than $g(n)$ as $n$ becomes sufficiently large.
 \end{definition}
 
-\begin{proposition} \label{prop:little_omega_theorem}
+\begin{proposition}
     Let \( f(n) \) and \( g(n) \) be two nonnegative functions, and suppose
     \medskip
     \[
@@ -1411,7 +1556,7 @@ This means that $f(n)$ is asymptotically bounded both above and below by $g(n)$,
     Then \( f(n) = \omega(g(n)) \), meaning \( f(n) \) grows strictly faster than \( g(n) \) as \( n \to \infty \).
 \end{proposition}
 
-        \begin{proposition} \label{prop:big_o_theorem}
+        \begin{proposition}
             Let \( f(n) \) and \( g(n) \) be two nonnegative functions. If
             \medskip
             \[
@@ -1421,7 +1566,7 @@ This means that $f(n)$ is asymptotically bounded both above and below by $g(n)$,
             then \( f(n) = \mathcal{O}(g(n)) \), meaning \( f(n) \) grows at most as fast as \( g(n) \) asymptotically.
         \end{proposition}
 
-        \begin{proposition} \label{prop:big_omega_theorem}
+        \begin{proposition}
             Let \( f(n) \) and \( g(n) \) be two nonnegative functions. If
             \medskip
             \[
