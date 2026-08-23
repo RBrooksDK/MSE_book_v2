@@ -1,6 +1,7 @@
 \documentclass[fleqn, 11pt, color=blue]{elegantbook}
 \usepackage{parskip}  % Adds space between paragraphs and removes indentation
 \usepackage{tikz}
+\usepackage{tikz-3dplot}
 \usepackage{graphicx}
 \usepackage{placeins}
 \usetikzlibrary{shapes.geometric} % Add this line
@@ -91,11 +92,11 @@
 \newcommand{\sumOut}{\text{\textsl{\color{gray}{Sum}}}}
 \institute{VIA University College}
 
-\author{Richard Brooks \& Eduard Fekete}
+\author{Richard Brooks}
 \date{May, 2025}
 \version{2.0}
 
-\cover{cover4.png}
+\cover{figure/cover_mse1_26.png}
 
 % modify the color in the middle of titlepage
 \definecolor{customcolor}{RGB}{108, 162, 198}
@@ -210,6 +211,24 @@
 \DeclareLanguageMapping{english}{english-apa}
 
 \usepackage{clrscode4e}
+
+% Full-page cover only (cover image includes title and design)
+\makeatletter
+\renewcommand*{\maketitle}{%
+  \hypersetup{pageanchor=false}
+  \pagenumbering{Alph}
+  \newgeometry{margin=0in}
+  \thispagestyle{empty}%
+  \parindent=0pt
+  \setcounter{page}{1}%
+  \ifcsname @cover\endcsname
+    \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{\@cover}%
+  \else
+    \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{example-image}%
+  \fi
+  \restoregeometry
+  \clearpage}
+\makeatother
 
 \begin{document}
 

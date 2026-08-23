@@ -470,7 +470,7 @@ so $\left(x_1, x_2, x_3\right)=\left(\frac{245}{33},-\frac{41}{66},-\frac{2}{11}
 
 \end{example}
 
-The \textbf{span} of a set of vectors is the collection of all possible linear combinations of those vectors. In other words, it's the set of all vectors you can reach by scaling and adding the given vectors. The span gives us insight into the "space" those vectors cover:
+The \textbf{span} of a set of vectors is the collection of all possible linear combinations of those vectors. In other words, it's the set of all vectors you can reach by scaling and adding the given vectors (see examples in \autoref{fig:span_geometry}). The span gives us insight into the "space" those vectors cover:
 
 \begin{definition}{Span of a Set of Vectors}
     If $\vect{v}_1, \ldots, \vect{v}_p$ are in $\mathbb{R}^n$, then the set of all linear combinations of $\vect{v}_1, \ldots, \vect{v}_p$ is denoted by \text{Span} $\left\{\vect{v}_1, \ldots, \vect{v}_p\right\}$ and is called the subset of $\mathbb{R}^n$ spanned by $\vect{v}_1, \ldots, \vect{v}_p$. In other words, the span of $\vect{v}_1, \ldots, \vect{v}_p$ is all vectors that can be written in the form
@@ -480,6 +480,102 @@ The \textbf{span} of a set of vectors is the collection of all possible linear c
     with $c_1, \ldots, c_p$ scalars.
 
 \end{definition}
+
+\begin{figure}[htbp]
+    \centering
+
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[scale = 0.5]
+            \useasboundingbox (-8,-8) rectangle (8,8);
+
+            \def\A{7}
+            \draw[->] (-\A,0) -- (\A,0) node[right] {$x_1$};
+            \draw[->] (0,-\A) -- (0,\A) node[above] {$x_2$};
+
+            \def\ux{2}
+            \def\uy{1}
+
+            \draw[mseViaBlue] (-\A,-\uy/\ux*\A) -- (\A,\uy/\ux*\A);
+
+            \foreach \s in {-3,-2,-1,1,2,3} {
+                \fill[mseViaBlue] ( {\s*\ux}, {\s*\uy} ) circle (3pt)
+                node[mseViaBlue, anchor=north, xshift=2mm] {$\s\vect u$};
+            }
+
+            \draw[->, very thick] (0,0) -- (\ux,\uy)
+            node[midway, yshift=2mm] {$\vect u$};
+
+            \node at (4,5) {$\operatorname{span}\{\vect u\}$};
+        \end{tikzpicture}
+
+        \subcaption{The span of one vector in $\mathbb{R}^2$ is a line through the origin.}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+
+        \tdplotsetmaincoords{60}{120}
+
+        \begin{tikzpicture}[tdplot_main_coords, scale=0.5]
+            \begin{scope}[tdplot_screen_coords]
+                \path[use as bounding box] (-8,-8) rectangle (8,8);
+            \end{scope}
+
+            \coordinate (U) at (4.4,2.0,0.8);
+            \coordinate (V) at (1.2,-2.8,2.8);
+
+            \def\A{8}
+            \draw[->, gray!50] (0,0,0) -- (\A,0,0)  node[ below] {$x_1$};
+            \draw[gray!50]     (0,0,0) -- (0,-\A,0);
+            \draw[gray!50]     (0,0,0) -- (0,0,-\A);
+
+            \def\L{1.8}
+
+            \coordinate (P1) at ($ -\L*(U) -\L*(V) $);
+            \coordinate (P2) at ($  \L*(U) -\L*(V) $);
+            \coordinate (P3) at ($  \L*(U) +\L*(V) $);
+            \coordinate (P4) at ($ -\L*(U) +\L*(V) $);
+
+            \fill[mseViaBlue, opacity=0.30] (P1) -- (P2) -- (P3) -- (P4) -- cycle;
+
+            \draw (0,0,0) -- (-\A,0,0);
+            \draw[->] (0,0,0) -- (0,\A,0) node[right] {$x_2$};
+            \draw[->] (0,0,0) -- (0,0,\A) node[above] {$x_3$};
+
+            \begin{scope}
+                \clip (P1) -- (P2) -- (P3) -- (P4) -- cycle;
+
+                \foreach \k in {-4,-3,...,4} {
+                    \draw[mseViaBlue!70, dashed]
+                    ($ -\L*(U) + \k*(V) $) -- ($ \L*(U) + \k*(V) $);
+
+                    \draw[mseViaBlue!70, dashed]
+                    ($ \k*(U) -\L*(V) $) -- ($ \k*(U) + \L*(V) $);
+                }
+            \end{scope}
+
+            \foreach \a/\b in {1/1, 1/-1, 0/-1} {
+                \fill[mseViaBlue] ($ \a*(U) + \b*(V) $) circle (3pt)
+                node[xshift=4mm,yshift=-3mm] {$\a\vect u \ifnum\b<0 \b\vect v\else+\b\vect v\fi$};
+            }
+
+            \draw[->, very thick]
+            (0,0,0) -- (U) node[above right] {$\vect u$};
+
+            \draw[->, very thick]
+            (0,0,0) -- (V) node[below left] {$\vect v$};
+
+            \node at (0,4,7)
+            {$\operatorname{span}\{\vect u,\vect v\}$};
+        \end{tikzpicture}
+
+        \subcaption{The span of two non-parallel vectors in $\mathbb{R}^3$ is a plane through the origin.}
+    \end{minipage}
+
+    \caption{Two examples of the geometric interpretation of span}
+    \label{fig:span_geometry}
+\end{figure}
 
 \section{Matrix Equations}
 In the previous sections, we explored different ways of representing linear relationships. For instance, we looked at individual linear equations, such as  

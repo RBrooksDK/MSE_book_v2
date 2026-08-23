@@ -723,6 +723,69 @@ For the sorted response time data: $\{120, 150, 180, 200, 220, | 250, 280, 300, 
 \end{itemize}
 \end{example}
 
+\begin{example} Quartiles from an Ogive
+
+Quartiles can be read directly from an ogive. As an example, we will again use the lamp lifetime data. Reading from the ogive in \autoref{fig:lamp_life_ogive_quartiles}, the approximate quartiles are $Q1 \approx 900$, $Q2$ (median) $\approx 1000$, and $Q3 \approx 1100$ hours.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+    \def\xQone{910.35}
+    \def\xQtwo{996.55}
+    \def\xQthree{1116.28}
+
+    \begin{axis}[
+        title={Cumulative Relative Frequency of Lamp Lifetimes (Ogive)},
+        clip=false,
+        xlabel={Lifetime (in Hours)},
+        ylabel={Cumulative Relative Frequency},
+        ymin=0, ymax=1.05,
+        xmin=400, xmax=1500,
+        width=0.9\linewidth,
+        height=7cm,
+        grid=major,
+        grid style={dashed,gray!30},
+        title style={font=\large\bfseries},
+        xtick={400,600,800,1000,1200,1400},
+        xticklabels={400,600,800,,{1,200},{1,400}},
+        ytick={0.25,0.50,0.75,1.00},
+        yticklabels={$\pmb{0.25}$,$\pmb{0.50}$,$\pmb{0.75}$,},
+        yticklabel style={font=\bfseries, text=mseViaBlue},
+        ]
+        \addplot[color=mseViaBlue, thick, mark=*, mark options={fill=mseViaBlue}] coordinates {
+            (500, 0)
+            (600, 0.010)
+            (700, 0.035)
+            (800, 0.095)
+            (900, 0.220)
+            (1000, 0.510)
+            (1100, 0.715)
+            (1200, 0.930)
+            (1300, 0.965)
+            (1400, 0.995)
+            (1500, 1.000)
+        };
+
+        \draw[mseViaBlue, dashed, thick]
+        (axis cs:400,0.25) -- (axis cs:\xQone,0.25) -- (axis cs:\xQone,0);
+        \draw[mseViaBlue, dashed, thick]
+        (axis cs:400,0.5) -- (axis cs:\xQtwo,0.5) -- (axis cs:\xQtwo,0);
+        \draw[mseViaBlue, dashed, thick]
+        (axis cs:400,0.75) -- (axis cs:\xQthree,0.75) -- (axis cs:\xQthree,0);
+
+        \node[anchor=east, font=\bfseries, text=black] at (axis cs: 400,1.00) {$1.00$};
+
+        \node[anchor=north, font=\bfseries, text=mseViaBlue, yshift=-1.5] at (axis cs:\xQone,0) {$\pmb{Q1}$};
+        \node[anchor=north, font=\bfseries, text=mseViaBlue, yshift=-1.5] at (axis cs:\xQtwo,0) {$\pmb{Q2}$};
+        \node[anchor=north, font=\bfseries, text=mseViaBlue, yshift=-1.5] at (axis cs:\xQthree,0) {$\pmb{Q3}$};
+    \end{axis}
+\end{tikzpicture}
+\caption{An ogive for the lamp lifetime data with quartiles $Q1$, $Q2$, and $Q3$ indicated by dashed lines.}
+\label{fig:lamp_life_ogive_quartiles}
+\end{figure}
+
+\end{example}
+
 Percentiles divide data into 100 equal parts, while quartiles divide data into four equal parts.
 
 The \textbf{interquartile range} is a robust measure of dispersion that is not affected by outliers.
