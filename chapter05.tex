@@ -89,7 +89,7 @@ P(B \mid B) = \frac{P(B \cap B)}{P(B)} = \frac{P(B)}{P(B)} = 1
 
 This result intuitively confirms that if \( B \) has occurred, the probability of \( B \) occurring is certain, i.e., 1.
 
-Note that the conditional probability \( P(A \mid B) \) is undefined when \( P(B) = 0 \). This scenario implies that event \( B \) never occurs. Since conditional probability relies on the occurrence of \( B \), if \( B \) has a probability of zero, there are no outcomes in the sample space to condition upon. Therefore, discussing the probability of \( A \) given \( B \) becomes meaningless in this context.
+Note that the elementary formula for \( P(A \mid B) \) is undefined when \( P(B) = 0 \), because it would require division by zero. A probability-zero event need not be empty in a continuous probability model, but conditioning on such events requires more advanced definitions beyond the scope of this chapter.
 
 We can also formulate the axioms of probability in terms of conditional probability. The axioms of probability are as follows:
 
@@ -231,10 +231,10 @@ The findings are summarised in the following contingency table:
     \end{enumerate}
 
 
-The results of the analysis indicate that the diagnostic test has a high probability of correctly identifying patients with renal disease (81.48\%). However, the test is less effective at identifying healthy patients, with a probability of 72.29\%. The overall accuracy of the test is 75.91\%, reflecting the proportion of correct diagnoses across all patients.
+The calculations describe several different performance measures. The sensitivity, which is the probability of a positive result among patients with renal disease, is \(44/67\approx65.67\%\). The specificity, which is the probability of a negative result among healthy patients, is \(60/70\approx85.71\%\). By contrast, \(P(D\mid T^+)=81.48\%\) is the positive predictive value, and \(P(\text{Healthy}\mid T^-)=72.29\%\) is the negative predictive value. The overall accuracy is 75.91\%.
 \end{solution}
 
-Here’s a classic probability puzzle known as the Two-Child Problem.This scenario has appeared in various forms in the literature, each with subtle twists that lead to different results. Before looking at the calculations, take a moment to make your own predictions — you might be surprised by the outcomes!
+Here’s a classic probability puzzle known as the Two-Child Problem. This scenario has appeared in various forms in the literature, each with subtle twists that lead to different results. Before looking at the calculations, take a moment to make your own predictions — you might be surprised by the outcomes!
 
 \begin{example}
     Consider a family with two children, and we are interested in the possible biological gender combinations of the children. The sample space for this situation is:
@@ -282,13 +282,15 @@ where \( G \) represents a biological girl (hence 'girl') and \( B \) represents
 
 \begin{remark}
     Many people might intuitively guess that both \( P(A \mid B) \) and \( P(A \mid C) \) would be 50\%. However, while \( P(A \mid B) = 50\%\), \( P(A \mid C) \) is only 33\%. This illustrates how probability can be counterintuitive. The key is to recognize that event \( B \) is a subset of event \( C \). Specifically, \( B \) excludes the outcome \( (B, G) \), which is included in \( C \). As a result, \( C \) has more outcomes not in \( A \) than \( B \), leading to a smaller \( P(A \mid C) \) compared to \( P(A \mid B) \).
+
+    The result in part (b) assumes that the information supplied is exactly the event \(C\), “at least one child is a girl.” If the father was selected or questioned using a different random procedure, the conditional probability can change. The information-generating procedure must therefore be specified when interpreting this puzzle.
 \end{remark}
 
 \section{Multiplication and Total Probability Rules}
 The multiplication rule is a fundamental principle in probability theory that allows us to calculate the probability of multiple events occurring in sequence. This rule is particularly useful when the events are dependent, meaning that the occurrence of one event influences the probability of the subsequent event.
 
 \begin{theorem}[Multiplication Rule]
-    For any two events \( A \) and \( B \), the probability of both events occurring is given by:
+    If \(P(A)>0\) and \(P(B)>0\), the probability of both events occurring is given by:
     \[
     P(A \cap B) = P(A) P(B \mid A) = P(B) P(A \mid B)
     \]
@@ -310,7 +312,7 @@ Therefore, the probability that a bug is detected in both Unit Testing and Integ
 \end{solution}
 
 \begin{example}
-A company has implemented a two-layer security system to protect against network breaches: \textbf{Firewall (A)} and \textbf{Intrusion Detection System (IDS) (B)}. The probability that a breach attempt is detected by the Firewall is \( P(A) = 0.4 \). If the breach passes through the Firewall, the probability that it is detected by the IDS is \( P(B \mid A^c) = 0.6 \). The probability that the breach is detected by both the Firewall and the IDS is \( P(B \mid A) = 0.8 \).
+A company has implemented a two-layer security system to protect against network breaches: \textbf{Firewall (A)} and \textbf{Intrusion Detection System (IDS) (B)}. The probability that a breach attempt is detected by the Firewall is \( P(A) = 0.4 \). If the breach passes through the Firewall, the probability that it is detected by the IDS is \( P(B \mid A^c) = 0.6 \). Given that the Firewall detects the breach, the conditional probability that the IDS also detects it is \( P(B \mid A) = 0.8 \).
 
 \begin{enumerate}[label=(\alph*)]
     \item What is the probability that a breach is detected by at least one of the security layers?
@@ -506,12 +508,11 @@ Now, consider the probability $P(A \mid B)$. What do you think it would be? You 
 Let's now formalize the definition of independence.
 
 \begin{definition}[Independence]
-    Two events are considered independent if the occurrence of one event does not affect the probability of the other event. In other words, the probability of one event does not depend on the occurrence of the other event. Two events \( A \) and \( B \) are independent if:
-    \begin{align*}
-        P(A \mid B) &= P(A) \\
-        P(B \mid A) &= P(B) \\
-        P(A \cap B) &= P(A) P(B)
-    \end{align*}
+    Two events \( A \) and \( B \) are independent if
+    \[
+        P(A \cap B)=P(A)P(B).
+    \]
+    When \(P(B)>0\), this is equivalent to \(P(A\mid B)=P(A)\), and when \(P(A)>0\), it is equivalent to \(P(B\mid A)=P(B)\).
 \end{definition}
 
 In summary, independence can be understood in two equivalent ways: "Independence means that the probability of the intersection of two events can be found by simply multiplying their individual probabilities," or, alternatively, "Independence means that the conditional probability of one event given the other is the same as the original, unconditioned probability."
@@ -547,7 +548,7 @@ P\left(A_1 \cup A_2 \cup \cdots \cup A_n\right) &= 1 - P\left(A_1^c \cap A_2^c \
         \end{align*}
 \end{theorem}
 
-\textbf{Warning!} A common misconception is to confuse independence with disjointness. However, these are fundamentally different concepts. Two events, $A$ and $B$, are disjoint if the occurrence of one prevents the occurrence of the other, i.e., $A \cap B=\emptyset$. In this case, knowing that $A$ has occurred gives us complete information about $B$ namely, that $B$ cannot occur. This dependence means that disjoint events cannot be independent.
+\textbf{Warning!} A common misconception is to confuse independence with disjointness. However, these are fundamentally different concepts. Two events, $A$ and $B$, are disjoint if $A \cap B=\emptyset$. If both events have positive probability, disjointness implies dependence: knowing that one occurred rules out the other. The exception is when at least one of the disjoint events has probability zero; in that case, the product criterion for independence is satisfied.
 
 \begin{table}[ht]
     \begin{center}
@@ -576,10 +577,11 @@ P\left(A_1 \cup A_2 \cup \cdots \cup A_n\right) &= 1 - P\left(A_1^c \cap A_2^c \
 We can extend the concept of independence to multiple events. A set of events \( A_1, A_2, \ldots, A_n \) are considered independent if the occurrence of any subset of these events does not provide any information about the occurrence of the other events. Mathematically, this is expressed as:
 
 \begin{definition}[Independence of Multiple Events]
-    A set of events \( A_1, A_2, \ldots, A_k \) are considered independent if  the joint probability is equal to the product of the individual probabilities:
+    Events \( A_1, A_2, \ldots, A_k \) are mutually independent if, for every subset \(J\subseteq\{1,\ldots,k\}\) containing at least two indices,
     \[
-    P(A_1 \cap A_2 \cap \cdots \cap A_k) = P(A_1) \cdot P(A_2) \cdots P(A_k)
+    P\left(\bigcap_{j\in J}A_j\right)=\prod_{j\in J}P(A_j).
     \]
+    Requiring the equality only for the intersection of all \(k\) events is not sufficient.
 \end{definition}
 
 \begin{example} The Gambler's Fallacy

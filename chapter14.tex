@@ -199,7 +199,7 @@ Sorting algorithms, on the other hand, often have running times proportional to 
         \hline
         \( \mathcal{O}(n) \) & Linear & Linear search \\
         \hline
-        \( \mathcal{O}(n \log n) \) & Linearithmic (or Log-Linear) & MergeSort, QuickSort, HeapSort \\
+        \( \mathcal{O}(n \log n) \) & Linearithmic (or Log-Linear) & MergeSort, HeapSort, QuickSort (expected) \\
         \hline
         \( \mathcal{O}(n^2) \) & Quadratic & Bubble Sort, Selection Sort \\
         \hline
@@ -246,11 +246,11 @@ Table \ref{tab:growth_rates} summarizes the growth rates of common functions and
     \label{fig:time_complexities}
 \end{figure}
 
-In the next section, we introduce the framework for analysing algorithms using Big-$\mathcal{O}$, Omega ($\Omega$), and Theta ($\Theta$) notation, which allows us to describe the growth behaviour of functions more precisely. These notations correspond to the worst-case, best-case, and tight bounds of an algorithm's time complexity, respectively. Note that Theta ($\Theta$) notation is used when the upper and lower bounds of an algorithm's runtime are asymptotically the same, providing a precise description of the algorithm's complexity across different input sizes.
+In the next section, we introduce Big-$\mathcal{O}$, Omega ($\Omega$), and Theta ($\Theta$) notation, which describe upper, lower, and tight asymptotic bounds, respectively. These notations apply to any chosen runtime function. Best-case, average-case, and worst-case runtimes are separate functions, and each of them can be bounded using any of the three notations.
 
 
 \section{Asymptotic Analysis}
-In the analysis of algorithms, Big-$\mathcal{O}$, Omega ($\Omega$), and Theta ($\Theta$) notation each offer a unique perspective on an algorithm's efficiency, helping us understand how it will perform under different conditions. Whether we aim to determine the upper bound (worst-case scenario), lower bound (best-case scenario), or a tight bound, we can generally follow a systematic approach as follows:
+In algorithm analysis, Big-$\mathcal{O}$, Omega ($\Omega$), and Theta ($\Theta$) notation describe asymptotic bounds on a specified function, such as the worst-case runtime $T_{\mathrm{worst}}(n)$ or the expected runtime $T_{\mathrm{avg}}(n)$. We can generally follow this systematic approach:
 
 \begin{enumerate}
     \item \textbf{Identify the Dominant Operations:} Focus on the operations that contribute most significantly to the running time, particularly those that grow the fastest as the input size increases.
@@ -263,7 +263,7 @@ In the analysis of algorithms, Big-$\mathcal{O}$, Omega ($\Omega$), and Theta ($
 
 \begin{example}
 
-Consider the function, $f(n)=4 n^3+3 n^2+2 n+10$. Let us determine the worst-case scenario, Big-$\mathcal{O}$, using the systematic approach outlined.
+Consider the function $f(n)=4 n^3+3 n^2+2 n+10$. Let us determine an asymptotic upper bound using Big-$\mathcal{O}$ notation.
     \begin{enumerate}
         \item \textbf{Identify the Dominant Operations:}
         \begin{itemize}
@@ -288,7 +288,7 @@ Consider the function, $f(n)=4 n^3+3 n^2+2 n+10$. Let us determine the worst-cas
     \end{enumerate}
 \end{example}
 
-Similar considerations apply to the best-case scenario, Omega ($\Omega$), and the tight bound, Theta ($\Theta$). We now introduce the three notations more in depth, starting with the tight bound notation, Theta ($\Theta$).
+Similar considerations apply when finding lower and tight bounds. We now introduce the three notations in more depth, starting with Theta ($\Theta$).
 
 \subsection*{Theta (\texorpdfstring{$\Theta$}{Theta}) Notation}
 
@@ -340,7 +340,7 @@ Note that by writing "$n$ becomes sufficiently large" we mean that the above ine
     \label{fig:theta_notation}
 \end{figure}
 
-Figure \ref{fig:theta_notation} illustrates the concept of $\Theta$ notation, showing how $f(n)$ is bounded both above and below by $c_1 g(n)$ and $c_2 g(n)$, respectively. The value of $k$ shown is the minimum possible value; any greater value would also work. Theta provides both an upper and lower bound for the running time of an algorithm and describes the asymptotic behaviour of the algorithm’s runtime, indicating that for sufficiently large inputs, the growth rate will stay within these bounds regardless of best-case or worst-case complexity. Or stated more succinctly:
+Figure \ref{fig:theta_notation} illustrates $\Theta$ notation: beyond a suitable threshold $k$, $f(n)$ is bounded below and above by positive constant multiples of $g(n)$. The figure shows one possible threshold, not necessarily the smallest. Theta describes the asymptotic growth of whichever function $f$ has been specified. More succinctly:
 
 \[
 f(n)=\Theta(g(n)): \quad f \text { grows at the same rate as } g
@@ -441,7 +441,7 @@ do not exist, as \( f(n) \) continuously alternates between linear and quadratic
 Using these definitions, we find that \( f(n) = \mathcal{O}(n^2) \) and \( f(n) = \Omega(n) \). We formalise these considerations in the following sections.
 
 \subsection*{Big-\texorpdfstring{$\mathcal{O}$}{O} Notation}
-Big-$\mathcal{O}$ notation provides an \textit{upper bound} on the growth rate of a function. It describes the worst-case scenario for an algorithm’s time complexity, indicating how the runtime or space requirements increase as the input size, $n$, grows. Big-$\mathcal{O}$ is particularly useful when comparing algorithms, as it allows us to focus on the most significant term that dictates complexity with large inputs.
+Big-$\mathcal{O}$ notation provides an \textit{asymptotic upper bound} on the growth rate of a function. It is often applied to a worst-case runtime function, but Big-$\mathcal{O}$ itself does not mean worst case.
 
 \begin{definition}{Big-$\mathcal{O}$}
     $f(n)$ is $\mathcal{O}(g(n))$ if there exist positive constants $c$ and $k$ such that for all $n \geq k$,
@@ -481,7 +481,7 @@ The expression "$n$ becomes sufficiently large" implies that the inequality does
     \label{fig:big_o_notation}
 \end{figure}
 
-Figure \ref{fig:big_o_notation} illustrates the concept of Big-$\mathcal{O}$ notation, showing that $f(n)$ is bounded above by $c \cdot g(n)$. This notation provides an upper bound for the running time of an algorithm, describing the asymptotic behaviour of the algorithm’s runtime. It indicates that for sufficiently large inputs, the growth rate of $f(n)$ will not exceed this bound, regardless of the specific conditions or best-case complexity. Or stated more succinctly:
+Figure \ref{fig:big_o_notation} illustrates that $f(n)$ is eventually bounded above by $c\,g(n)$. More succinctly:
 
 \[
 f(n)=\mathcal{O}(g(n)): \quad f \text{ grows at most as fast as } g
@@ -510,7 +510,7 @@ The following properties hold for $\mathcal{O}$ notation:
 
 \subsection*{Omega (\texorpdfstring{$\Omega$}{Omega}) Notation}
 
-Omega notation provides a \textit{lower bound} on the growth rate, describing the best-case scenario of an algorithm’s complexity. This notation is often used to indicate a guaranteed minimum time complexity, giving insight into how efficiently an algorithm can perform under ideal conditions. \newpage
+Omega notation provides an \textit{asymptotic lower bound} on the growth rate of a specified function. It can be applied to best-, average-, or worst-case runtime functions; Omega itself does not mean best case. \newpage
 
 \begin{definition}{Omega Notation}\label{def:omega_notation}
     $f(n)$ is $\Omega(g(n))$ if there exist positive constants $c$ and $k$ such that for all $n \geq k$,
@@ -549,7 +549,7 @@ The phrase "$n$ becomes sufficiently large" indicates that the above inequality 
     \label{fig:omega_notation}
 \end{figure}
 
-Figure \ref{fig:omega_notation} shows the concept of Omega notation, illustrating that $f(n)$ is bounded below by $c \cdot g(n)$. This notation provides a lower bound on the running time of an algorithm, describing the asymptotic growth rate of the algorithm's runtime in the best-case scenario. Or stated more succinctly:
+Figure \ref{fig:omega_notation} illustrates that $f(n)$ is eventually bounded below by $c\,g(n)$. More succinctly:
 
 \[
 f(n)=\Omega(g(n)): \quad f \text{ grows at least as fast as } g
@@ -586,7 +586,7 @@ For example, if a sorting algorithm always requires a minimum of $n \log n$ comp
     Suppose $f(n)$ is defined as follows.
     
     \[
-    f(n)= \begin{cases}2 n^{2.1} \log ^3 n & \text { if } n \bmod 3=0 \\ 10 n^2 \log ^{50} n & \text { if } n \bmod 3=1 \\ 6 n^2 \log ^{30} n^{80} & \text { if } n \bmod 3=2\end{cases}
+    f(n)= \begin{cases}2 n^{2.1} \log ^3 n & \text { if } n \bmod 3=0 \\ 10 n^2 \log ^{50} n & \text { if } n \bmod 3=1 \\ 6 n^2 \bigl(\log(n^{80})\bigr)^{30} & \text { if } n \bmod 3=2\end{cases}
     \]
     
     
@@ -598,7 +598,7 @@ For example, if a sorting algorithm always requires a minimum of $n \log n$ comp
         
         \textbf{Determine the Big-$\mathcal{O}$ Upper Bound}
         
-        To find the Big-$\mathcal{O}$ upper bound, we look for the term with the highest growth rate as \( n \to \infty \). The term \( 2 n^{2.1} \log^3 n \) grows slightly faster than \( n^2 \) terms, as \( n^{2.1} \log^3 n \) will dominate \( n^2 \log^{50} n \) and \( n^2 \log^{30} n^{30} \) as \( n \) becomes large.
+        To find a Big-$\mathcal{O}$ upper bound, we look for the branch with the highest growth rate. The term \(n^{2.1}\log^3 n\) eventually dominates both \(n^2\log^{50}n\) and \(n^2(\log n)^{30}\).
         
         Thus, a Big-$\mathcal{O}$ upper bound for \( f(n) \) is:
         \[
@@ -607,23 +607,23 @@ For example, if a sorting algorithm always requires a minimum of $n \log n$ comp
         
         \textbf{Determine the Big-$\Omega$ Lower Bound}
         
-        For the Big-$\Omega$ lower bound, we look for the term with the slowest growth rate as \( n \to \infty \). The term \( n^2 \log^{50} n \) grows slower than \( n^{2.1} \log^3 n \), and it also has a slower growth rate than \( n^2 \log ^{30} n^{80} \).
+        For a Big-$\Omega$ lower bound, we look for the branch with the slowest growth rate. Since $\log(n^{80})=80\log n$, the third branch grows as a constant multiple of \(n^2(\log n)^{30}\), which is slower than \(n^2(\log n)^{50}\).
         
         Therefore, a Big-$\Omega$ lower bound for \( f(n) \) is:
         \[
-        f(n) = \Omega(n^2 \log^{50} n).
+        f(n) = \Omega(n^2 \log^{30} n).
         \]
         
         In conclusion, we have:
         \[
-        f(n) = \mathcal{O}(n^{2.1} \log^3 n) \quad \text{and} \quad f(n) = \Omega(n^2 \log^{50} n).
+        f(n) = \mathcal{O}(n^{2.1} \log^3 n) \quad \text{and} \quad f(n) = \Omega(n^2 \log^{30} n).
         \]\end{solution}
 
 To summarise:
 \begin{itemize}
-    \item Big-$\mathcal{O}$ notation provides an upper bound, describing the \textit{worst-case} scenario.
-    \item Omega ($\Omega$) notation gives a lower bound, capturing the \textit{best-case} scenario.
-    \item Theta ($\Theta$) notation describes a tight bound, representing the algorithm’s \textit{consistent} complexity.
+    \item Big-$\mathcal{O}$ notation provides an asymptotic upper bound.
+    \item Omega ($\Omega$) notation provides an asymptotic lower bound.
+    \item Theta ($\Theta$) notation provides a tight asymptotic bound.
 \end{itemize}
 
 By understanding these notations, we gain a fuller perspective on an algorithm’s efficiency across different scenarios.
@@ -807,7 +807,7 @@ f(n)=\omega(g(n)): \quad f \text{ grows strictly faster than } g
     \[
     \frac{f(n)}{n^2} = \frac{n^3 + 6n + 7}{n^2} = n + \frac{6}{n} + \frac{7}{n^2}
     \]
-    As $n \to \infty$, the right-hand side approaches $n$, which is greater than any positive constant $\epsilon$. Therefore, $f(n) = \omega(n^2)$.
+    As $n \to \infty$, the right-hand side tends to infinity and therefore eventually exceeds every positive constant $\epsilon$. Hence $f(n) = \omega(n^2)$.
 \end{solution}
 
 This leads us to the following proposition:
@@ -902,7 +902,7 @@ Little-$o$ and Little-$\omega$ notations can be used to provide more precise bou
         This leads us to the following propositions:
 
         \begin{proposition} \label{prop:big_o_theorem}
-            Let \( f(n) \) and \( g(n) \) be two nonnegative functions. If
+            Let \( f(n) \) and \( g(n) \) be two nonnegative functions, with $g(n)>0$ for all sufficiently large $n$. If
             \medskip
             \[
             \limsup_{n \rightarrow \infty} \frac{f(n)}{g(n)} < \infty
@@ -915,7 +915,7 @@ Little-$o$ and Little-$\omega$ notations can be used to provide more precise bou
 
 
         \begin{proposition} \label{prop:big_omega_theorem}
-            Let \( f(n) \) and \( g(n) \) be two nonnegative functions. If
+            Let \( f(n) \) and \( g(n) \) be two nonnegative functions, with $g(n)>0$ for all sufficiently large $n$. If
             \medskip
             \[
             \liminf_{n \rightarrow \infty} \frac{f(n)}{g(n)} > 0
@@ -988,8 +988,8 @@ Little-$o$ and Little-$\omega$ notations can be used to provide more precise bou
         \begin{custombox}{Informal Limit Approach}
             \[
                 \begin{array}{ll}
-                \displaystyle \lim_{n \to \infty} \frac{f(n)}{g(n)} \neq \infty & \Rightarrow f(n) = \mathcal{O}(g(n)) \\[10pt]
-                \displaystyle \lim_{n \to \infty} \frac{f(n)}{g(n)} \neq 0 & \Rightarrow f(n) = \Omega(g(n))
+                \displaystyle \lim_{n \to \infty} \frac{f(n)}{g(n)} = L<\infty & \Rightarrow f(n) = \mathcal{O}(g(n)) \\[10pt]
+                \displaystyle \lim_{n \to \infty} \frac{f(n)}{g(n)} = L>0 & \Rightarrow f(n) = \Omega(g(n))
                 \end{array}
                 \]
                 \medskip
@@ -1017,18 +1017,6 @@ Little-$o$ and Little-$\omega$ notations can be used to provide more precise bou
             
         \end{solution}
 
-        \begin{solution}
-            To determine if $\sqrt{n} \cdot \log n = \mathcal{O}(n \log n)$, we compute the following limit:
-            
-            \[
-            \lim_{n \to \infty} \frac{\sqrt{n} \cdot \log n}{n \log n} = \lim_{n \to \infty} \frac{\sqrt{n}}{n} = \lim_{n \to \infty} \frac{1}{\sqrt{n}}.
-            \]
-        
-            As $n \to \infty$, $\frac{1}{\sqrt{n}}$ approaches $0$. Since the limit is finite (not infinity), this result implies that $\sqrt{n} \cdot \log n = \mathcal{O}(n \log n)$.
-        
-            Therefore, we conclude that $\sqrt{n} \cdot \log n = \mathcal{O}(n \log n)$.
-        \end{solution}
-        
         The limit approach, while convenient, is not definitive. For some functions (e.g., oscillating functions), the formal definitions and propositions should be applied directly. This limit-based technique serves as a useful heuristic, particularly when the asymptotic growth is clear.
     
 \subsection*{Comparing Notations}

@@ -1,6 +1,6 @@
 \chapter{Boolean Algebra}
 \label{chap:ch13}
-In the previous chapter, we explored various numeral systems — binary, decimal, octal, and hexadecimal — and learned how to perform conversions and binary arithmetic. Binary, with its base-2 structure, is particularly significant in the world of computing because all digital systems operate using binary data. Every number and operation inside a computer is ultimately broken down into a series of 0s and 1s.
+In Chapter~\ref{chap:ch2}, we explored binary, decimal, octal, and hexadecimal numeral systems and learned how to perform conversions and binary arithmetic. Binary, with its base-2 structure, is particularly significant in computing because digital systems represent and manipulate information using two logical states.
 
 As we move from working with binary numbers to understanding \textbf{Boolean algebra}, we take the next step in comprehending how computers perform logical operations using binary values. While numeral systems allowed us to understand how numbers are represented and manipulated, Boolean algebra enables us to understand how decisions and logical processes are carried out within digital systems. In essence, Boolean algebra provides the rules that guide logical decision-making in binary, the same way arithmetic operates in numeral systems.
 
@@ -30,7 +30,7 @@ Although Boole laid the groundwork, it was not until the 1930s that \textbf{Clau
 \subsection*{Relevance to Computer Science}
 Boolean algebra plays a central role in computer science, especially in the design and functioning of digital systems, such as computers, mobile devices, and embedded systems. At its core, Boolean algebra is used to model and design the behaviour of \textbf{digital circuits}, which are built from electronic components that have two states: on or off, corresponding directly to the binary values 1 and 0.
 
-At the heart of these digital circuits are \textbf{transistors}. A transistor is a tiny electronic device (typically less than 45 nanometres in size) that allows current to flow through it, functioning as a switch. Computers are made up of billions of connected transistors.
+At the heart of these digital circuits are \textbf{transistors}. A transistor is a semiconductor device that can control electrical current and can therefore be used as an electronic switch. Modern processors contain billions of interconnected transistors.
 
 \begin{figure}[h]
     \centering
@@ -166,12 +166,12 @@ Equalities in Boolean algebra can be directly translated into equivalences of co
     Translate $1 \cdot 0+\overline{(0+1)}=0$, the equality found in Example \ref{ex4.1}, into a logical equivalence.
 
     \begin{solution}
-        $(\mathbf{T} \wedge \mathbf{F}) \vee \neg(\mathbf{T} \vee \mathbf{F}) \equiv \mathbf{F}$
+        $(\mathbf{T} \wedge \mathbf{F}) \vee \neg(\mathbf{F} \vee \mathbf{T}) \equiv \mathbf{F}$
     \end{solution}
     
 \end{example}
 
-Since logic is a whole field in its own right, we will not consider this any further but simply note that the \textit{equivalence} is uncanny (no pun intended).\footnote{Notice that we used '$\equiv$' in the previous example. The equivalence symbol is more specific in logic (and Boolean algebra), signifying logical equivalence. Two expressions are logically equivalent if they always yield the same truth value, regardless of the values of the variables involved. Using '$\equiv$' emphasises that the two expressions are not just equal for specific values, but that they are structurally identical in terms of logic. We choose to use '$=$' because it communicates that the expressions behave identically on all inputs.}
+Since logic is a field in its own right, we will not pursue it further here.\footnote{The symbol '$\equiv$' denotes logical equivalence: two propositions are logically equivalent when they have the same truth value for every valuation of their variables. Equivalent propositions need not have the same syntactic structure. In Boolean algebra, '$=$' similarly indicates that two Boolean expressions define the same function on all inputs.}
 
 \section{Boolean Functions}
 

@@ -24,16 +24,16 @@ For $a,b,c,m \in \mathbb{R}$, with $a,b,c,m \neq 0$ where required, the followin
 
 \begin{proposition}{Rules for calculations involving radicals}
     \begin{align*}
-    &(1) \quad \sqrt[n]{x y}=\sqrt[n]{x} \times \sqrt[n]{y}   &   &\textnormal{where } x,y \geq 0\\
-    &(2) \quad \sqrt[n]{\frac{x}{y}} = \frac{\sqrt[n]{x}}{\sqrt[n]{y}}    &   &\textnormal{where } x \geq 0 \textnormal{ and } y > 0 \\
+    &(1) \quad \sqrt[n]{x y}=\sqrt[n]{x} \times \sqrt[n]{y}   &   &\textnormal{where both sides are real; if }n\textnormal{ is even, require }x,y\geq0\\
+    &(2) \quad \sqrt[n]{\frac{x}{y}} = \frac{\sqrt[n]{x}}{\sqrt[n]{y}}    &   &\textnormal{where both sides are real and }y\neq0;\textnormal{ if }n\textnormal{ is even, require }x\geq0,y>0 \\
     &(3) \quad \sqrt{x^2} = |x|   &   &\textnormal{where } x \in \mathbb{R} \\
-    &(4) \quad (\sqrt[n]{x})^n = x    &   &\textnormal{If } x < 0 \textnormal{ and } n \in \mathbb{N}, \textnormal{then } \sqrt[n]{x} \textnormal{ is not defined}\\
+    &(4) \quad (\sqrt[n]{x})^n = x    &   &\textnormal{for all real }x\textnormal{ if }n\textnormal{ is odd, and for }x\geq0\textnormal{ if }n\textnormal{ is even}\\
     &(5) \quad \sqrt[n]{-x}=-\sqrt[n]{x}  &   &\textnormal{where } x \geq 0 \textnormal{ and } n \in \mathbb{N} \textnormal{ is odd }
     \end{align*}
 \end{proposition}
 
 \begin{proposition}{Properties of Integer Exponents}
-Let $n,m\in\mathbb{Z}$. Then the following hold (with $x,y\in\mathbb{R}$ and nonzero where stated):
+Let $n,m\in\mathbb{Z}$. Then the following hold wherever the powers are defined; in particular, a base must be non-zero whenever a negative exponent occurs:
 \[
 \begin{aligned}
 &\text{(1)}\quad x^{n}\cdot x^{m}=x^{\,n+m},\\[2pt]
@@ -77,8 +77,8 @@ The following operations can be performed on both sides of the formula:
     \item Add the same quantity to both sides
     \item Subtract the same quantity from both sides
     \item Multiply both sides by the same quantity - remember to multiply all terms
-    \item Divide both sides by the same quantity - remember to divide all terms
-    \item Apply a function to both sides, such as squaring or finding the reciprocal
+    \item Divide both sides by the same non-zero quantity - remember to divide all terms
+    \item Apply a function to both sides. This preserves implication, but it preserves equivalence only when the function is one-to-one on the relevant domain; squaring can introduce extraneous solutions, and reciprocals require non-zero sides.
 \end{itemize}
 \end{custombox}
 
@@ -129,13 +129,14 @@ where $a$ and $b$ are constants and the domain is all real numbers.
 \begin{definition}{Base-10 Logarithms}
 
 \[
-\log x=y \iff 10^y=x
+\log x=y \iff 10^y=x, \qquad x>0
 \]
 
 \textit{Verbally}: $\log x$ is the exponent in the power of 10 that gives $x$   
 \end{definition}
 
 \begin{custombox}{Properties of base-10 logarithms}
+The following identities require $x>0$ and $y>0$:
 \begin{itemize}
     \item Log of a Product:
     
@@ -191,12 +192,14 @@ where $a$ and $b$ are constants and the domain is all real numbers.
 \begin{equation*}
 \log _a x=\frac{\log_b x}{\log_b a} \quad \text { or } \quad \log_a x=\frac{1}{\log_b a}\left(\log_b x\right)
 \end{equation*}
+where $a,b,x>0$ and $a\neq1$, $b\neq1$.
     
 \end{custombox}
 
 \begin{custombox}{Properties of Logarithms}
 \setlength{\leftskip}{1cm}  % Reset the text indent
 \setlength{\rightskip}{1cm} % Reset the right indent
+Assume throughout that the logarithm bases are positive and not equal to 1, and that all logarithm arguments are positive.
 The Logarithm of a Power:
 $$
 \log _b x^y=y \log _b x
@@ -549,7 +552,7 @@ For selections from $n$ types:
 \end{axiom}
 
 \begin{definition}[Probability of an Event]
-    The probability of an event \( A \), denoted by \( P(A) \), is the likelihood that event \( A \) will occur. It is defined as the ratio of the number of favorable outcomes to the total number of outcomes in the sample space.
+    A probability measure assigns a number \(P(A)\in[0,1]\) to each event \(A\) in accordance with the probability axioms. In a finite sample space whose elementary outcomes are equally likely, this reduces to
     \[
     P(A) = \frac{\text{Number of favorable outcomes}}{\text{Total number of outcomes}}
     \]
@@ -577,7 +580,7 @@ For selections from $n$ types:
         P(A-B)=P(A)-P(A \cap B)
         \]
         \item \textbf{Subset Rule:} If $A$ is a subset of $B$ ($A \subset B$), then
-        \[P(A) \leq P(B)\].
+        \[P(A) \leq P(B).\]
     \end{itemize}
 \end{theorem}
 
@@ -590,9 +593,10 @@ P(A \mid B) = \frac{P(A \cap B)}{P(B)}, \qquad P(B) > 0
 \end{definition}
 
 \begin{axiom}[Axioms of Conditional Probability]
+    Fix an event $B$ with $P(B)>0$. Then $A\mapsto P(A\mid B)$ is a probability measure, so:
     \begin{itemize}
         \item \textbf{Axiom 1:} For any event \(A\), \( 0 \leq P(A\mid B) \leq 1 \).
-        \item \textbf{Axiom 2:} Conditional probability of $B$ given $B$ is 1, i.e., $P(B \mid B)=1$.
+        \item \textbf{Axiom 2:} $P(S\mid B)=1$ (and consequently $P(B\mid B)=1$).
         \item \textbf{Axiom 3:} If \(A_1, A_2, A_3, \cdots\) are disjoint events, then
          
         \hspace*{2.8em}$P\left(A_1 \cup A_2 \cup A_3 \cdots \mid B\right)=P\left(A_1 \mid B\right)+P\left(A_2 \mid B\right)+P\left(A_3 \mid B\right)+\cdots$
@@ -600,6 +604,7 @@ P(A \mid B) = \frac{P(A \cap B)}{P(B)}, \qquad P(B) > 0
 \end{axiom}
 
 \begin{theorem}{Rules of Conditional Probability}
+    In the following rules, assume $P(C)>0$.
     \begin{itemize}
         \item \textbf{Complement Rule:} The probability of the complement of event $A$ given $C$ is
     
@@ -628,56 +633,56 @@ P(A \mid B) = \frac{P(A \cap B)}{P(B)}, \qquad P(B) > 0
 \end{theorem}
 
 \begin{theorem}[Multiplication Rule]
-    For any two events \( A \) and \( B \), the probability of both events occurring is given by:
+    If $P(A)>0$, then $P(A\cap B)=P(A)P(B\mid A)$. If $P(B)>0$, then $P(A\cap B)=P(B)P(A\mid B)$. Hence, when both probabilities are positive:
     \[
     P(A \cap B) = P(A) P(B \mid A) = P(B) P(A \mid B)
     \]
 \end{theorem}
 
 \begin{theorem}[Law of Total Probability]
-For any events \( A \) and \( B \) such that \( B \) and \( B^c \) form a partition of the sample space \( S \), the total probability of event \( A \) is given by:
+For any event \(A\) and event \(B\) with $0<P(B)<1$, the partition $B,B^c$ gives:
     \begin{align*}
     P(A) &= P(A \cap B) + P(A \cap B^c) \\
     &= P(B) P(A \mid B) + P(B^c) P(A \mid B^c)
     \end{align*}
 
-    For any event \( A \) and any partition of the sample space \( B_1, B_2, \ldots, B_n \) such that \( B_i \cap B_j = \emptyset \) for all \( i \neq j \) and \( \bigcup_{i=1}^{n} B_i = S \), the total probability of event \( A \) is given by:
+    More generally, for any finite partition \(B_1,\ldots,B_n\) of $S$ with $P(B_i)>0$ for every $i$:
     \begin{align*}
     P(A) &= \sum_{i=1}^{n} P(A \mid B_i) P(B_i)
     \end{align*}
 \end{theorem}
 
 \begin{definition}[Independence]
-    Two events are considered independent if the occurrence of one event does not affect the probability of the other event. In other words, the probability of one event does not depend on the occurrence of the other event. Two events \( A \) and \( B \) are independent if:
+    Events \(A\) and \(B\) are independent precisely when
     \begin{align*}
-        P(A \mid B) &= P(A) \\
-        P(B \mid A) &= P(B) \\
-        P(A \cap B) &= P(A) P(B)
+        P(A \cap B) &= P(A)P(B).
     \end{align*}
+    If $P(B)>0$, this is equivalent to $P(A\mid B)=P(A)$; if $P(A)>0$, it is equivalent to $P(B\mid A)=P(B)$.
 \end{definition}
 
 \begin{theorem}[Independence and DeMorgan's Law]
-        If \( A_1, A_2, \cdots, A_n \) are independent then
+        If \( A_1, A_2, \ldots, A_n \) are mutually independent, then
         \begin{align*}
         &P\left(A_1 \cup A_2 \cup \cdots \cup A_n\right)=1-\left(1-P\left(A_1\right)\right)\left(1-P\left(A_2\right)\right) \cdots\left(1-P\left(A_n\right)\right)
         \end{align*}
 \end{theorem}
 
 \begin{definition}[Independence of Multiple Events]
-    A set of events \( A_1, A_2, \ldots, A_k \) are considered independent if  the joint probability is equal to the product of the individual probabilities:
+    Events \(A_1,\ldots,A_k\) are \emph{mutually independent} if, for every subset of at least two distinct indices $J\subseteq\{1,\ldots,k\}$,
     \[
-    P(A_1 \cap A_2 \cap \cdots \cap A_k) = P(A_1) \cdot P(A_2) \cdots P(A_k)
+      P\!\left(\bigcap_{j\in J}A_j\right)=\prod_{j\in J}P(A_j).
     \]
+    Checking only the intersection of all $k$ events is not sufficient.
 \end{definition}
 
 \begin{theorem}[Bayes' Theorem]
-    For any two events $A$ and $B$, where $P(A) \neq 0$, we have
+    For events $A$ and $B$ with $P(A)>0$, Bayes' theorem gives the first equality below. The expanded denominator also assumes $0<P(B)<1$ so both displayed conditional probabilities are defined:
     \begin{align*}
     P(B \mid A) = \frac{P(A \mid B) \cdot P(B)}{P(A)}
      = \frac{P(A \mid B) \cdot P(B)}{P(A \mid B) \cdot P(B) + P(A \mid B^c) \cdot P(B^c)}
     \end{align*}
 
-    If $B_1, B_2, B_3, \cdots$ form a partition of the sample space $S$, and $A$ is any event with $P(A) \neq 0$, we have
+    If $B_1,B_2,\ldots$ form a finite or countable partition of $S$ with $P(B_i)>0$ for all $i$, and $P(A)>0$, then
 
     \begin{align*}
     P\left(B_j \mid A\right) = \frac{P\left(A \mid B_j\right) \cdot P\left(B_j\right)}{\sum_i P\left(A \mid B_i\right) \cdot P\left(B_i\right)}
@@ -739,7 +744,7 @@ $$
 \begin{definition}[Mode]
 The \textbf{mode} is the value that appears most frequently in a dataset. A dataset can have:
 \begin{itemize}
-    \item \textbf{No mode}: If all values appear with equal frequency
+    \item \textbf{No unique mode}: If all observed values have equal frequency, every value ties for highest frequency; some conventions report this as ``no mode.''
     \item \textbf{One mode (unimodal)}: If one value appears most frequently
     \item \textbf{Multiple modes (multimodal)}: If two or more values tie for the highest frequency
 \end{itemize}
@@ -764,14 +769,14 @@ $$
 \end{definition}
 
 \begin{definition}[Coefficient of Variation]
-The \textbf{coefficient of variation} is the ratio of standard deviation to the mean:
+For ratio-scale data with non-zero sample mean, the \textbf{coefficient of variation} is the ratio of the sample standard deviation to the mean:
 \[
 CV = \frac{s}{\bar{x}} \times 100\%
 \]
 \end{definition}
 
 \begin{definition}[Percentile]
-The $p$-th \textbf{percentile} is the value below which $p\%$ of the data falls.
+The $p$th \textbf{percentile} is a value at or below which approximately $p\%$ of the ordered observations lie. Several interpolation conventions exist, so a numerical percentile calculation should state the convention used.
 \end{definition}
 
 \begin{definition}[Quartiles]
@@ -779,10 +784,9 @@ The $p$-th \textbf{percentile} is the value below which $p\%$ of the data falls.
 Quartiles divide an ordered dataset into four equal parts.
 
 \begin{itemize}
-    \item \textbf{Q1 (First Quartile)}: The 25th percentile. 25\% of the data is less than this value.
+    \item \textbf{Q1 (First Quartile)}: The 25th percentile.
     \item \textbf{Q2 (Second Quartile)}: The 50th percentile. This is the \textbf{median} of the dataset.
-    \item \textbf{Q3 (Third Quartile)}: The 75th percentile. 75\% of the data is less than this value.
-    \item \textbf{Q4 (Fourth Quartile)}: The 100th percentile. 100\% of the data is less than this value.
+    \item \textbf{Q3 (Third Quartile)}: The 75th percentile.
 \end{itemize}
 \end{definition}
 
@@ -801,26 +805,24 @@ A \textbf{normal distribution} is a symmetric, bell-shaped distribution where th
 \begin{definition}[Skewness]
     \textbf{Skewness} measures the asymmetry of data distribution:
     \begin{itemize}
-        \item \textbf{Positive skew (skewed to the right)}: Tail extends to the right (mean > median)
-        \item \textbf{Negative skew (skewed to the left)}: Tail extends to the left (mean < median)
-        \item \textbf{Symmetric}: Mean $\approx$ median
+        \item \textbf{Positive skew (skewed to the right)}: The longer tail extends to the right.
+        \item \textbf{Negative skew (skewed to the left)}: The longer tail extends to the left.
+        \item \textbf{Symmetric}: The two sides have approximately the same shape.
     \end{itemize}
+    Comparisons between the mean and median can be useful heuristics, but they do not define skewness.
 \end{definition}
 
 \begin{definition}[Box Plot Components]
-A box plot displays five key statistics:
+A standard Tukey box plot shows the quartiles and whiskers:
 \begin{itemize}
-    \item \textbf{Minimum}: The smallest value (excluding outliers)
-    \item \textbf{Q1 (First Quartile)}: 25\% of data below this value
-    \item \textbf{Median (Q2)}: 50\% of data below this value
-    \item \textbf{Q3 (Third Quartile)}: 75\% of data below this value
-    \item \textbf{Maximum}: The largest value (excluding outliers)
-    \item \textbf{Outliers}: Points beyond 1.5 × IQR from the box
+    \item the box from $Q_1$ to $Q_3$ and a line at the median $Q_2$;
+    \item whiskers extending to the most extreme observations within $1.5\,IQR$ of the relevant quartile; and
+    \item observations beyond the whiskers plotted individually as potential outliers.
 \end{itemize}
 \end{definition}
 
 \begin{theorem}[Law of Large Numbers]
-    The sample mean of a dataset will converge to the population mean as the sample size increases.
+    If $X_1,X_2,\ldots$ are independent and identically distributed random variables with finite expected value $\mu$, then their sample mean converges to $\mu$ in probability as the sample size tends to infinity.
 \end{theorem}
 
 \begin{theorem}[The Empirical Rule]
@@ -1124,7 +1126,7 @@ A \vect{b_1} & A \vect{b_2} & \cdots & A \vect{b_p}
     \item $A(B + C) = AB + AC$
     \item $(B + C)A = BA + CA$
     \item $\alpha(AB) = (\alpha A)B = A(\alpha B)$
-    \item $I_n A = AI_n = A$
+    \item If $A$ is $m\times n$, then $I_mA=A=AI_n$.
 \end{enumerate}
 \end{theorem}
 
@@ -1297,7 +1299,7 @@ provided the limit exists.
 
     \begin{enumerate}
         \item \textbf{Constant Rule:} If $c$ is constant, then $\dfrac{d}{dx}c=0$. \vspace{0.5em}
-        \item \textbf{Power Rule:} For any real $n$, $\dfrac{d}{dx}x^n = n x^{n-1}$. \vspace{0.5em}
+        \item \textbf{Power Rule:} For any real $n$, at points where the real-valued power function is defined and differentiable, $\dfrac{d}{dx}x^n = n x^{n-1}$. \vspace{0.5em}
         \[
         \frac{d}{dx}x^n = n x^{n-1}.
         \]
@@ -1315,7 +1317,7 @@ provided the limit exists.
     \begin{itemize}
         \item If \(f'(x)\) changes from negative to positive at \(c\), then \(f\) has a \textbf{local minimum} at \(c\).
         \item If \(f'(x)\) changes from positive to negative at \(c\), then \(f\) has a \textbf{local maximum} at \(c\).
-        \item If \(f'(x)\) does not change sign at \(c\), then \(f\) has no local extremum at \(c\); it is a stationary point of inflection.
+        \item If \(f'(x)\) does not change sign at \(c\), then \(f\) has no local extremum at \(c\). This alone does not imply that $c$ is an inflection point.
     \end{itemize}
 
 \end{theorem}
@@ -1469,6 +1471,8 @@ Every integer greater than 1 can be represented uniquely as a product of prime n
 
 % 14
 
+In the following definitions, $f$ and $g$ are nonnegative functions and $g(n)>0$ for all sufficiently large $n$.
+
 \begin{definition}{Theta(\(\Theta\))}
     $f(n)$ is $\Theta(g(n))$ if there exist positive constants $c_1, c_2$, and $k$ such that for all $n \geq k$,
     \medskip
@@ -1480,7 +1484,7 @@ This means that $f(n)$ is asymptotically bounded both above and below by $g(n)$,
 \end{definition}
 
 \begin{proposition} 
-    Let $f(n)$ and $g(n)$ be two nonnegative functions, and suppose there is a constant $c>0$ for which
+    Let $f(n)$ and $g(n)$ be two nonnegative functions with $g(n)>0$ eventually, and suppose there is a constant $c>0$ for which
     \medskip
     \[
     \lim _{n \rightarrow \infty} \frac{f(n)}{g(n)}=c
@@ -1527,7 +1531,7 @@ This means that $f(n)$ is asymptotically bounded both above and below by $g(n)$,
 \end{definition}
 
 \begin{proposition}
-    Let \( f(n) \) and \( g(n) \) be two nonnegative functions, and suppose
+    Let \( f(n) \) and \( g(n) \) be two nonnegative functions with $g(n)>0$ eventually, and suppose
     \medskip
     \[
     \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = 0
@@ -1547,7 +1551,7 @@ This means that $f(n)$ is asymptotically bounded both above and below by $g(n)$,
 \end{definition}
 
 \begin{proposition}
-    Let \( f(n) \) and \( g(n) \) be two nonnegative functions, and suppose
+    Let \( f(n) \) and \( g(n) \) be two nonnegative functions with $g(n)>0$ eventually, and suppose
     \medskip
     \[
     \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} = \infty
@@ -1557,7 +1561,7 @@ This means that $f(n)$ is asymptotically bounded both above and below by $g(n)$,
 \end{proposition}
 
         \begin{proposition}
-            Let \( f(n) \) and \( g(n) \) be two nonnegative functions. If
+            Let \( f(n) \) and \( g(n) \) be two nonnegative functions with $g(n)>0$ eventually. If
             \medskip
             \[
             \limsup_{n \rightarrow \infty} \frac{f(n)}{g(n)} < \infty
@@ -1567,7 +1571,7 @@ This means that $f(n)$ is asymptotically bounded both above and below by $g(n)$,
         \end{proposition}
 
         \begin{proposition}
-            Let \( f(n) \) and \( g(n) \) be two nonnegative functions. If
+            Let \( f(n) \) and \( g(n) \) be two nonnegative functions with $g(n)>0$ eventually. If
             \medskip
             \[
             \liminf_{n \rightarrow \infty} \frac{f(n)}{g(n)} > 0
@@ -1579,8 +1583,8 @@ This means that $f(n)$ is asymptotically bounded both above and below by $g(n)$,
         \begin{custombox}{Informal Limit Approach}
             \[
                 \begin{array}{ll}
-                \displaystyle \lim_{n \to \infty} \frac{f(n)}{g(n)} \neq \infty & \Rightarrow f(n) = \mathcal{O}(g(n)) \\[10pt]
-                \displaystyle \lim_{n \to \infty} \frac{f(n)}{g(n)} \neq 0 & \Rightarrow f(n) = \Omega(g(n))
+                \displaystyle \lim_{n \to \infty} \frac{f(n)}{g(n)} = L<\infty & \Rightarrow f(n) = \mathcal{O}(g(n)) \\[10pt]
+                \displaystyle \lim_{n \to \infty} \frac{f(n)}{g(n)} = L>0 & \Rightarrow f(n) = \Omega(g(n))
                 \end{array}
                 \]
                 \medskip

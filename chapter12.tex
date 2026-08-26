@@ -32,9 +32,9 @@ Number theory, often called the "Queen of Mathematics," is a branch of mathemati
     \draw[thick, fill=BurntOrange] (1,0) ellipse (2cm and 1.2cm);
     \node at (1, 0) {\Large$\mathbb{R} \setminus \mathbb{Q} $};
     
-    % Imaginary Numbers
-    \draw[thick, dashed, fill=YellowGreen] (7,0) ellipse (2cm and 1.2cm);
-    \node at (7, 0) {\Large $\mathbb{I}$};
+    % Non-real complex numbers occupy the part of C outside R.
+    \node[align=center] at (6, 0) {\Large Non-real complex numbers\\[3pt]
+    \large $a+bi$ with $b\neq 0$};
 
 \end{tikzpicture}
     \caption{Venn diagram of numbers}
@@ -54,27 +54,28 @@ Many numbers are included in more than one set. Table \ref{tab:number_types} off
 \caption{Types of Numbers and Their Properties}
 \label{tab:number_types}
 \renewcommand{\arraystretch}{1.6} % Adjust the row height for the entire table
-\begin{tabular}{|m{3.1cm}|>{\centering\arraybackslash}m{1.5cm}|m{5.4cm}|m{5cm}|}
+\small
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{2.35cm}|>{\centering\arraybackslash}p{1.3cm}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
 \hline
-\raggedright\text{Natural Numbers} & \(\mathbb{N}\) & Numbers used for counting (all positive integers). & \(0, 1, 2, \ldots\) \\ \hline
-\raggedright\text{Integers} & \(\mathbb{Z}\) & All positive and negative whole numbers. & \(\{\ldots, -2, -1, 0, 1, 2, \ldots\}\) \\ \hline
-\raggedright\text{Rational Numbers} & \(\mathbb{Q}\) & All real numbers which can be expressed as a fraction, \(\frac{p}{q}\), where \(p\) and \(q\) are integers and \(q \neq 0\). All integers are rational numbers as \(1\) is a non-zero integer. & \(\dfrac{1}{5}, \dfrac{5}{1} (=5), \dfrac{2}{3}, \dfrac{3}{2}, \dfrac{0}{3} (=0)\) \\ \hline
-\raggedright\text{Irrational Numbers} & \(\mathbb{R}\ \setminus \mathbb{Q}\) & All real numbers which cannot be expressed as a fraction whose numerator and denominator are integers (i.e., all real numbers which aren't rational). & \(\pi, \sqrt{2}, \sqrt{3}\) \\ \hline
-\raggedright\text{Real Numbers} & \(\mathbb{R}\) & Includes all numbers on the number line. & \(\dfrac{1}{5}, \sqrt{\dfrac{1}{5}}, 0, -2\) \\ \hline
-\raggedright\text{Imaginary Numbers} & \(\mathbb{I}\) & Numbers which are the product of a real number and the imaginary unit \(i\) (where \(i = \sqrt{-1}\)). & \(\begin{array}{l}
-\vspace{3pt} 3i = \sqrt{-9},\ -5i = \sqrt{-25}, \\
+Natural Numbers & \(\mathbb{N}\) & The non-negative integers (the convention used in this book). & \(0, 1, 2, \ldots\) \\ \hline
+Integers & \(\mathbb{Z}\) & All positive and negative whole numbers. & \(\{\ldots, -2, -1, 0, 1, 2, \ldots\}\) \\ \hline
+Rational Numbers & \(\mathbb{Q}\) & All real numbers which can be expressed as a fraction, \(\frac{p}{q}\), where \(p\) and \(q\) are integers and \(q \neq 0\). All integers are rational numbers as \(1\) is a non-zero integer. & \(\dfrac{1}{5}, \dfrac{5}{1} (=5), \dfrac{2}{3}, \dfrac{3}{2}, \dfrac{0}{3} (=0)\) \\ \hline
+Irrational Numbers & \(\mathbb{R}\ \setminus \mathbb{Q}\) & All real numbers which cannot be expressed as a fraction whose numerator and denominator are integers. & \(\pi, \sqrt{2}, \sqrt{3}\) \\ \hline
+Real Numbers & \(\mathbb{R}\) & Includes all numbers on the number line. & \(\dfrac{1}{5}, \sqrt{\dfrac{1}{5}}, 0, -2\) \\ \hline
+\makecell[l]{Pure Imaginary\\Numbers} & \(i\mathbb{R}\) & Numbers of the form \(bi\), where \(b\) is real and \(i^2=-1\). & \(\begin{array}{l}
+\vspace{3pt} 3i = \sqrt{-9},\ -5i = -\sqrt{-25}, \\
 3\sqrt{2}i = \sqrt{-18} \vspace{3pt}
 \end{array}\) \\ \hline
-\raggedright\text{Complex Numbers} & \(\mathbb{C}\) & All numbers which can be expressed in the form $a+b i$ where $a$ and $b$ are real numbers and $i=\sqrt{-1}$. Each complex number is a combination of a real number $(a)$ and an imaginary number $(b i)$. & $1+2 i, 1, i,-3 i, 0,-5+i$ \\ \hline
-\end{tabular}
+Complex Numbers & \(\mathbb{C}\) & All numbers of the form $a+bi$, where $a,b\in\mathbb{R}$ and $i^2=-1$. & $1+2 i, 1, i,-3 i, 0,-5+i$ \\ \hline
+\end{tabularx}
 \end{table}
 
 \begin{remark}
-    Figure \ref{fig:venn_num} may appear misleading at first glance, as it suggests that there are real numbers which are neither rational nor irrational (depicted by the blue region). However, this is not the case. The set of real numbers is exclusively comprised of rational and irrational numbers. This is precisely why the set of irrational numbers is denoted as \(\mathbb{R} \setminus \mathbb{Q}\), meaning "all real numbers except the rational numbers". The same is true of the complex numbers; the are all composed of the real numbers and the imaginary numbers.
+    In Figure \ref{fig:venn_num2}, the rational and irrational numbers partition the real numbers. Every complex number has the form $a+bi$ with $a,b\in\mathbb{R}$. The real numbers are precisely those with $b=0$; complex numbers with $b\neq0$ are non-real. Pure imaginary numbers have $a=0$ and form only one subset of the complex numbers, not all non-real complex numbers.
 \end{remark}
 
 \section{Types of Numbers}
-Let's explore the various types of numbers, including natural numbers, whole numbers, integers, rational numbers, irrational numbers, and real numbers - imaginary numbers and complex numbers are left out of this discussion.
+Let’s now focus on the real-number subsets in the table: natural numbers, whole numbers, integers, rational numbers, irrational numbers, and real numbers. The preceding overview places these sets within the larger complex-number system.
 
 \subsection*{Natural Numbers}
 We begin with the natural numbers. We distinguish between whole numbers: $0, 1, 2, 3, \ldots$ and counting numbers: $1, 2, 3, \ldots$. These numbers are primarily used for counting. Natural numbers are often regarded as exact values (e.g., there are 4 tires on a car, 8 legs on a spider). However, in some contexts, they may be used as approximations (e.g., there were approximately 1000 people in the crowd).
@@ -279,20 +280,20 @@ The LCM is obtained by taking the highest power of each prime factor that appear
 \text{LCM} = 2^3 \times 3^2 = 72
 \]
 
-\begin{example} Find the LCM of 12 and 18
+\begin{example} Find the LCM of 12 and 18.
 
 \begin{solution}
 \[
-15 = 3\times 5
+12 = 2^2\times 3
 \]
 \[
 18 = 2 \times 3^2
 \]
 
-So the factors with the highest exponents in either factorisation is $2$, $3^2$, and $5$, so
+The highest powers occurring in either factorisation are $2^2$ and $3^2$, so
 
 \[
-LCM = 2 \times 3^2 \times 5 = 90
+LCM = 2^2 \times 3^2 = 36
 \]
     
 \end{solution}
@@ -327,7 +328,7 @@ The arrows indicate the numbers that we chose.
     \draw[thick, teal, ->] (1.6, -1.8) -- (1.6, -1.4);
 \end{tikzpicture}
 
-We see that 2 and 5 are common factors and choose the ones with the smallest exponents (5 has the same exponents so we just take one of them):
+For the LCM, we choose the greatest exponent of each prime that occurs in either factorisation:
 
 \[
 LCM = 2^4\times 3 \times 5 = 240
@@ -341,7 +342,7 @@ LCM = 2^4\times 3 \times 5 = 240
 
 An important relationship between the GCD and LCM of two numbers \(a\) and \(b\) is given by the formula:
 \[
-\text{GCD}(a, b) \times \text{LCM}(a, b) = a \times b
+\text{GCD}(a, b) \times \text{LCM}(a, b) = |a b|
 \]
 For example, using the numbers 24 and 36:
 \[
@@ -361,20 +362,15 @@ Division involving integers can be tricky since the result might not always be a
 
 In this case, dividing 9 by 4 leaves a \textit{remainder} of 1.
 
-In general, for any integers \(a\) and \(b\), we can express this as:
+In general, for integers \(a\neq0\) and \(b\), there exist unique integers $q$ and $r$ such that
 
 \[
-b = k \times a + r,
+b = q a + r, \qquad 0\leq r<|a|.
 \]
 
-where \(r\) is the remainder. If \(r\) is zero, then we say that \(a\) divides \(b\), denoted as \(a \mid b\). The vertical bar is used to signify divisibility. For instance, \(2 \mid 128\) and \(7 \mid 49\), but 3 does not divide 4, which is written as \(3 \nmid 4\).
+The integer $q$ is the quotient and \(r\) is the remainder. If \(r=0\), then \(a\) divides \(b\), denoted by \(a \mid b\). For instance, \(2 \mid 128\) and \(7 \mid 49\), but \(3 \nmid 4\).
 
-Above, we made no distinction between factors and divisors. Some argue that they differ slightly:
-\begin{itemize}
-    \item If $a \mid b$ and $a>0$, $a$ is a \textit{divisor} of $b$.
-    \item If $a \notin \{1, b\}$ and $a \mid b$, $a$ is a factor of $b$.
-\end{itemize}
-In this definition, primes have no factors, only two divisors 1 and itself. We will make no further distinction between primes and factors and use the terms interchangeably.
+In this book, \emph{factor} and \emph{divisor} are used interchangeably. A positive proper divisor of a positive integer $b$ is a positive divisor other than $b$ itself. A prime number therefore has exactly two positive divisors, 1 and itself, and no proper divisor greater than 1.
 
 \subsection*{Modular Arithmetic}
 The \texttt{mod} operator, commonly encountered in computer programming, provides the remainder after division. For example:
@@ -385,6 +381,6 @@ The \texttt{mod} operator, commonly encountered in computer programming, provide
     \item \(99 \bmod 11 = 0\).
 \end{enumerate}
 
-While there are some complexities when dealing with negative numbers, we will focus on positive integers for simplicity. It’s also worth noting that the results of the modulus operation are often expressed differently. For instance, \(24 = 4 \bmod 5\) or \(21 = 0 \bmod 7\), which means \(24 \bmod 5 = 4\) and \(21 \bmod 7 = 0\).
+While there are some convention-dependent details for negative operands in programming languages, we focus on positive integers. Congruence notation expresses that two integers have the same remainder: $24\equiv4\pmod 5$ and $21\equiv0\pmod 7$. This is distinct from the remainder operation, written $24\bmod5=4$ and $21\bmod7=0$.
 
 Modular arithmetic is sometimes referred to as clock arithmetic. Imagine using a 24-hour clock: 09:00 represents 9 in the morning, while 21:00 represents 9 in the evening. If a journey starts at 07:00 and lasts 25 hours, the arrival time would be 08:00 the next day. Mathematically, this can be expressed as \(7 + 25 = 32\) and \(32 \bmod 24 = 8\). Essentially, we start at 7 and move 25 hours forward on the clock face, landing at 8.

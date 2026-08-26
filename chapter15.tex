@@ -11,9 +11,9 @@ Code analysis can be broadly divided into two categories:
 
 Asymptotic notation offers a high-level view of an algorithm's performance, predicting its growth rate as the input size increases. However, theoretical complexity doesn’t account for constants, smaller terms, or machine-specific factors. In practical scenarios, these details can substantially impact runtime, especially for applications handling frequent operations on large datasets.
 
-Consider two algorithms, both with a time complexity of $\mathcal{O}(n)$. While theoretically equivalent, one algorithm may have a constant factor several times larger than the other, causing it to run more slowly in practice. A real-world understanding of complexity requires analysing each part of the code, estimating the number of operations in concrete terms, and identifying areas for potential optimization.
+Consider two algorithms whose running times are both $\Theta(n)$. They have the same asymptotic growth rate, but one algorithm may have a constant factor several times larger than the other, causing it to run more slowly in practice. A real-world understanding of complexity requires analysing each part of the code, estimating the number of operations in concrete terms, and identifying areas for potential optimization.
 
-Below you see two algorithms for filtering even numbers from an integer array. Both algorithms have $\mathcal{O}(n)$ complexity, but one uses a single loop to achieve the task, while the other uses multiple loops, effectively doubling the work and thus introducing a larger constant factor.
+Below you see two algorithms for filtering even numbers from an integer array. Both algorithms have $\Theta(n)$ running time, but one uses a single loop while the other performs a redundant preliminary pass and therefore has a larger constant factor in this model.
 
 
 \begin{lstlisting}[style=javaStyle, caption={Single pass to filter even numbers}, label={lst:java_single_pass1}]
@@ -55,7 +55,7 @@ Below you see two algorithms for filtering even numbers from an integer array. B
 
 Algorithm \ref{lst:java_single_pass1} uses a single pass through the array to identify even numbers. As it iterates, it directly appends each even number to a result list, resulting in a single $\mathcal{O}(n)$ traversal.
 
-Algorithm \ref{lst:java_multiple_passes}, however, makes two full passes through the array. The first pass counts the number of even elements, and the second pass collects these even elements into a list. This structure still results in $\mathcal{O}(n)$ complexity but requires $2n$ operations instead of $n$, effectively doubling the work.
+Algorithm \ref{lst:java_multiple_passes}, however, makes two full passes through the array. The first pass counts the number of even elements, although that count is not subsequently used, and the second pass collects the elements. Both algorithms have running time $\Theta(n)$, but the redundant first pass adds work. The exact ratio is not simply two because list operations, comparisons, and other statements also contribute to the running time.
 
 In practical terms, Algorithm \ref{lst:java_single_pass1} is faster because it completes the task in a single traversal, while Algorithm \ref{lst:java_multiple_passes} introduces a larger constant factor by making two full passes through the array. This example highlights how even within the same $\mathcal{O}(n)$ complexity, different implementations can have varying real-world performance due to differing constant factors.
 
@@ -218,7 +218,7 @@ The time required by a function or procedure is proportional to the number of "b
     \item \textbf{Write Operation}: Writing a value of a primitive type to output or memory.
 \end{enumerate}
 
-These basic operations form the foundation of more complex operations, and each adds one unit time unit to the construct they are part of, i.e. $\mathcal{O}(1)$ time complexity. By counting the number of basic operations within a construct, we can estimate the time complexity of that construct. We will \textbf{only include 1-5 }in our analysis and omit read and write operations as they are not as common in algorithm analysis.
+These basic operations form the foundation of more complex operations. In the simplified \emph{unit-cost model} used in this chapter, each operation on fixed-size primitive values is assigned constant cost. This assumption does not apply unchanged to arbitrarily large integers or to operations whose cost depends on the data representation. By counting operations in this model, we can estimate a construct's running time. We will include only items 1--5 in our detailed counts and omit separate read and write costs.
 
 All of the following are $\mathcal{O}(1)$ algorithms because they perform a constant number of basic operations:
 
@@ -373,7 +373,7 @@ The function $\proc{factorial2}$ is very similar to the previous example of calc
 The presence of the additional assignment (count += 1) does not change the \textit{asymptotic} complexity, as it is still a constant-time operation repeated \( n \) times. Thus, the overall complexity remains \(\mathcal{O}(n)\). The additional  operation may however affect the practical performance of the function, as it increases the number of basic operations executed in each iteration.
 
 \subsection*{If-Then-Else Statements}
-For an \texttt{if-then-else} structure, the time complexity depends on the time required to evaluate the condition and the time taken by the branch that executes. The overall time for an \texttt{if-then-else} statement is the \textit{maximum} of the time complexities of each branch plus the time to evaluate the condition, as only one branch executes.
+For an \texttt{if-then-else} structure, the running time depends on the cost of evaluating the condition and the branch that executes. When analysing the \emph{worst case}, we use the slower branch plus the condition cost. For a specific input, only the cost of the branch actually taken is included.
 
 \begin{itemize}
     \item \textbf{If the condition is simple}, like comparing two numbers, it takes constant time, $\mathcal{O}(1)$.
@@ -430,7 +430,7 @@ Now, consider this code:
     \li \Return $count$
 \end{codebox}
 
-This code looks similar to $\proc{count\_ts}$ but the conditional check \texttt{char $\in$ b\_str} is more complex. In the worst case, it requires checking every character in \texttt{b\_str}. Big-O notation captures the worst-case scenario, so we ask: what input could maximize the number of steps? Here, the worst case occurs when \texttt{char} is not in \texttt{b\_str}, as each character in \texttt{b\_str} must be checked before returning \texttt{False}.
+This code looks similar to $\proc{count\_ts}$ but the conditional check \texttt{char $\in$ b\_str} is more complex. We analyse its worst-case running time: membership testing may inspect every character in \texttt{b\_str}. This occurs when \texttt{char} is absent, because the search cannot return \texttt{False} before all characters have been checked. Big-$\mathcal{O}$ denotes an upper bound; the choice to study the worst case is a separate modelling decision.
 
 Let $n = |\texttt{a\_str}|$ and $m = |\texttt{b\_str}|$. The \texttt{\For} loop iterates $\mathcal{O}(n)$ times, and each iteration performs an $\mathcal{O}(m)$ conditional check. Since we execute an $\mathcal{O}(m)$ check $\mathcal{O}(n)$ times, the overall complexity of this function is $\mathcal{O}(nm)$.
 
@@ -496,7 +496,7 @@ Consider this example:
     \li \Return $sum$
 \end{codebox}
 
-Here, the loop runs until the condition \texttt{sum < threshold} is no longer true or until all elements in the array \texttt{arr} have been processed. The time complexity of this loop depends on both the length of the array and the value of \texttt{threshold}. In the worst case, if \texttt{threshold} is very large, the loop will iterate over every element in the array, resulting in a complexity of $\mathcal{O}(n)$, where $n$ is the length of the array.
+Here, the loop runs until the condition \texttt{sum < threshold} is no longer true or until all elements in the array \texttt{arr} have been processed. The running time depends on both the array contents and the value of \texttt{threshold}. In the worst case, the loop examines every element, so the worst-case running time is $\Theta(n)$, where $n$ is the length of the array.
 
 In general, \texttt{while} loops are powerful constructs for iterating over conditions that are not known in advance. The key to analysing their complexity lies in understanding how the condition evolves with each iteration and estimating the number of iterations needed to reach termination. Proper analysis involves understanding both the evolution of the condition and the cost of each iteration.
 
@@ -692,7 +692,7 @@ Analysing recursive algorithms involves understanding the recurrence relations t
 \section{Loop Analysis}\label{sec:loop-analysis}
 In the previous section, we already discussed the time complexity of loops. This section will focus on analysing loops in more detail, including nested loops, loops with variable bounds, and loops with conditional exits.
 
-When asked for the time complexity in terms of Big-$\mathcal{O}$ notation, you are always asked to find the tightest upper bound, by which we mean the one that grows the \textit{slowest}. So while $\mathcal{O}(n^2)$ is an upper bound for $f(n) = 4n+3$, it is \textbf{not} the \textit{tightest} upper bound. The tightest upper bound is $O(n)$.
+In this book, a request for a Big-$\mathcal{O}$ classification normally means the most informative standard upper bound among the common growth classes under consideration. Thus, while $\mathcal{O}(n^2)$ is a valid upper bound for $f(n)=4n+3$, $\mathcal{O}(n)$ is more informative. Strictly speaking, Big-$\mathcal{O}$ alone need not express tightness; $f(n)=\Theta(n)$ states both a matching asymptotic upper and lower bound.
 
 \subsection*{Techniques for Practical Loop Analysis}
 
@@ -968,10 +968,10 @@ Consider the iterative binary search algorithm mentioned previously in this chap
     In the best-case scenario, the target element is located at the middle of the array on the very first comparison. Since this takes only one operation, the complexity is $\boldsymbol{\Theta(1)}$. This notation is used because it provides a tight bound — the algorithm always takes constant time in the best case.
 
     \item \textbf{Worst-Case Complexity: }
-    In the worst-case scenario, the algorithm keeps dividing the search interval in half until it reaches an empty interval, which takes $\log n$ steps. The complexity is therefore $\boldsymbol{\mathcal{O}(\log n)}$, as this represents an upper bound on the time the algorithm takes, ensuring it will never exceed this value.
+    In the worst-case scenario, the algorithm keeps dividing the search interval in half until only one candidate remains or the interval becomes empty. The number of iterations grows logarithmically, so the worst-case running time is $\boldsymbol{\Theta(\log n)}$.
 
     \item \textbf{Average-Case Complexity: }  
-    On average, assuming the target is equally likely to be at any position, the expected number of comparisons is proportional to the logarithm of $n$. Therefore, the average-case complexity is $\boldsymbol{\Omega(\log n)}$. This notation represents a lower bound for the average runtime, indicating that at least $\log n$ operations are required on average.
+    Conditional on a successful search with the target equally likely to occupy any array position, the expected number of comparisons is proportional to $\log n$. Under this model, the expected running time is therefore $\boldsymbol{\Theta(\log n)}$. A model that also permits unsuccessful searches must specify their probability, but gives the same asymptotic order under ordinary fixed-probability assumptions.
 \end{itemize}
 \end{example}
 
@@ -996,17 +996,17 @@ Consider the iterative binary search algorithm mentioned previously in this chap
     
     \begin{itemize}
         \item \textbf{Best-Case Complexity: }  
-        In the best-case scenario, the pattern and the text share no common characters at the positions being compared. At each shift, the first character comparison fails, leading to a total of $n - m + 1$ comparisons. Thus, the complexity is $\boldsymbol{\Omega(n)}$, representing a lower bound on the time the algorithm takes.
+        In the best-case scenario, the first character comparison fails at every shift. The algorithm still tests all $n-m+1$ shifts, so its best-case running time is $\boldsymbol{\Theta(n-m+1)}$ (and hence $\Theta(n)$ when $m\leq cn$ for a fixed $c<1$).
     
         \item \textbf{Worst-Case Complexity: }
-        In the worst-case scenario, the text and pattern contain repeated sequences causing maximum overlap during comparisons. The algorithm performs up to $m$ comparisons at each of the $n - m + 1$ shifts, resulting in a complexity of $\boldsymbol{\mathcal{O}(nm)}$. This notation represents an upper bound, ensuring the algorithm will not exceed this time.
+        In the worst-case scenario, the text and pattern contain repeated sequences that force $m$ comparisons at essentially every shift. The worst-case running time is therefore $\boldsymbol{\Theta((n-m+1)m)}$, commonly written $\Theta(nm)$ when $m$ is not close to $n$ in a way that changes the first factor.
     
         \item \textbf{Average-Case Complexity: } 
-        Assuming the characters in the text and pattern are randomly distributed, the expected number of comparisons per shift is constant. Therefore, the average-case complexity is $\boldsymbol{\Theta(n)}$, providing a tight bound on the expected running time.
+        Under an independent-character model over a fixed alphabet of at least two symbols, the expected number of comparisons per shift is bounded by a constant. The expected running time is therefore $\boldsymbol{\Theta(n-m+1)}$, often simplified to $\Theta(n)$ under the same convention as above.
     \end{itemize}
    
     
-    This example illustrates how the use of $\Omega$, $O$, and $\Theta$ provides precise information about the complexity for different scenarios of an algorithm's execution.
+    This example also illustrates that best, worst, and average case describe different running-time functions, whereas $\mathcal{O}$, $\Omega$, and $\Theta$ describe bounds on whichever function is being analysed.
     
     \end{example}
 
@@ -1467,10 +1467,10 @@ The final section of this chapter - and of the book - provides an example of how
 
 \begin{itemize}
     \item The algorithm calculates the \textbf{total sum of all possible pairwise sums} $\operatorname{arr}[i]+\operatorname{arr}[j]$ in the array \texttt{arr}.
-    \item This includes every combination of elements added together, considering the order (since both $(\operatorname{arr}[i], \operatorname{arr}[j])$ and $(\operatorname{arr}[j], \operatorname{arr}[i])$ are included).This sum accounts for every combination of elements, including pairs where the same element is paired with itself.
+    \item The sum runs over every \emph{ordered pair} of indices $(i,j)$. Thus, both $(i,j)$ and $(j,i)$ are included, as are pairs with $i=j$.
 \end{itemize}
 
-\begin{example} Here is a manual illustration of the sum of pairs::
+\begin{example} Here is a manual illustration of the sum of pairs:
 
     Suppose $\operatorname{arr}=[1,2,3]$
 
@@ -1517,10 +1517,10 @@ Let us now consider the \textbf{naive approach} to solving this problem which in
     //                    + 1 (return)
     //                    = 5n^2 + 4n + 5
     // Dominating Term: 5n^2
-    // Complexity: O(n^2)  
+    // Tight asymptotic complexity: Theta(n^2)
 \end{lstlisting}
 
-This algorithm gives us an intituive solution to the problem. Unfortunately, it is very ineffecient for large inputs. Let us now consider a more optimized algorithm for the same problem. Please note that the analysis of the inner loop is complex and inorder to analyse it properly, we refer to Appendix \ref{app:appendix01}.
+This algorithm gives us an intuitive solution to the problem. Unfortunately, it is very inefficient for large inputs. Let us now consider a more optimized algorithm for the same problem. The analysis of the inner loop uses the summation methods collected in Appendix \ref{app:appendix01}.
 
 \begin{lstlisting}[style = javaStyle, caption={Optimized Sum of Pairs with Analysis}, label={lst:java_optimized_sum_pairs_analysis}]
     public static int optimizedSumOfPairs(int[] arr) {
@@ -1532,9 +1532,9 @@ This algorithm gives us an intituive solution to the problem. Unfortunately, it 
             // Inner loop over 'j' from i to n - 1
             for (int j = i; j < n; j++) { // (2(n - i) + 2) per i, summed over i
                 if (i == j) {              // Comparison: (n(n + 1)/2) time units
-                    totalSum += arr[i] + arr[j]; // 2 time units, executed n times
+                    totalSum += arr[i] + arr[j]; // 3 time units, executed n times
                 } else {
-                    totalSum += 2 * (arr[i] + arr[j]); // 3 time units, executed (n^2 - n)/2 times
+                    totalSum += 2 * (arr[i] + arr[j]); // 4 time units, executed (n^2 - n)/2 times
                 }
             }
         }
@@ -1551,46 +1551,43 @@ This algorithm gives us an intituive solution to the problem. Unfortunately, it 
     //     = n^2 + 3n time units
     // Inner loop body (if condition): 
     //     - Comparisons: (n(n + 1)/2) time units
-    //     - if block (i == j): 2 time units, executed n times => 2n
-    //     - else block (i != j): 3 time units, executed (n^2 - n)/2 times => (3n^2 - 3n)/2
-    //     Total inner loop body: (n(n + 1)/2) + 2n + (3n^2 - 3n)/2
-    //     = (n^2 + n)/2 + 2n + (3n^2 - 3n)/2
-    //     = (4n^2 + 2n)/2
-    //     = 2n^2 + n time units
+    //     - if block (i == j): 3 time units, executed n times => 3n
+    //     - else block (i != j): 4 time units, executed (n^2 - n)/2 times => 2n^2 - 2n
+    //     Total inner loop body: n(n + 1)/2 + 3n + 2n^2 - 2n
+    //     = (5n^2 + 3n)/2 time units
     // Return statement: 1 time unit
     //
     // Total Time: T(n) = 2 (initializations)
     //                    + 2n + 2 (outer loop)
     //                    + n^2 + 3n (inner loop control)
-    //                    + 2n^2 + n (inner loop body)
+    //                    + (5n^2 + 3n)/2 (inner loop body)
     //                    + 1 (return)
-    //                    = 3n^2 + 6n + 5
-    // Dominating Term: 3n^2
-    // Complexity: O(n^2)
+    //                    = (7n^2 + 13n + 10)/2
+    // Dominating Term: (7/2)n^2
+    // Tight asymptotic complexity: Theta(n^2)
 \end{lstlisting}
 
-While this algorithm is still $\mathcal{O}(n^2)$, it is more efficient than the naive approach, since the dominating term is reduced form $5n^2$ to $3n^2$. To illustrate the practical difference between two algorithms with complexities \(5n^2\) and \(3n^2\), let's calculate the runtime for \(n = 10^5\):
+This algorithm is still $\Theta(n^2)$, but under our unit-cost model its leading term is reduced from $5n^2$ to $\tfrac{7}{2}n^2$. Using the complete operation-count formulas at $n=10^5$ gives:
 
 \begin{enumerate}
-    \item $\proc{naiveSumOfPairs}$ (\(5n^2\)):
+    \item $\proc{naiveSumOfPairs}$ (\(5n^2+4n+5\)):
     \[
-    \text{Runtime} = 5n^2 = 5 \cdot (10^5)^2 = 5 \cdot 10^{10} = 50,000,000,000
+    T(10^5)=5(10^5)^2+4(10^5)+5=50,000,400,005
     \]
 
-    \item $\proc{optimizedSumOfPairs}$ (\(3n^2\)):
+    \item $\proc{optimizedSumOfPairs}$ (\(\tfrac{7n^2+13n+10}{2}\)):
     \[
-    \text{Runtime} = 3n^2 = 3 \cdot (10^5)^2 = 3 \cdot 10^{10} = 30,000,000,000
+    T(10^5)=\frac{7(10^5)^2+13(10^5)+10}{2}=35,000,650,005
     \]
 \end{enumerate}
 
 \[
-\text{Difference} = 50,000,000,000 - 30,000,000,000 = 20,000,000,000
+\text{Difference} = 50,000,400,005-35,000,650,005=14,999,750,000
 \]
 
-Thus, for \(n = 10^5\), $\proc{naiveSumOfPairs}$ (\(5n^2\)) performs \textbf{20 billion more operations} 
-\newline than $\proc{optimizedSumOfPairs}$ (\(3n^2\)). Although both algorithms have the same asymptotic complexity (\(\mathcal{O}(n^2)\)), the constant factor significantly impacts their performance for large inputs.
+Thus, for \(n=10^5\), the naive version performs approximately \textbf{15 billion more operations} in this model. Both algorithms nevertheless have the same tight asymptotic complexity, $\Theta(n^2)$.
 
-The next algorithm is even more efficient, with a time complexity of $\mathcal{O}(n)$.
+The next algorithm is even more efficient, with running time $\Theta(n)$.
 \begin{lstlisting}[style = javaStyle, caption={Efficient Sum of Pairs with Analysis}, label={lst:java_efficient_sum_pairs_analysis}]
     public static int efficientSumOfPairs(int[] arr) {
         int n = arr.length;            // 1
@@ -1615,24 +1612,24 @@ The next algorithm is even more efficient, with a time complexity of $\mathcal{O
         //                    + 2 (return)
         //          = 5n + 6
         //
-        // Complexity: O(n)
+        // Tight asymptotic complexity: Theta(n)
 \end{lstlisting}    
 
-This algorithm is far more efficient than the two previous algorithms. The time complexity is $\mathcal{O}(n)$, which is significantly better than the previous two algorithms. For the input size \(n = 10^5\), the runtime is:
+This algorithm is far more efficient than the two previous algorithms. Its running time is $\Theta(n)$, which is asymptotically better than their quadratic running times. For the input size \(n = 10^5\), the operation count is:
 
 \begin{enumerate}
-    \item $\proc{efficientSumOfPairs}$ (\(5n^2\)):
+    \item $\proc{efficientSumOfPairs}$ (\(5n+6\)):
     \[
-    \text{Runtime} = 5n = 5 \cdot (10^5) = 5 = 50,000
+    \text{Operation count} = 5n+6 = 5\cdot 10^5+6 = 500,006
     \]
-    \item $\proc{optimizedSumOfPairs}$ (\(3n^2\)):
+    \item $\proc{optimizedSumOfPairs}$ (\(\tfrac{7n^2+13n+10}{2}\)):
     \[
-    \text{Runtime} = 30,000,000,000
+    \text{Operation count} = 35,000,650,005
     \]
-    \item $\text{Difference} = 30,000,000,000 - 50,000 = 29,999,950,000$
+    \item $\text{Difference} = 35,000,650,005-500,006=35,000,149,999$
 \end{enumerate}
 
-This illustrates how much we can win by going from an algorithm with a time complexity of $\mathcal{O}(n^2)$ to one with $\mathcal{O}(n)$. The difference in the number of operations is staggering. This is why it is important to optimize algorithms to achieve the best performance possible. The following is also an $\mathcal{O}(n)$ algorithm that is even more efficient than the previous one:
+This illustrates the gain from replacing a $\Theta(n^2)$ algorithm with a $\Theta(n)$ algorithm. The following algorithm also has running time $\Theta(n)$ but uses fewer operations in the chapter's model:
 
 
 \begin{lstlisting}[style = javaStyle, caption={Fast Sum of Pairs with Analysis}, label={lst:java_fast_sum_pairs_analysis}]
@@ -1664,11 +1661,11 @@ This illustrates how much we can win by going from an algorithm with a time comp
     //                    + 1 (return)
     //                    = 4n + 8
     // Dominating Term: 4n
-    // Complexity: O(n)
+    // Tight asymptotic complexity: Theta(n)
     
 \end{lstlisting}  
 
-As we can see, the $\proc{fastSumOfPairs}$ algorithm is even more efficient than the previous one and the difference on an input size of \(n = 10^5\) is 10,000. We conclude with one final algorithm that - while not more efficient - is considered even better than the previous one.
+Under the chapter's operation-counting model, $\proc{fastSumOfPairs}$ uses $4n+8$ operations rather than $5n+6$. At $n=10^5$, the difference is $99,998$ operations. Both algorithms nevertheless have running time $\Theta(n)$, and actual performance should be measured if the constant-factor difference matters. We conclude with a final algorithm that has the same asymptotic complexity and a slightly smaller count in this model.
 
 \begin{lstlisting}[style = javaStyle, caption={Ultra Efficient Sum of Pairs with Analysis}, label={lst:java_ultra_efficient_sum_pairs_analysis}]
     public static int ultraEfficientSumOfPairs(int[] arr) {
@@ -1700,7 +1697,7 @@ As we can see, the $\proc{fastSumOfPairs}$ algorithm is even more efficient than
     //                    + 1 (return)
     //                    = 4n + 6
     // Dominating Term: 4n
-    // Complexity: O(n)
+    // Tight asymptotic complexity: Theta(n)
     
 \end{lstlisting}  
 

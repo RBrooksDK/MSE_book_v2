@@ -694,10 +694,10 @@ Find \(\frac{d}{d x}\left(e^{x^2+2 x}\right)\).
 
 \[
 \begin{aligned}
-\frac{d}{d x}\left(e^{x^2+2 x}\right) & =\frac{d e^{\mathrm{u}}}{d x} \quad\left(\text { where } u=x^3+2 x\right) \\
-& =e^{\mathrm{z}} \times \frac{d u}{d x} \quad \text { (by the chain rule) } \\
-& =e^{x^3+2 x} \times \frac{d}{d x}\left(x^3+2 x\right) \\
-& =\left(3 x^2+2\right) \times e^{x^2+2 x}
+\frac{d}{d x}\left(e^{x^2+2 x}\right) & =\frac{d e^{u}}{d x} \quad\left(\text { where } u=x^2+2 x\right) \\
+& =e^{u} \times \frac{d u}{d x} \quad \text { (by the chain rule) } \\
+& =e^{x^2+2 x} \times \frac{d}{d x}\left(x^2+2 x\right) \\
+& =\left(2x+2\right)e^{x^2+2 x}
 \end{aligned}
 \]
 \end{solution}
@@ -728,7 +728,7 @@ There are two shortcuts to differentiating functions involving exponents and log
 \begin{aligned}
 \frac{d}{d x}\left(\ln\left(x^2+3 x+1\right)\right) & =\frac{2 x+3}{x^2+3 x+1} \\
 \frac{d}{d x}\left(e^{3 x^2}\right) & =6 x e^{3 x^2} \\
-\frac{d}{d x}\left(e^{x^2+2 x}\right) & =\left(3 x^2+2\right) e^{x^2+2 x} \\
+\frac{d}{d x}\left(e^{x^2+2 x}\right) & =\left(2x+2\right)e^{x^2+2 x} \\
 \frac{d}{d x}\left(\ln\left(2 x^3+5 x^2-3\right)\right) & =\frac{6 x^2+10 x}{2 x^3+5 x^2-3}
 \end{aligned}
 \]
@@ -744,7 +744,7 @@ These examples suggest the general rules
 \]
 
 
-These rules arise from the chain rule and the fact that \(\frac{d x^x}{d x}=e^x\) and \(\frac{d \ln x}{d x}=\frac{1}{x}\). They can speed up the process of differentiation but it is not necessary that you remember them. If you forget, just use the chain rule as in the examples above.
+These rules arise from the chain rule and the facts that \(\frac{d}{dx}e^x=e^x\) and \(\frac{d}{dx}\ln x=\frac{1}{x}\) for $x>0$. They can speed up differentiation, but if you forget them, they can be reconstructed using the chain rule as in the examples above.
 
 
 \section{Applications of Derivatives}
@@ -760,7 +760,7 @@ Let us return to our metaphor of the mountain range. Imagine standing somewhere 
 
 But at the top of a peak, there is a brief, level stretch where the slope under your feet is zero. At a bottom of a valley, there is also a level spot. If you find yourself on perfectly flat ground—at least for a moment—you have a clue: you might be at a summit, a valley, or perhaps at a gentle inflection point along a ridge. In the vast terrain of a mountain range, it is only at these level patches, where the slope vanishes, that you could possibly be at an extreme point: a maximum or minimum.
 
-This is the key insight behind optimisation in calculus: to find the highest or lowest points (the peaks or valleys) of a function—in other words, to solve optimisation problems—we need only to examine the locations where the “slope” is zero. These locations are known as stationary points.
+This motivates an important step in optimisation: interior points where a differentiable function has a local maximum or minimum must have zero derivative. These locations are known as stationary points. A complete optimisation problem may also require checking endpoints and points where the derivative does not exist.
 
 \begin{definition}
      For a function $y=f(x)$ the points on the graph where the graph has zero slope are called stationary points. In other words stationary points are where $f^{\prime}(x)=0$.
@@ -935,7 +935,7 @@ Several approaches exist, but in this section we focus on one technique, known a
 
 To understand the principle, imagine a person standing at a point on a landscape where the ground is level. Without seeing the surroundings, the person wishes to determine whether this point is the top of a hill, the bottom of a valley, or neither. One way to decide is to take a small step backward and observe the slope, and then take a small step forward and observe the slope again.
 
-If the ground slopes upward behind and downward ahead, the level point must be the top of a hill, corresponding to a local maximum. If the ground slopes downward behind and upward ahead, the point must be the bottom of a valley, corresponding to a local minimum. The remaining possibility-where the slopes have the same sign on both sides-indicates a stationary point of inflection.
+If the ground slopes upward behind and downward ahead, the level point is the top of a hill, corresponding to a local maximum. If the ground slopes downward behind and upward ahead, the point is the bottom of a valley, corresponding to a local minimum. If the slopes have the same sign on both sides, the point is not a local extremum; further analysis is needed to determine whether it is an inflection point.
 
 This reasoning captures the essence of the first derivative test: by analysing the sign of \(f^{\prime}(x)\) immediately on either side of a stationary point, we can determine its character without relying on a graph.
 
@@ -1068,7 +1068,7 @@ We can summarize these considerations in the following theorem:
     \begin{itemize}
         \item If \(f'(x)\) changes from negative to positive at \(c\), then \(f\) has a \textbf{local minimum} at \(c\).
         \item If \(f'(x)\) changes from positive to negative at \(c\), then \(f\) has a \textbf{local maximum} at \(c\).
-        \item If \(f'(x)\) does not change sign at \(c\), then \(f\) has no local extremum at \(c\); it is a stationary point of inflection.
+        \item If \(f'(x)\) does not change sign at \(c\), then \(f\) has no local extremum at \(c\). The first derivative test alone does not determine whether $c$ is an inflection point.
     \end{itemize}
 
     \end{theorem}

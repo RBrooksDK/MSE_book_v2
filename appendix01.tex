@@ -1,9 +1,9 @@
 \chapter{Summation}\label{app:appendix01}
 
 This appendix offers methods for evaluating summations, which occur frequently in the analysis of algorithms. Many
-of the formulas here appear in any calculus text, but you will find it convenient to have these methods compiled in one place. The content of this appendix is based on the book \textit{Introduction to Algorithms}, (\cite{clrs4}). The Appendix is concluded with a useful cheat sheet for time complixity analysis.
+of the formulas here appear in any calculus text, but you will find it convenient to have these methods compiled in one place. The content of this appendix is based on \textit{Introduction to Algorithms} \cite{clrs4}. The appendix concludes with a useful cheat sheet for time-complexity analysis.
 
-When an algorithm contains an iterative control construct such as a \While or \For loop, you can express its running time as the sum of the times spent on each execution of the body of the loop. For example, in \autoref{sec:loop-analysis} we argued that the $i$'th iteration of $\proc{Quadratic-Sum}$ took time proportional to $i$ in the worst case. Adding up the time spent on each iteration produced the summation (or series) $\sum\limits_{i=1}^n i$. Evaluating this summation resulted in a bound of $\mathcal{O}(n^2)$ on the worst-case running time of the algorithm. This example illustrates why you should know how to manipulate summations. Before going into details, we provide an overview of the most important summations and their closed forms.
+When an algorithm contains an iterative control construct such as a \While or \For loop, you can express its running time as the sum of the times spent on each execution of the body of the loop. For example, in \autoref{sec:loop-analysis} we argued that the $i$th iteration of $\proc{Quadratic-Sum}$ took time proportional to $i$ in the worst case. Adding up the time spent on each iteration produced the summation (or series) $\sum\limits_{i=1}^n i$. Evaluating this summation resulted in a bound of $\mathcal{O}(n^2)$ on the worst-case running time of the algorithm. This example illustrates why you should know how to manipulate summations. Before going into details, we provide an overview of the most important summations and their closed forms.
 
 \begin{table}[htbp]
     \centering
@@ -16,7 +16,7 @@ When an algorithm contains an iterative control construct such as a \While or \F
     $\displaystyle \sum_{k=1}^n k^2$ & $\displaystyle \frac{n(n+1)(2n+1)}{6}$ \\ \hline
     $\displaystyle \sum_{k=1}^n k^3$ & $\displaystyle \frac{n^2(n+1)^2}{4}$ \\ \hline
     $\displaystyle \sum_{k=0}^n x^k \, (x \neq 1)$ & $\displaystyle \frac{x^{n+1} - 1}{x - 1}$ \\ \hline
-    $\displaystyle \sum_{i=1,2,4,\ldots,n} i$ & $\displaystyle 2n - 1$ \\ \hline
+    $\displaystyle \sum_{i=1,2,4,\ldots,n} i$ ($n$ a power of 2) & $\displaystyle 2n - 1$ \\ \hline
     $\displaystyle \sum_{k=0}^\infty x^k, \, |x| < 1$ & $\displaystyle \frac{1}{1 - x}$ \\ \hline
     $\displaystyle \sum_{k=1}^\infty kx^{k-1}, \, |x| < 1$ & $\displaystyle \frac{1}{(1 - x)^2}$ \\ \hline
     $\displaystyle \sum_{k=1}^n \frac{1}{k}$ & $\displaystyle \ln n + O(1)$ \\ \hline
@@ -59,7 +59,7 @@ For any real number $c$ and any finite sequences $a_1, a_2, \ldots, a_n$ and $b_
 
 The linearity property also applies to infinite convergent series.
 
-The linearity property applies to summations incorporating asymptotic notation. For example,
+With nonnegative functions and constants in the $\Theta$ bounds that are uniform in $k$, the same idea applies to summations incorporating asymptotic notation. For example,
 
 \[
     \sum_{k=1}^n \Theta(f(k))=\Theta\left(\sum_{k=1}^n f(k)\right) .
@@ -121,7 +121,7 @@ The following formulas apply to summations of squares and cubes:
         
         If we assume that $0^0=1$, these formulas apply even when $x=0$.
         
-        A \textbf{special} case of the geometric series arises when the terms form a progression of powers of 2. That is, the terms are \(1, 2, 4, 8, \ldots, n\). In this case:
+        A \textbf{special} case of the geometric series arises when the terms form a progression of powers of 2. Suppose $n$ itself is a power of 2, so the terms are \(1, 2, 4, 8, \ldots, n\). In this case:
         \[
             \sum_{i=1,2,4,\ldots,n} i = 1 + 2 + 4 + 8 + \cdots + n.
         \]
@@ -203,7 +203,7 @@ Rewriting each term as
 gives
 
 \begin{align}
-\sum_{k-1}^{n-1} \frac{1}{k(k+1)} & =\sum_{k-1}^{n-1}\left(\frac{1}{k}-\frac{1}{k+1}\right) \nonumber \\
+\sum_{k=1}^{n-1} \frac{1}{k(k+1)} & =\sum_{k=1}^{n-1}\left(\frac{1}{k}-\frac{1}{k+1}\right) \nonumber \\
 & =1-\frac{1}{n} . \label{eq:telescoping-example}
 \end{align}
 
@@ -211,7 +211,7 @@ gives
 A series can sometimes be simplified by changing its index, often reversing the order of summation. Consider the series $\sum_{k=0}^n a_{n-k}$. Because the terms in this summation are $a_n, a_{n-1}, \ldots, a_0$, we can reverse the order of indices by letting $j=n-k$ and rewrite this summation as
 
 $$
-\sum_{k=0}^n a_{n-k}=\sum_{l=0}^n a_j
+\sum_{k=0}^n a_{n-k}=\sum_{j=0}^n a_j
 $$
 
 
@@ -227,7 +227,7 @@ As an example, consider the summation
 The index $k$ appears with a negative sign in $\dfrac{1}{(n-k+1)}$. And indeed, we can simplify this summation, this time setting $j=n-k+1$, yielding
 
 \begin{equation}
-    \sum_{k=1}^n \frac{1}{n-k+1}=\sum_{i=1}^n \frac{1}{j}, \label{eq:reindexing-example-solution} 
+    \sum_{k=1}^n \frac{1}{n-k+1}=\sum_{j=1}^n \frac{1}{j}. \label{eq:reindexing-example-solution}
 \end{equation}
 
 which is just the harmonic series (\ref{eq:harmonic_sum}).
@@ -243,7 +243,7 @@ The finite product $a_1 a_2 \ldots a_n$ can be expressed as
 If $n=0$, the value of the product is defined to be 1 . You can convert a formula with a product to a formula with a summation by using the identity
 
 \[
-\log \left(\prod_{k=1}^n a_k\right)=\sum_{k=1}^n \log a_k .
+\log \left(\prod_{k=1}^n a_k\right)=\sum_{k=1}^n \log a_k, \qquad a_k>0.
 \]
 
 \section*{Cheat Sheet for Time Complexity Analysis}
@@ -253,7 +253,7 @@ This section provides essential formulas and shortcuts for asymptotic analysis a
 \begin{itemize}
     \item \textbf{Logarithmic Factorial Approximation (Stirling's Approximation):} 
     \[
-    \log(n!) \approx n \log n - n.
+    \ln(n!) = n\ln n-n+\mathcal{O}(\ln n).
     \]
  
     \item \textbf{Logarithmic Exponent Rule:} 
@@ -264,7 +264,7 @@ This section provides essential formulas and shortcuts for asymptotic analysis a
     \item \textbf{Base as a Power with Logarithmic Exponent:} 
     If the base is \( a^b \) and the exponent involves \( \log_a \), then:
     \[
-    (a^b)^{\log_a(n^c)} = n^{bc}.
+    (a^b)^{\log_a(n^c)} = n^{bc}, \qquad a>0,\ a\neq1,\ n>0.
     \]
     
     \textbf{Example:} \( 4^{\log_2(n^2)} = n^4 \) (since \( 4 = 2^2 \)).
@@ -282,7 +282,7 @@ This section provides essential formulas and shortcuts for asymptotic analysis a
     
     \item \textbf{Simplifying Logarithmic Expressions:} 
     \[
-    \log_a n = \frac{\log_b n}{\log_b a}, \quad \text{for } a, b > 0.
+    \log_a n = \frac{\log_b n}{\log_b a}, \quad \text{for } a,b,n>0 \text{ with } a\neq1 \text{ and } b\neq1.
     \]
     
     \item \textbf{Common Asymptotic Comparisons:} 
@@ -293,11 +293,11 @@ This section provides essential formulas and shortcuts for asymptotic analysis a
     \item \textbf{Factorial Asymptotics (Expanded Stirling's Approximation):} 
     Using Stirling's formula, the growth of \( n! \) is approximately:
     \[
-    n! = \Theta\left(\sqrt{2\pi n} \left(\frac{n}{e}\right)^n\right).
+    n! \sim \sqrt{2\pi n}\left(\frac{n}{e}\right)^n,
     \]
     
     \item \textbf{Sum of Powers of 2:} 
-    If the terms in a series form powers of 2 (e.g., \( 1, 2, 4, 8, \ldots, n \)), the sum is:
+    If $n$ is a power of 2 and the terms are \(1,2,4,8,\ldots,n\), the sum is:
     \[
     \sum_{i=1,2,4,\ldots,n} i = 2n - 1.
     \]

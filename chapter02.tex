@@ -705,7 +705,7 @@ By using one of these methods for handling multiple carries, allow us to also mu
 
 
 \subsection*{Multiplication in Binary}
-Multiplication in binary is technically easier than multiplication in decimal. In binary operations, we work exclusively with two digits: 0 and 1. This means that both the the multiplier\footnote{The "multiplicand" is the number that has to be multiplied, and the "multiplier" is the number by which it is multiplied.} and multiplicand consist of 0's and 1' (and so does the multiplicand). The process of finding the binary product is analogous to traditional multiplication in the decimal system. The four five steps involved in multiplying binary digits are:
+Multiplication in binary is technically easier than multiplication in decimal. In binary operations, we work exclusively with two digits: 0 and 1. This means that both the multiplier\footnote{The "multiplicand" is the number to be multiplied, and the "multiplier" is the number by which it is multiplied.} and the multiplicand consist only of 0s and 1s. The process of finding the binary product is analogous to traditional multiplication in the decimal system. The four possible products of individual binary digits are:
 
 \[
 \begin{aligned}
@@ -877,10 +877,10 @@ B & \rightarrow 1011 \\
 \]
 
 \[
-\text{Thus, } 5EB52_{16} = 01011110101101010010_2
+\text{Thus, } 5EB52_{16} = 0101\,1110\,1011\,0101\,0010_2 = 1011110101101010010_2
 \]
 
-Again, notice that we removed the leading 0's from $5_{16}$ when writing the result.
+The four-bit groups make the conversion transparent. In the final representation, the single leading zero may be omitted without changing the value.
 
 \section{Converting Between Systems}
 

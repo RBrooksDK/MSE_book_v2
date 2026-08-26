@@ -32,7 +32,7 @@ The \emph{range} of \(f\) is the set of all real numbers \(z\) for which there e
 \begin{figure}
     \centering
     \includegraphics[width=0.5\linewidth]{domain.png}
-    \caption{The domain of the function \(g(x, y)=\sqrt{9-x^2-y^2}\) is a closed disk of radius 3 .}
+    \caption{The domain of the function \(f(x, y)=\sqrt{9-x^2-y^2}\) is a closed disk of radius 3.}
     \label{fig:ch11-domain}
 \end{figure}
 
@@ -199,8 +199,8 @@ $$
 
 The gradient is the multivariable analogue of the first derivative. It has two crucial geometric properties:
 \begin{enumerate}
-    \item \textbf{Direction of Steepest Ascent:} At any point \((x, y)\), the gradient vector \( \nabla f(x, y) \) points in the direction in which the function \(f\) increases most rapidly.
-    \item \textbf{Perpendicularity to Level Curves:} The gradient vector \( \nabla f(x, y) \) is always orthogonal (perpendicular) to the level curve of \(f\) that passes through the point \((x, y)\).
+    \item \textbf{Direction of Steepest Ascent:} At a point where \(\nabla f(x,y)\neq\vect{0}\), the unit vector $\nabla f/\lVert\nabla f\rVert$ gives the direction in which \(f\) increases most rapidly.
+    \item \textbf{Perpendicularity to Level Curves:} At a regular point where \(\nabla f(x,y)\neq\vect{0}\), the gradient is orthogonal (perpendicular) to the level curve through \((x,y)\).
 \end{enumerate}
 
 Both properties are extremely useful. The first tells us that the gradient points in the direction of steepest ascent, while the second explains that this direction is perpendicular to the contour lines. Consequently, to move uphill as fast as possible, one should walk in the direction of the gradient; to move downhill as fast as possible, one should walk in the opposite direction, that is, along the negative gradient.
@@ -258,10 +258,10 @@ This simple idea is the foundation of the \textbf{Gradient Descent} algorithm, w
     \item Start at a random point (random set of parameters).
     \item Calculate the gradient of the loss function at that point.
     \item Take a small step in the direction of the negative gradient, \( -\nabla f \).
-    \item Repeat until the gradient is (close to) zero, indicating a local minimum has been reached.
+    \item Repeat until a chosen stopping criterion is met, such as a small gradient norm or a sufficiently small change in the loss.
 \end{enumerate}
 
-This iterative process of following the negative gradient "downhill" allows us to find the optimal parameters that minimize a model's error, even when the function has millions of variables.
+This iterative process follows local descent directions and can find useful parameter values even when a function has millions of variables. A small gradient does not by itself guarantee a local minimum, and for a general non-convex loss the method may approach a saddle point or a non-global local minimum.
 
 \begin{example}
 
@@ -277,11 +277,11 @@ Next, we evaluate the gradient at the point \((2, 1)\):
 \[
 \nabla L(2, 1) = \langle 2(2), 4(1) \rangle = \langle 4, 4 \rangle
 \]
-The direction of steepest ascent is \(\langle 4, 4 \rangle\). Therefore, the direction of steepest descent is the negative of this vector:
+The negative gradient is a steepest-descent vector:
 \[
 -\nabla L(2, 1) = \langle -4, -4 \rangle
 \]
-To minimize the loss, we should adjust our parameters \(w_1\) and \(w_2\) in the direction \(\langle -4, -4 \rangle\).
+The corresponding unit direction is $\langle-1/\sqrt{2},-1/\sqrt{2}\rangle$. A gradient-descent update takes a step proportional to $\langle-4,-4\rangle$, with the step length controlled by the learning rate.
 \end{solution}
 
 \section{Application: Training a Model with Gradient Descent}
@@ -311,7 +311,7 @@ How do we know if a line is a "good fit"? We measure its error. For each data po
 \[
 L(\beta_0, \beta_1) = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = \frac{1}{n} \sum_{i=1}^{n} (y_i - \beta_0 - \beta_1 x_i)^2
 \]
-This is the central equation. Notice that the loss \(L\) is not a function of \(x\) or \(y\) (which are fixed data points), but a function of our model's parameters, \(\beta_0\) and \(\beta_1\). This loss function can be visualized as a concave up, bowl-shaped surface where the vertical axis is the loss and the horizontal axes are the parameters \(\beta_0\) and \(\beta_1\), just as we saw with functions like \(f(x,y)\) earlier. Our goal is to find the bottom of this bowl.
+This is the central equation. Notice that the loss \(L\) is not a function of \(x\) or \(y\) (which are fixed data points), but a function of our model's parameters, \(\beta_0\) and \(\beta_1\). It is a convex quadratic surface: typically bowl-shaped, although it can have a flat direction if the data do not identify both parameters uniquely. Our goal is to find a global minimum of this surface.
 
 \vspace{1em}
 \textbf{Step 3: Compute the Gradient of the Loss Function}

@@ -612,7 +612,7 @@ $$
 
 While the mean identifies the center of a dataset, the \textbf{variance} and \textbf{standard deviation} measure its variability or spread. A small standard deviation indicates that data points are clustered tightly around the mean, whereas a large standard deviation signifies that they are more spread out.
 
-The variance is the average of the squared deviations from the mean. Squaring each deviation serves two purposes: it ensures all values are positive, and it gives greater weight to larger, more significant deviations. However, this calculation leaves the variance in squared units (e.g., milliseconds squared), which are not intuitive to interpret.
+The sample variance is a scaled sum of the squared deviations from the mean, using the divisor $n-1$. Squaring each deviation serves two purposes: it makes all contributions non-negative, and it gives greater weight to larger deviations. However, this calculation leaves the variance in squared units (e.g., milliseconds squared), which are not intuitive to interpret.
 
 To solve this, we use the standard deviation, which is simply the square root of the variance. This crucial step returns the measure to the original units of the data (e.g., milliseconds), making it directly interpretable. In short, the standard deviation represents the typical distance of a data point from the mean.
 
@@ -624,11 +624,11 @@ To solve this, we use the standard deviation, which is simply the square root of
 s^2 &= \frac{1}{9}[(120-245)^2 + (150-245)^2 + \cdots + (400-245)^2] \\
 &= \frac{1}{9}[(-125)^2 + (-95)^2 + \cdots + (155)^2] \\
 &= \frac{1}{9}[15625 + 9025 + \cdots + 24025] \\
-&= \frac{1}{9} \times 82250 \approx 9138.89
+    &= \frac{1}{9} \times 70850 \approx 7872.22
 \end{align*}
 
 \[
-s = \sqrt{9138.89} \approx 95.6 \text{ milliseconds}
+s = \sqrt{7872.22} \approx 88.73 \text{ milliseconds}
 \]
 \end{example}
 
@@ -685,17 +685,17 @@ Both systems have the same relative variability (20\%), despite different absolu
 To introduce a measure of spread that is less sensitive to outliers, we first need to understand measures of position, which describe the relative standing of a data point within a dataset.
 
 \begin{definition}[Percentile]
-The $p$-th \textbf{percentile} is the value below which $p\%$ of the data falls.
+The $p$-th \textbf{percentile} is a value at or below which approximately $p\%$ of the observations fall. Several conventions are used to calculate percentiles, especially for small samples, so the chosen method should always be stated.
 \end{definition}
 
 For example, if a response time is at the 95th percentile, it means that 95\% of all response times are faster than this one.
 
 \begin{example} Percentile Calculation
 
-    For the response time data, to find the 90th percentile:
+    For the response time data, use the nearest-rank method to find the 90th percentile:
 \begin{enumerate}
         \item Sort data: $\{120, 150, 180, 200, 220, 250, 280, 300, 350, 400\}$
-        \item Position: $0.9 \times 10 = 9$th position
+        \item Rank: $\lceil 0.9 \times 10\rceil = 9$
         \item 90th percentile = 350ms
 \end{enumerate}
     \end{example}
@@ -707,10 +707,9 @@ Quartiles are specific, widely used percentiles that divide the data into four e
 Quartiles divide an ordered dataset into four equal parts.
 
 \begin{itemize}
-    \item \textbf{Q1 (First Quartile)}: The 25th percentile. 25\% of the data is less than this value.
+    \item \textbf{Q1 (First Quartile)}: The 25th percentile.
     \item \textbf{Q2 (Second Quartile)}: The 50th percentile. This is the \textbf{median} of the dataset.
-    \item \textbf{Q3 (Third Quartile)}: The 75th percentile. 75\% of the data is less than this value.
-    \item \textbf{Q4 (Fourth Quartile)}: The 100th percentile. 100\% of the data is less than this value.
+    \item \textbf{Q3 (Third Quartile)}: The 75th percentile.
 \end{itemize}
 \end{definition}
 
@@ -788,7 +787,7 @@ Quartiles can be read directly from an ogive. As an example, we will again use t
 
 Percentiles divide data into 100 equal parts, while quartiles divide data into four equal parts.
 
-The \textbf{interquartile range} is a robust measure of dispersion that is not affected by outliers.
+The \textbf{interquartile range} is a robust measure of dispersion that is generally much less sensitive to extreme observations than the full range or the standard deviation.
 
 \begin{definition}[Interquartile Range]
     The \textbf{interquartile range (IQR)} measures the spread of the middle 50\% of the data and is defined as
@@ -813,7 +812,7 @@ For the response time data: $\{120, 150, 180, 200, 220, 250, 280, 300, 350, 400\
 
 \subsection*{Summary Statistics}
 
-Before we conclude this chapter, we will review the summary statistics that we have covered in this section. Let us consider the response time data again, but now in the form of a table of 1000 values. \autoref{tab:summary_stats} shows the complete statistical summary of the data.
+Before we conclude this chapter, we will review the summary statistics covered in this section. \autoref{tab:summary_stats} is a hypothetical example for a separate dataset of 1000 web response times. The underlying observations are not listed, so the values are included to illustrate the structure of a summary table rather than as a reproducible calculation from the preceding ten observations.
 
 \begin{example}
 
@@ -831,7 +830,7 @@ Mean & 245.3 ms \\
 Median & 238.0 ms \\
 Mode & 220.0 ms \\
 Standard Deviation & 95.6 ms \\
-Variance & 9138.9 ms² \\
+Variance & 9139.4 ms² \\
 Minimum & 45.0 ms \\
 Maximum & 1200.0 ms \\
 Range & 1155.0 ms \\
@@ -926,13 +925,13 @@ Many datasets observed in practice, from human height to measurement errors, fol
 A \textbf{normal distribution} is a symmetric, bell-shaped distribution where the mean, median, and mode are all equal and located at the center. Its shape is determined entirely by its mean ($\mu$) and standard deviation ($\sigma$).
 \end{definition}
 
-When the bins of a histogram become smaller, the histogram becomes more and more similar to a normal distribution. This is because the normal distribution is a continuous distribution, while the histogram is a discrete distribution. This is a consequence of the \textbf{Law of Large Numbers}.
+A histogram estimates the shape of the distribution that generated the observations. With more data and an appropriate choice of bin width, it can give a more detailed picture of the underlying distribution, but it does not necessarily become normal. Whether a normal model is appropriate depends on the data-generating process.
 
 \begin{theorem}[Law of Large Numbers]
-    The sample mean of a dataset will converge to the population mean as the sample size increases.
+    For independent and identically distributed observations with a finite expected value, the sample mean converges to the population mean as the sample size increases.
 \end{theorem}
 
-When the sample size is large enough, the sample mean will be very close to the population mean, and the histogram will be very similar to a normal distribution and will get the following shape:
+The Law of Large Numbers concerns the sample mean, not the shape of a histogram. If the underlying population itself is normally distributed, its probability density has the following shape:
 
 \begin{figure}[htbp]
     \centering
@@ -1097,7 +1096,7 @@ When a data set is not symmetric about its sample median, it is described as \te
 
 \newpage
 
-\autoref{fig:skew_mean_median_mode} shows the relationship between mean, median, and mode for right skewed, symmetric, and left skewed distributions.
+\autoref{fig:skew_mean_median_mode} illustrates common patterns for the mean, median, and mode in unimodal skewed distributions. These orderings are useful heuristics, not definitions of skewness and not universal rules.
 
 
 \begin{figure}[htbp]
@@ -1192,8 +1191,8 @@ As mentioned in \autoref{sec:ch6sec1}, outliers are data points that are signifi
 A common method for identifying outliers is to use the interquartile range (IQR):
 
 \begin{itemize}
-    \item \textbf{Mild outliers}: Any data point less than $Q_1 - 1.5 \times IQR$ or greater than $Q_3 + 1.5 \times IQR$.
-    \item \textbf{Extreme outliers}: Any data point less than $Q_1 - 3 \times IQR$ or greater than $Q_3 + 3 \times IQR$.
+    \item \textbf{Mild outliers}: Data points outside the $1.5\times IQR$ fences but not outside the $3\times IQR$ fences.
+    \item \textbf{Extreme outliers}: Data points less than $Q_1 - 3 \times IQR$ or greater than $Q_3 + 3 \times IQR$.
 \end{itemize}
 
 \begin{example} Detecting Outliers
@@ -1247,13 +1246,13 @@ Box plots provide a compact summary of data distribution, highlighting the media
 
 
 \begin{definition}[Box Plot Components]
-A box plot displays five key statistics:
+A box plot is based on the five-number summary and may also display outliers:
 \begin{itemize}
-    \item \textbf{Minimum}: The smallest value (excluding outliers)
-    \item \textbf{Q1 (First Quartile)}: 25\% of data below this value
-    \item \textbf{Median (Q2)}: 50\% of data below this value
-    \item \textbf{Q3 (Third Quartile)}: 75\% of data below this value
-    \item \textbf{Maximum}: The largest value (excluding outliers)
+    \item \textbf{Lower whisker}: Usually the smallest observation within the lower $1.5\times IQR$ fence
+    \item \textbf{Q1 (First Quartile)}: The 25th percentile
+    \item \textbf{Median (Q2)}: The 50th percentile
+    \item \textbf{Q3 (Third Quartile)}: The 75th percentile
+    \item \textbf{Upper whisker}: Usually the largest observation within the upper $1.5\times IQR$ fence
     \item \textbf{Outliers}: Points beyond 1.5 × IQR from the box
 \end{itemize}
 \end{definition}
@@ -1262,15 +1261,8 @@ A box plot provides a visual summary of the distribution of a dataset, making it
 
 \begin{itemize}
     \item The \textbf{length of the box} shows the spread of the central half of the data. A longer box means more variability in the middle 50\%.
-    \item The \textbf{position of the median line} within the box indicates skewness.  
-    If the median is closer to $Q_1$ (the left side), the data are \emph{skewed right} (longer tail on the right).  
-    If the median is closer to $Q_3$ (the right side), the data are \emph{skewed left} (longer tail on the left).
-    \item The \textbf{mean} typically lies in the direction of the skew.  
-    Therefore, if the median line is closer to $Q_1$, the mean is to the \emph{right} of the median (right-skewed).  
-    If the median line is closer to $Q_3$, the mean is to the \emph{left} of the median (left-skewed).
-    \item The \textbf{mode}, median, and mean tend to align in this order:  
-    For left-skewed data: $\text{mean} < \text{median} < \text{mode}$.  
-    For right-skewed data: $\text{mode} < \text{median} < \text{mean}$.
+    \item The \textbf{position of the median line} and the relative whisker lengths can suggest asymmetry, but a box plot alone does not determine the direction or degree of skewness.
+    \item In many unimodal skewed distributions, the mean is pulled toward the longer tail. Consequently, one often sees $\text{mode}<\text{median}<\text{mean}$ for right-skewed data and the reverse ordering for left-skewed data. These are common patterns rather than guaranteed identities.
     \item The \textbf{whiskers} show the range of the bulk of the data, excluding outliers.
     \item \textbf{Outliers} highlight unusually high or low values that may warrant further investigation.
 \end{itemize}

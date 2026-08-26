@@ -89,7 +89,7 @@ The following examples illustrate various functions. In each example, we describ
 \begin{example} What are the domain, co-domain, and range of the function that assigns grades to students described in the first paragraph of the introduction of this section?
 
 \begin{solution}
-    Let $G$ be the function that assigns a grade to a student in our Software engineering mathematics class. Note that $G$(Alice) $=12$, for instance. The domain of $G$ is the set \{Alice, Bob, Carol, David, Eve $\}$, and the co-domain is the set $\{12, 10, 7, 4, 02\}$. The range of $G$ is the set $\{12, 10, 7, 02\}$, because each grade except $4$ is assigned to some student.
+    Let $G$ be the function that assigns a grade to a student in our Software engineering mathematics class. Note that $G$(Alice) $=12$, for instance. The domain of $G$ is the set \{Alice, Bob, Carol, Dave, Eve $\}$, and the co-domain is the set $\{12, 10, 7, 4, 02\}$. The range of $G$ is the set $\{12, 10, 7, 02\}$, because each grade except $4$ is assigned to some student.
 \end{solution}
     
 \end{example}
@@ -111,7 +111,7 @@ Some functions never assign the same value to two different domain elements. The
 A function \( f: A \rightarrow B \) is called \textbf{one-to-one} (or \textbf{injective}) if different elements in \( A \) map to different elements in \( B \). In other words, if \( f(a_1) = f(a_2) \), then \( a_1 = a_2 \). This property ensures that no two distinct elements in \( A \) are mapped to the same element in \( B \).     
 \end{definition}
 
-Graphically, a function is one-to-one if no horizontal line intersects the graph of the function at more than one point.
+For a real-valued function drawn in the Cartesian plane, the function is one-to-one if and only if no horizontal line intersects its graph more than once. This criterion is known as the horizontal line test.
 
 \begin{definition}{Onto Functions (Surjective)}
 A function \( f: A \rightarrow B \) is called \textbf{onto} (or \textbf{surjective}) if every element in \( B \) is the image of at least one element in \( A \). In other words, for every \( b \in B \), there exists at least one \( a \in A \) such that \( f(a) = b \). This property ensures that the function ``covers'' the entire set \( B \).
@@ -289,7 +289,7 @@ and
 \end{example}
 
 \begin{remark}
-Even though \( f \circ g \) and \( g \circ f \) are defined for the functions \( f \) and \( g \) in example 35, \( f \circ g \) and \( g \circ f \) are not equal. In other words, the commutative law does not hold for the composition of functions.
+Even though \( f \circ g \) and \( g \circ f \) are both defined for the functions \( f \) and \( g \) in the preceding example, they are not equal. In other words, function composition is not commutative in general.
   
 \end{remark}
 
@@ -581,13 +581,13 @@ Then, without rounding, raise 10 to this power. You will obtain:
 The powers of 10 have the normal properties of exponentiation. For instance,
 \[
 \begin{aligned}
-15 & = (3)(5) = \left(10^{0.4771 \ldots}\right)\left(10^{0.6999 \ldots}\right) \\
-& = 10^{0.4771 \ldots + 0.6599 \ldots} \\
-& = 10^{1.1760 \ldots}
+15 & = (3)(5) = \left(10^{0.4771 \ldots}\right)\left(10^{0.6990 \ldots}\right) \\
+& = 10^{0.4771 \ldots + 0.6990 \ldots} \\
+& = 10^{1.1761 \ldots}
 \end{aligned}
 \]
 
-This means \(10^{0.4771 \ldots + 0.6599 \ldots} = 10^{1.1760 \ldots}\). Here, you add the exponents while keeping the same base. You can verify with your calculator that \(10^{1.1760 \ldots}\) indeed equals 15.
+This means \(10^{0.4771 \ldots + 0.6990 \ldots} = 10^{1.1761 \ldots}\). Here, you add the exponents while keeping the same base. You can verify with your calculator that \(10^{1.1761 \ldots}\) is approximately 15; the displayed decimals have been rounded.
 
 From this example, you can infer that logarithms have the same properties as exponents. This is expected because logarithms \textit{are} exponents. For instance,
 
@@ -611,17 +611,17 @@ Since a power can be written as a product, you can find the logarithm of a power
 
 \[
 \begin{aligned}
-\log 34 & = \log (3 \cdot 3 \cdot 3 \cdot 3) = \log 3 + \log 3 + \log 3 + \log 3 \\
+\log 3^4 & = \log (3 \cdot 3 \cdot 3 \cdot 3) = \log 3 + \log 3 + \log 3 + \log 3 \\
 & = 4 \log 3 \quad \text{\textit{Combine like terms}.}
 \end{aligned}
 \]
 
-The logarithm of a power equals the exponent of that power times the logarithm of the base. To verify this result, observe that \(3^4 = 81\). Press \(4 \times \texttt{LOG}\,3\) on your calculator, and you'll find it equals \(1.9084 \ldots\).
+The logarithm of a power equals the exponent times the logarithm of the quantity being raised to that power. To verify this result, observe that \(3^4 = 81\). Press \(4 \times \texttt{LOG}\,3\) on your calculator, and you'll find it equals \(1.9084 \ldots\).
 
 \begin{definition}{Base-10 Logarithms}
 
 \[
-\log x=y \iff 10^y=x
+\log x=y \iff 10^y=x, \qquad x>0
 \]
 
 \textit{Verbally}: $\log x$ is the exponent in the power of 10 that gives $x$   
@@ -631,9 +631,10 @@ The term logarithm comes from the Greek words \emph{logos}, meaning "ratio," and
 \[
 (357)(4.367)(22.4)(3.142)
 \]
-could be calculated by adding their logarithms (exponents) rather than tediously multiplying several pairs of numbers. This method was invented by Englishman Henry Briggs (1561–1630) and Scotsman John Napier (1550–1616). The name logarithm, thus, reflects this "logical way to do arithmetic".
+could be calculated by adding their logarithms rather than tediously multiplying several pairs of numbers. John Napier introduced logarithms in the early seventeenth century, and Henry Briggs subsequently developed and published extensive tables of common (base-10) logarithms.
 
 \begin{custombox}{Properties of base-10 logarithms}
+For $x>0$, $y>0$, and $r\in\mathbb{R}$, the following properties hold:
 \begin{itemize}
     \item Log of a Product:
     
@@ -653,9 +654,9 @@ could be calculated by adding their logarithms (exponents) rather than tediously
     \vspace{0.2cm}
     \item Log of a Power:
     \[
-    \log x^y=y \log x
+    \log x^r=r \log x
     \]
-    \textit{Verbally}: The $\log$ of a power equals the exponent times the log of the base.
+    \textit{Verbally}: The $\log$ of a power equals the exponent times the log of the quantity being raised to that power.
 \end{itemize}
 
    
@@ -731,7 +732,7 @@ Write only this:
 \end{solution}
 \end{example}
 
-\begin{example} Write $z^4=m$ in logarithmic form.
+\begin{example} Assuming $z>0$, $z\neq 1$, and $m>0$, write $z^4=m$ in logarithmic form.
 
 \begin{solution}
     $\log _z m=4$
@@ -790,6 +791,8 @@ Notice that the logarithm with the desired base is isolated on the left side of 
 \begin{equation*}
 \log _a x=\frac{\log_b x}{\log_b a} \quad \text { or } \quad \log_a x=\frac{1}{\log_b a}\left(\log_b x\right)
 \end{equation*}
+
+where $a>0$, $a\neq 1$, $b>0$, $b\neq 1$, and $x>0$.
     
 \end{custombox}
 
@@ -811,12 +814,14 @@ which agrees with the answer we got using the change-of-base property.
 \begin{custombox}{Properties of Logarithms}
 \setlength{\leftskip}{1cm}  % Reset the text indent
 \setlength{\rightskip}{1cm} % Reset the right indent
+Let $b>0$ with $b\neq 1$, and let $x>0$, $y>0$, and $r\in\mathbb{R}$.
+
 The Logarithm of a Power:
 $$
-\log _b x^y=y \log _b x
+\log _b x^r=r \log _b x
 $$
 
-\textit{Verbally}: The logarithm of a power equals the product of the exponent and the logarithm of the base.
+\textit{Verbally}: The logarithm of a power equals the product of the exponent and the logarithm of the quantity being raised to that power.
 \vspace{0.5cm}
 The Logarithm of a Product:
 $$

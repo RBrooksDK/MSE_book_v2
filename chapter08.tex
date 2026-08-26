@@ -459,7 +459,7 @@ and we see that there is a solution. Now we find what weights $x_1, x_2, x_3$ wo
 \end{array}\right] \\[10pt]
 & r_1 \mapsto r_1 + 4r_2 \quad &
 & \left[\begin{array}{cccc}
-1 & 0 & 0 & \frac{245}{38} \\
+1 & 0 & 0 & \frac{245}{33} \\
 0 & 1 & 0 & -\frac{41}{66} \\
 0 & 0 & 1 & -\frac{2}{11}
 \end{array}\right],
@@ -486,7 +486,7 @@ The \textbf{span} of a set of vectors is the collection of all possible linear c
 
     \begin{minipage}{0.45\textwidth}
         \centering
-        \begin{tikzpicture}[scale = 0.5]
+        \begin{tikzpicture}[scale = 0.4]
             \useasboundingbox (-8,-8) rectangle (8,8);
 
             \def\A{7}
@@ -517,7 +517,7 @@ The \textbf{span} of a set of vectors is the collection of all possible linear c
 
         \tdplotsetmaincoords{60}{120}
 
-        \begin{tikzpicture}[tdplot_main_coords, scale=0.5]
+        \begin{tikzpicture}[tdplot_main_coords, scale=0.4]
             \begin{scope}[tdplot_screen_coords]
                 \path[use as bounding box] (-8,-8) rectangle (8,8);
             \end{scope}
@@ -715,7 +715,11 @@ Assuming the product \( A \vect{x} \) is defined, the \( i \)-th entry in \( A \
 \end{custombox}
 
 
-This rule simplifies the matrix multiplication process by breaking it down into smaller, familiar operations — dot products — making it easier to compute and understand. It also highlights the connection between matrix multiplication and linear combinations, as the product \( A \vect{x} \) is a linear combination of the rows of \( A \) with weights given by the entries of \( \vect{x} \).
+This rule simplifies matrix multiplication by breaking it into familiar dot products. There is also a complementary column interpretation: if the columns of $A$ are $\vect{a}_1,\ldots,\vect{a}_n$ and $\vect{x}=(x_1,\ldots,x_n)^T$, then
+\[
+A\vect{x}=x_1\vect{a}_1+\cdots+x_n\vect{a}_n.
+\]
+Thus, $A\vect{x}$ is a linear combination of the \emph{columns} of $A$, while each individual entry of the product is a dot product with a row of $A$.
 
 \begin{example} Let
 

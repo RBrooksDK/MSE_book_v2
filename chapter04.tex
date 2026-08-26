@@ -105,7 +105,7 @@ This means that all the operations we have defined on sets translate directly in
     \item $A \Delta B$ or $A \oplus B$: the event that either $A$ or $B$ occurs, but not both (symmetric difference).
 \end{itemize}
 
-Thus, probability theory builds directly on set theory: probability assigns a numerical measure to these subsets of the sample space. In the next chapter, we will see how this measure is defined and used to reason about uncertainty.
+Thus, probability theory builds directly on set theory: probability assigns a numerical measure to these subsets of the sample space. Later in this chapter, we will see how this measure is defined and used to reason about uncertainty.
 
 We can summarise the considerations of this section in the following table:
 
@@ -158,7 +158,7 @@ We start out by discussing the most basic counting principle: the \textbf{multip
     \begin{itemize}
         \item There are $n_1$ ways to complete step 1.
         \item There are $n_2$ ways to complete step 2 for each way of completing step 1.
-        \item There are $n_3$ ways to complete step 3 for each way of completing step 2, and so on.
+        \item There are $n_3$ ways to complete step 3 for each possible completion of the first two steps, and similarly for every subsequent step.
     \end{itemize}
     
     Then, the total number of ways to complete the entire operation is given by:
@@ -415,7 +415,7 @@ For selections from $n$ types:
 \end{proposition}
 
 \section{Basic Probability}
-Probability quantifies the likelihood or chance that an outcome of a random experiment will occur. For instance, when you hear, “The chance of rain today is 30\%,” it expresses our belief about the likelihood of rain. Probabilities are numbers assigned to outcomes, ranging from 0 to 1 (or equivalently, from 0\% to 100\%). A probability of 0 means the outcome will not happen, while a probability of 1 means it will happen for sure.
+Probability quantifies the likelihood or chance of events associated with a random experiment. For instance, when you hear, “The chance of rain today is 30\%,” it expresses uncertainty about the event that it rains. Probabilities range from 0 to 1 (or equivalently, from 0\% to 100\%). An impossible event has probability 0, and the entire sample space has probability 1. In general probability models, however, an event can have probability 0 without being empty, or probability 1 without containing every possible outcome; such events are called almost impossible and almost sure, respectively.
 
 Probabilities can be interpreted in different ways:
 
@@ -446,10 +446,10 @@ The property that \( 0 \leq P(A) \leq 1 \) is equivalent to the requirement that
 In the next sections we will see more about the probability of events and how to calculate them.
 
 \subsection*{Probability of an Event}
-The probability of an event is a measure of the likelihood that the event will occur. It is denoted by \( P(A) \), where \( A \) is the event. The probability of an event ranges from 0 to 1, where 0 indicates that the event will not occur, and 1 indicates that the event will occur for sure.
+The probability of an event is a measure of the likelihood that the event will occur. It is denoted by \( P(A) \), where \( A \) is the event, and it ranges from 0 to 1. The empty event has probability 0, and the sample space has probability 1.
 
-\begin{definition}[Probability of an Event]
-    The probability of an event \( A \), denoted by \( P(A) \), is the likelihood that event \( A \) will occur. It is defined as the ratio of the number of favorable outcomes to the total number of outcomes in the sample space.
+\begin{definition}[Classical Probability for Equally Likely Outcomes]
+    If a finite sample space consists of equally likely outcomes, the probability of an event \( A \) is the ratio of the number of outcomes in \(A\) to the total number of outcomes in the sample space:
     \[
     P(A) = \frac{\text{Number of favorable outcomes}}{\text{Total number of outcomes}}
     \]
