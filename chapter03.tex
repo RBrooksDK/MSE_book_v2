@@ -102,35 +102,7 @@ Visualizing the relationships between these sets is key to understanding them. A
 % This is the TikZ code you provided for the number system Venn diagram.
 \begin{figure}[htbp]
     \centering
-    \begin{tikzpicture}[scale=0.7]
-        % Complex Numbers (outer square)
-        \draw[thick, fill=lightgray!50] (-12, -6) rectangle (10, 5);
-        \node at (8, 4) {\Huge $\mathbb{C}$};
-        
-        % Real Numbers (largest set)
-        \draw[thick, fill=mseViaBlue] (-4,0) ellipse (7.8cm and 4.5cm);
-        \node at (-3, 3) {\Large $\mathbb{R}$};
-        
-        % Rational Numbers
-        \draw[thick, fill=mseOrange] (-7,0) ellipse (4.5cm and 3cm);
-        \node at (-11, 0) {\Large$\mathbb{Q}$};
-        
-        % Integers
-        \draw[thick, fill=mseDarkText] (-7,0) ellipse (3cm and 2cm);
-        \node at (-9.5, 0) {\Large$\mathbb{Z}$};
-        
-        % Natural Numbers
-        \draw[thick, fill=mseAnswerBg] (-7,0) ellipse (2cm and 1.2cm);
-        \node at (-7, 0) {\Large$\mathbb{N}$};
-        
-        % Irrational Numbers
-        \draw[thick, fill=mseQuestionBorder] (1,0) ellipse (2cm and 1.2cm);
-        \node at (1, 0) {\Large$\mathbb{R} /\mathbb{Q} $};
-        
-        % Imaginary Numbers
-        \draw[thick, dashed, fill=mseImaginary] (7,0) ellipse (2cm and 1.2cm);
-        \node at (7, 0) {\Large $\mathbb{I}$};
-    \end{tikzpicture}
+    \input{figure/number_sets_venn}
     \caption{A Venn diagram illustrating the hierarchical relationship between the major number sets.}
     \label{fig:venn_num}
 \end{figure}

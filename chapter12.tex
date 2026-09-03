@@ -6,37 +6,7 @@ Number theory, often called the "Queen of Mathematics," is a branch of mathemati
 
 \begin{figure}[h!]
     \centering
-\begin{tikzpicture}[scale=0.7]
-
-    % Complex Numbers (outer square)
-    \draw[thick, fill=OliveGreen!90] (-12, -6) rectangle (10, 5);
-    \node at (5.5, 4) {\Huge $\mathbb{C}$};
-    
-    % Real Numbers (largest set)
-    \draw[thick, fill=RawSienna] (-4,0) ellipse (7.8cm and 4.5cm);
-    \node at (-3, 3) {\Large $\mathbb{R}$};
-    
-    % Rational Numbers
-    \draw[thick, fill=RawSienna!80] (-7,0) ellipse (4.5cm and 3cm);
-    \node at (-11, 0) {\Large$\mathbb{Q}$};
-    
-    % Integers
-    \draw[thick, fill=Bittersweet!75] (-7,0) ellipse (3cm and 2cm);
-    \node at (-9.5, 0) {\Large$\mathbb{Z}$};
-    
-    % Natural Numbers
-    \draw[thick, fill=BurntOrange!80] (-7,0) ellipse (2cm and 1.2cm);
-    \node at (-7, 0) {\Large$\mathbb{N}$};
-    
-    % Irrational Numbers
-    \draw[thick, fill=BurntOrange] (1,0) ellipse (2cm and 1.2cm);
-    \node at (1, 0) {\Large$\mathbb{R} \setminus \mathbb{Q} $};
-    
-    % Non-real complex numbers occupy the part of C outside R.
-    \node[align=center] at (6, 0) {\Large Non-real complex numbers\\[3pt]
-    \large $a+bi$ with $b\neq 0$};
-
-\end{tikzpicture}
+    \input{figure/number_sets_venn}
     \caption{Venn diagram of numbers}
     \label{fig:venn_num2}
 \end{figure}
