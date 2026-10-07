@@ -1,7 +1,7 @@
 \chapter{Conditional Probability and Bayes' Theorem}
 \label{chap:ch5}
 
-In this section, we introduce more advanced concepts of probability. We begin with \textbf{conditional probability}, which assesses the likelihood of an event occurring \textit{given} that another event has already taken place. Building on this, we introduce \textbf{the multiplication rule}, a key principle for determining the probability of multiple events happening in sequence. Next, we explore \textbf{the law of total probability}, which allows us to break down and calculate probabilities across different scenarios or partitions of the sample space. To further distinguish how events interact, we examine \textbf{dependent and independent events}, clarifying how the occurrence of one event influences or does not influence another. 
+In this chapter, we introduce more advanced concepts of probability. We begin with \textbf{conditional probability}, which assesses the likelihood of an event occurring \textit{given} that another event has already taken place. Building on this, we introduce \textbf{the multiplication rule}, a key principle for determining the probability of multiple events happening in sequence. Next, we explore \textbf{the law of total probability}, which allows us to break down and calculate probabilities across different scenarios or partitions of the sample space. To further distinguish how events interact, we examine \textbf{dependent and independent events}, clarifying how the occurrence of one event influences or does not influence another.
 
 Finally, we look into \textbf{Bayes' Theorem}, a powerful tool for updating probabilities in light of new evidence.
 
@@ -23,7 +23,7 @@ P(D \mid T),
 which represents the probability of \( D \) occurring given that \( T \) has occurred. This updated probability \( P(D \mid T) \) is known as the \textit{posterior probability}, as it reflects our revised belief about the likelihood of the event after taking the new evidence into account. Intuitively, it is reasonable to expect that \( P(D \mid T) \) is greater than the prior probability \( P(D) \). However, what is the exact value of \( P(D \mid T) \)? Before introducing a general formula, let us consider a simple example.
 
 \begin{example}
-I roll a fair die. Let \( A \) be the event that the outcome is a prime number, i.e., \( A = \{2, 3, 5\} \). Also, let \( B \) be the event that the outcome is greater than or equal to 3, i.e., \( B = \{3, 4, 5\} \). 
+I roll a fair die. Let \( A \) be the event that the outcome is a prime number, i.e., \( A = \{2, 3, 5\} \). Also, let \( B \) be the event that the outcome is greater than or equal to 3, i.e., \( B = \{3, 4, 5, 6\} \).
 
 \begin{enumerate}[label=(\alph*)]
     \item What is the probability of \( A \), \( P(A) \)?
@@ -40,10 +40,10 @@ I roll a fair die. Let \( A \) be the event that the outcome is a prime number, 
         P(A) &= \frac{3}{6} = \frac{1}{2}
         \end{align*}
     
-        \item The probability of \( A \) given \( B \) is the number of outcomes in the intersection of \( A \) and \( B \) divided by the number of outcomes in \( B \). Since the outcomes in the intersection of \( A \) and \( B \) are \(\{3, 5\}\) and the outcomes in \( B \) are \(\{3, 4, 5\}\), we have: \vspace{0.4cm}
+        \item The probability of \( A \) given \( B \) is the number of outcomes in the intersection of \( A \) and \( B \) divided by the number of outcomes in \( B \). Since the outcomes in the intersection of \( A \) and \( B \) are \(\{3, 5\}\) and the outcomes in \( B \) are \(\{3, 4, 5, 6\}\), we have: \vspace{0.4cm}
     
         \begin{align*}
-        P(A \mid B) &=\frac{|A \cap B|}{|B|} = \frac{|\{3,5\}|}{|\{3,4, 5\}|} = \frac{2}{3}
+        P(A \mid B) &=\frac{|A \cap B|}{|B|} = \frac{|\{3,5\}|}{|\{3,4, 5, 6\}|} = \frac{1}{2}
         \end{align*}
 
     \end{enumerate}

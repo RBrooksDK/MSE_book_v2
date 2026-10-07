@@ -196,7 +196,7 @@ To compute the matrix resulting from this composition, we multiply \(A\) by \(B\
 In essence, \(C\) represents the matrix that captures the combined effect of applying both \(B\) and \(A\) to any vector \(\vect{x} \in \mathbb{R}^p\), without needing to break it down into intermediate steps.
 
 \begin{definition}
-    For $A \in \mathbb{R}^{m \times n}$ and $B \in \mathbb{R}^{n \times p}$, with $B=\left[\begin{array}{lll}\vect{b_1} & \vect{b_2} \cdots & \vect{b_p}\end{array}\right]$, we define the product $A B$ by the formula
+    For $A \in \mathbb{R}^{m \times n}$ and $B \in \mathbb{R}^{n \times p}$, with $B=\left[\begin{array}{llll}\vect{b_1} & \vect{b_2} & \cdots & \vect{b_p}\end{array}\right]$, we define the product $A B$ by the formula
 
 \[
 A B=\left[\begin{array}{llll}
@@ -657,7 +657,7 @@ The following theorem summarises the properties of the transpose of a matrix.
     \end{enumerate}
 \end{theorem}
 
-A consequence of property (4) is that
+A consequence of property (d) is that
 \[
 \left(A_1 A_2 \ldots A_k\right)^T=A_k^T A_{k-1}^T \cdots A_2^T A_1^T
 \]
@@ -1260,10 +1260,10 @@ The Invertible Matrix Theorem provides a comprehensive list of equivalent statem
         \item $A$ is invertible.
         \item $A$ is row equivalent to $I_n$.
         \item $A$ has $n$ pivot positions (i.e. one for each row and column).
-        \item The equation $A \vect{x}=\overline{0}$ has only the trivial solution.
+        \item The equation $A \vect{x}=\vect{0}$ has only the trivial solution.
         \item The columns of $A$ are linearly independent.
         \item The equation \( A \vect{x} = \vect{b} \) has a unique solution for each \( \vect{b} \in \mathbb{R}^n \).
-        \item The columns of $A \operatorname{span} \mathbb{R}^n$.
+        \item The columns of $A$ span $\mathbb{R}^n$.
         \item \( \text{det}(A) \neq 0 \).
         \item There is an $n \times n$ matrix $C$ such that $C A=I$.
         \item There is an $n \times n$ matrix $D$ such that $A D=I$.

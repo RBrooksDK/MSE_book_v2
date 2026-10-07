@@ -58,7 +58,7 @@ In the binary scale, we express numbers in powers of 2 rather than the 10s of th
 \caption{Decimal Numbers in Binary Representation}
 \end{table}
 
-As in decimal, we write this with the position of the digit representing the power, the first place after the decimal being the $2^0$ position, the next the $2^1$, and so on. To convert a decimal number to binary, we can use the \texttt{mod} operator.
+As in decimal, we write this with the position of the digit representing the power, the first place after the binary point being the $2^{-1}$ position, the next the $2^{-2}$, and so on. To convert a decimal number to binary, we can use the \texttt{mod} operator.
 
 As an example, consider 88 in decimal or $88_{10}$. We would like to write it as a binary number. We take the number and successively divide \texttt{mod} 2. See below:
 
@@ -97,7 +97,7 @@ Step Number $n$ & $x_n$ & $x_n \times 2$ & $\left\lfloor x_n \times 2 \right\rfl
 \caption{Conversion of Decimal Fraction 0.6875 to Binary}
 \end{table}
 
-Giving, reading down, $0.6875_{10} = 1011_2$.
+Giving, reading down, $0.6875_{10} = 0.1011_2$.
 
 \subsection*{Binary Expansion}
 
@@ -478,7 +478,7 @@ The following example demonstrates the entire process by using different colors 
 We will illustrate the second method using the same example. In the previous case, we carried the actual binary number to the next columns. In this method, we write down 0 if the sum is even and 1 if the sum is odd. Every time a sum a multiple of 2, we carry a 1 to the next columns, and then continue this process for each column, including the carries in the calculation of that column.
 
 \textbf{Step 1: Add the Rightmost Column}\newline
-Add bits in column 1 (from counting from MSB):
+Add bits in column 1 (counting from LSB):
 
 $$
 1+1+1+1=100_2 \quad(\text{ which is binary for } 4)
@@ -522,7 +522,7 @@ This results in
 \end{equation*}
 
 \textbf{Step 2: Add the Second Column from the Right}\newline
-Add bits in column 2 (from counting from MSB):
+Add bits in column 2 (counting from LSB):
 
 $$
 1+1+1+1=100_2 \quad(\text{ which is binary for } 4)
@@ -566,7 +566,7 @@ This results in
 \end{equation*}
 
 \textbf{Step 3: Add the Third Column from the Right}
-Add bits in column 3 (from counting from MSB):
+Add bits in column 3 (counting from LSB):
 
 $$
 1+1+1+1+1+1=110_2 \quad(\text{ which is binary for } 6)
@@ -612,7 +612,7 @@ This results in
 \end{equation*}
 
 \textbf{Step 4: Add the Fourth Column from the Right}\newline
-Add bits in column 4 (from counting from MSB):
+Add bits in column 4 (counting from LSB):
 
 $$
 1+1+1+1+1+1+1=111_2 \quad(\text{ which is binary for } 7)

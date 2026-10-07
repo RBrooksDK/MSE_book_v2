@@ -6,7 +6,7 @@ This chapter will introduce the tools needed to analyse algorithmic efficiency u
 
 \section{Introduction to Complexity Analysis}\label{sec:ch10sec1}
 
-For instance, analysing an algorithm might reveal that the time it takes to complete a problem of size $n$ is given by $T(n)=4 n^2-2 n+2$. By ignoring constants — since these vary with hardware and slower-growing terms - we simplify this to $T(n)=O\left(n^2\right)$, emphasizing the dominant term. This abstraction helps us understand complexity on large inputs, regardless of specific environments, making Big-$\mathcal{O}$ a powerful tool for comparing algorithms.
+For instance, analysing an algorithm might reveal that the time it takes to complete a problem of size $n$ is given by $T(n)=4 n^2-2 n+2$. By ignoring constants — since these vary with hardware and slower-growing terms - we simplify this to $T(n)=\mathcal{O}\left(n^2\right)$, emphasizing the dominant term. This abstraction helps us understand complexity on large inputs, regardless of specific environments, making Big-$\mathcal{O}$ a powerful tool for comparing algorithms.
 
 The two key components of this theoretical abstraction are:
 
@@ -57,7 +57,7 @@ While all these resources are important, this chapter will primarily focus on ti
 Complexity impacts performance, but performance alone does not provide a complete picture of an algorithm's efficiency in terms of scalability. Understanding both is crucial to evaluating how well an algorithm will perform in diverse realworld scenarios, especially as input sizes grow significantly.
 
 \section{Growth of Functions}
-In Section \ref{sec:ch10sec1}the introduction to this chapter we noted that Big-$\mathcal{O}$ notation focuses on the dominant term of an algorithm's time complexity, abstracting away constants and smaller terms. This simplification is based on the idea that, as input sizes grow large, the dominant term will dictate the algorithm's complexity. Consider the following Java code snippet:
+In \autoref{sec:ch10sec1}, the introduction to this chapter, we noted that Big-$\mathcal{O}$ notation focuses on the dominant term of an algorithm's time complexity, abstracting away constants and smaller terms. This simplification is based on the idea that, as input sizes grow large, the dominant term will dictate the algorithm's complexity. Consider the following Java code snippet:
 
 \newpage
 
@@ -130,7 +130,7 @@ To understand how functions grow, let’s arrange some fundamental functions by 
 
 Starting with the basics, any constant function grows more slowly than a linear function, simply because a constant does not grow at all. For large enough values, a linear function grows slower than a quadratic, while a cubic function grows faster than a quadratic.
 
-Exponentials are well known for their rapid growth. Consider the tale of a company that decided to reward an employee by doubling their bonus each day for a month. Although it started with a modest amount, the exponential increase quickly escalated, and by the end of the month, the bonus would have been astronomical. Realizing the unsustainable cost, the company swiftly revised the agreement to a fixed rate instead. Mathematically, this effect is clear: \( n^2 < 2^n \) for any integer \( n \geq 4 \). More generally, for any exponent \( k \), \( n^k < 2^n \) for sufficiently large \( n \).
+Exponentials are well known for their rapid growth. Consider the tale of a company that decided to reward an employee by doubling their bonus each day for a month. Although it started with a modest amount, the exponential increase quickly escalated, and by the end of the month, the bonus would have been astronomical. Realizing the unsustainable cost, the company swiftly revised the agreement to a fixed rate instead. Mathematically, this effect is clear: \( n^2 < 2^n \) for any integer \( n \geq 5 \). More generally, for any exponent \( k \), \( n^k < 2^n \) for sufficiently large \( n \).
 
 Even more dramatically, factorial growth, represented by \( n! \), outpaces exponential growth for large \( n \). The reasoning is that \( 2^n \) consists of \( n \) factors of 2, while \( n! \) includes the first \( n \) integers as factors, most of which are larger than 2. Thus, \( n! \) eventually grows faster than \( 2^n \). 
 
@@ -162,18 +162,18 @@ Now, let's consider functions with slower growth — these are the types of func
             xlabel style={right},
             ylabel style={above},
             legend pos=north west,
-            title={Growth of $\log n$ vs. $n$}
+            title={Growth of $\log_2 n$ vs. $n$}
         ]
             % Plot for log(n)
-            \addplot[blue, thick] {ln(x)};
-            \addlegendentry{$\log n$}
+            \addplot[blue, thick] {ln(x)/ln(2)};
+            \addlegendentry{$\log_2 n$}
 
             % Plot for n
             \addplot[red, thick, dashed] {x};
             \addlegendentry{$n$}
         \end{axis}
     \end{tikzpicture}
-    \caption{Graph comparing the growth rates of $\log n$ and $n$}
+    \caption{Graph comparing the growth rates of $\log_2 n$ and $n$}
 \end{figure}
 
 Sorting algorithms, on the other hand, often have running times proportional to \( n \log n \). For large \( n \), we observe that \( 1 < \log n < n \), leading to \( n < n \log n < n^2 \). This order can be summarized as:
@@ -279,7 +279,7 @@ Consider the function $f(n)=4 n^3+3 n^2+2 n+10$. Let us determine an asymptotic 
         \item \textbf{Express Complexity in Terms of the Input Size $n$:}
         \begin{itemize}
             \item With the constants and lower-order terms removed, we are left with $n^3$.
-            Since $4 n^3$ dominates the growth, we describe the complexity in terms of $n^3$ for all three notations
+            Since $4 n^3$ dominates the growth, we describe the complexity in terms of $n^3$ using Big-$\mathcal{O}$ notation
 
             \[
                 f(n)=\mathcal{O}\left(n^3\right)
@@ -632,7 +632,7 @@ By understanding these notations, we gain a fuller perspective on an algorithm�
 Not all functions can be easily classified using Big-$\mathcal{O}$, Omega ($\Omega$), and Theta ($\Theta$) notation. In some cases, the growth rate of a function may not be easily determined, or the function may not fit neatly into one of these categories. In such cases, we can use additional tools to analyse the growth rate of functions more precisely.
 
 \subsection*{Little-\texorpdfstring{$o$}{o} Notation}
-Little-$o$ notation provides a \textit{strict upper bound} on the growth rate of a function. It describes a scenario where the function grows slower than another function, but not necessarily at the same rate. This notation is useful for indicating that an algorithm's time complexity is strictly less than a given function.
+Little-$o$ notation provides a \textit{strict upper bound} on the growth rate of a function. It describes a scenario where the function grows slower than another function. This notation is useful for indicating that an algorithm's time complexity is strictly less than a given function.
 
 \begin{definition}{Little-$o$}\label{def:little_o_notation}
     $f(n)$ is $o(g(n))$ if for any positive constant $\epsilon > 0$, there exists a constant $k \geq 0$ such that for all $n \geq k$,
@@ -747,7 +747,7 @@ The following properties hold for $o$ notation:
 Little-$o$ notation provides a more precise way to describe the growth rate of functions, especially when the function grows strictly slower than another function. This notation is useful for indicating that an algorithm's time complexity is strictly less than a given function, providing a more detailed understanding of the algorithm's complexity.
 
 \subsection*{Little-\texorpdfstring{$\omega$}{omega} Notation}
-Little-$\omega$ notation provides a \textit{strict lower bound} on the growth rate of a function. It describes a scenario where the function grows faster than another function, but not necessarily at the same rate. This notation is useful for indicating that an algorithm's time complexity is strictly greater than a given function.
+Little-$\omega$ notation provides a \textit{strict lower bound} on the growth rate of a function. It describes a scenario where the function grows faster than another function. This notation is useful for indicating that an algorithm's time complexity is strictly greater than a given function.
 
 \begin{definition}{Little-$\omega$}\label{def:little_omega_notation}
     $f(n)$ is $\omega(g(n))$ if for any positive constant $\epsilon > 0$, there exists a constant $k \geq 0$ such that for all $n \geq k$,
@@ -962,7 +962,7 @@ Little-$o$ and Little-$\omega$ notations can be used to provide more precise bou
                 
                 Now, analyze the limit behavior as \( n \to \infty \):
                 \[
-                \lim_{n \to \infty} \frac{f(n)}{g(n)} = 2 \sin(n) + 3.
+                \frac{f(n)}{g(n)} = 2 \sin(n) + 3.
                 \]
                 
                 Since \( \sin(n) \) oscillates between \( -1 \) and \( 1 \) as \( n \) grows, the expression \( 2 \sin(n) + 3 \) fluctuates between \( 1 \) and \( 5 \). Therefore, the simple limit \( \lim_{n \to \infty} \frac{f(n)}{g(n)} \) does not exist due to this oscillation.

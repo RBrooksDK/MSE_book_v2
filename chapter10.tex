@@ -396,7 +396,7 @@ Find the equation of the line tangent to the graph of $y=f(x)=x^{\frac{1}{2}}$ a
 
 \begin{solution}
 
-$f(4)=4^{\frac{1}{2}}=\sqrt{4}=2$, so the coordinates of the point on the graph are $(4,2)$. The derivative is
+$f(4)=4^{\frac{1}{2}}=\sqrt{4}=2$, so the coordinates of the point on the graph are $(4,2)$. The derivative is $f'(x)=\frac{1}{2\sqrt{x}}$, so $f'(4)=\frac{1}{4}$.
 
 Any non vertical line has equation of the form $y=m x+b$ where $m$ is the slope and $b$ the vertical intercept.
 
@@ -712,7 +712,7 @@ We solve this by using the chain rule and our knowledge of the derivative of \(\
 
 \[
 \begin{aligned}
-\frac{d}{d x} \ln \left(2 x^3+5 x^2-3\right) & =\frac{d \ln u}{d x} \quad \text { (where } u=\left(2 x^3+5 x^2-3\right) \\
+\frac{d}{d x} \ln \left(2 x^3+5 x^2-3\right) & =\frac{d \ln u}{d x} \quad \text { (where } u=\left(2 x^3+5 x^2-3\right)\text{)} \\
 & =\frac{d \ln u}{d u} \times \frac{d u}{d x} \quad \text { (by the chain rule) } \\
 & =\frac{1}{u} \times \frac{d u}{d x} \\
 & =\frac{1}{2 x^3+5 x^2-3} \times \frac{d}{d x}\left(2 x^3+5 x^2-3\right) \\
@@ -1076,7 +1076,7 @@ This test is visualized in \autoref{fig:first-derivative-test} and \autoref{fig:
 
 
 \subsection*{Optimisation}
-Now that we've laid the groundwork, we can approach some optimisation problems. When we want to maximise a function $f(x)$ within a specified interval for $x$, our goal is to find the largest value that $f(x)$ achieves on that interval. Importantly, this maximum value does not always coincide with a stationary point. As shown in \autoref{fig:restricted-domain-extrema}, consider searching for the greatest and least values of a function on the interval $2 \leq x \leq 7$. Within this interval, the function has two stationary points—one corresponding to a local maximum, the other to a local minimum. However, the highest value of the function in this interval actually occurs at the endpoint $x=7$, which is not a stationary point. It takes this value simply because, outside of the interval, larger $x$ values are excluded from consideration. In contrast, the minimum value in this example is located at a stationary point within the interval. With this understanding, we can now explain the systematic steps for finding the maximum or minimum of a function in a given region.
+Now that we've laid the groundwork, we can approach some optimisation problems. When we want to maximise a function $f(x)$ within a specified interval for $x$, our goal is to find the largest value that $f(x)$ achieves on that interval. Importantly, this maximum value does not always coincide with a stationary point. As shown in \autoref{fig:restricted-domain-extrema}, consider searching for the greatest and least values of a function on the interval $2 \leq x \leq 7$. Within this interval, the function has two stationary points—one corresponding to a local maximum, the other to a local minimum. However, the highest value of the function in this interval actually occurs at the endpoint $x=7$, which is not a stationary point. It takes this value simply because, outside of the interval, larger $x$ values are excluded from consideration. In contrast, the minimum value in this example occurs both at the endpoint $x=2$ and at the stationary point $x=5$. With this understanding, we can now explain the systematic steps for finding the maximum or minimum of a function in a given region.
 
 % --- Ensure these packages are in your preamble ---
 % \usepackage{pgfplots}
@@ -1151,11 +1151,12 @@ Now that we've laid the groundwork, we can approach some optimisation problems. 
 
         % Left Endpoint (at x=2)
         \coordinate (left_end) at (axis cs:2, 1);
-        \fill[black] (left_end) circle (2.5pt);
+        \fill[red] (left_end) circle (2.5pt);
+        \node[below left, red, font=\small] at (left_end) {Absolute Minimum};
 
         \end{axis}
     \end{tikzpicture}
-    \caption{On the restricted domain \([2, 7]\), the absolute maximum occurs at an endpoint (\(x=7\)), not at the local maximum. The absolute minimum occurs at an interior stationary point (\(x=5\)).}
+    \caption{On the restricted domain \([2, 7]\), the absolute maximum occurs at an endpoint (\(x=7\)), not at the local maximum. The absolute minimum occurs at both the endpoint \(x=2\) and the interior stationary point \(x=5\).}
     \label{fig:restricted-domain-extrema}
 \end{figure}
 
@@ -1250,7 +1251,7 @@ Now that we know exactly where the maxima or minima can occur, we can give a pro
     \[
     f''(x) = \frac{d}{dx} \left( f'(x) \right)
     \]
-    provided the limit exists.
+    provided $f'$ is differentiable at $x$.
     \end{definition}
     
     The most important geometric interpretation of the second derivative is \textbf{concavity}.
