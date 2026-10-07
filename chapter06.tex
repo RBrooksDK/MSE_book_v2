@@ -63,7 +63,7 @@ The essential difference between \textbf{qualitative} and \textbf{quantitative} 
 
 In any dataset, most values tend to cluster around a central region, but occasionally, we encounter values that are much higher or lower than the rest. These are called \textbf{outliers} or \textbf{extreme values}. Outliers can arise for many reasons: measurement errors, unusual but valid events, or natural variability in the data.
 
-For example, if most web requests complete in under 400 milliseconds, but one request takes 1200 milliseconds, that 1200ms value is an outlier. Outliers can have a strong influence on summary statistics like the mean, making the data appear more variable or shifting the average away from where most values lie.
+For example, if most web requests complete in under 400 milliseconds, but one request takes 1200 milliseconds, that 1200~ms value is an outlier. Outliers can have a strong influence on summary statistics like the mean, making the data appear more variable or shifting the average away from where most values lie.
 
 It's important to look for outliers when analyzing data, as they can signal interesting phenomena (such as a rare performance bottleneck), data entry mistakes, or the need for further investigation. While there are formal methods to detect outliers, which we will discuss later, often a simple plot or a scan of the sorted data is enough to spot values that "stand out" from the rest.
 
@@ -668,8 +668,8 @@ CV = \frac{s}{\bar{x}} \times 100\%
 
 Consider two systems:
 \begin{itemize}
-    \item System A: Mean response time = 100ms, Standard deviation = 20ms
-    \item System B: Mean response time = 500ms, Standard deviation = 100ms
+    \item System A: Mean response time = 100~ms, Standard deviation = 20~ms
+    \item System B: Mean response time = 500~ms, Standard deviation = 100~ms
 \end{itemize}
 
 \begin{align*}
@@ -696,7 +696,7 @@ For example, if a response time is at the 95th percentile, it means that approxi
 \begin{enumerate}
         \item Sort data: $\{120, 150, 180, 200, 220, 250, 280, 300, 350, 400\}$
         \item Rank: $\lceil 0.9 \times 10\rceil = 9$
-        \item 90th percentile = 350ms
+        \item 90th percentile = 350~ms
 \end{enumerate}
     \end{example}
 

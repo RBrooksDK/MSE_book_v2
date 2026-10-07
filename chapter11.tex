@@ -348,7 +348,7 @@ This update step is the core of the algorithm. We introduce a small positive con
 \[
 \beta_1 \leftarrow \beta_1 - \eta \frac{\partial L}{\partial \beta_1}
 \]
-We repeat this process many times. With each step, our parameters \(\beta_0\) and \(\beta_1\) move closer to the values that minimize the loss function \(L\), effectively "walking downhill" on the loss surface until they settle at the bottom.
+We repeat this process many times. With a suitable learning rate, the updates reduce the loss function \(L\) and move the parameters \(\beta_0\) and \(\beta_1\) toward a minimizer of this convex loss surface.
 
 Using more compact vector notation, where \(\boldsymbol{\beta}\) is the vector \(\langle \beta_0, \beta_1 \rangle\), the entire update rule can be written as:
 \[

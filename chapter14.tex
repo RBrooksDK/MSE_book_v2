@@ -573,7 +573,7 @@ f(n)=\Omega(g(n)): \quad f \text{ grows at least as fast as } g
 The following properties hold for $\Omega$ notation:
 \begin{itemize}
     \item If $f(n) = \Omega(g(n))$ and $g(n) = \Omega(h(n))$, then $f(n) = \Omega(h(n))$.
-    \item Constant functions are $\Omega(1)$, meaning they have a lower bound that does not depend on input size.
+    \item Positive constant functions are $\Omega(1)$, meaning they have a lower bound that does not depend on input size.
 \end{itemize}
 
 
@@ -950,7 +950,7 @@ Little-$o$ and Little-$\omega$ notations can be used to provide more precise bou
             Since this limit is a positive constant \( c = 3 > 0 \), by Proposition \ref{prop:big_omega_theorem}, it follows that \( f(n) = \Omega(n^2) \). This example demonstrates that \( f(n) = 3n^2 + 5n + 7 \) has quadratic growth in the lower bound sense. \end{solution}
 
             \begin{example}
-                Determine if \( f(n) = 2n \sin(n) + 3n \) is \( \mathcal{O}(n) \) and \( \Omega(n) \) by using the limits as described in Proposition \ref{prop:big_o_theorem}. \end{example}
+                Determine if \( f(n) = 2n \sin(n) + 3n \) is \( \mathcal{O}(n) \) and \( \Omega(n) \) by using the limits described in Propositions \ref{prop:big_o_theorem} and \ref{prop:big_omega_theorem}. \end{example}
                 
                 \begin{solution}
                 Let \( g(n) = n \). We will examine the behavior of \( \frac{f(n)}{g(n)} \) as \( n \to \infty \).

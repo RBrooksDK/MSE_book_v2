@@ -190,7 +190,7 @@ The findings are summarised in the following contingency table:
         \item \textbf{Probability of Renal Disease, \( P(D) \)}:
         \begin{align*}
         P(D) &= \frac{\text{Number of patients with renal disease}}{\text{Total number of patients}} \\
-        &= \frac{67}{137} \approx 0.4883 \text{ or } 48.83\%
+        &= \frac{67}{137} \approx 0.4891 \text{ or } 48.91\%
         \end{align*}
         
         \item \textbf{Probability of a Positive Test, \( P(T^+) \)}:
@@ -353,7 +353,7 @@ A company has implemented a two-layer security system to protect against network
 \end{solution}
 
 \begin{remark}
-    It might seem intuitive to some to calculate the joint probability of detection using $P(A \cap B)=P(A) \cdot P(B)=0.4 \cdot 0.6=0.24$. However, this approach ignores the fact that the probability of detection by the IDS depends on the outcome of the Firewall. This is why we use the conditional probability $P(B \mid A)$, which properly accounts for the dependency between the two layers, yielding the correct result of 0.32.
+    One might incorrectly assume that the two layers are independent and calculate $P(A \cap B)=P(A) \cdot P(B)=0.4 \cdot 0.68=0.272$, where $P(B)=0.4 \cdot 0.8+0.6 \cdot 0.6=0.68$. Because detection by the IDS depends on the outcome of the firewall, we instead use $P(B \mid A)$ and obtain the correct result of 0.32.
 \end{remark}
 
 In some scenarios, the probability of an event depends on various conditions. By knowing the conditional probabilities under these different scenarios, we can determine the overall probability of the event. For instance, consider semiconductor manufacturing, where we define:
